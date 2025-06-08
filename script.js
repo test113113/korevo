@@ -21,12 +21,20 @@ function scrollToSection(sectionId) {
     const navMenu = document.getElementById('navMenu');
     navMenu.classList.remove('active');
     
-    // This will be implemented when sections are added
-    // For now, just scroll to top
-    window.scrollTo({
-        top: 0,
-        behavior: 'smooth'
-    });
+    // Find the target section
+    const targetSection = document.getElementById(sectionId);
+    if (targetSection) {
+        targetSection.scrollIntoView({
+            behavior: 'smooth',
+            block: 'start'
+        });
+    } else {
+        // If section doesn't exist yet, scroll to top
+        window.scrollTo({
+            top: 0,
+            behavior: 'smooth'
+        });
+    }
 }
 
 // ===== SCROLL ANIMATIONS =====
@@ -167,19 +175,191 @@ function initCTAAnimations() {
     });
 }
 
-// ===== CARD HOVER EFFECTS =====
-function initCardHoverEffects() {
-    const cards = document.querySelectorAll('.business-card, .feature-card');
+// ===== CEO MESSAGE SECTION ANIMATIONS =====
+function initCEOMessageAnimations() {
+    // Intersection Observer for CEO section animations
+    const ceoObserverOptions = {
+        threshold: 0.1,
+        rootMargin: '0px 0px -50px 0px'
+    };
+
+    const ceoObserver = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                entry.target.style.animationPlayState = 'running';
+                
+                // Add special effects for CEO image
+                if (entry.target.classList.contains('ceo-image')) {
+                    setTimeout(() => {
+                        entry.target.style.transform = 'scale(1.02) rotate(2deg)';
+                        setTimeout(() => {
+                            entry.target.style.transform = 'scale(1) rotate(0deg)';
+                        }, 300);
+                    }, 500);
+                }
+            }
+        });
+    }, ceoObserverOptions);
+
+    // Observe CEO section elements
+    const ceoElements = document.querySelectorAll('.ceo-profile-card, .message-content, .vision-card, .cta-section');
+    ceoElements.forEach(el => {
+        ceoObserver.observe(el);
+    });
+}
+
+// ===== CEO IMAGE INTERACTIONS =====
+function initCEOImageInteractions() {
+    const ceoImage = document.querySelector('.ceo-image');
+    if (ceoImage) {
+        ceoImage.addEventListener('mouseenter', function() {
+            this.style.transform = 'scale(1.05) rotate(5deg)';
+        });
+
+        ceoImage.addEventListener('mouseleave', function() {
+            this.style.transform = 'scale(1) rotate(0deg)';
+        });
+
+        // Add click interaction for mobile
+        ceoImage.addEventListener('click', function() {
+            this.style.transform = 'scale(1.1) rotate(10deg)';
+            setTimeout(() => {
+                this.style.transform = 'scale(1) rotate(0deg)';
+            }, 200);
+        });
+    }
+}
+
+// ===== VISION CARDS INTERACTIONS =====
+function initVisionCardInteractions() {
+    const visionCards = document.querySelectorAll('.vision-card');
     
-    cards.forEach(card => {
+    visionCards.forEach(card => {
         card.addEventListener('mouseenter', function() {
-            this.style.transform = 'translateY(-15px) scale(1.02)';
+            this.style.transform = 'translateY(-10px) scale(1.02)';
+            this.style.boxShadow = '0 25px 50px rgba(255, 215, 0, 0.15)';
         });
         
         card.addEventListener('mouseleave', function() {
             this.style.transform = 'translateY(0) scale(1)';
+            this.style.boxShadow = '0 15px 35px rgba(0, 0, 0, 0.08)';
+        });
+
+        // Add click effect for mobile
+        card.addEventListener('click', function() {
+            this.style.transform = 'translateY(-15px) scale(1.05)';
+            setTimeout(() => {
+                this.style.transform = 'translateY(0) scale(1)';
+            }, 150);
         });
     });
+}
+
+// ===== HIGHLIGHT TEXT ANIMATION =====
+function initHighlightTextAnimation() {
+    const highlightTexts = document.querySelectorAll('.highlight-text');
+    
+    const highlightObserver = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                entry.target.style.background = 'linear-gradient(135deg, rgba(255, 215, 0, 0.3), rgba(44, 85, 48, 0.2))';
+                entry.target.style.transform = 'scale(1.05)';
+                
+                setTimeout(() => {
+                    entry.target.style.background = 'linear-gradient(135deg, rgba(255, 215, 0, 0.2), rgba(44, 85, 48, 0.1))';
+                    entry.target.style.transform = 'scale(1)';
+                }, 300);
+            }
+        });
+    }, { threshold: 1.0 });
+
+    highlightTexts.forEach(text => {
+        highlightObserver.observe(text);
+    });
+}
+
+// ===== CEO SECTION CTA INTERACTIONS =====
+function initCEOCTAInteractions() {
+    const ctaButtons = document.querySelectorAll('.ceo-message-section .cta-btn');
+    
+    ctaButtons.forEach(button => {
+        button.addEventListener('mouseenter', function() {
+            this.style.transform = 'translateY(-3px) scale(1.05)';
+            this.style.boxShadow = '0 15px 30px rgba(255, 215, 0, 0.4)';
+        });
+        
+        button.addEventListener('mouseleave', function() {
+            this.style.transform = 'translateY(0) scale(1)';
+            this.style.boxShadow = '0 10px 20px rgba(255, 215, 0, 0.3)';
+        });
+
+        button.addEventListener('click', function(e) {
+            // Ripple effect
+            const ripple = document.createElement('div');
+            ripple.style.position = 'absolute';
+            ripple.style.borderRadius = '50%';
+            ripple.style.background = 'rgba(255, 255, 255, 0.6)';
+            ripple.style.transform = 'scale(0)';
+            ripple.style.animation = 'ripple 0.6s linear';
+            ripple.style.left = '50%';
+            ripple.style.top = '50%';
+            ripple.style.width = '20px';
+            ripple.style.height = '20px';
+            ripple.style.marginLeft = '-10px';
+            ripple.style.marginTop = '-10px';
+            
+            this.appendChild(ripple);
+            
+            setTimeout(() => {
+                ripple.remove();
+            }, 600);
+        });
+    });
+}
+
+// ===== TYPING ANIMATION FOR CEO MESSAGE =====
+function initTypingAnimation() {
+    const messageText = document.querySelector('.message-text');
+    if (messageText) {
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    // Add typing cursor effect
+                    const cursor = document.createElement('span');
+                    cursor.innerHTML = '|';
+                    cursor.style.animation = 'blink 1s infinite';
+                    cursor.style.fontWeight = 'bold';
+                    cursor.style.color = '#FFD700';
+                    
+                    // Add CSS for cursor animation
+                    if (!document.querySelector('#cursor-style')) {
+                        const style = document.createElement('style');
+                        style.id = 'cursor-style';
+                        style.innerHTML = `
+                            @keyframes blink {
+                                0%, 50% { opacity: 1; }
+                                51%, 100% { opacity: 0; }
+                            }
+                        `;
+                        document.head.appendChild(style);
+                    }
+                    
+                    messageText.appendChild(cursor);
+                    
+                    // Remove cursor after animation
+                    setTimeout(() => {
+                        if (cursor.parentNode) {
+                            cursor.remove();
+                        }
+                    }, 3000);
+                    
+                    observer.unobserve(entry.target);
+                }
+            });
+        }, { threshold: 0.5 });
+        
+        observer.observe(messageText);
+    }
 }
 
 // ===== LOADING ANIMATIONS =====
@@ -229,6 +409,21 @@ function throttle(func, limit) {
     }
 }
 
+// ===== CARD HOVER EFFECTS =====
+function initCardHoverEffects() {
+    const cards = document.querySelectorAll('.business-card, .feature-card');
+    
+    cards.forEach(card => {
+        card.addEventListener('mouseenter', function() {
+            this.style.transform = 'translateY(-15px) scale(1.02)';
+        });
+        
+        card.addEventListener('mouseleave', function() {
+            this.style.transform = 'translateY(0) scale(1)';
+        });
+    });
+}
+
 // ===== MAIN INITIALIZATION =====
 document.addEventListener('DOMContentLoaded', function() {
     console.log('KOREVO website initialized');
@@ -244,6 +439,14 @@ document.addEventListener('DOMContentLoaded', function() {
     initCTAAnimations();
     initCardHoverEffects();
     initLoadingAnimations();
+    
+    // Initialize CEO Message Section
+    initCEOMessageAnimations();
+    initCEOImageInteractions();
+    initVisionCardInteractions();
+    initHighlightTextAnimation();
+    initCEOCTAInteractions();
+    initTypingAnimation();
     
     // Add loaded class to body for CSS animations
     document.body.classList.add('loaded');
