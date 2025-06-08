@@ -1,0 +1,272 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>KOREVO - 대표 인사말</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="greeting-styles.css">
+</head>
+<body>
+    <!-- Header -->
+    <header class="header">
+        <nav class="nav-container">
+            <a href="index.html" class="logo">KOREVO</a>
+            
+            <ul class="nav-menu" id="navMenu">
+                <li class="nav-item">
+                    <a href="index.html" class="nav-link">홈</a>
+                </li>
+                <li class="nav-item">
+                    <a href="#" class="nav-link">회사소개</a>
+                    <div class="dropdown">
+                        <div class="dropdown-item" onclick="window.location.href='greeting.html'">인사말</div>
+                        <div class="dropdown-item" onclick="navigateToPage('vision')">비전 & 미션</div>
+                        <div class="dropdown-item" onclick="navigateToPage('history')">연혁</div>
+                        <div class="dropdown-item" onclick="navigateToPage('team')">팀 소개</div>
+                    </div>
+                </li>
+                <li class="nav-item">
+                    <a href="#" class="nav-link">사업소개</a>
+                    <div class="mega-dropdown">
+                        <div class="dropdown-section">
+                            <h4>브랜드 스토리</h4>
+                            <div class="dropdown-item" onclick="navigateToPage('onyu-brand')">온유(溫鍮) 브랜드</div>
+                            <div class="dropdown-item" onclick="navigateToPage('brand-philosophy')">브랜드 철학</div>
+                            <div class="dropdown-item" onclick="navigateToPage('traditional-craft')">전통 기법 계승</div>
+                        </div>
+                        <div class="dropdown-section">
+                            <h4>융합 비즈니스</h4>
+                            <div class="dropdown-item" onclick="navigateToPage('business-model')">사업 모델</div>
+                            <div class="dropdown-item" onclick="navigateToPage('innovation-strategy')">혁신 전략</div>
+                            <div class="dropdown-item" onclick="navigateToPage('sustainability')">지속가능경영</div>
+                        </div>
+                    </div>
+                </li>
+                <li class="nav-item">
+                    <a href="#" class="nav-link">제품/서비스</a>
+                    <div class="mega-dropdown">
+                        <div class="dropdown-section">
+                            <h4>🏺 유기 제품군</h4>
+                            <div class="dropdown-item" onclick="navigateToPage('dining-set')">식기 컬렉션</div>
+                            <div class="dropdown-item" onclick="navigateToPage('health-products')">건강 케어 제품</div>
+                            <div class="dropdown-item" onclick="navigateToPage('gift-sets')">프리미엄 선물세트</div>
+                            <div class="dropdown-item" onclick="navigateToPage('custom-craft')">맞춤 제작 서비스</div>
+                        </div>
+                        <div class="dropdown-section">
+                            <h4>💻 소프트웨어</h4>
+                            <div class="dropdown-item" onclick="navigateToPage('erp-solution')">제조업 ERP 솔루션</div>
+                            <div class="dropdown-item" onclick="navigateToPage('iot-platform')">IoT 품질관리 플랫폼</div>
+                            <div class="dropdown-item" onclick="navigateToPage('ecommerce-system')">전통공예 전자상거래</div>
+                            <div class="dropdown-item" onclick="navigateToPage('consulting')">디지털 전환 컨설팅</div>
+                        </div>
+                        <div class="dropdown-section">
+                            <h4>🔬 R&D 과제</h4>
+                            <div class="dropdown-item" onclick="navigateToPage('current-projects')">진행중 과제</div>
+                            <div class="dropdown-item" onclick="navigateToPage('completed-projects')">완료 과제</div>
+                            <div class="dropdown-item" onclick="navigateToPage('research-outcomes')">연구 성과</div>
+                            <div class="dropdown-item" onclick="navigateToPage('collaboration')">산학연 협력</div>
+                        </div>
+                    </div>
+                </li>
+                <li class="nav-item">
+                    <a href="#" class="nav-link">고객센터</a>
+                    <div class="dropdown">
+                        <div class="dropdown-item" onclick="navigateToPage('product-support')">제품 지원</div>
+                        <div class="dropdown-item" onclick="navigateToPage('software-support')">소프트웨어 지원</div>
+                        <div class="dropdown-item" onclick="navigateToPage('faq')">자주 묻는 질문</div>
+                        <div class="dropdown-item" onclick="navigateToPage('inquiry')">문의하기</div>
+                        <div class="dropdown-item" onclick="navigateToPage('download')">자료실</div>
+                    </div>
+                </li>
+                <li class="nav-item">
+                    <a href="#" class="nav-link">소식</a>
+                    <div class="dropdown">
+                        <div class="dropdown-item" onclick="navigateToPage('notice')">공지사항</div>
+                        <div class="dropdown-item" onclick="navigateToPage('news')">보도자료</div>
+                        <div class="dropdown-item" onclick="navigateToPage('blog')">기술 블로그</div>
+                        <div class="dropdown-item" onclick="navigateToPage('events')">이벤트</div>
+                        <div class="dropdown-item" onclick="navigateToPage('awards')">수상 내역</div>
+                    </div>
+                </li>
+                <li class="nav-item">
+                    <a href="#shop" class="nav-link">쇼핑몰</a>
+                </li>
+            </ul>
+
+            <div class="lang-selector">
+                <a href="#" class="lang-btn active">KO</a>
+                <a href="#" class="lang-btn">EN</a>
+                <a href="#" class="lang-btn">中文</a>
+                <a href="#" class="lang-btn">日本語</a>
+            </div>
+
+            <div class="menu-toggle" onclick="toggleMenu()">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        </nav>
+    </header>
+
+    <!-- Breadcrumb Navigation -->
+    <nav class="breadcrumb-nav">
+        <div class="container">
+            <div class="breadcrumb">
+                <a href="index.html" class="breadcrumb-item">홈</a>
+                <span class="breadcrumb-separator">></span>
+                <a href="#" class="breadcrumb-item">회사소개</a>
+                <span class="breadcrumb-separator">></span>
+                <span class="breadcrumb-item active">인사말</span>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Page Header -->
+    <section class="page-header">
+        <div class="container">
+            <div class="page-header-content">
+                <h1 class="page-title">대표 인사말</h1>
+                <p class="page-subtitle">전통과 혁신이 만나는 지점에서, 새로운 미래를 그려갑니다</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Main Content -->
+    <main class="main-content">
+        <!-- CEO Message Section -->
+        <section class="ceo-message-section">
+            <div class="container">
+                <!-- CEO Profile Card -->
+                <div class="ceo-profile-card">
+                    <div class="ceo-image-container">
+                        <div class="ceo-image">
+                            👨‍💼
+                        </div>
+                    </div>
+                    <div class="ceo-info">
+                        <h2 class="ceo-name">김상현</h2>
+                        <p class="ceo-title">대표이사 / CEO</p>
+                        <div class="ceo-credentials">
+                            <span class="credential-badge">서울대 경영학석사</span>
+                            <span class="credential-badge">15년 IT 경력</span>
+                            <span class="credential-badge">전통공예 전문가</span>
+                            <span class="credential-badge">정부과제 PL</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Message Content -->
+                <div class="message-content">
+                    <div class="quote-mark">"</div>
+                    <div class="message-text">
+                        안녕하십니까. KOREVO 대표이사 김상현입니다.<br><br>
+                        
+                        <span class="highlight-text">천년의 전통</span>이 담긴 한국의 유기 기술과 <span class="highlight-text">최첨단 디지털 기술</span>이 만나는 특별한 여정에 여러분을 초대합니다.<br><br>
+                        
+                        우리는 단순히 제품을 만드는 회사가 아닙니다. 조상들의 지혜와 현대의 혁신을 융합하여 <span class="highlight-text">지속가능한 미래</span>를 만들어가는 기업입니다. 온유(溫鍮)라는 브랜드명에는 따뜻한 마음과 정성이 담긴 유기그릇처럼, 사람들의 일상에 온기를 전하고 싶다는 우리의 철학이 담겨있습니다.<br><br>
+                        
+                        동시에 우리는 전통 제조업의 <span class="highlight-text">디지털 전환</span>을 이끌어가고 있습니다. 15년간 축적한 IT 전문성과 현장 경험을 바탕으로, 제조업체들이 4차 산업혁명 시대에 성공할 수 있도록 맞춤형 소프트웨어 솔루션을 제공하고 있습니다.<br><br>
+                        
+                        또한 다양한 정부 R&D 과제를 통해 전통 기술의 과학적 연구와 신소재 개발에도 앞장서고 있습니다. <span class="highlight-text">산학연 협력</span>을 통해 우리의 지식과 경험을 나누며, 함께 성장하는 생태계를 만들어가고 있습니다.<br><br>
+                        
+                        KOREVO와 함께 전통의 가치를 현대에 되살리고, 기술로 더 나은 세상을 만들어가는 여정에 동참해주시기 바랍니다.
+                    </div>
+                </div>
+
+                <!-- Vision Cards -->
+                <div class="vision-grid">
+                    <div class="vision-card">
+                        <div class="vision-icon">🏺</div>
+                        <h3 class="vision-title">전통 계승</h3>
+                        <p class="vision-text">천년의 유기 제작 기술을 현대적으로 계승하여 우리만의 독특한 제품을 만듭니다.</p>
+                    </div>
+                    <div class="vision-card">
+                        <div class="vision-icon">🚀</div>
+                        <h3 class="vision-title">기술 혁신</h3>
+                        <p class="vision-text">최신 IT 기술로 전통 산업의 디지털 전환을 선도하며 새로운 가치를 창출합니다.</p>
+                    </div>
+                    <div class="vision-card">
+                        <div class="vision-icon">🌱</div>
+                        <h3 class="vision-title">지속가능성</h3>
+                        <p class="vision-text">환경과 사람을 생각하는 지속가능한 경영으로 더 나은 미래를 만들어갑니다.</p>
+                    </div>
+                </div>
+
+                <!-- Call to Action -->
+                <div class="cta-section">
+                    <h3 class="cta-title">함께 만들어가는 미래</h3>
+                    <p class="cta-text">KOREVO의 여정에 함께하실 파트너와 고객을 기다리고 있습니다</p>
+                    <div class="cta-buttons">
+                        <a href="inquiry.html" class="cta-btn primary">문의하기</a>
+                        <a href="products.html" class="cta-btn">제품 보기</a>
+                        <a href="business.html" class="cta-btn">사업소개</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Related Pages Section -->
+        <section class="related-pages-section">
+            <div class="container">
+                <h2 class="section-title">회사소개 둘러보기</h2>
+                <div class="related-pages-grid">
+                    <a href="vision.html" class="related-page-card">
+                        <div class="related-icon">🎯</div>
+                        <h3>비전 & 미션</h3>
+                        <p>KOREVO가 추구하는 가치와 미래 비전을 확인해보세요</p>
+                        <span class="read-more">자세히 보기 →</span>
+                    </a>
+                    <a href="history.html" class="related-page-card">
+                        <div class="related-icon">📈</div>
+                        <h3>연혁</h3>
+                        <p>KOREVO의 성장 과정과 주요 성과를 살펴보세요</p>
+                        <span class="read-more">자세히 보기 →</span>
+                    </a>
+                    <a href="team.html" class="related-page-card">
+                        <div class="related-icon">👥</div>
+                        <h3>팀 소개</h3>
+                        <p>KOREVO를 이끌어가는 전문가들을 만나보세요</p>
+                        <span class="read-more">자세히 보기 →</span>
+                    </a>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="footer-content">
+            <div class="footer-section">
+                <h3>KOREVO</h3>
+                <p>한국의 전통과 혁신을 담은<br>프리미엄 유기 브랜드</p>
+                <p>전통의 아름다움을 현대에 되살리며<br>지속가능한 미래를 만들어갑니다.</p>
+            </div>
+            <div class="footer-section">
+                <h3>빠른 링크</h3>
+                <p><a href="greeting.html">인사말</a></p>
+                <p><a href="business.html">사업소개</a></p>
+                <p><a href="products.html">제품소개</a></p>
+                <p><a href="support.html">고객지원</a></p>
+            </div>
+            <div class="footer-section">
+                <h3>고객지원</h3>
+                <p>고객센터: 1588-0000</p>
+                <p>이메일: info@korevo.co.kr</p>
+                <p>운영시간: 평일 09:00-18:00</p>
+            </div>
+            <div class="footer-section">
+                <h3>주소</h3>
+                <p>서울특별시 강남구<br>테헤란로 123, 코레보빌딩 10층</p>
+                <p>사업자등록번호: 123-45-67890</p>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2025 KOREVO. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+    <script src="greeting-script.js"></script>
+</body>
+</html>
