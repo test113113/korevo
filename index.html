@@ -310,5 +310,351 @@
     </footer>
 
     <script src="script.js"></script>
+
+    <!-- CEO 메시지 섹션이 보이도록 하는 인라인 스타일 -->
+    <style>
+        /* 컨테이너 클래스 추가 */
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 2rem;
+            position: relative;
+            z-index: 2;
+        }
+
+        /* CEO 메시지 섹션의 모든 요소가 보이도록 보장 */
+        .ceo-message-section .section-header,
+        .ceo-message-section .ceo-profile-card,
+        .ceo-message-section .message-content,
+        .ceo-message-section .vision-card,
+        .ceo-message-section .cta-section {
+            opacity: 1 !important;
+            transform: translateY(0) !important;
+            animation: none !important;
+        }
+
+        /* Section Header 스타일 */
+        .section-badge {
+            display: inline-block;
+            padding: 0.75rem 2rem;
+            background: linear-gradient(135deg, rgba(255, 215, 0, 0.1), rgba(44, 85, 48, 0.1));
+            border: 1px solid rgba(255, 215, 0, 0.3);
+            border-radius: 50px;
+            font-size: 0.9rem;
+            font-weight: 600;
+            color: #2c5530;
+            margin-bottom: 2rem;
+            backdrop-filter: blur(10px);
+        }
+
+        .ceo-section-title {
+            font-size: clamp(2.5rem, 5vw, 4rem);
+            font-weight: 700;
+            background: linear-gradient(135deg, #2c5530 0%, #4a7c59 50%, #FFD700 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: 1.5rem;
+            letter-spacing: -0.02em;
+        }
+
+        .section-subtitle {
+            font-size: 1.25rem;
+            color: #666;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        /* CEO Profile Card 스타일 */
+        .ceo-profile-card {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+            align-items: center;
+            margin-bottom: 6rem;
+            background: rgba(255, 255, 255, 0.7);
+            backdrop-filter: blur(20px);
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            border-radius: 24px;
+            padding: 4rem;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .ceo-image {
+            width: 300px;
+            height: 300px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, #2c5530 0%, #4a7c59 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 4rem;
+            color: white;
+            position: relative;
+            overflow: hidden;
+            box-shadow: 0 20px 40px rgba(44, 85, 48, 0.3);
+        }
+
+        .ceo-name {
+            font-size: 2.5rem;
+            font-weight: 700;
+            background: linear-gradient(135deg, #2c5530 0%, #FFD700 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: 0.5rem;
+        }
+
+        .ceo-title {
+            font-size: 1.25rem;
+            color: #666;
+            margin-bottom: 2rem;
+            font-weight: 500;
+        }
+
+        .ceo-credentials {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1rem;
+            margin-bottom: 2rem;
+        }
+
+        .credential-badge {
+            padding: 0.5rem 1.25rem;
+            background: linear-gradient(135deg, rgba(255, 215, 0, 0.1), rgba(44, 85, 48, 0.1));
+            border: 1px solid rgba(255, 215, 0, 0.3);
+            border-radius: 25px;
+            font-size: 0.875rem;
+            font-weight: 500;
+            color: #2c5530;
+            backdrop-filter: blur(10px);
+        }
+
+        /* Message Content 스타일 */
+        .message-content {
+            background: rgba(255, 255, 255, 0.8);
+            backdrop-filter: blur(15px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            border-radius: 20px;
+            padding: 3rem;
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.08);
+            margin-bottom: 4rem;
+        }
+
+        .quote-mark {
+            font-size: 4rem;
+            color: #FFD700;
+            line-height: 1;
+            margin-bottom: 1rem;
+            font-family: Georgia, serif;
+        }
+
+        .message-text {
+            font-size: 1.125rem;
+            line-height: 1.8;
+            color: #444;
+            margin-bottom: 2rem;
+        }
+
+        .highlight-text {
+            background: linear-gradient(135deg, rgba(255, 215, 0, 0.2), rgba(44, 85, 48, 0.1));
+            padding: 0.2rem 0.5rem;
+            border-radius: 6px;
+            font-weight: 600;
+            color: #2c5530;
+        }
+
+        /* Vision Grid 스타일 */
+        .vision-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-bottom: 4rem;
+        }
+
+        .vision-card {
+            background: rgba(255, 255, 255, 0.6);
+            backdrop-filter: blur(15px);
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            border-radius: 16px;
+            padding: 2rem;
+            text-align: center;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .vision-icon {
+            width: 80px;
+            height: 80px;
+            margin: 0 auto 1.5rem;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2rem;
+            background: linear-gradient(135deg, #2c5530 0%, #4a7c59 100%);
+            color: white;
+            box-shadow: 0 10px 20px rgba(44, 85, 48, 0.3);
+        }
+
+        .vision-title {
+            font-size: 1.25rem;
+            font-weight: 700;
+            color: #2c5530;
+            margin-bottom: 1rem;
+        }
+
+        .vision-text {
+            color: #666;
+            line-height: 1.6;
+        }
+
+        /* CTA Section 스타일 */
+        .ceo-message-section .cta-section {
+            text-align: center;
+            padding: 3rem;
+            background: linear-gradient(135deg, #2c5530 0%, #4a7c59 100%);
+            border-radius: 20px;
+            color: white;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .cta-title {
+            font-size: 2rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+            background: linear-gradient(135deg, #FFD700 0%, #FFA500 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .cta-text {
+            font-size: 1.125rem;
+            margin-bottom: 2rem;
+            opacity: 0.9;
+        }
+
+        .ceo-message-section .cta-buttons {
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        .ceo-message-section .cta-btn {
+            padding: 1rem 2rem;
+            border: 2px solid #FFD700;
+            background: transparent;
+            color: white;
+            text-decoration: none;
+            border-radius: 30px;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .ceo-message-section .cta-btn:hover {
+            color: #2c5530;
+            transform: translateY(-2px);
+            box-shadow: 0 10px 20px rgba(255, 215, 0, 0.3);
+        }
+
+        .ceo-message-section .cta-btn.primary {
+            background: linear-gradient(135deg, #FFD700 0%, #FFA500 100%);
+            color: #2c5530;
+        }
+
+        /* 모바일 반응형 */
+        @media (max-width: 768px) {
+            .ceo-profile-card {
+                grid-template-columns: 1fr;
+                gap: 2rem;
+                padding: 2rem;
+                text-align: center;
+                margin-bottom: 4rem;
+            }
+
+            .ceo-image {
+                width: 200px;
+                height: 200px;
+                font-size: 3rem;
+            }
+
+            .ceo-name {
+                font-size: 2rem;
+            }
+
+            .ceo-credentials {
+                justify-content: center;
+            }
+
+            .message-content {
+                padding: 2rem;
+                margin-bottom: 3rem;
+            }
+
+            .message-text {
+                font-size: 1rem;
+            }
+
+            .vision-grid {
+                grid-template-columns: 1fr;
+                gap: 1.5rem;
+                margin-bottom: 3rem;
+            }
+
+            .ceo-message-section .cta-section {
+                padding: 2rem;
+            }
+
+            .ceo-message-section .cta-buttons {
+                flex-direction: column;
+                align-items: center;
+            }
+
+            .cta-title {
+                font-size: 1.5rem;
+            }
+        }
+
+        /* 섹션 헤더 중앙 정렬 */
+        .ceo-message-section .section-header {
+            text-align: center;
+            margin-bottom: 6rem;
+            position: relative;
+        }
+
+        /* 애니메이션 완전 비활성화 */
+        .ceo-message-section * {
+            animation: none !important;
+            animation-delay: 0s !important;
+            animation-duration: 0s !important;
+        }
+
+        /* 즉시 표시되도록 강제 */
+        .ceo-message-section {
+            opacity: 1 !important;
+            visibility: visible !important;
+        }
+
+        /* First letter 스타일 */
+        .message-text::first-letter {
+            font-size: 3rem;
+            float: left;
+            line-height: 1;
+            margin: 0.1rem 0.5rem 0 0;
+            background: linear-gradient(135deg, #2c5530 0%, #FFD700 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            font-weight: 700;
+        }
+    </style>
 </body>
 </html>
