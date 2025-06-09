@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>KOREVO - 대표 인사말</title>
     <link rel="stylesheet" href="styles.css">
-    <link rel="stylesheet" href="greeting-styles.css">
+    <link rel="stylesheet" href="greeting-styless.css">
 </head>
 <body>
     <!-- Header -->
@@ -268,5 +268,122 @@
 
     <script src="script.js"></script>
     <script src="greeting-script.js"></script>
+
+    <!-- 인라인 스타일로 임시 해결 -->
+    <style>
+        /* 컨테이너 클래스 추가 */
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+
+        /* CEO 프로필 카드가 보이도록 보장 */
+        .ceo-profile-card {
+            opacity: 1 !important;
+            transform: translateY(0) !important;
+            animation: none !important;
+        }
+
+        /* 메시지 컨텐츠가 보이도록 보장 */
+        .message-content {
+            opacity: 1 !important;
+            transform: translateY(0) !important;
+            animation: none !important;
+        }
+
+        /* 비전 카드가 보이도록 보장 */
+        .vision-card {
+            opacity: 1 !important;
+            transform: translateY(0) !important;
+            animation: none !important;
+        }
+
+        /* CTA 섹션이 보이도록 보장 */
+        .cta-section {
+            opacity: 1 !important;
+            transform: translateY(0) !important;
+            animation: none !important;
+        }
+
+        /* 관련 페이지 카드가 보이도록 보장 */
+        .related-page-card {
+            opacity: 1 !important;
+            transform: translateY(0) !important;
+            animation: none !important;
+        }
+
+        /* 페이지 헤더 컨텐츠가 보이도록 보장 */
+        .page-header-content {
+            opacity: 1 !important;
+            transform: translateY(0) !important;
+            animation: none !important;
+        }
+
+        /* CEO 이미지 기본 표시 */
+        .ceo-image {
+            display: flex !important;
+            align-items: center;
+            justify-content: center;
+        }
+
+        /* 메시지 텍스트 표시 */
+        .message-text {
+            opacity: 1 !important;
+            color: #444 !important;
+        }
+
+        /* 하이라이트 텍스트 표시 */
+        .highlight-text {
+            background: linear-gradient(135deg, rgba(255, 215, 0, 0.2), rgba(44, 85, 48, 0.1)) !important;
+            padding: 0.2rem 0.5rem;
+            border-radius: 6px;
+            font-weight: 600;
+            color: #2c5530;
+        }
+
+        /* 애니메이션 비활성화로 즉시 표시 */
+        * {
+            animation-duration: 0s !important;
+            animation-delay: 0s !important;
+            transition-duration: 0.3s !important;
+        }
+
+        /* 브레드크럼 스타일 추가 */
+        .breadcrumb-nav {
+            background: rgba(248, 250, 254, 0.8);
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+            padding: 1rem 0;
+            margin-top: 80px;
+        }
+
+        .breadcrumb {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            font-size: 0.9rem;
+        }
+
+        .breadcrumb-item {
+            color: #666;
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        .breadcrumb-item:hover {
+            color: #2c5530;
+        }
+
+        .breadcrumb-item.active {
+            color: #2c5530;
+            font-weight: 600;
+        }
+
+        .breadcrumb-separator {
+            color: #999;
+            font-weight: 300;
+        }
+    </style>
 </body>
 </html>
