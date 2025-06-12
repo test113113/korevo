@@ -1,0 +1,1175 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>온유(溫鍮) 브랜드 - KOREVO</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="greeting-styles.css">
+    <style>
+        /* ===== ONYU BRAND SPECIFIC STYLES ===== */
+        
+        /* Brand Hero Section */
+        .brand-hero {
+            background: linear-gradient(135deg, #2c5530 0%, #4a7c59 30%, #1a3d1f 100%);
+            color: white;
+            padding: 8rem 0;
+            position: relative;
+            overflow: hidden;
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+        }
+
+        .brand-hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(45deg, rgba(255, 215, 0, 0.1) 0%, rgba(184, 134, 11, 0.05) 100%);
+            opacity: 0.8;
+        }
+
+        .brand-hero::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><circle cx="25" cy="25" r="2" fill="rgba(255,215,0,0.1)"/><circle cx="75" cy="75" r="1" fill="rgba(255,215,0,0.08)"/><circle cx="50" cy="10" r="1.5" fill="rgba(255,215,0,0.12)"/></svg>');
+            opacity: 0.4;
+            animation: float 20s ease-in-out infinite;
+        }
+
+        .brand-hero-content {
+            text-align: center;
+            position: relative;
+            z-index: 3;
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+
+        .brand-logo {
+            font-size: clamp(4rem, 8vw, 6rem);
+            font-weight: 800;
+            margin-bottom: 1rem;
+            background: linear-gradient(135deg, #FFD700 0%, #FFA500 50%, #B8860B 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            text-shadow: 0 4px 20px rgba(255, 215, 0, 0.3);
+            letter-spacing: -0.02em;
+            position: relative;
+        }
+
+        .brand-logo::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 100px;
+            height: 4px;
+            background: linear-gradient(90deg, #FFD700, #B8860B);
+            border-radius: 2px;
+        }
+
+        .brand-subtitle {
+            font-size: clamp(1.2rem, 3vw, 1.8rem);
+            margin-bottom: 2rem;
+            opacity: 0.95;
+            font-weight: 300;
+            letter-spacing: 0.5px;
+        }
+
+        .brand-description {
+            font-size: clamp(1rem, 2vw, 1.25rem);
+            line-height: 1.8;
+            margin-bottom: 3rem;
+            opacity: 0.9;
+            max-width: 800px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        /* Brand Story Section */
+        .brand-story-section {
+            padding: 8rem 0;
+            background: linear-gradient(135deg, #ffffff 0%, #f8fafe 50%, #ffffff 100%);
+            position: relative;
+        }
+
+        .brand-story-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 6rem;
+            align-items: center;
+            margin-bottom: 6rem;
+        }
+
+        .story-content h2 {
+            font-size: clamp(2rem, 4vw, 3rem);
+            margin-bottom: 2rem;
+            background: linear-gradient(135deg, #2c5530 0%, #4a7c59 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            font-weight: 700;
+        }
+
+        .story-content p {
+            font-size: 1.125rem;
+            line-height: 1.8;
+            color: #444;
+            margin-bottom: 1.5rem;
+        }
+
+        .highlight-box {
+            background: linear-gradient(135deg, rgba(255, 215, 0, 0.1), rgba(44, 85, 48, 0.05));
+            border-left: 4px solid #FFD700;
+            padding: 1.5rem;
+            margin: 2rem 0;
+            border-radius: 0 12px 12px 0;
+        }
+
+        .story-visual {
+            position: relative;
+            background: linear-gradient(135deg, #2c5530 0%, #4a7c59 100%);
+            border-radius: 20px;
+            padding: 3rem;
+            color: white;
+            text-align: center;
+            min-height: 400px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+
+        .story-visual::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><circle cx="20" cy="20" r="1" fill="rgba(255,215,0,0.2)"/><circle cx="80" cy="80" r="1.5" fill="rgba(255,215,0,0.15)"/><circle cx="50" cy="50" r="2" fill="rgba(255,215,0,0.1)"/></svg>');
+            opacity: 0.3;
+            border-radius: 20px;
+        }
+
+        .story-icon {
+            font-size: 4rem;
+            margin-bottom: 1.5rem;
+            position: relative;
+            z-index: 2;
+        }
+
+        .story-visual h3 {
+            font-size: 1.8rem;
+            margin-bottom: 1rem;
+            position: relative;
+            z-index: 2;
+        }
+
+        .story-visual p {
+            font-size: 1rem;
+            opacity: 0.9;
+            position: relative;
+            z-index: 2;
+        }
+
+        /* Heritage Section */
+        .heritage-section {
+            padding: 8rem 0;
+            background: linear-gradient(135deg, #f8fafe 0%, #ffffff 100%);
+        }
+
+        .heritage-timeline {
+            position: relative;
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+
+        .heritage-timeline::before {
+            content: '';
+            position: absolute;
+            left: 50%;
+            top: 0;
+            bottom: 0;
+            width: 4px;
+            background: linear-gradient(180deg, #FFD700, #2c5530, #FFD700);
+            transform: translateX(-50%);
+        }
+
+        .heritage-item {
+            display: flex;
+            align-items: center;
+            margin-bottom: 4rem;
+            position: relative;
+        }
+
+        .heritage-item:nth-child(even) {
+            flex-direction: row-reverse;
+        }
+
+        .heritage-content {
+            flex: 1;
+            background: white;
+            padding: 2.5rem;
+            border-radius: 16px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            margin: 0 2rem;
+            position: relative;
+        }
+
+        .heritage-item:nth-child(even) .heritage-content::before {
+            content: '';
+            position: absolute;
+            right: -10px;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 0;
+            height: 0;
+            border: 10px solid transparent;
+            border-left-color: white;
+        }
+
+        .heritage-item:nth-child(odd) .heritage-content::before {
+            content: '';
+            position: absolute;
+            left: -10px;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 0;
+            height: 0;
+            border: 10px solid transparent;
+            border-right-color: white;
+        }
+
+        .heritage-year {
+            position: absolute;
+            left: 50%;
+            transform: translateX(-50%);
+            background: linear-gradient(135deg, #FFD700, #B8860B);
+            color: #2c5530;
+            padding: 0.5rem 1.5rem;
+            border-radius: 25px;
+            font-weight: 700;
+            font-size: 1.1rem;
+            box-shadow: 0 4px 15px rgba(255, 215, 0, 0.3);
+        }
+
+        .heritage-title {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: #2c5530;
+            margin-bottom: 1rem;
+        }
+
+        .heritage-desc {
+            color: #666;
+            line-height: 1.6;
+        }
+
+        /* Product Features Grid */
+        .features-section {
+            padding: 8rem 0;
+            background: linear-gradient(135deg, #2c5530 0%, #4a7c59 100%);
+            color: white;
+            position: relative;
+        }
+
+        .features-section::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><path d="M20,20 Q50,10 80,20 Q90,50 80,80 Q50,90 20,80 Q10,50 20,20" fill="none" stroke="rgba(255,215,0,0.1)" stroke-width="1"/></svg>');
+            opacity: 0.3;
+        }
+
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 3rem;
+            position: relative;
+            z-index: 2;
+        }
+
+        .feature-card {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(15px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            border-radius: 20px;
+            padding: 3rem 2rem;
+            text-align: center;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .feature-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 215, 0, 0.1), transparent);
+            transition: left 0.6s ease;
+        }
+
+        .feature-card:hover::before {
+            left: 100%;
+        }
+
+        .feature-card:hover {
+            transform: translateY(-10px) scale(1.02);
+            box-shadow: 0 20px 40px rgba(255, 215, 0, 0.2);
+        }
+
+        .feature-icon {
+            width: 80px;
+            height: 80px;
+            background: linear-gradient(135deg, #FFD700, #FFA500);
+            border-radius: 50%;
+            margin: 0 auto 1.5rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2rem;
+            color: #2c5530;
+            box-shadow: 0 10px 20px rgba(255, 215, 0, 0.3);
+        }
+
+        .feature-card h3 {
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+            background: linear-gradient(135deg, #FFD700, #FFA500);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .feature-card p {
+            opacity: 0.9;
+            line-height: 1.6;
+        }
+
+        /* Innovation Section */
+        .innovation-section {
+            padding: 8rem 0;
+            background: linear-gradient(135deg, #ffffff 0%, #f8fafe 100%);
+        }
+
+        .innovation-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+            align-items: center;
+        }
+
+        .innovation-content h2 {
+            font-size: clamp(2rem, 4vw, 3rem);
+            margin-bottom: 2rem;
+            background: linear-gradient(135deg, #2c5530 0%, #FFD700 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            font-weight: 700;
+        }
+
+        .innovation-features {
+            margin-top: 2rem;
+        }
+
+        .innovation-feature {
+            display: flex;
+            align-items: center;
+            margin-bottom: 1.5rem;
+            padding: 1rem;
+            background: rgba(255, 215, 0, 0.05);
+            border-radius: 12px;
+            transition: all 0.3s ease;
+        }
+
+        .innovation-feature:hover {
+            background: rgba(255, 215, 0, 0.1);
+            transform: translateX(10px);
+        }
+
+        .innovation-feature-icon {
+            width: 50px;
+            height: 50px;
+            background: linear-gradient(135deg, #FFD700, #B8860B);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-right: 1rem;
+            font-size: 1.2rem;
+            color: #2c5530;
+        }
+
+        .innovation-visual {
+            position: relative;
+            height: 500px;
+            background: linear-gradient(135deg, #f8fafe 0%, #e8f0ff 100%);
+            border-radius: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+        }
+
+        .innovation-visual::before {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 200px;
+            height: 200px;
+            background: linear-gradient(135deg, #FFD700, #B8860B);
+            border-radius: 50%;
+            transform: translate(-50%, -50%);
+            opacity: 0.1;
+            animation: pulse 3s ease-in-out infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% { transform: translate(-50%, -50%) scale(1); }
+            50% { transform: translate(-50%, -50%) scale(1.1); }
+        }
+
+        .innovation-diagram {
+            position: relative;
+            z-index: 2;
+            text-align: center;
+        }
+
+        .diagram-element {
+            display: inline-block;
+            margin: 1rem;
+            padding: 1rem 2rem;
+            background: white;
+            border-radius: 15px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            font-weight: 600;
+            color: #2c5530;
+            position: relative;
+        }
+
+        /* Market Data Section */
+        .market-section {
+            padding: 8rem 0;
+            background: linear-gradient(135deg, #f8fafe 0%, #ffffff 100%);
+        }
+
+        .market-stats {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin-bottom: 4rem;
+        }
+
+        .stat-card {
+            background: white;
+            padding: 2.5rem;
+            border-radius: 16px;
+            text-align: center;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s ease;
+            border-top: 4px solid #FFD700;
+        }
+
+        .stat-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 40px rgba(255, 215, 0, 0.15);
+        }
+
+        .stat-number {
+            font-size: 2.5rem;
+            font-weight: 800;
+            background: linear-gradient(135deg, #2c5530, #FFD700);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: 0.5rem;
+        }
+
+        .stat-label {
+            color: #666;
+            font-weight: 500;
+        }
+
+        /* CTA Section */
+        .brand-cta-section {
+            padding: 8rem 0;
+            background: linear-gradient(135deg, #2c5530 0%, #4a7c59 100%);
+            color: white;
+            text-align: center;
+            position: relative;
+        }
+
+        .brand-cta-section::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><circle cx="20" cy="20" r="3" fill="rgba(255,215,0,0.1)"/><circle cx="80" cy="80" r="2" fill="rgba(255,215,0,0.08)"/><circle cx="50" cy="15" r="1.5" fill="rgba(255,215,0,0.12)"/></svg>');
+            opacity: 0.4;
+        }
+
+        .brand-cta-content {
+            position: relative;
+            z-index: 2;
+        }
+
+        .brand-cta-content h2 {
+            font-size: clamp(2.5rem, 5vw, 3.5rem);
+            margin-bottom: 1.5rem;
+            background: linear-gradient(135deg, #FFD700, #FFA500);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            font-weight: 700;
+        }
+
+        .brand-cta-content p {
+            font-size: 1.25rem;
+            margin-bottom: 3rem;
+            opacity: 0.9;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .brand-story-grid,
+            .innovation-grid {
+                grid-template-columns: 1fr;
+                gap: 3rem;
+            }
+
+            .heritage-timeline::before {
+                left: 2rem;
+            }
+
+            .heritage-item {
+                flex-direction: column !important;
+                padding-left: 4rem;
+            }
+
+            .heritage-year {
+                left: 2rem;
+                transform: none;
+            }
+
+            .heritage-content {
+                margin: 2rem 0 0 0;
+            }
+
+            .heritage-content::before {
+                display: none;
+            }
+
+            .features-grid {
+                grid-template-columns: 1fr;
+                gap: 2rem;
+            }
+
+            .feature-card {
+                padding: 2rem 1.5rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header class="header">
+        <nav class="nav-container">
+            <a href="index.html" class="logo">KOREVO</a>
+            
+            <ul class="nav-menu" id="navMenu">
+                <li class="nav-item">
+                    <a href="index.html" class="nav-link">홈</a>
+                </li>
+                <li class="nav-item">
+                    <a href="#" class="nav-link">회사소개</a>
+                    <div class="dropdown">
+                        <div class="dropdown-item" onclick="window.location.href='greeting.html'">인사말</div>
+                        <div class="dropdown-item" onclick="navigateToPage('vision')">비전 & 미션</div>
+                        <div class="dropdown-item" onclick="navigateToPage('history')">연혁</div>
+                        <div class="dropdown-item" onclick="navigateToPage('team')">팀 소개</div>
+                    </div>
+                </li>
+                <li class="nav-item">
+                    <a href="#" class="nav-link">사업소개</a>
+                    <div class="mega-dropdown">
+                        <div class="dropdown-section">
+                            <h4>브랜드 스토리</h4>
+                            <div class="dropdown-item" onclick="window.location.href='onyu-brand.html'">온유(溫鍮) 브랜드</div>
+                            <div class="dropdown-item" onclick="navigateToPage('brand-philosophy')">브랜드 철학</div>
+                            <div class="dropdown-item" onclick="navigateToPage('traditional-craft')">전통 기법 계승</div>
+                        </div>
+                        <div class="dropdown-section">
+                            <h4>융합 비즈니스</h4>
+                            <div class="dropdown-item" onclick="navigateToPage('business-model')">사업 모델</div>
+                            <div class="dropdown-item" onclick="navigateToPage('innovation-strategy')">혁신 전략</div>
+                            <div class="dropdown-item" onclick="navigateToPage('sustainability')">지속가능경영</div>
+                        </div>
+                    </div>
+                </li>
+                <li class="nav-item">
+                    <a href="#" class="nav-link">제품/서비스</a>
+                    <div class="mega-dropdown">
+                        <div class="dropdown-section">
+                            <h4>🏺 유기 제품군</h4>
+                            <div class="dropdown-item" onclick="navigateToPage('dining-set')">식기 컬렉션</div>
+                            <div class="dropdown-item" onclick="navigateToPage('health-products')">건강 케어 제품</div>
+                            <div class="dropdown-item" onclick="navigateToPage('gift-sets')">프리미엄 선물세트</div>
+                            <div class="dropdown-item" onclick="navigateToPage('custom-craft')">맞춤 제작 서비스</div>
+                        </div>
+                        <div class="dropdown-section">
+                            <h4>💻 소프트웨어</h4>
+                            <div class="dropdown-item" onclick="navigateToPage('erp-solution')">제조업 ERP 솔루션</div>
+                            <div class="dropdown-item" onclick="navigateToPage('iot-platform')">IoT 품질관리 플랫폼</div>
+                            <div class="dropdown-item" onclick="navigateToPage('ecommerce-system')">전통공예 전자상거래</div>
+                            <div class="dropdown-item" onclick="navigateToPage('consulting')">디지털 전환 컨설팅</div>
+                        </div>
+                        <div class="dropdown-section">
+                            <h4>🔬 R&D 과제</h4>
+                            <div class="dropdown-item" onclick="navigateToPage('current-projects')">진행중 과제</div>
+                            <div class="dropdown-item" onclick="navigateToPage('completed-projects')">완료 과제</div>
+                            <div class="dropdown-item" onclick="navigateToPage('research-outcomes')">연구 성과</div>
+                            <div class="dropdown-item" onclick="navigateToPage('collaboration')">산학연 협력</div>
+                        </div>
+                    </div>
+                </li>
+                <li class="nav-item">
+                    <a href="#" class="nav-link">고객센터</a>
+                    <div class="dropdown">
+                        <div class="dropdown-item" onclick="navigateToPage('product-support')">제품 지원</div>
+                        <div class="dropdown-item" onclick="navigateToPage('software-support')">소프트웨어 지원</div>
+                        <div class="dropdown-item" onclick="navigateToPage('faq')">자주 묻는 질문</div>
+                        <div class="dropdown-item" onclick="navigateToPage('inquiry')">문의하기</div>
+                        <div class="dropdown-item" onclick="navigateToPage('download')">자료실</div>
+                    </div>
+                </li>
+                <li class="nav-item">
+                    <a href="#" class="nav-link">소식</a>
+                    <div class="dropdown">
+                        <div class="dropdown-item" onclick="navigateToPage('notice')">공지사항</div>
+                        <div class="dropdown-item" onclick="navigateToPage('news')">보도자료</div>
+                        <div class="dropdown-item" onclick="navigateToPage('blog')">기술 블로그</div>
+                        <div class="dropdown-item" onclick="navigateToPage('events')">이벤트</div>
+                        <div class="dropdown-item" onclick="navigateToPage('awards')">수상 내역</div>
+                    </div>
+                </li>
+                <li class="nav-item">
+                    <a href="#shop" class="nav-link">쇼핑몰</a>
+                </li>
+            </ul>
+
+            <div class="lang-selector">
+                <a href="#" class="lang-btn active">KO</a>
+                <a href="#" class="lang-btn">EN</a>
+                <a href="#" class="lang-btn">中文</a>
+                <a href="#" class="lang-btn">日本語</a>
+            </div>
+
+            <div class="menu-toggle" onclick="toggleMenu()">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        </nav>
+    </header>
+
+    <!-- Breadcrumb Navigation -->
+    <nav class="breadcrumb-nav">
+        <div class="container">
+            <div class="breadcrumb">
+                <a href="index.html" class="breadcrumb-item">홈</a>
+                <span class="breadcrumb-separator">></span>
+                <a href="#" class="breadcrumb-item">사업소개</a>
+                <span class="breadcrumb-separator">></span>
+                <a href="#" class="breadcrumb-item">브랜드 스토리</a>
+                <span class="breadcrumb-separator">></span>
+                <span class="breadcrumb-item active">온유(溫鍮) 브랜드</span>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Main Content -->
+    <main class="main-content">
+        <!-- Brand Hero Section -->
+        <section class="brand-hero">
+            <div class="brand-hero-content">
+                <h1 class="brand-logo">온유<span style="font-size: 0.6em; opacity: 0.8;">(溫鍮)</span></h1>
+                <p class="brand-subtitle">따뜻한 전통이 피부를 깨우다</p>
+                <p class="brand-description">
+                    천년의 전통 유기 기술과 현대적 온열 테라피가 만나<br>
+                    개인 맞춤형 헬스케어의 새로운 경험을 선사합니다
+                </p>
+                <div class="cta-buttons">
+                    <a href="#features" class="cta-btn primary">제품 특징 보기</a>
+                    <a href="#innovation" class="cta-btn">혁신 기술 알아보기</a>
+                    <a href="#shop" class="cta-btn">제품 구매하기</a>
+                </div>
+            </div>
+        </section>
+
+        <!-- Brand Story Section -->
+        <section class="brand-story-section">
+            <div class="container">
+                <div class="brand-story-grid">
+                    <div class="story-content">
+                        <h2>전통과 혁신의 조화</h2>
+                        <p>
+                            온유(溫鍮)는 '따뜻한 유기'라는 뜻으로, 우리 조상들이 천년 넘게 이어온 방짜유기 제작 기술에 
+                            현대적 온열 테라피를 결합한 혁신적인 헬스케어 브랜드입니다.
+                        </p>
+                        <p>
+                            <strong>무형문화재 제2호</strong>로 지정된 방짜유기 기술을 바탕으로, 
+                            AI 얼굴 분석과 개인 맞춤형 제작 기술을 더해 세상에 단 하나뿐인 괘사를 만들어냅니다.
+                        </p>
+                        <div class="highlight-box">
+                            <p><strong>온유의 철학:</strong> 사람들의 일상에 온기를 전하고, 
+                            전통의 가치를 현대에 되살려 지속가능한 미래를 만들어갑니다.</p>
+                        </div>
+                    </div>
+                    <div class="story-visual">
+                        <div class="story-icon">🏺</div>
+                        <h3>1000년 전통 × AI 기술</h3>
+                        <p>전통 방짜유기 기법과 최첨단 AI 분석 기술이 만나 개인에게 완벽하게 맞춤화된 헬스케어 제품을 창조합니다</p>
+                    </div>
+                </div>
+
+                <div class="brand-story-grid">
+                    <div class="story-visual">
+                        <div class="story-icon">🔬</div>
+                        <h3>과학적 검증된 효과</h3>
+                        <p>유기의 우수한 항균성과 열전도성을 현대 과학으로 입증하고, 온열 기능으로 효과를 극대화합니다</p>
+                    </div>
+                    <div class="story-content">
+                        <h2>과학이 증명한 유기의 힘</h2>
+                        <p>
+                            방짜유기의 주성분인 구리와 주석은 강력한 항균 효과를 가지며, 
+                            뛰어난 열전도성으로 온열 마사지 효과를 극대화합니다.
+                        </p>
+                        <p>
+                            온유는 이러한 전통 소재의 과학적 우수성에 현대적 온열 기술을 결합하여 
+                            혈액순환 촉진, 근육 이완, 림프 순환 개선 등의 효과를 제공합니다.
+                        </p>
+                        <div class="highlight-box">
+                            <p><strong>검증된 효과:</strong> 40-45°C 최적 온도로 안전하고 효과적인 
+                            셀프 케어가 가능합니다.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Heritage Timeline Section -->
+        <section class="heritage-section">
+            <div class="container">
+                <h2 class="section-title">온유의 역사</h2>
+                <div class="heritage-timeline">
+                    <div class="heritage-item">
+                        <div class="heritage-year">고려시대</div>
+                        <div class="heritage-content">
+                            <h3 class="heritage-title">방짜유기의 기원</h3>
+                            <p class="heritage-desc">
+                                고려시대부터 시작된 한국의 방짜유기 제작 기술. 
+                                구리 78%와 주석 22%의 황금비율로 만들어진 유기는 
+                                뛰어난 항균성과 내구성으로 왕실과 귀족들이 애용했습니다.
+                            </p>
+                        </div>
+                    </div>
+
+                    <div class="heritage-item">
+                        <div class="heritage-year">1983년</div>
+                        <div class="heritage-content">
+                            <h3 class="heritage-title">무형문화재 지정</h3>
+                            <p class="heritage-desc">
+                                방짜유기 기술이 대한민국 무형문화재 제2호로 지정되어 
+                                전통 기술의 가치를 인정받고 체계적인 전승이 시작되었습니다.
+                            </p>
+                        </div>
+                    </div>
+
+                    <div class="heritage-item">
+                        <div class="heritage-year">2020년</div>
+                        <div class="heritage-content">
+                            <h3 class="heritage-title">괘사 트렌드 급성장</h3>
+                            <p class="heritage-desc">
+                                코로나19로 홈케어 관심이 증가하면서 괘사 마사지 도구 시장이 
+                                전년 대비 179% 성장. 전통과 현대적 헬스케어의 융합 가능성을 확인했습니다.
+                            </p>
+                        </div>
+                    </div>
+
+                    <div class="heritage-item">
+                        <div class="heritage-year">2025년</div>
+                        <div class="heritage-content">
+                            <h3 class="heritage-title">온유 브랜드 론칭</h3>
+                            <p class="heritage-desc">
+                                AI 얼굴 분석과 전통 유기 기술을 결합한 개인 맞춤형 괘사 제품으로 
+                                K-뷰티와 전통 공예의 새로운 융합 모델을 제시합니다.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Product Features Section -->
+        <section id="features" class="features-section">
+            <div class="container">
+                <h2 class="section-title" style="color: white; margin-bottom: 3rem;">온유 제품의 특별함</h2>
+                <div class="features-grid">
+                    <div class="feature-card">
+                        <div class="feature-icon">🤖</div>
+                        <h3>AI 맞춤 제작</h3>
+                        <p>
+                            앱 카메라로 얼굴을 촬영하면 AI가 얼굴 규격과 곡선을 분석하여 
+                            개인에게 완벽하게 맞는 괘사를 설계합니다. 세상에 단 하나뿐인 나만의 괘사입니다.
+                        </p>
+                    </div>
+
+                    <div class="feature-card">
+                        <div class="feature-icon">🔥</div>
+                        <h3>스마트 온열 기능</h3>
+                        <p>
+                            40-45°C 최적 온도의 온열 기능이 내장되어 있어 안전하고 효과적인 마사지가 가능합니다. 
+                            USB 충전식으로 언제 어디서나 편리하게 사용할 수 있습니다.
+                        </p>
+                    </div>
+
+                    <div class="feature-card">
+                        <div class="feature-icon">⚡</div>
+                        <h3>항균 & 열전도</h3>
+                        <p>
+                            방짜유기의 구리 성분이 자연 항균 효과를 제공하며, 
+                            우수한 열전도성으로 온열이 피부 깊숙이 전달되어 혈액순환을 촉진합니다.
+                        </p>
+                    </div>
+
+                    <div class="feature-card">
+                        <div class="feature-icon">🎯</div>
+                        <h3>정밀 타겟팅</h3>
+                        <p>
+                            개인 얼굴 형태에 맞춰 제작되어 미간, 눈가, 턱선 등 
+                            각 부위별로 최적화된 압력과 각도로 효과적인 마사지가 가능합니다.
+                        </p>
+                    </div>
+
+                    <div class="feature-card">
+                        <div class="feature-icon">🏆</div>
+                        <h3>장인 수작업</h3>
+                        <p>
+                            무형문화재 보유 장인이 전통 방짜유기 기법으로 직접 제작하여 
+                            최고급 품질과 소장 가치를 동시에 제공합니다.
+                        </p>
+                    </div>
+
+                    <div class="feature-card">
+                        <div class="feature-icon">♻️</div>
+                        <h3>지속가능성</h3>
+                        <p>
+                            사용 후 무료 수거 서비스를 통해 리뉴얼하거나 
+                            다른 유기 제품으로 업사이클링하여 환경친화적 선순환을 실현합니다.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Innovation Technology Section -->
+        <section id="innovation" class="innovation-section">
+            <div class="container">
+                <div class="innovation-grid">
+                    <div class="innovation-content">
+                        <h2>혁신 기술</h2>
+                        <p>
+                            온유는 전통과 첨단 기술의 완벽한 조화를 통해 
+                            개인 맞춤형 헬스케어의 새로운 패러다임을 제시합니다.
+                        </p>
+                        
+                        <div class="innovation-features">
+                            <div class="innovation-feature">
+                                <div class="innovation-feature-icon">📱</div>
+                                <div>
+                                    <h4>AI 얼굴 분석 기술</h4>
+                                    <p>딥러닝 알고리즘으로 개인의 얼굴 구조를 정밀 분석</p>
+                                </div>
+                            </div>
+
+                            <div class="innovation-feature">
+                                <div class="innovation-feature-icon">🔧</div>
+                                <div>
+                                    <h4>CAD 기반 설계</h4>
+                                    <p>3D 모델링으로 최적화된 괘사 형태 설계</p>
+                                </div>
+                            </div>
+
+                            <div class="innovation-feature">
+                                <div class="innovation-feature-icon">🌡️</div>
+                                <div>
+                                    <h4>정밀 온도 제어</h4>
+                                    <p>센서 기반 자동 온도 조절 및 안전 시스템</p>
+                                </div>
+                            </div>
+
+                            <div class="innovation-feature">
+                                <div class="innovation-feature-icon">🔄</div>
+                                <div>
+                                    <h4>IoT 연결성</h4>
+                                    <p>앱을 통한 사용 패턴 분석 및 개인화 추천</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="innovation-visual">
+                        <div class="innovation-diagram">
+                            <div class="diagram-element">AI 분석</div>
+                            <div class="diagram-element">맞춤 설계</div>
+                            <div class="diagram-element">장인 제작</div>
+                            <div class="diagram-element">온열 기능</div>
+                            <div class="diagram-element">개인화 완성</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Market Data Section -->
+        <section class="market-section">
+            <div class="container">
+                <h2 class="section-title">시장 현황 및 전망</h2>
+                <div class="market-stats">
+                    <div class="stat-card">
+                        <div class="stat-number">179%</div>
+                        <div class="stat-label">괘사 시장 성장률<br>(2020-2021)</div>
+                    </div>
+
+                    <div class="stat-card">
+                        <div class="stat-number">90억$</div>
+                        <div class="stat-label">헤드 마사지기 시장<br>(2035년 전망)</div>
+                    </div>
+
+                    <div class="stat-card">
+                        <div class="stat-number">25.5%</div>
+                        <div class="stat-label">개인화 헬스케어<br>연평균 성장률</div>
+                    </div>
+
+                    <div class="stat-card">
+                        <div class="stat-number">78%</div>
+                        <div class="stat-label">AI 가전 선호도<br>(동일 가격 기준)</div>
+                    </div>
+                </div>
+
+                <div class="highlight-box" style="max-width: 800px; margin: 0 auto;">
+                    <h3 style="color: #2c5530; margin-bottom: 1rem;">시장 기회</h3>
+                    <p>
+                        코로나19 이후 홈케어 시장이 급성장하면서 괘사 마사지 도구에 대한 관심이 크게 증가했습니다. 
+                        특히 AI 기술을 활용한 개인 맞춤형 제품에 대한 수요가 높아지고 있어, 
+                        온유는 이러한 시장 트렌드를 선도할 수 있는 최적의 포지션에 있습니다.
+                    </p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Product Line Section -->
+        <section class="product-line-section" style="padding: 8rem 0; background: linear-gradient(135deg, #f8fafe 0%, #ffffff 100%);">
+            <div class="container">
+                <h2 class="section-title">온유 제품 라인업</h2>
+                <div class="business-overview">
+                    <div class="business-card">
+                        <div class="business-icon onyu">🏺</div>
+                        <h3>온유 스마트 괘사</h3>
+                        <p class="subtitle">AI 맞춤 제작 + 온열 기능</p>
+                        <p>개인 얼굴 분석을 통해 맞춤 제작되는 온열 기능 내장 괘사로, 완전 개인화된 헬스케어 경험을 제공합니다.</p>
+                        <div class="business-features">
+                            <span class="feature-tag">AI 분석</span>
+                            <span class="feature-tag">맞춤 제작</span>
+                            <span class="feature-tag">온열 기능</span>
+                            <span class="feature-tag">USB 충전</span>
+                        </div>
+                        <p style="font-size: 1.5rem; font-weight: 700; color: #2c5530; margin: 1.5rem 0;">₩300,000~</p>
+                        <a href="#shop" class="business-cta">주문하기</a>
+                    </div>
+
+                    <div class="business-card">
+                        <div class="business-icon onyu">✨</div>
+                        <h3>온유 클래식</h3>
+                        <p class="subtitle">전통 방짜유기 괘사</p>
+                        <p>무형문화재 장인이 전통 기법으로 제작한 순수 방짜유기 괘사로, 전통의 품격과 아름다움을 담았습니다.</p>
+                        <div class="business-features">
+                            <span class="feature-tag">무형문화재</span>
+                            <span class="feature-tag">수작업</span>
+                            <span class="feature-tag">소장가치</span>
+                            <span class="feature-tag">선물용</span>
+                        </div>
+                        <p style="font-size: 1.5rem; font-weight: 700; color: #2c5530; margin: 1.5rem 0;">₩150,000~</p>
+                        <a href="#shop" class="business-cta">구매하기</a>
+                    </div>
+
+                    <div class="business-card">
+                        <div class="business-icon onyu">🔄</div>
+                        <h3>온유 리뉴얼</h3>
+                        <p class="subtitle">업사이클링 서비스</p>
+                        <p>사용하던 괘사나 유기 제품을 회수하여 새로운 형태로 재탄생시키는 지속가능한 서비스입니다.</p>
+                        <div class="business-features">
+                            <span class="feature-tag">무료 회수</span>
+                            <span class="feature-tag">업사이클링</span>
+                            <span class="feature-tag">환경보호</span>
+                            <span class="feature-tag">가치창조</span>
+                        </div>
+                        <p style="font-size: 1.5rem; font-weight: 700; color: #2c5530; margin: 1.5rem 0;">무료~</p>
+                        <a href="#inquiry" class="business-cta">신청하기</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Brand CTA Section -->
+        <section class="brand-cta-section">
+            <div class="brand-cta-content">
+                <h2>온유와 함께하는 새로운 시작</h2>
+                <p>
+                    천년의 전통과 최첨단 기술이 만나 당신만을 위한 특별한 경험을 선사합니다.<br>
+                    지금 온유와 함께 건강하고 아름다운 일상을 시작해보세요.
+                </p>
+                <div class="cta-buttons">
+                    <a href="#shop" class="cta-btn primary">제품 주문하기</a>
+                    <a href="#inquiry" class="cta-btn">상담 신청하기</a>
+                    <a href="index.html" class="cta-btn">브랜드 스토리 더보기</a>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="footer-content">
+            <div class="footer-section">
+                <h3>KOREVO</h3>
+                <p>한국의 전통과 혁신을 담은<br>프리미엄 유기 브랜드</p>
+                <p>전통의 아름다움을 현대에 되살리며<br>지속가능한 미래를 만들어갑니다.</p>
+            </div>
+            <div class="footer-section">
+                <h3>온유 브랜드</h3>
+                <p><a href="#features">제품 특징</a></p>
+                <p><a href="#innovation">혁신 기술</a></p>
+                <p><a href="#shop">온라인 스토어</a></p>
+                <p><a href="#inquiry">맞춤 제작 상담</a></p>
+            </div>
+            <div class="footer-section">
+                <h3>고객지원</h3>
+                <p>고객센터: 1588-0000</p>
+                <p>이메일: onyu@korevo.co.kr</p>
+                <p>운영시간: 평일 09:00-18:00</p>
+                <p>온유 전용 상담: 평일 10:00-17:00</p>
+            </div>
+            <div class="footer-section">
+                <h3>브랜드 정보</h3>
+                <p>무형문화재 제2호 방짜유기 기술</p>
+                <p>AI 맞춤 제작 특허 출원</p>
+                <p>ISO 9001 품질 인증</p>
+                <p>KC 안전 인증 완료</p>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2025 KOREVO. All rights reserved. | 온유(溫鍮)는 KOREVO의 등록상표입니다.</p>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+    <script src="greeting-script.js"></script>
+    <script>
+        // 온유 브랜드 페이지 전용 스크립트
+        document.addEventListener('DOMContentLoaded', function() {
+            // 제품 카드 호버 효과
+            const featureCards = document.querySelectorAll('.feature-card');
+            featureCards.forEach(card => {
+                card.addEventListener('mouseenter', function() {
+                    this.style.transform = 'translateY(-15px) scale(1.02)';
+                });
+                
+                card.addEventListener('mouseleave', function() {
+                    this.style.transform = 'translateY(0) scale(1)';
+                });
+            });
+
+            // 통계 숫자 애니메이션
+            const observerOptions = {
+                threshold: 0.5,
+                rootMargin: '0px 0px -50px 0px'
+            };
+
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        const statNumber = entry.target.querySelector('.stat-number');
+                        if (statNumber && !statNumber.classList.contains('animated')) {
+                            animateNumber(statNumber);
+                            statNumber.classList.add('animated');
+                        }
+                    }
+                });
+            }, observerOptions);
+
+            document.querySelectorAll('.stat-card').forEach(card => {
+                observer.observe(card);
+            });
+
+            function animateNumber(element) {
+                const finalValue = element.textContent;
+                const numericValue = parseInt(finalValue.replace(/[^0-9]/g, ''));
+                const suffix = finalValue.replace(/[0-9]/g, '');
+                
+                let currentValue = 0;
+                const increment = numericValue / 50;
+                
+                const timer = setInterval(() => {
+                    currentValue += increment;
+                    if (currentValue >= numericValue) {
+                        currentValue = numericValue;
+                        clearInterval(timer);
+                    }
+                    element.textContent = Math.floor(currentValue) + suffix;
+                }, 40);
+            }
+
+            // 스크롤 기반 애니메이션
+            const animateOnScroll = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.style.opacity = '1';
+                        entry.target.style.transform = 'translateY(0)';
+                    }
+                });
+            }, { threshold: 0.1 });
+
+            document.querySelectorAll('.heritage-item, .innovation-feature').forEach(item => {
+                item.style.opacity = '0';
+                item.style.transform = 'translateY(30px)';
+                item.style.transition = 'all 0.6s ease';
+                animateOnScroll.observe(item);
+            });
+        });
+    </script>
+</body>
+</html>
