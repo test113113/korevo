@@ -267,6 +267,18 @@
         height: 60px;
         font-size: 1.5rem;
     }
+
+    /* Update language selector for mobile */
+    .lang-selector {
+        gap: 0.5rem;
+    }
+
+    .lang-btn {
+        padding: 0.3rem 0.5rem;
+        font-size: 1rem;
+        width: 35px;
+        height: 35px;
+    }
 }
 
 /* ===== LOADING ANIMATIONS ===== */
