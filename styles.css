@@ -180,27 +180,37 @@ body {
 }
 
 .lang-btn {
-    padding: 0.5rem 1rem;
-    border: 1px solid #ddd;
+    padding: 0.5rem 0.8rem;
+    border: 2px solid #ddd;
     background: white;
     color: #333;
-    border-radius: 20px;
+    border-radius: 25px;
     cursor: pointer;
     transition: all 0.3s ease;
     text-decoration: none;
-    font-size: 0.9rem;
+    font-size: 1.2rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 45px;
+    height: 45px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
 }
 
 .lang-btn:hover {
     background: linear-gradient(135deg, #FFD700 0%, #B8860B 100%);
     color: white;
-    border: 1px solid transparent;
+    border: 2px solid #FFD700;
+    transform: translateY(-2px) scale(1.05);
+    box-shadow: 0 5px 15px rgba(255, 215, 0, 0.3);
 }
 
 .lang-btn.active {
     background: linear-gradient(135deg, #FFD700 0%, #B8860B 100%);
     color: white;
-    border: 1px solid transparent;
+    border: 2px solid #FFD700;
+    transform: scale(1.1);
+    box-shadow: 0 5px 15px rgba(255, 215, 0, 0.4);
 }
 
 /* ===== MOBILE MENU ===== */
@@ -1163,8 +1173,10 @@ body {
     }
 
     .lang-btn {
-        padding: 0.3rem 0.6rem;
-        font-size: 0.8rem;
+        padding: 0.3rem 0.5rem;
+        font-size: 1rem;
+        width: 35px;
+        height: 35px;
     }
 
     /* CEO Message Section Mobile */
@@ -1229,7 +1241,6 @@ body {
     .cta-title {
         font-size: 1.5rem;
     }
-};
 }
 
 /* ===== ANIMATIONS ===== */
