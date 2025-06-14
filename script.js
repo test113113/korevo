@@ -56,255 +56,6 @@ function handleScrollAnimations() {
     });
 }
 
-// ===== ENHANCED LANGUAGE SELECTOR =====
-function initLanguageSelector() {
-    const langButtons = document.querySelectorAll('.lang-btn');
-    
-    // Language configuration
-    const languages = {
-        '🇰🇷': {
-            code: 'ko',
-            name: '한국어',
-            flag: '🇰🇷'
-        },
-        '🇺🇸': {
-            code: 'en',
-            name: 'English',
-            flag: '🇺🇸'
-        },
-        '🇨🇳': {
-            code: 'zh',
-            name: '中文',
-            flag: '🇨🇳'
-        },
-        '🇯🇵': {
-            code: 'ja',
-            name: '日本語',
-            flag: '🇯🇵'
-        }
-    };
-
-    langButtons.forEach(btn => {
-        btn.addEventListener('click', function(e) {
-            e.preventDefault();
-            
-            // Remove active class from all buttons
-            langButtons.forEach(b => b.classList.remove('active'));
-            
-            // Add active class to clicked button
-            this.classList.add('active');
-            
-            // Get selected language info
-            const selectedFlag = this.textContent.trim();
-            const selectedLang = languages[selectedFlag];
-            
-            if (selectedLang) {
-                console.log(`Language selected: ${selectedLang.name} (${selectedLang.code})`);
-                
-                // Store language preference
-                localStorage.setItem('selectedLanguage', selectedLang.code);
-                
-                // Add visual feedback
-                showLanguageChangeAnimation(this, selectedLang);
-                
-                // Here you can add actual language switching logic
-                // For example: loadLanguageContent(selectedLang.code);
-            }
-        });
-
-        // Add hover effect enhancement
-        btn.addEventListener('mouseenter', function() {
-            const flag = this.textContent.trim();
-            const lang = languages[flag];
-            if (lang) {
-                this.setAttribute('data-tooltip', lang.name);
-                showTooltip(this, lang.name);
-            }
-        });
-
-        btn.addEventListener('mouseleave', function() {
-            hideTooltip(this);
-        });
-    });
-
-    // Load saved language preference
-    loadSavedLanguage();
-}
-
-// ===== LANGUAGE CHANGE ANIMATION =====
-function showLanguageChangeAnimation(button, langInfo) {
-    // Create ripple effect
-    const ripple = document.createElement('div');
-    ripple.style.position = 'absolute';
-    ripple.style.borderRadius = '50%';
-    ripple.style.background = 'rgba(255, 215, 0, 0.6)';
-    ripple.style.transform = 'scale(0)';
-    ripple.style.animation = 'ripple 0.6s linear';
-    ripple.style.left = '50%';
-    ripple.style.top = '50%';
-    ripple.style.width = '20px';
-    ripple.style.height = '20px';
-    ripple.style.marginLeft = '-10px';
-    ripple.style.marginTop = '-10px';
-    ripple.style.pointerEvents = 'none';
-    
-    button.style.position = 'relative';
-    button.appendChild(ripple);
-    
-    // Show success message
-    showLanguageSuccessMessage(langInfo.name);
-    
-    setTimeout(() => {
-        if (ripple.parentNode) {
-            ripple.remove();
-        }
-    }, 600);
-}
-
-// ===== TOOLTIP FUNCTIONALITY =====
-function showTooltip(element, text) {
-    const tooltip = document.createElement('div');
-    tooltip.className = 'lang-tooltip';
-    tooltip.textContent = text;
-    tooltip.style.cssText = `
-        position: absolute;
-        bottom: 120%;
-        left: 50%;
-        transform: translateX(-50%);
-        background: rgba(44, 85, 48, 0.9);
-        color: white;
-        padding: 0.5rem 1rem;
-        border-radius: 8px;
-        font-size: 0.8rem;
-        white-space: nowrap;
-        z-index: 1002;
-        opacity: 0;
-        animation: fadeInTooltip 0.3s ease forwards;
-        pointer-events: none;
-    `;
-    
-    // Add CSS for tooltip animation if not exists
-    if (!document.querySelector('#tooltip-styles')) {
-        const style = document.createElement('style');
-        style.id = 'tooltip-styles';
-        style.innerHTML = `
-            @keyframes fadeInTooltip {
-                from { opacity: 0; transform: translate(-50%, 10px); }
-                to { opacity: 1; transform: translate(-50%, 0); }
-            }
-            @keyframes ripple {
-                to { transform: scale(4); opacity: 0; }
-            }
-        `;
-        document.head.appendChild(style);
-    }
-    
-    element.style.position = 'relative';
-    element.appendChild(tooltip);
-}
-
-function hideTooltip(element) {
-    const tooltip = element.querySelector('.lang-tooltip');
-    if (tooltip) {
-        tooltip.style.animation = 'fadeInTooltip 0.3s ease reverse';
-        setTimeout(() => {
-            if (tooltip.parentNode) {
-                tooltip.remove();
-            }
-        }, 300);
-    }
-}
-
-// ===== LANGUAGE SUCCESS MESSAGE =====
-function showLanguageSuccessMessage(languageName) {
-    const message = document.createElement('div');
-    message.className = 'lang-success-message';
-    message.innerHTML = `
-        <div class="success-content">
-            <span class="success-icon">✓</span>
-            <span class="success-text">${languageName} 선택됨</span>
-        </div>
-    `;
-    
-    message.style.cssText = `
-        position: fixed;
-        top: 100px;
-        right: 2rem;
-        background: linear-gradient(135deg, #2c5530 0%, #4a7c59 100%);
-        color: white;
-        padding: 1rem 1.5rem;
-        border-radius: 12px;
-        box-shadow: 0 10px 25px rgba(44, 85, 48, 0.3);
-        z-index: 1003;
-        opacity: 0;
-        transform: translateX(100%);
-        animation: slideInRight 0.5s ease forwards;
-        font-weight: 500;
-    `;
-
-    // Add CSS for success message animation
-    if (!document.querySelector('#success-message-styles')) {
-        const style = document.createElement('style');
-        style.id = 'success-message-styles';
-        style.innerHTML = `
-            @keyframes slideInRight {
-                to { opacity: 1; transform: translateX(0); }
-            }
-            .success-content {
-                display: flex;
-                align-items: center;
-                gap: 0.5rem;
-            }
-            .success-icon {
-                background: #FFD700;
-                color: #2c5530;
-                width: 20px;
-                height: 20px;
-                border-radius: 50%;
-                display: flex;
-                align-items: center;
-                justify-content: center;
-                font-size: 0.8rem;
-                font-weight: bold;
-            }
-        `;
-        document.head.appendChild(style);
-    }
-
-    document.body.appendChild(message);
-
-    // Auto remove after 3 seconds
-    setTimeout(() => {
-        message.style.animation = 'slideInRight 0.5s ease reverse';
-        setTimeout(() => {
-            if (message.parentNode) {
-                message.remove();
-            }
-        }, 500);
-    }, 3000);
-}
-
-// ===== LOAD SAVED LANGUAGE =====
-function loadSavedLanguage() {
-    const savedLang = localStorage.getItem('selectedLanguage') || 'ko';
-    const langButtons = document.querySelectorAll('.lang-btn');
-    
-    // Map language codes to flags
-    const langToFlag = {
-        'ko': '🇰🇷',
-        'en': '🇺🇸',
-        'zh': '🇨🇳',
-        'ja': '🇯🇵'
-    };
-
-    langButtons.forEach(btn => {
-        btn.classList.remove('active');
-        if (btn.textContent.trim() === langToFlag[savedLang]) {
-            btn.classList.add('active');
-        }
-    });
-}
-
 // ===== MENU CLOSE FUNCTIONALITY =====
 function initMenuCloseEvents() {
     // Close mobile menu when clicking outside
@@ -382,8 +133,12 @@ function initHeaderScrollEffect() {
         // Add/remove scrolled class for styling
         if (scrollTop > 100) {
             header.classList.add('scrolled');
+            header.style.background = 'rgba(255, 255, 255, 0.98)';
+            header.style.boxShadow = '0 2px 20px rgba(0, 0, 0, 0.1)';
         } else {
             header.classList.remove('scrolled');
+            header.style.background = 'rgba(255, 255, 255, 0.95)';
+            header.style.boxShadow = 'none';
         }
         
         lastScrollTop = scrollTop;
@@ -570,6 +325,9 @@ function initTypingAnimation() {
                                 0%, 50% { opacity: 1; }
                                 51%, 100% { opacity: 0; }
                             }
+                            @keyframes ripple {
+                                to { transform: scale(4); opacity: 0; }
+                            }
                         `;
                         document.head.appendChild(style);
                     }
@@ -654,32 +412,51 @@ function initCardHoverEffects() {
     });
 }
 
-// ===== LANGUAGE SWITCHING FUNCTIONALITY =====
-function switchLanguage(langCode) {
-    // This function can be expanded to handle actual language switching
-    console.log(`Switching to language: ${langCode}`);
+// ===== PAGE NAVIGATION FUNCTIONS =====
+function navigateToPage(page) {
+    console.log(`Navigate to: ${page}`);
     
-    // Example: You could load different content files or update page content
-    // loadLanguageContent(langCode);
-    
-    // Update page title and meta tags for SEO
-    updatePageLanguage(langCode);
-}
-
-function updatePageLanguage(langCode) {
-    // Update HTML lang attribute
-    document.documentElement.lang = langCode;
-    
-    // Update page title based on language
-    const titles = {
-        'ko': 'KOREVO - 한국의 전통과 혁신을 담다',
-        'en': 'KOREVO - Embracing Korean Tradition and Innovation',
-        'zh': 'KOREVO - 融合韓國傳統與創新',
-        'ja': 'KOREVO - 韓国の伝統と革新を込めて'
+    // 페이지 네비게이션 로직
+    const pageMap = {
+        'vision': 'vision.html',
+        'history': 'history.html',
+        'team': 'team.html',
+        'onyu-brand': 'onyu-brand.html',
+        'brand-philosophy': 'brand-philosophy.html',
+        'traditional-craft': 'traditional-craft.html',
+        'business-model': 'business-model.html',
+        'innovation-strategy': 'innovation-strategy.html',
+        'sustainability': 'sustainability.html',
+        'dining-set': 'dining-set.html',
+        'health-products': 'health-products.html',
+        'gift-sets': 'gift-sets.html',
+        'custom-craft': 'custom-craft.html',
+        'erp-solution': 'erp-solution.html',
+        'iot-platform': 'iot-platform.html',
+        'ecommerce-system': 'ecommerce-system.html',
+        'consulting': 'consulting.html',
+        'current-projects': 'current-projects.html',
+        'completed-projects': 'completed-projects.html',
+        'research-outcomes': 'research-outcomes.html',
+        'collaboration': 'collaboration.html',
+        'product-support': 'product-support.html',
+        'software-support': 'software-support.html',
+        'faq': 'faq.html',
+        'inquiry': 'inquiry.html',
+        'download': 'download.html',
+        'notice': 'notice.html',
+        'news': 'news.html',
+        'blog': 'blog.html',
+        'events': 'events.html',
+        'awards': 'awards.html'
     };
     
-    if (titles[langCode]) {
-        document.title = titles[langCode];
+    const targetPage = pageMap[page];
+    if (targetPage) {
+        // 실제 환경에서는 페이지 이동
+        window.location.href = targetPage;
+    } else {
+        console.error(`Page not found: ${page}`);
     }
 }
 
@@ -687,9 +464,8 @@ function updatePageLanguage(langCode) {
 document.addEventListener('DOMContentLoaded', function() {
     console.log('KOREVO website initialized');
     
-    // Initialize all functionality
+    // Initialize all functionality (언어 선택기 제외 - 번역 시스템에서 처리)
     handleScrollAnimations();
-    initLanguageSelector();
     initMenuCloseEvents();
     initMobileDropdownEvents();
     initSmoothScroll();
@@ -760,14 +536,15 @@ const KorevoUtils = {
     // Set language
     setLanguage: function(langCode) {
         localStorage.setItem('selectedLanguage', langCode);
-        switchLanguage(langCode);
+        if (window.translationService) {
+            window.translationService.translatePage(langCode);
+        }
     }
 };
 
 // ===== GLOBAL ERROR HANDLING =====
 window.addEventListener('error', function(e) {
     console.error('JavaScript Error:', e.error);
-    // Here you could send error reports to your analytics service
 });
 
 // ===== EXPORT FOR MODULE USE =====
@@ -775,6 +552,7 @@ if (typeof module !== 'undefined' && module.exports) {
     module.exports = {
         toggleMenu,
         scrollToSection,
-        KorevoUtils
+        KorevoUtils,
+        navigateToPage
     };
 }
