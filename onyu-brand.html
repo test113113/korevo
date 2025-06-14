@@ -6,7 +6,9 @@
     <title>온유(溫鍮) - 전통과 혁신이 만나는 프리미엄 브랜드 | KOREVO</title>
     <meta name="description" content="천년의 전통 유기 기술과 현대적 디자인이 만나 탄생한 온유(溫鍮) 브랜드. 프리미엄 유기 제품으로 건강하고 아름다운 라이프스타일을 제안합니다.">
     
-    <!-- Inline CSS for immediate loading -->
+    <!-- 번역 시스템 로드 -->
+    <script src="translation.js" defer></script>
+    
     <style>
         /* ===== RESET & BASE STYLES ===== */
         * {
@@ -314,13 +316,7 @@
             color: #1a3d1f;
         }
 
-        /* ===== BRAND STORY SECTION ===== */
-        .brand-story-section {
-            padding: 8rem 0;
-            background: #ffffff;
-            position: relative;
-        }
-
+        /* ===== SECTION TITLES ===== */
         .section-title {
             text-align: center;
             font-size: clamp(2.5rem, 4vw, 3.5rem);
@@ -340,6 +336,13 @@
             height: 3px;
             background: #FFD700;
             border-radius: 2px;
+        }
+
+        /* ===== BRAND STORY SECTION ===== */
+        .brand-story-section {
+            padding: 8rem 0;
+            background: #ffffff;
+            position: relative;
         }
 
         .brand-story-grid {
@@ -821,13 +824,18 @@
                 transition-duration: 0.01ms !important;
             }
         }
+
+        /* 번역 제외 요소 스타일 */
+        .no-translate {
+            /* 번역 시스템에서 자동으로 제외됨 */
+        }
     </style>
 </head>
 <body>
     <!-- Header -->
     <header class="header">
         <nav class="nav-container">
-            <a href="index.html" class="logo">KOREVO</a>
+            <a href="index.html" class="logo no-translate">KOREVO</a>
             
             <ul class="nav-menu" id="navMenu">
                 <li class="nav-item">
@@ -884,7 +892,7 @@
         <!-- Brand Hero Section -->
         <section class="brand-hero">
             <div class="brand-hero-content">
-                <h1 class="brand-logo">온유(溫鍮)</h1>
+                <h1 class="brand-logo no-translate">온유(溫鍮)</h1>
                 <p class="brand-subtitle">따뜻한 전통이 피부를 깨우다</p>
                 <p class="brand-description">
                     천년의 전통 유기 기술과 현대적 디자인이 만나 탄생한 프리미엄 브랜드입니다.<br>
@@ -907,7 +915,7 @@
                     <div class="story-content">
                         <h2>전통의 가치를 현대에</h2>
                         <p>온유(溫鍮)는 "따뜻한 유기"라는 뜻으로, 천년의 역사를 자랑하는 한국 전통 유기 기술에 현대적 감성을 더한 프리미엄 브랜드입니다.</p>
-                        <p>우리는 무형문화재 장인들과의 협업을 통해 정통 방짜유기의 품격을 지키면서도, AI 기술과 개인 맞춤형 디자인으로 현대인의 라이프스타일에 맞는 제품을 제공합니다.</p>
+                        <p>우리는 무형문화재 장인들과의 협업을 통해 정통 방짜유기의 품격을 지키면서도, <span class="no-translate">AI</span> 기술과 개인 맞춤형 디자인으로 현대인의 라이프스타일에 맞는 제품을 제공합니다.</p>
                         <div class="highlight-box">
                             <p>"전통의 치유 에너지와 현대 기술의 융합으로 일상 속 프리미엄 셀프케어를 제안합니다."</p>
                         </div>
@@ -968,14 +976,14 @@
                     
                     <div class="feature-card">
                         <div class="feature-icon">🤖</div>
-                        <h3>AI 맞춤 제작</h3>
-                        <p>APP 카메라로 얼굴을 촬영하여 개인의 얼굴 규격에 맞는 유기괄사를 맞춤 제작합니다.</p>
+                        <h3><span class="no-translate">AI</span> 맞춤 제작</h3>
+                        <p><span class="no-translate">APP</span> 카메라로 얼굴을 촬영하여 개인의 얼굴 규격에 맞는 유기괄사를 맞춤 제작합니다.</p>
                     </div>
                     
                     <div class="feature-card">
                         <div class="feature-icon">🌡️</div>
                         <h3>온열 기능</h3>
-                        <p>40~45°C의 안전한 온열 기능으로 괄사 마사지 효과를 극대화하며, 자동 타이머와 온도 조절이 가능합니다.</p>
+                        <p><span class="no-translate">40~45°C</span>의 안전한 온열 기능으로 괄사 마사지 효과를 극대화하며, 자동 타이머와 온도 조절이 가능합니다.</p>
                     </div>
                 </div>
             </div>
@@ -987,13 +995,13 @@
                 <div class="innovation-grid">
                     <div class="innovation-content">
                         <h2>혁신적인 제품 개발</h2>
-                        <p>온유는 전통 유기 기술에 최신 기술을 접목하여 혁신적인 제품을 개발합니다. AI 분석을 통한 개인 맞춤형 제작부터 온열 기능이 추가된 스마트 괄사까지, 사용자의 편의성과 효과를 모두 고려합니다.</p>
+                        <p>온유는 전통 유기 기술에 최신 기술을 접목하여 혁신적인 제품을 개발합니다. <span class="no-translate">AI</span> 분석을 통한 개인 맞춤형 제작부터 온열 기능이 추가된 스마트 괄사까지, 사용자의 편의성과 효과를 모두 고려합니다.</p>
                         
                         <div class="innovation-features">
                             <div class="innovation-feature">
                                 <div class="innovation-feature-icon">📱</div>
                                 <div>
-                                    <h4>AI 얼굴 분석</h4>
+                                    <h4><span class="no-translate">AI</span> 얼굴 분석</h4>
                                     <p>스마트폰 카메라로 얼굴 형태를 분석하여 최적의 괄사 형태를 제안합니다.</p>
                                 </div>
                             </div>
@@ -1010,7 +1018,7 @@
                                 <div class="innovation-feature-icon">🔋</div>
                                 <div>
                                     <h4>스마트 온열</h4>
-                                    <p>USB 충전식 온열 기능으로 언제 어디서나 따뜻한 괄사 마사지를 즐길 수 있습니다.</p>
+                                    <p><span class="no-translate">USB</span> 충전식 온열 기능으로 언제 어디서나 따뜻한 괄사 마사지를 즐길 수 있습니다.</p>
                                 </div>
                             </div>
                             
@@ -1054,7 +1062,7 @@
     <footer class="footer">
         <div class="footer-content">
             <div class="footer-section">
-                <h3>온유(溫鍮)</h3>
+                <h3 class="no-translate">온유(溫鍮)</h3>
                 <p>전통과 혁신이 만나는<br>프리미엄 유기 브랜드</p>
                 <p>건강한 아름다움을 위한<br>최고의 선택</p>
             </div>
@@ -1067,22 +1075,24 @@
             </div>
             <div class="footer-section">
                 <h3>고객 지원</h3>
-                <p>고객센터: 1588-0000</p>
-                <p>이메일: onyu@korevo.co.kr</p>
+                <p>고객센터: <span class="no-translate">1588-0000</span></p>
+                <p>이메일: <span class="no-translate">onyu@korevo.co.kr</span></p>
                 <p>운영시간: 평일 09:00-18:00</p>
             </div>
             <div class="footer-section">
                 <h3>회사 정보</h3>
                 <p>서울특별시 강남구<br>테헤란로 123, 코레보빌딩</p>
-                <p>사업자등록번호: 123-45-67890</p>
+                <p class="no-translate">사업자등록번호: 123-45-67890</p>
             </div>
         </div>
         <div class="footer-bottom">
-            <p>&copy; 2025 KOREVO. All rights reserved.</p>
+            <p>&copy; 2025 <span class="no-translate">KOREVO</span>. All rights reserved.</p>
         </div>
     </footer>
 
     <!-- JavaScript -->
+    <script src="script.js"></script>
+    
     <script>
         // ===== MOBILE MENU FUNCTIONALITY =====
         function toggleMenu() {
@@ -1145,23 +1155,6 @@
                     header.style.background = 'rgba(255, 255, 255, 0.95)';
                     header.style.boxShadow = 'none';
                 }
-            });
-        }
-
-        // ===== LANGUAGE SELECTOR =====
-        function initLanguageSelector() {
-            const langButtons = document.querySelectorAll('.lang-btn');
-            
-            langButtons.forEach(btn => {
-                btn.addEventListener('click', function(e) {
-                    e.preventDefault();
-                    
-                    langButtons.forEach(b => b.classList.remove('active'));
-                    this.classList.add('active');
-                    
-                    // 언어 변경 로직 (향후 구현)
-                    console.log('Language changed to:', this.textContent);
-                });
             });
         }
 
@@ -1235,7 +1228,6 @@
             
             initScrollAnimations();
             initHeaderScrollEffect();
-            initLanguageSelector();
             initFeatureCardEffects();
             initInnovationEffects();
             initResponsiveHandling();
