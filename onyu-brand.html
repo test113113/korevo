@@ -7,11 +7,11 @@
     <link rel="stylesheet" href="styles.css">
     <link rel="stylesheet" href="greeting-styles.css">
     <style>
-        /* ===== ONYU BRAND SPECIFIC STYLES ===== */
+        /* ===== IMPROVED ACCESSIBILITY STYLES ===== */
         
-        /* Brand Hero Section */
+        /* Brand Hero Section with better contrast */
         .brand-hero {
-            background: linear-gradient(135deg, #2c5530 0%, #4a7c59 30%, #1a3d1f 100%);
+            background: linear-gradient(135deg, #1a3d1f 0%, #2c5530 30%, #0f2611 100%);
             color: white;
             padding: 8rem 0;
             position: relative;
@@ -28,8 +28,8 @@
             left: 0;
             right: 0;
             bottom: 0;
-            background: linear-gradient(45deg, rgba(255, 215, 0, 0.1) 0%, rgba(184, 134, 11, 0.05) 100%);
-            opacity: 0.8;
+            background: linear-gradient(45deg, rgba(255, 215, 0, 0.08) 0%, rgba(184, 134, 11, 0.03) 100%);
+            opacity: 0.6;
         }
 
         .brand-hero::after {
@@ -39,8 +39,8 @@
             left: 0;
             right: 0;
             bottom: 0;
-            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><circle cx="25" cy="25" r="2" fill="rgba(255,215,0,0.1)"/><circle cx="75" cy="75" r="1" fill="rgba(255,215,0,0.08)"/><circle cx="50" cy="10" r="1.5" fill="rgba(255,215,0,0.12)"/></svg>');
-            opacity: 0.4;
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><circle cx="25" cy="25" r="2" fill="rgba(255,215,0,0.06)"/><circle cx="75" cy="75" r="1" fill="rgba(255,215,0,0.04)"/><circle cx="50" cy="10" r="1.5" fill="rgba(255,215,0,0.08)"/></svg>');
+            opacity: 0.3;
             animation: float 20s ease-in-out infinite;
         }
 
@@ -57,11 +57,8 @@
             font-size: clamp(4rem, 8vw, 6rem);
             font-weight: 800;
             margin-bottom: 1rem;
-            background: linear-gradient(135deg, #FFD700 0%, #FFA500 50%, #B8860B 100%);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-            text-shadow: 0 4px 20px rgba(255, 215, 0, 0.3);
+            color: #FFD700;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
             letter-spacing: -0.02em;
             position: relative;
         }
@@ -74,14 +71,14 @@
             transform: translateX(-50%);
             width: 100px;
             height: 4px;
-            background: linear-gradient(90deg, #FFD700, #B8860B);
+            background: #FFD700;
             border-radius: 2px;
         }
 
         .brand-subtitle {
             font-size: clamp(1.2rem, 3vw, 1.8rem);
             margin-bottom: 2rem;
-            opacity: 0.95;
+            color: #ffffff;
             font-weight: 300;
             letter-spacing: 0.5px;
         }
@@ -90,16 +87,16 @@
             font-size: clamp(1rem, 2vw, 1.25rem);
             line-height: 1.8;
             margin-bottom: 3rem;
-            opacity: 0.9;
+            color: #f0f0f0;
             max-width: 800px;
             margin-left: auto;
             margin-right: auto;
         }
 
-        /* Brand Story Section */
+        /* Brand Story Section with improved contrast */
         .brand-story-section {
             padding: 8rem 0;
-            background: linear-gradient(135deg, #ffffff 0%, #f8fafe 50%, #ffffff 100%);
+            background: #ffffff;
             position: relative;
         }
 
@@ -114,31 +111,33 @@
         .story-content h2 {
             font-size: clamp(2rem, 4vw, 3rem);
             margin-bottom: 2rem;
-            background: linear-gradient(135deg, #2c5530 0%, #4a7c59 100%);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
+            color: #1a3d1f;
             font-weight: 700;
         }
 
         .story-content p {
             font-size: 1.125rem;
             line-height: 1.8;
-            color: #444;
+            color: #333333;
             margin-bottom: 1.5rem;
         }
 
         .highlight-box {
-            background: linear-gradient(135deg, rgba(255, 215, 0, 0.1), rgba(44, 85, 48, 0.05));
+            background: #fff8dc;
             border-left: 4px solid #FFD700;
             padding: 1.5rem;
             margin: 2rem 0;
             border-radius: 0 12px 12px 0;
         }
 
+        .highlight-box p {
+            color: #1a3d1f;
+            font-weight: 600;
+        }
+
         .story-visual {
             position: relative;
-            background: linear-gradient(135deg, #2c5530 0%, #4a7c59 100%);
+            background: linear-gradient(135deg, #1a3d1f 0%, #2c5530 100%);
             border-radius: 20px;
             padding: 3rem;
             color: white;
@@ -156,8 +155,8 @@
             left: 0;
             right: 0;
             bottom: 0;
-            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><circle cx="20" cy="20" r="1" fill="rgba(255,215,0,0.2)"/><circle cx="80" cy="80" r="1.5" fill="rgba(255,215,0,0.15)"/><circle cx="50" cy="50" r="2" fill="rgba(255,215,0,0.1)"/></svg>');
-            opacity: 0.3;
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><circle cx="20" cy="20" r="1" fill="rgba(255,215,0,0.1)"/><circle cx="80" cy="80" r="1.5" fill="rgba(255,215,0,0.08)"/><circle cx="50" cy="50" r="2" fill="rgba(255,215,0,0.05)"/></svg>');
+            opacity: 0.2;
             border-radius: 20px;
         }
 
@@ -173,19 +172,20 @@
             margin-bottom: 1rem;
             position: relative;
             z-index: 2;
+            color: #FFD700;
         }
 
         .story-visual p {
             font-size: 1rem;
-            opacity: 0.9;
+            color: #ffffff;
             position: relative;
             z-index: 2;
         }
 
-        /* Heritage Section */
+        /* Heritage Section with better contrast */
         .heritage-section {
             padding: 8rem 0;
-            background: linear-gradient(135deg, #f8fafe 0%, #ffffff 100%);
+            background: #f8f9fa;
         }
 
         .heritage-timeline {
@@ -201,7 +201,7 @@
             top: 0;
             bottom: 0;
             width: 4px;
-            background: linear-gradient(180deg, #FFD700, #2c5530, #FFD700);
+            background: linear-gradient(180deg, #FFD700, #1a3d1f, #FFD700);
             transform: translateX(-50%);
         }
 
@@ -226,36 +226,12 @@
             position: relative;
         }
 
-        .heritage-item:nth-child(even) .heritage-content::before {
-            content: '';
-            position: absolute;
-            right: -10px;
-            top: 50%;
-            transform: translateY(-50%);
-            width: 0;
-            height: 0;
-            border: 10px solid transparent;
-            border-left-color: white;
-        }
-
-        .heritage-item:nth-child(odd) .heritage-content::before {
-            content: '';
-            position: absolute;
-            left: -10px;
-            top: 50%;
-            transform: translateY(-50%);
-            width: 0;
-            height: 0;
-            border: 10px solid transparent;
-            border-right-color: white;
-        }
-
         .heritage-year {
             position: absolute;
             left: 50%;
             transform: translateX(-50%);
-            background: linear-gradient(135deg, #FFD700, #B8860B);
-            color: #2c5530;
+            background: #FFD700;
+            color: #1a3d1f;
             padding: 0.5rem 1.5rem;
             border-radius: 25px;
             font-weight: 700;
@@ -266,19 +242,19 @@
         .heritage-title {
             font-size: 1.5rem;
             font-weight: 700;
-            color: #2c5530;
+            color: #1a3d1f;
             margin-bottom: 1rem;
         }
 
         .heritage-desc {
-            color: #666;
+            color: #333333;
             line-height: 1.6;
         }
 
-        /* Product Features Grid */
+        /* Product Features Grid with improved contrast */
         .features-section {
             padding: 8rem 0;
-            background: linear-gradient(135deg, #2c5530 0%, #4a7c59 100%);
+            background: linear-gradient(135deg, #1a3d1f 0%, #2c5530 100%);
             color: white;
             position: relative;
         }
@@ -290,8 +266,8 @@
             left: 0;
             right: 0;
             bottom: 0;
-            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><path d="M20,20 Q50,10 80,20 Q90,50 80,80 Q50,90 20,80 Q10,50 20,20" fill="none" stroke="rgba(255,215,0,0.1)" stroke-width="1"/></svg>');
-            opacity: 0.3;
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><path d="M20,20 Q50,10 80,20 Q90,50 80,80 Q50,90 20,80 Q10,50 20,20" fill="none" stroke="rgba(255,215,0,0.05)" stroke-width="1"/></svg>');
+            opacity: 0.2;
         }
 
         .features-grid {
@@ -303,7 +279,7 @@
         }
 
         .feature-card {
-            background: rgba(255, 255, 255, 0.1);
+            background: rgba(255, 255, 255, 0.15);
             backdrop-filter: blur(15px);
             border: 1px solid rgba(255, 255, 255, 0.2);
             border-radius: 20px;
@@ -314,58 +290,42 @@
             overflow: hidden;
         }
 
-        .feature-card::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: -100%;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(90deg, transparent, rgba(255, 215, 0, 0.1), transparent);
-            transition: left 0.6s ease;
-        }
-
-        .feature-card:hover::before {
-            left: 100%;
-        }
-
         .feature-card:hover {
             transform: translateY(-10px) scale(1.02);
             box-shadow: 0 20px 40px rgba(255, 215, 0, 0.2);
+            background: rgba(255, 255, 255, 0.2);
         }
 
         .feature-icon {
             width: 80px;
             height: 80px;
-            background: linear-gradient(135deg, #FFD700, #FFA500);
+            background: #FFD700;
             border-radius: 50%;
             margin: 0 auto 1.5rem;
             display: flex;
             align-items: center;
             justify-content: center;
             font-size: 2rem;
-            color: #2c5530;
+            color: #1a3d1f;
             box-shadow: 0 10px 20px rgba(255, 215, 0, 0.3);
         }
 
         .feature-card h3 {
             font-size: 1.5rem;
             margin-bottom: 1rem;
-            background: linear-gradient(135deg, #FFD700, #FFA500);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
+            color: #FFD700;
+            font-weight: 700;
         }
 
         .feature-card p {
-            opacity: 0.9;
+            color: #ffffff;
             line-height: 1.6;
         }
 
-        /* Innovation Section */
+        /* Innovation Section with better contrast */
         .innovation-section {
             padding: 8rem 0;
-            background: linear-gradient(135deg, #ffffff 0%, #f8fafe 100%);
+            background: #ffffff;
         }
 
         .innovation-grid {
@@ -378,11 +338,15 @@
         .innovation-content h2 {
             font-size: clamp(2rem, 4vw, 3rem);
             margin-bottom: 2rem;
-            background: linear-gradient(135deg, #2c5530 0%, #FFD700 100%);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
+            color: #1a3d1f;
             font-weight: 700;
+        }
+
+        .innovation-content p {
+            color: #333333;
+            font-size: 1.125rem;
+            line-height: 1.8;
+            margin-bottom: 2rem;
         }
 
         .innovation-features {
@@ -394,33 +358,45 @@
             align-items: center;
             margin-bottom: 1.5rem;
             padding: 1rem;
-            background: rgba(255, 215, 0, 0.05);
+            background: #fff8dc;
             border-radius: 12px;
             transition: all 0.3s ease;
         }
 
         .innovation-feature:hover {
-            background: rgba(255, 215, 0, 0.1);
+            background: #ffeaa7;
             transform: translateX(10px);
         }
 
         .innovation-feature-icon {
             width: 50px;
             height: 50px;
-            background: linear-gradient(135deg, #FFD700, #B8860B);
+            background: #FFD700;
             border-radius: 50%;
             display: flex;
             align-items: center;
             justify-content: center;
             margin-right: 1rem;
             font-size: 1.2rem;
-            color: #2c5530;
+            color: #1a3d1f;
+        }
+
+        .innovation-feature h4 {
+            color: #1a3d1f;
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+        }
+
+        .innovation-feature p {
+            color: #333333;
+            font-size: 0.9rem;
+            margin: 0;
         }
 
         .innovation-visual {
             position: relative;
             height: 500px;
-            background: linear-gradient(135deg, #f8fafe 0%, #e8f0ff 100%);
+            background: #f8f9fa;
             border-radius: 20px;
             display: flex;
             align-items: center;
@@ -435,16 +411,11 @@
             left: 50%;
             width: 200px;
             height: 200px;
-            background: linear-gradient(135deg, #FFD700, #B8860B);
+            background: #FFD700;
             border-radius: 50%;
             transform: translate(-50%, -50%);
             opacity: 0.1;
             animation: pulse 3s ease-in-out infinite;
-        }
-
-        @keyframes pulse {
-            0%, 100% { transform: translate(-50%, -50%) scale(1); }
-            50% { transform: translate(-50%, -50%) scale(1.1); }
         }
 
         .innovation-diagram {
@@ -461,14 +432,14 @@
             border-radius: 15px;
             box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
             font-weight: 600;
-            color: #2c5530;
+            color: #1a3d1f;
             position: relative;
         }
 
-        /* Market Data Section */
+        /* Market Data Section with improved contrast */
         .market-section {
             padding: 8rem 0;
-            background: linear-gradient(135deg, #f8fafe 0%, #ffffff 100%);
+            background: #f8f9fa;
         }
 
         .market-stats {
@@ -496,22 +467,19 @@
         .stat-number {
             font-size: 2.5rem;
             font-weight: 800;
-            background: linear-gradient(135deg, #2c5530, #FFD700);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
+            color: #1a3d1f;
             margin-bottom: 0.5rem;
         }
 
         .stat-label {
-            color: #666;
+            color: #333333;
             font-weight: 500;
         }
 
-        /* CTA Section */
+        /* CTA Section with better contrast */
         .brand-cta-section {
             padding: 8rem 0;
-            background: linear-gradient(135deg, #2c5530 0%, #4a7c59 100%);
+            background: linear-gradient(135deg, #1a3d1f 0%, #2c5530 100%);
             color: white;
             text-align: center;
             position: relative;
@@ -524,8 +492,8 @@
             left: 0;
             right: 0;
             bottom: 0;
-            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><circle cx="20" cy="20" r="3" fill="rgba(255,215,0,0.1)"/><circle cx="80" cy="80" r="2" fill="rgba(255,215,0,0.08)"/><circle cx="50" cy="15" r="1.5" fill="rgba(255,215,0,0.12)"/></svg>');
-            opacity: 0.4;
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><circle cx="20" cy="20" r="3" fill="rgba(255,215,0,0.05)"/><circle cx="80" cy="80" r="2" fill="rgba(255,215,0,0.04)"/><circle cx="50" cy="15" r="1.5" fill="rgba(255,215,0,0.06)"/></svg>');
+            opacity: 0.3;
         }
 
         .brand-cta-content {
@@ -536,20 +504,203 @@
         .brand-cta-content h2 {
             font-size: clamp(2.5rem, 5vw, 3.5rem);
             margin-bottom: 1.5rem;
-            background: linear-gradient(135deg, #FFD700, #FFA500);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
+            color: #FFD700;
             font-weight: 700;
         }
 
         .brand-cta-content p {
             font-size: 1.25rem;
             margin-bottom: 3rem;
-            opacity: 0.9;
+            color: #ffffff;
             max-width: 600px;
             margin-left: auto;
             margin-right: auto;
+        }
+
+        /* Section titles with better contrast */
+        .section-title {
+            text-align: center;
+            font-size: clamp(2.5rem, 4vw, 3.5rem);
+            margin-bottom: 3rem;
+            color: #1a3d1f;
+            font-weight: 700;
+            position: relative;
+        }
+
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 60px;
+            height: 3px;
+            background: #FFD700;
+            border-radius: 2px;
+        }
+
+        /* Product Line Section with improved contrast */
+        .product-line-section {
+            padding: 8rem 0;
+            background: #ffffff;
+        }
+
+        .business-overview {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 2rem;
+            margin: 4rem 0;
+        }
+
+        .business-card {
+            background: white;
+            padding: 2.5rem;
+            border-radius: 20px;
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
+            text-align: center;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+            border: 2px solid transparent;
+        }
+
+        .business-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: #FFD700;
+        }
+
+        .business-card:hover {
+            transform: translateY(-15px);
+            box-shadow: 0 20px 40px rgba(255, 215, 0, 0.2);
+            border-color: rgba(255, 215, 0, 0.3);
+        }
+
+        .business-icon {
+            width: 100px;
+            height: 100px;
+            margin: 0 auto 1.5rem;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2.5rem;
+            color: white;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .business-icon.onyu {
+            background: linear-gradient(135deg, #1a3d1f 0%, #2c5530 100%);
+        }
+
+        .business-card h3 {
+            font-size: 1.8rem;
+            margin-bottom: 1rem;
+            color: #1a3d1f;
+            font-weight: 700;
+        }
+
+        .business-card .subtitle {
+            font-size: 1rem;
+            color: #666666;
+            margin-bottom: 1.5rem;
+            font-weight: 500;
+        }
+
+        .business-card p {
+            color: #333333;
+            line-height: 1.7;
+            margin-bottom: 2rem;
+        }
+
+        .business-features {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+            justify-content: center;
+            margin-bottom: 2rem;
+        }
+
+        .feature-tag {
+            background: #fff8dc;
+            color: #1a3d1f;
+            padding: 0.3rem 0.8rem;
+            border-radius: 15px;
+            font-size: 0.8rem;
+            font-weight: 500;
+            border: 1px solid #FFD700;
+        }
+
+        .business-cta {
+            display: inline-block;
+            padding: 0.8rem 1.5rem;
+            background: #FFD700;
+            color: #1a3d1f;
+            text-decoration: none;
+            border-radius: 25px;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            border: 2px solid transparent;
+        }
+
+        .business-cta:hover {
+            background: #FFA500;
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(255, 165, 0, 0.4);
+        }
+
+        /* CTA Buttons with better contrast */
+        .cta-buttons {
+            display: flex;
+            gap: 1.5rem;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        .cta-btn {
+            padding: 1rem 2.5rem;
+            border: 2px solid #FFD700;
+            background: transparent;
+            color: white;
+            text-decoration: none;
+            border-radius: 50px;
+            font-weight: 600;
+            font-size: 1.1rem;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .cta-btn::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: #FFD700;
+            transition: left 0.3s ease;
+            z-index: -1;
+        }
+
+        .cta-btn:hover::before {
+            left: 0;
+        }
+
+        .cta-btn:hover {
+            color: #1a3d1f;
+            transform: translateY(-3px);
+            box-shadow: 0 15px 30px rgba(255, 215, 0, 0.4);
+        }
+
+        .cta-btn.primary {
+            background: #FFD700;
+            color: #1a3d1f;
         }
 
         /* Responsive Design */
@@ -578,10 +729,6 @@
                 margin: 2rem 0 0 0;
             }
 
-            .heritage-content::before {
-                display: none;
-            }
-
             .features-grid {
                 grid-template-columns: 1fr;
                 gap: 2rem;
@@ -589,6 +736,53 @@
 
             .feature-card {
                 padding: 2rem 1.5rem;
+            }
+        }
+
+        /* Accessibility improvements */
+        .sr-only {
+            position: absolute;
+            width: 1px;
+            height: 1px;
+            padding: 0;
+            margin: -1px;
+            overflow: hidden;
+            clip: rect(0, 0, 0, 0);
+            white-space: nowrap;
+            border: 0;
+        }
+
+        /* Focus indicators */
+        .cta-btn:focus,
+        .business-cta:focus,
+        .nav-link:focus {
+            outline: 3px solid #FFD700;
+            outline-offset: 2px;
+        }
+
+        /* High contrast mode support */
+        @media (prefers-contrast: high) {
+            .brand-hero {
+                background: #000000;
+            }
+            
+            .story-visual {
+                background: #000000;
+                border: 2px solid #FFD700;
+            }
+            
+            .feature-card {
+                background: rgba(255, 255, 255, 0.9);
+                border: 2px solid #FFD700;
+            }
+        }
+
+        /* Reduced motion support */
+        @media (prefers-reduced-motion: reduce) {
+            * {
+                animation-duration: 0.01ms !important;
+                animation-iteration-count: 1 !important;
+                transition-duration: 0.01ms !important;
             }
         }
     </style>
@@ -732,6 +926,7 @@
         <!-- Brand Story Section -->
         <section class="brand-story-section">
             <div class="container">
+                <h2 class="section-title">브랜드 스토리</h2>
                 <div class="brand-story-grid">
                     <div class="story-content">
                         <h2>전통과 혁신의 조화</h2>
@@ -981,7 +1176,7 @@
                 </div>
 
                 <div class="highlight-box" style="max-width: 800px; margin: 0 auto;">
-                    <h3 style="color: #2c5530; margin-bottom: 1rem;">시장 기회</h3>
+                    <h3 style="color: #1a3d1f; margin-bottom: 1rem;">시장 기회</h3>
                     <p>
                         코로나19 이후 홈케어 시장이 급성장하면서 괘사 마사지 도구에 대한 관심이 크게 증가했습니다. 
                         특히 AI 기술을 활용한 개인 맞춤형 제품에 대한 수요가 높아지고 있어, 
@@ -992,7 +1187,7 @@
         </section>
 
         <!-- Product Line Section -->
-        <section class="product-line-section" style="padding: 8rem 0; background: linear-gradient(135deg, #f8fafe 0%, #ffffff 100%);">
+        <section class="product-line-section">
             <div class="container">
                 <h2 class="section-title">온유 제품 라인업</h2>
                 <div class="business-overview">
@@ -1007,7 +1202,7 @@
                             <span class="feature-tag">온열 기능</span>
                             <span class="feature-tag">USB 충전</span>
                         </div>
-                        <p style="font-size: 1.5rem; font-weight: 700; color: #2c5530; margin: 1.5rem 0;">₩300,000~</p>
+                        <p style="font-size: 1.5rem; font-weight: 700; color: #1a3d1f; margin: 1.5rem 0;">₩300,000~</p>
                         <a href="#shop" class="business-cta">주문하기</a>
                     </div>
 
@@ -1022,7 +1217,7 @@
                             <span class="feature-tag">소장가치</span>
                             <span class="feature-tag">선물용</span>
                         </div>
-                        <p style="font-size: 1.5rem; font-weight: 700; color: #2c5530; margin: 1.5rem 0;">₩150,000~</p>
+                        <p style="font-size: 1.5rem; font-weight: 700; color: #1a3d1f; margin: 1.5rem 0;">₩150,000~</p>
                         <a href="#shop" class="business-cta">구매하기</a>
                     </div>
 
@@ -1037,7 +1232,7 @@
                             <span class="feature-tag">환경보호</span>
                             <span class="feature-tag">가치창조</span>
                         </div>
-                        <p style="font-size: 1.5rem; font-weight: 700; color: #2c5530; margin: 1.5rem 0;">무료~</p>
+                        <p style="font-size: 1.5rem; font-weight: 700; color: #1a3d1f; margin: 1.5rem 0;">무료~</p>
                         <a href="#inquiry" class="business-cta">신청하기</a>
                     </div>
                 </div>
@@ -1170,6 +1365,13 @@
                 animateOnScroll.observe(item);
             });
         });
+
+        // Navigation function for dropdown items
+        function navigateToPage(page) {
+            console.log(`Navigating to: ${page}`);
+            // This would typically navigate to the actual page
+            // For now, we'll just log it
+        }
     </script>
 </body>
 </html>
