@@ -4,6 +4,9 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>KOREVO - 비전 & 미션</title>
+    <meta name="description" content="KOREVO의 비전과 미션. 전통과 혁신이 만나는 지점에서 새로운 미래를 설계합니다.">
+    <!-- 번역 시스템 로드 -->
+    <script src="translation.js" defer></script>
     <style>
         * {
             margin: 0;
@@ -70,6 +73,37 @@
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             background-clip: text;
+        }
+
+        /* Language Selector */
+        .lang-selector {
+            display: flex;
+            gap: 1rem;
+        }
+
+        .lang-btn {
+            padding: 0.5rem 0.8rem;
+            border: 2px solid #ddd;
+            background: white;
+            color: #333;
+            border-radius: 25px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            font-size: 1.2rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 45px;
+            height: 45px;
+        }
+
+        .lang-btn:hover,
+        .lang-btn.active {
+            background: linear-gradient(135deg, #FFD700 0%, #B8860B 100%);
+            color: white;
+            border: 2px solid #FFD700;
+            transform: scale(1.05);
         }
 
         /* Breadcrumb */
@@ -431,25 +465,6 @@
             border: 1px solid rgba(255, 215, 0, 0.3);
         }
 
-        /* Connecting Lines */
-        .mission-connections {
-            position: relative;
-            margin: 4rem 0;
-        }
-
-        .connection-line {
-            position: absolute;
-            height: 2px;
-            background: linear-gradient(90deg, #FFD700, #2c5530);
-            opacity: 0.3;
-            animation: lineGrow 2s ease-out;
-        }
-
-        @keyframes lineGrow {
-            from { width: 0; }
-            to { width: 100%; }
-        }
-
         /* CTA Section */
         .cta-section {
             background: linear-gradient(135deg, #2c5530 0%, #4a7c59 100%);
@@ -601,13 +616,18 @@
         .animate-on-scroll.delay-2 { animation-delay: 0.4s; }
         .animate-on-scroll.delay-3 { animation-delay: 0.6s; }
         .animate-on-scroll.delay-4 { animation-delay: 0.8s; }
+
+        /* 번역 제외 요소 스타일 */
+        .no-translate {
+            /* 번역 시스템에서 자동으로 제외됨 */
+        }
     </style>
 </head>
 <body>
     <!-- Header -->
     <header class="header">
         <nav class="nav-container">
-            <a href="index.html" class="logo">KOREVO</a>
+            <a href="index.html" class="logo no-translate">KOREVO</a>
             <ul class="nav-links">
                 <li><a href="index.html" class="nav-link">홈</a></li>
                 <li><a href="greeting.html" class="nav-link">인사말</a></li>
@@ -615,6 +635,13 @@
                 <li><a href="#" class="nav-link">사업소개</a></li>
                 <li><a href="#" class="nav-link">제품&서비스</a></li>
             </ul>
+            
+            <div class="lang-selector">
+                <a href="#" class="lang-btn active">🇰🇷</a>
+                <a href="#" class="lang-btn">🇺🇸</a>
+                <a href="#" class="lang-btn">🇨🇳</a>
+                <a href="#" class="lang-btn">🇯🇵</a>
+            </div>
         </nav>
     </header>
 
@@ -654,7 +681,7 @@
                             전통의 가치를 기술로 연결하여, 한국의 아름다움을 세계에 알리다.
                         </div>
                         <div class="vision-description">
-                            KOREVO는 전통 유기그릇의 장인정신과 현대 기술을 융합해, 문화와 기술이 공존하는 새로운 라이프스타일을 제안합니다. 우리는 국내를 넘어 글로벌 시장에서 한국의 전통과 혁신이 공존하는 브랜드로 성장하고자 합니다.
+                            <span class="no-translate">KOREVO</span>는 전통 유기그릇의 장인정신과 현대 기술을 융합해, 문화와 기술이 공존하는 새로운 라이프스타일을 제안합니다. 우리는 국내를 넘어 글로벌 시장에서 한국의 전통과 혁신이 공존하는 브랜드로 성장하고자 합니다.
                         </div>
                     </div>
                 </div>
@@ -678,11 +705,11 @@
                             전통의 계승과 혁신
                         </h3>
                         <p class="mission-description">
-                            무형문화재와 협력하여 정통 유기그릇의 품격을 지키고, AI 및 맞춤형 디자인 기술로 개인화된 제품을 제공합니다.
+                            무형문화재와 협력하여 정통 유기그릇의 품격을 지키고, <span class="no-translate">AI</span> 및 맞춤형 디자인 기술로 개인화된 제품을 제공합니다.
                         </p>
                         <div class="mission-highlights">
                             <span class="highlight-tag">무형문화재 협력</span>
-                            <span class="highlight-tag">AI 맞춤 디자인</span>
+                            <span class="highlight-tag"><span class="no-translate">AI</span> 맞춤 디자인</span>
                             <span class="highlight-tag">개인화 제품</span>
                         </div>
                     </div>
@@ -730,7 +757,7 @@
                         </p>
                         <div class="mission-highlights">
                             <span class="highlight-tag">해외 진출</span>
-                            <span class="highlight-tag">K-Lifestyle</span>
+                            <span class="highlight-tag"><span class="no-translate">K-Lifestyle</span></span>
                             <span class="highlight-tag">예술성 + 기술</span>
                         </div>
                     </div>
@@ -743,7 +770,7 @@
             <div class="container">
                 <div class="cta-content animate-on-scroll">
                     <h2 class="cta-title">함께 만들어가는 내일</h2>
-                    <p class="cta-subtitle">KOREVO의 비전과 미션에 동참하여 새로운 가치를 창조해나가세요</p>
+                    <p class="cta-subtitle"><span class="no-translate">KOREVO</span>의 비전과 미션에 동참하여 새로운 가치를 창조해나가세요</p>
                     <div class="cta-buttons">
                         <a href="#" class="cta-btn primary">사업소개 보기</a>
                         <a href="#" class="cta-btn">제품 살펴보기</a>
@@ -754,6 +781,7 @@
         </section>
     </main>
 
+    <script src="script.js"></script>
     <script>
         // Intersection Observer for scroll animations
         const observerOptions = {
@@ -795,6 +823,12 @@
                 }, 200);
             });
         });
+
+        // Mobile menu toggle function
+        function toggleMenu() {
+            // Mobile menu functionality can be added here
+            console.log('Mobile menu toggle');
+        }
     </script>
 </body>
 </html>
