@@ -5,13 +5,814 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>KOREVO - 한국의 전통과 혁신을 담다</title>
     <meta name="description" content="전통 유기 기술과 현대 IT 기술의 융합, KOREVO에서 새로운 가치를 창조합니다.">
-    <link rel="stylesheet" href="styles.css">
+    <!-- 번역 시스템 로드 -->
+    <script src="translation.js" defer></script>
+    <style>
+        /* ===== RESET & BASE STYLES ===== */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background: #fff;
+            overflow-x: hidden;
+        }
+
+        /* ===== HEADER & NAVIGATION ===== */
+        .header {
+            background: rgba(0, 0, 0, 0.1);
+            backdrop-filter: blur(10px);
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 1000;
+            padding: 1rem 0;
+            transition: all 0.3s ease;
+        }
+
+        .header.scrolled {
+            background: rgba(255, 255, 255, 0.95);
+            box-shadow: 0 2px 20px rgba(0, 0, 0, 0.1);
+        }
+
+        .nav-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0 2rem;
+        }
+
+        .logo {
+            font-size: 2rem;
+            font-weight: bold;
+            background: linear-gradient(135deg, #FFD700 0%, #B8860B 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            text-decoration: none;
+            letter-spacing: 2px;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
+        }
+
+        .nav-menu {
+            display: flex;
+            list-style: none;
+            gap: 2rem;
+        }
+
+        .nav-item {
+            position: relative;
+        }
+
+        .nav-link {
+            text-decoration: none;
+            color: rgba(255, 255, 255, 0.9);
+            font-weight: 500;
+            padding: 0.5rem 0;
+            transition: all 0.3s ease;
+            cursor: pointer;
+            display: block;
+        }
+
+        .header.scrolled .nav-link {
+            color: #333;
+        }
+
+        .nav-link:hover {
+            color: #FFD700;
+            text-shadow: 0 0 10px rgba(255, 215, 0, 0.5);
+        }
+
+        /* ===== DROPDOWN MENUS ===== */
+        .dropdown {
+            position: absolute;
+            top: 100%;
+            left: 0;
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(20px);
+            min-width: 200px;
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+            border-radius: 12px;
+            opacity: 0;
+            visibility: hidden;
+            transform: translateY(-10px);
+            transition: all 0.3s ease;
+            z-index: 1001;
+            padding: 1rem 0;
+        }
+
+        .nav-item:hover .dropdown {
+            opacity: 1;
+            visibility: visible;
+            transform: translateY(0);
+        }
+
+        .dropdown .dropdown-item {
+            padding: 0.75rem 1.5rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            color: #333;
+            font-size: 0.9rem;
+        }
+
+        .dropdown .dropdown-item:hover {
+            background: linear-gradient(135deg, rgba(255, 215, 0, 0.1), rgba(184, 134, 11, 0.1));
+            color: #2c5530;
+            padding-left: 2rem;
+        }
+
+        /* ===== LANGUAGE SELECTOR ===== */
+        .lang-selector {
+            display: flex;
+            gap: 1rem;
+        }
+
+        .lang-btn {
+            padding: 0.5rem 0.8rem;
+            border: 2px solid rgba(255, 255, 255, 0.3);
+            background: rgba(255, 255, 255, 0.1);
+            color: rgba(255, 255, 255, 0.9);
+            border-radius: 25px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            font-size: 1.2rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 45px;
+            height: 45px;
+            backdrop-filter: blur(10px);
+        }
+
+        .header.scrolled .lang-btn {
+            border-color: #ddd;
+            background: white;
+            color: #333;
+        }
+
+        .lang-btn:hover,
+        .lang-btn.active {
+            background: linear-gradient(135deg, #FFD700 0%, #B8860B 100%);
+            color: white;
+            border: 2px solid #FFD700;
+            transform: scale(1.05);
+            box-shadow: 0 5px 15px rgba(255, 215, 0, 0.3);
+        }
+
+        /* ===== MOBILE MENU ===== */
+        .menu-toggle {
+            display: none;
+            flex-direction: column;
+            cursor: pointer;
+            gap: 4px;
+        }
+
+        .menu-toggle span {
+            width: 25px;
+            height: 3px;
+            background: rgba(255, 255, 255, 0.9);
+            transition: 0.3s;
+        }
+
+        .header.scrolled .menu-toggle span {
+            background: #333;
+        }
+
+        /* ===== HERO VIDEO SECTION ===== */
+        .hero-video-section {
+            position: relative;
+            height: 100vh;
+            overflow: hidden;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .hero-video {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            min-width: 100%;
+            min-height: 100%;
+            width: auto;
+            height: auto;
+            transform: translateX(-50%) translateY(-50%);
+            z-index: 1;
+            object-fit: cover;
+        }
+
+        .hero-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(
+                45deg,
+                rgba(44, 85, 48, 0.7) 0%,
+                rgba(26, 61, 31, 0.5) 30%,
+                rgba(0, 0, 0, 0.3) 60%,
+                rgba(255, 215, 0, 0.1) 100%
+            );
+            z-index: 2;
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 3;
+            text-align: center;
+            color: white;
+            max-width: 800px;
+            padding: 0 2rem;
+            animation: heroContentFadeIn 2s ease-out;
+        }
+
+        @keyframes heroContentFadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(50px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .hero-title {
+            font-size: clamp(3rem, 8vw, 6rem);
+            font-weight: 800;
+            margin-bottom: 1rem;
+            background: linear-gradient(135deg, #FFD700 0%, #FFA500 50%, #FFD700 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.3);
+            letter-spacing: -0.02em;
+            animation: titleGlow 3s ease-in-out infinite alternate;
+        }
+
+        @keyframes titleGlow {
+            from {
+                filter: drop-shadow(0 0 10px rgba(255, 215, 0, 0.3));
+            }
+            to {
+                filter: drop-shadow(0 0 30px rgba(255, 215, 0, 0.8));
+            }
+        }
+
+        .hero-subtitle {
+            font-size: clamp(1.2rem, 3vw, 2rem);
+            margin-bottom: 1.5rem;
+            font-weight: 300;
+            letter-spacing: 1px;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+            animation: subtitleSlideIn 2s ease-out 0.5s both;
+        }
+
+        @keyframes subtitleSlideIn {
+            from {
+                opacity: 0;
+                transform: translateX(-50px);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+
+        .hero-description {
+            font-size: clamp(1rem, 2vw, 1.3rem);
+            line-height: 1.8;
+            margin-bottom: 3rem;
+            opacity: 0.95;
+            text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5);
+            animation: descriptionFadeIn 2s ease-out 1s both;
+        }
+
+        @keyframes descriptionFadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 0.95;
+                transform: translateY(0);
+            }
+        }
+
+        /* ===== CTA BUTTONS ===== */
+        .hero-cta-buttons {
+            display: flex;
+            gap: 1.5rem;
+            justify-content: center;
+            flex-wrap: wrap;
+            animation: buttonsSlideUp 2s ease-out 1.5s both;
+        }
+
+        @keyframes buttonsSlideUp {
+            from {
+                opacity: 0;
+                transform: translateY(50px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .hero-cta-btn {
+            padding: 1.2rem 2.5rem;
+            border: 2px solid rgba(255, 215, 0, 0.8);
+            background: rgba(255, 215, 0, 0.1);
+            color: white;
+            text-decoration: none;
+            border-radius: 50px;
+            font-weight: 600;
+            font-size: 1.1rem;
+            transition: all 0.4s ease;
+            position: relative;
+            overflow: hidden;
+            backdrop-filter: blur(10px);
+            text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.3);
+        }
+
+        .hero-cta-btn::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, #FFD700 0%, #FFA500 100%);
+            transition: left 0.4s ease;
+            z-index: -1;
+        }
+
+        .hero-cta-btn:hover::before {
+            left: 0;
+        }
+
+        .hero-cta-btn:hover {
+            color: #2c5530;
+            transform: translateY(-3px) scale(1.05);
+            box-shadow: 0 15px 30px rgba(255, 215, 0, 0.4);
+            border-color: #FFD700;
+        }
+
+        .hero-cta-btn.primary {
+            background: linear-gradient(135deg, #FFD700 0%, #FFA500 100%);
+            color: #2c5530;
+            font-weight: 700;
+        }
+
+        .hero-cta-btn.primary:hover {
+            background: linear-gradient(135deg, #FFA500 0%, #FF8C00 100%);
+            color: white;
+        }
+
+        /* ===== SCROLL INDICATOR ===== */
+        .scroll-indicator {
+            position: absolute;
+            bottom: 3rem;
+            left: 50%;
+            transform: translateX(-50%);
+            z-index: 3;
+            color: rgba(255, 255, 255, 0.8);
+            text-align: center;
+            animation: scrollBounce 2s ease-in-out infinite;
+        }
+
+        @keyframes scrollBounce {
+            0%, 20%, 50%, 80%, 100% {
+                transform: translateX(-50%) translateY(0);
+            }
+            40% {
+                transform: translateX(-50%) translateY(-10px);
+            }
+            60% {
+                transform: translateX(-50%) translateY(-5px);
+            }
+        }
+
+        .scroll-text {
+            font-size: 0.9rem;
+            margin-bottom: 0.5rem;
+            font-weight: 500;
+        }
+
+        .scroll-arrow {
+            font-size: 1.5rem;
+            animation: arrowPulse 2s ease-in-out infinite;
+        }
+
+        @keyframes arrowPulse {
+            0%, 100% {
+                opacity: 0.5;
+            }
+            50% {
+                opacity: 1;
+            }
+        }
+
+        /* ===== VIDEO CONTROLS ===== */
+        .video-controls {
+            position: absolute;
+            bottom: 2rem;
+            right: 2rem;
+            z-index: 4;
+            display: flex;
+            gap: 1rem;
+        }
+
+        .video-control-btn {
+            width: 50px;
+            height: 50px;
+            border: 2px solid rgba(255, 255, 255, 0.3);
+            background: rgba(0, 0, 0, 0.3);
+            color: white;
+            border-radius: 50%;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.2rem;
+            transition: all 0.3s ease;
+            backdrop-filter: blur(10px);
+        }
+
+        .video-control-btn:hover {
+            background: rgba(255, 215, 0, 0.8);
+            border-color: #FFD700;
+            color: #2c5530;
+            transform: scale(1.1);
+        }
+
+        /* ===== MAIN CONTENT ===== */
+        .main-content {
+            background: linear-gradient(180deg, #ffffff 0%, #f8fafe 50%, #ffffff 100%);
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+
+        /* ===== BUSINESS OVERVIEW SECTION ===== */
+        .business-overview-section {
+            padding: 8rem 0;
+            position: relative;
+        }
+
+        .business-overview-section::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: radial-gradient(circle at 10% 20%, rgba(255, 215, 0, 0.03) 0%, transparent 50%),
+                        radial-gradient(circle at 90% 80%, rgba(44, 85, 48, 0.03) 0%, transparent 50%);
+        }
+
+        .section-title {
+            text-align: center;
+            font-size: clamp(2.5rem, 4vw, 3.5rem);
+            margin-bottom: 4rem;
+            background: linear-gradient(135deg, #2c5530 0%, #4a7c59 50%, #FFD700 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            font-weight: 700;
+            position: relative;
+            z-index: 2;
+        }
+
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 60px;
+            height: 3px;
+            background: #FFD700;
+            border-radius: 2px;
+        }
+
+        .business-overview {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 2rem;
+            position: relative;
+            z-index: 2;
+        }
+
+        .business-card {
+            background: rgba(255, 255, 255, 0.8);
+            backdrop-filter: blur(15px);
+            padding: 2.5rem;
+            border-radius: 20px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+            text-align: center;
+            transition: all 0.4s ease;
+            position: relative;
+            overflow: hidden;
+            border: 1px solid rgba(255, 255, 255, 0.3);
+        }
+
+        .business-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: linear-gradient(135deg, #FFD700 0%, #B8860B 100%);
+            transform: scaleX(0);
+            transition: transform 0.4s ease;
+        }
+
+        .business-card:hover::before {
+            transform: scaleX(1);
+        }
+
+        .business-card:hover {
+            transform: translateY(-15px) scale(1.02);
+            box-shadow: 0 25px 50px rgba(255, 215, 0, 0.15);
+        }
+
+        .business-icon {
+            width: 100px;
+            height: 100px;
+            margin: 0 auto 1.5rem;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2.5rem;
+            color: white;
+            position: relative;
+            overflow: hidden;
+            transition: all 0.4s ease;
+        }
+
+        .business-icon.onyu {
+            background: linear-gradient(135deg, #2c5530 0%, #4a7c59 100%);
+        }
+
+        .business-icon.software {
+            background: linear-gradient(135deg, #1e3a8a 0%, #3b82f6 100%);
+        }
+
+        .business-icon.research {
+            background: linear-gradient(135deg, #7c2d12 0%, #ea580c 100%);
+        }
+
+        .business-card:hover .business-icon {
+            transform: scale(1.1) rotate(5deg);
+        }
+
+        .business-card h3 {
+            font-size: 1.8rem;
+            margin-bottom: 1rem;
+            color: #2c5530;
+            font-weight: 700;
+        }
+
+        .business-card .subtitle {
+            font-size: 1rem;
+            color: #666;
+            margin-bottom: 1.5rem;
+            font-weight: 500;
+        }
+
+        .business-card p {
+            color: #777;
+            line-height: 1.7;
+            margin-bottom: 2rem;
+        }
+
+        .business-features {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+            justify-content: center;
+            margin-bottom: 2rem;
+        }
+
+        .feature-tag {
+            background: linear-gradient(135deg, rgba(255, 215, 0, 0.1), rgba(184, 134, 11, 0.1));
+            color: #B8860B;
+            padding: 0.3rem 0.8rem;
+            border-radius: 15px;
+            font-size: 0.8rem;
+            font-weight: 500;
+            border: 1px solid rgba(184, 134, 11, 0.2);
+        }
+
+        .business-cta {
+            display: inline-block;
+            padding: 0.8rem 1.5rem;
+            background: linear-gradient(135deg, #FFD700 0%, #B8860B 100%);
+            color: white;
+            text-decoration: none;
+            border-radius: 25px;
+            font-weight: 500;
+            transition: all 0.3s ease;
+            border: 2px solid transparent;
+        }
+
+        .business-cta:hover {
+            background: linear-gradient(135deg, #FFA500 0%, #FF8C00 100%);
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(255, 165, 0, 0.4);
+        }
+
+        /* ===== FOOTER ===== */
+        .footer {
+            background: linear-gradient(135deg, #2c5530 0%, #1a3d1f 100%);
+            color: white;
+            padding: 3rem 2rem 1rem;
+            margin-top: 4rem;
+            position: relative;
+        }
+
+        .footer::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 3px;
+            background: linear-gradient(135deg, #FFD700 0%, #B8860B 100%);
+        }
+
+        .footer-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+        }
+
+        .footer-section h3 {
+            margin-bottom: 1rem;
+            background: linear-gradient(135deg, #FFD700 0%, #B8860B 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .footer-section p,
+        .footer-section a {
+            color: rgba(255, 255, 255, 0.8);
+            text-decoration: none;
+            line-height: 1.8;
+        }
+
+        .footer-section a:hover {
+            color: white;
+        }
+
+        .footer-bottom {
+            text-align: center;
+            margin-top: 2rem;
+            padding-top: 2rem;
+            border-top: 1px solid rgba(255, 255, 255, 0.2);
+            color: rgba(255, 255, 255, 0.6);
+        }
+
+        /* ===== RESPONSIVE DESIGN ===== */
+        @media (max-width: 768px) {
+            .nav-menu {
+                display: none;
+                position: fixed;
+                top: 80px;
+                left: 0;
+                right: 0;
+                background: rgba(255, 255, 255, 0.95);
+                backdrop-filter: blur(20px);
+                flex-direction: column;
+                padding: 2rem;
+                box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
+                gap: 1rem;
+            }
+
+            .nav-menu.active {
+                display: flex;
+            }
+
+            .nav-menu .nav-link {
+                color: #333;
+            }
+
+            .menu-toggle {
+                display: flex;
+            }
+
+            .hero-content {
+                padding: 0 1rem;
+            }
+
+            .hero-cta-buttons {
+                flex-direction: column;
+                align-items: center;
+            }
+
+            .video-controls {
+                bottom: 1rem;
+                right: 1rem;
+            }
+
+            .scroll-indicator {
+                bottom: 2rem;
+            }
+
+            .business-overview {
+                grid-template-columns: 1fr;
+                gap: 1.5rem;
+            }
+
+            .business-card {
+                padding: 2rem;
+            }
+
+            .lang-selector {
+                gap: 0.5rem;
+            }
+
+            .lang-btn {
+                width: 35px;
+                height: 35px;
+                font-size: 1rem;
+            }
+
+            .container {
+                padding: 0 1rem;
+            }
+        }
+
+        /* ===== VIDEO FALLBACK ===== */
+        .video-fallback {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, #2c5530 0%, #4a7c59 30%, #1a3d1f 100%);
+            display: none;
+            z-index: 0;
+        }
+
+        .video-fallback.show {
+            display: block;
+        }
+
+        /* ===== ACCESSIBILITY ===== */
+        @media (prefers-reduced-motion: reduce) {
+            .hero-title,
+            .hero-subtitle,
+            .hero-description,
+            .hero-cta-buttons,
+            .scroll-indicator {
+                animation: none;
+            }
+            
+            .hero-video {
+                animation-play-state: paused;
+            }
+        }
+
+        /* ===== PERFORMANCE OPTIMIZATIONS ===== */
+        .hero-video {
+            will-change: transform;
+        }
+
+        .business-card {
+            will-change: transform;
+        }
+
+        /* ===== 번역 제외 요소 스타일 ===== */
+        .no-translate {
+            /* 번역 시스템에서 자동으로 제외됨 */
+        }
+    </style>
 </head>
 <body>
     <!-- Header -->
-    <header class="header">
+    <header class="header" id="header">
         <nav class="nav-container">
-            <a href="#home" class="logo">KOREVO</a>
+            <a href="#home" class="logo no-translate">KOREVO</a>
             
             <ul class="nav-menu" id="navMenu">
                 <li class="nav-item">
@@ -28,52 +829,26 @@
                 </li>
                 <li class="nav-item">
                     <a href="#" class="nav-link">사업소개</a>
-                    <div class="mega-dropdown">
-                        <div class="dropdown-section">
-                            <h4>브랜드 스토리</h4>
-                            <div class="dropdown-item" onclick="window.location.href='onyu-brand.html'">온유(溫鍮) 브랜드</div>
-                            <div class="dropdown-item" onclick="scrollToSection('brand-philosophy')">브랜드 철학</div>
-                            <div class="dropdown-item" onclick="scrollToSection('traditional-craft')">전통 기법 계승</div>
-                        </div>
-                        <div class="dropdown-section">
-                            <h4>융합 비즈니스</h4>
-                            <div class="dropdown-item" onclick="scrollToSection('business-model')">사업 모델</div>
-                            <div class="dropdown-item" onclick="scrollToSection('innovation-strategy')">혁신 전략</div>
-                            <div class="dropdown-item" onclick="scrollToSection('sustainability')">지속가능경영</div>
-                        </div>
+                    <div class="dropdown">
+                        <div class="dropdown-item" onclick="window.location.href='onyu-brand.html'">온유(溫鍮) 브랜드</div>
+                        <div class="dropdown-item" onclick="scrollToSection('business-model')">사업 모델</div>
+                        <div class="dropdown-item" onclick="scrollToSection('innovation-strategy')">혁신 전략</div>
+                        <div class="dropdown-item" onclick="scrollToSection('sustainability')">지속가능경영</div>
                     </div>
                 </li>
                 <li class="nav-item">
                     <a href="#" class="nav-link">제품/서비스</a>
-                    <div class="mega-dropdown">
-                        <div class="dropdown-section">
-                            <h4>🏺 유기 제품군</h4>
-                            <div class="dropdown-item" onclick="scrollToSection('dining-set')">식기 컬렉션</div>
-                            <div class="dropdown-item" onclick="scrollToSection('health-products')">건강 케어 제품</div>
-                            <div class="dropdown-item" onclick="scrollToSection('gift-sets')">프리미엄 선물세트</div>
-                            <div class="dropdown-item" onclick="scrollToSection('custom-craft')">맞춤 제작 서비스</div>
-                        </div>
-                        <div class="dropdown-section">
-                            <h4>💻 소프트웨어</h4>
-                            <div class="dropdown-item" onclick="scrollToSection('erp-solution')">제조업 ERP 솔루션</div>
-                            <div class="dropdown-item" onclick="scrollToSection('iot-platform')">IoT 품질관리 플랫폼</div>
-                            <div class="dropdown-item" onclick="scrollToSection('ecommerce-system')">전통공예 전자상거래</div>
-                            <div class="dropdown-item" onclick="scrollToSection('consulting')">디지털 전환 컨설팅</div>
-                        </div>
-                        <div class="dropdown-section">
-                            <h4>🔬 R&D 과제</h4>
-                            <div class="dropdown-item" onclick="scrollToSection('current-projects')">진행중 과제</div>
-                            <div class="dropdown-item" onclick="scrollToSection('completed-projects')">완료 과제</div>
-                            <div class="dropdown-item" onclick="scrollToSection('research-outcomes')">연구 성과</div>
-                            <div class="dropdown-item" onclick="scrollToSection('collaboration')">산학연 협력</div>
-                        </div>
+                    <div class="dropdown">
+                        <div class="dropdown-item" onclick="scrollToSection('dining-set')">식기 컬렉션</div>
+                        <div class="dropdown-item" onclick="scrollToSection('health-products')">건강 케어 제품</div>
+                        <div class="dropdown-item" onclick="scrollToSection('software-solutions')">소프트웨어 솔루션</div>
+                        <div class="dropdown-item" onclick="scrollToSection('custom-craft')">맞춤 제작 서비스</div>
                     </div>
                 </li>
                 <li class="nav-item">
                     <a href="#" class="nav-link">고객센터</a>
                     <div class="dropdown">
-                        <div class="dropdown-item" onclick="scrollToSection('product-support')">제품 지원</div>
-                        <div class="dropdown-item" onclick="scrollToSection('software-support')">소프트웨어 지원</div>
+                        <div class="dropdown-item" onclick="scrollToSection('support')">고객 지원</div>
                         <div class="dropdown-item" onclick="scrollToSection('faq')">자주 묻는 질문</div>
                         <div class="dropdown-item" onclick="scrollToSection('inquiry')">문의하기</div>
                         <div class="dropdown-item" onclick="scrollToSection('download')">자료실</div>
@@ -86,13 +861,19 @@
                         <div class="dropdown-item" onclick="scrollToSection('news')">보도자료</div>
                         <div class="dropdown-item" onclick="scrollToSection('blog')">기술 블로그</div>
                         <div class="dropdown-item" onclick="scrollToSection('events')">이벤트</div>
-                        <div class="dropdown-item" onclick="scrollToSection('awards')">수상 내역</div>
                     </div>
                 </li>
                 <li class="nav-item">
                     <a href="#shop" class="nav-link">쇼핑몰</a>
                 </li>
             </ul>
+
+            <div class="lang-selector">
+                <a href="#" class="lang-btn active">🇰🇷</a>
+                <a href="#" class="lang-btn">🇺🇸</a>
+                <a href="#" class="lang-btn">🇨🇳</a>
+                <a href="#" class="lang-btn">🇯🇵</a>
+            </div>
 
             <div class="menu-toggle" onclick="toggleMenu()">
                 <span></span>
@@ -104,168 +885,107 @@
 
     <!-- Main Content -->
     <main class="main-content">
-        <!-- Hero Section -->
-        <section id="home" class="hero">
+        <!-- Hero Video Section -->
+        <section id="home" class="hero-video-section">
+            <!-- Video Background -->
+            <video 
+                class="hero-video" 
+                id="heroVideo" 
+                autoplay 
+                muted 
+                loop 
+                playsinline
+                poster="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1920 1080'%3E%3Cdefs%3E%3ClinearGradient id='bg' x1='0%25' y1='0%25' x2='100%25' y2='100%25'%3E%3Cstop offset='0%25' style='stop-color:%232c5530'/%3E%3Cstop offset='100%25' style='stop-color:%231a3d1f'/%3E%3C/linearGradient%3E%3C/defs%3E%3Crect width='100%25' height='100%25' fill='url(%23bg)'/%3E%3C/svg%3E"
+            >
+                <source src="https://github.com/test113113/korevo/raw/main/main_movie/Standard_Mode__Create_a_dynamic_cinematic_anim.mp4" type="video/mp4">
+                <!-- 비디오를 로드할 수 없는 경우를 위한 메시지 -->
+                죄송합니다. 브라우저에서 비디오를 지원하지 않습니다.
+            </video>
+
+            <!-- Video Fallback Background -->
+            <div class="video-fallback" id="videoFallback"></div>
+
+            <!-- Hero Overlay -->
+            <div class="hero-overlay"></div>
+
+            <!-- Hero Content -->
             <div class="hero-content">
-                <h1>KOREVO</h1>
-                <p class="subtitle">한국의 전통과 혁신을 담다</p>
-                <p class="description">
+                <h1 class="hero-title no-translate">KOREVO</h1>
+                <p class="hero-subtitle">한국의 전통과 혁신을 담다</p>
+                <p class="hero-description">
                     천년의 전통 유기 기술과 현대적 소프트웨어 기술이 만나 새로운 가치를 창조합니다.<br>
-                    KOREVO는 전통의 아름다움을 현대에 되살리며, 지속가능한 미래를 만들어갑니다.
+                    <span class="no-translate">KOREVO</span>는 전통의 아름다움을 현대에 되살리며, 지속가능한 미래를 만들어갑니다.
                 </p>
-                <div class="cta-buttons">
-                    <a href="#about" class="cta-btn primary">회사소개</a>
-                    <a href="#products" class="cta-btn">제품보기</a>
-                    <a href="#shop" class="cta-btn">쇼핑몰</a>
+                <div class="hero-cta-buttons">
+                    <a href="#business" class="hero-cta-btn primary">회사소개</a>
+                    <a href="#products" class="hero-cta-btn">제품보기</a>
+                    <a href="#shop" class="hero-cta-btn">쇼핑몰</a>
                 </div>
+            </div>
+
+            <!-- Scroll Indicator -->
+            <div class="scroll-indicator">
+                <div class="scroll-text">아래로 스크롤</div>
+                <div class="scroll-arrow">↓</div>
+            </div>
+
+            <!-- Video Controls -->
+            <div class="video-controls">
+                <button class="video-control-btn" id="playPauseBtn" title="재생/일시정지">
+                    ⏸️
+                </button>
+                <button class="video-control-btn" id="muteBtn" title="음소거/음소거 해제">
+                    🔇
+                </button>
             </div>
         </section>
 
         <!-- Business Overview Section -->
-        <section class="content-section">
-            <h2 class="section-title">KOREVO 융합 비즈니스</h2>
-            <div class="business-overview">
-                <div class="business-card">
-                    <div class="business-icon onyu">🏺</div>
-                    <h3>온유(溫鍮) 브랜드</h3>
-                    <p class="subtitle">전통 유기 제품의 현대적 재해석</p>
-                    <p>천년의 전통 유기 기술을 바탕으로 현대인의 라이프스타일에 맞는 프리미엄 제품을 제작합니다. 건강과 아름다움을 동시에 추구하는 온유만의 철학을 담았습니다.</p>
-                    <div class="business-features">
-                        <span class="feature-tag">식기 컬렉션</span>
-                        <span class="feature-tag">건강 케어</span>
-                        <span class="feature-tag">맞춤 제작</span>
-                        <span class="feature-tag">선물세트</span>
-                    </div>
-                    <a href="#products" class="business-cta">제품 보기</a>
-                </div>
-
-                <div class="business-card">
-                    <div class="business-icon software">💻</div>
-                    <h3>소프트웨어 솔루션</h3>
-                    <p class="subtitle">전통 제조업의 디지털 혁신</p>
-                    <p>제조업 특화 ERP부터 IoT 품질관리까지, 전통 산업의 디지털 전환을 위한 맞춤형 소프트웨어 솔루션을 제공합니다. 현장 경험을 바탕으로 한 실용적 기술입니다.</p>
-                    <div class="business-features">
-                        <span class="feature-tag">제조 ERP</span>
-                        <span class="feature-tag">IoT 플랫폼</span>
-                        <span class="feature-tag">전자상거래</span>
-                        <span class="feature-tag">컨설팅</span>
-                    </div>
-                    <a href="#software" class="business-cta">솔루션 보기</a>
-                </div>
-
-                <div class="business-card">
-                    <div class="business-icon research">🔬</div>
-                    <h3>R&D 연구개발</h3>
-                    <p class="subtitle">정부과제 수행 및 기술혁신</p>
-                    <p>전통 기술의 과학적 분석부터 신소재 개발까지, 다양한 정부 R&D 과제를 성공적으로 수행하고 있습니다. 산학연 협력을 통한 지속적인 기술혁신을 추진합니다.</p>
-                    <div class="business-features">
-                        <span class="feature-tag">소재 연구</span>
-                        <span class="feature-tag">공정 혁신</span>
-                        <span class="feature-tag">산학 협력</span>
-                        <span class="feature-tag">특허 기술</span>
-                    </div>
-                    <a href="#research" class="business-cta">연구성과 보기</a>
-                </div>
-            </div>
-        </section>
-
-        <!-- CEO Message Section -->
-        <section id="greeting" class="ceo-message-section">
+        <section id="business" class="business-overview-section">
             <div class="container">
-                <!-- Section Header -->
-                <div class="section-header">
-                    <div class="section-badge">CEO Message</div>
-                    <h1 class="ceo-section-title">대표 인사말</h1>
-                    <p class="section-subtitle">전통과 혁신이 만나는 지점에서, 새로운 미래를 그려갑니다</p>
-                </div>
-
-                <!-- CEO Profile Card -->
-                <div class="ceo-profile-card">
-                    <div class="ceo-image-container">
-                        <div class="ceo-image">
-                            👨‍💼
+                <h2 class="section-title">KOREVO 융합 비즈니스</h2>
+                <div class="business-overview">
+                    <div class="business-card">
+                        <div class="business-icon onyu">🏺</div>
+                        <h3>온유(溫鍮) 브랜드</h3>
+                        <p class="subtitle">전통 유기 제품의 현대적 재해석</p>
+                        <p>천년의 전통 유기 기술을 바탕으로 현대인의 라이프스타일에 맞는 프리미엄 제품을 제작합니다. 건강과 아름다움을 동시에 추구하는 온유만의 철학을 담았습니다.</p>
+                        <div class="business-features">
+                            <span class="feature-tag">식기 컬렉션</span>
+                            <span class="feature-tag">건강 케어</span>
+                            <span class="feature-tag">맞춤 제작</span>
+                            <span class="feature-tag">선물세트</span>
                         </div>
+                        <a href="#products" class="business-cta">제품 보기</a>
                     </div>
-                    <div class="ceo-info">
-                        <h2 class="ceo-name">간주호</h2>
-                        <p class="ceo-title">대표이사 / CEO</p>
-                        <div class="ceo-credentials">
-                            <span class="credential-badge">서울대 경영학석사</span>
-                            <span class="credential-badge">15년 IT 경력</span>
-                            <span class="credential-badge">전통공예 전문가</span>
-                            <span class="credential-badge">정부과제 PL</span>
+
+                    <div class="business-card">
+                        <div class="business-icon software">💻</div>
+                        <h3>소프트웨어 솔루션</h3>
+                        <p class="subtitle">전통 제조업의 디지털 혁신</p>
+                        <p>제조업 특화 <span class="no-translate">ERP</span>부터 <span class="no-translate">IoT</span> 품질관리까지, 전통 산업의 디지털 전환을 위한 맞춤형 소프트웨어 솔루션을 제공합니다. 현장 경험을 바탕으로 한 실용적 기술입니다.</p>
+                        <div class="business-features">
+                            <span class="feature-tag">제조 <span class="no-translate">ERP</span></span>
+                            <span class="feature-tag"><span class="no-translate">IoT</span> 플랫폼</span>
+                            <span class="feature-tag">전자상거래</span>
+                            <span class="feature-tag">컨설팅</span>
                         </div>
+                        <a href="#software" class="business-cta">솔루션 보기</a>
                     </div>
-                </div>
 
-                <!-- Message Content -->
-                <div class="message-content">
-                    <div class="quote-mark">"</div>
-                    <div class="message-text">
-                        안녕하십니까. KOREVO 대표이사 간주호입니다.<br><br>
-                        
-                        <span class="highlight-text">천년의 전통</span>이 담긴 한국의 유기 기술과 <span class="highlight-text">최첨단 디지털 기술</span>이 만나는 특별한 여정에 여러분을 초대합니다.<br><br>
-                        
-                        우리는 단순히 제품을 만드는 회사가 아닙니다. 조상들의 지혜와 현대의 혁신을 융합하여 <span class="highlight-text">지속가능한 미래</span>를 만들어가는 기업입니다. 온유(溫鍮)라는 브랜드명에는 따뜻한 마음과 정성이 담긴 유기그릇처럼, 사람들의 일상에 온기를 전하고 싶다는 우리의 철학이 담겨있습니다.<br><br>
-                        
-                        동시에 우리는 전통 제조업의 <span class="highlight-text">디지털 전환</span>을 이끌어가고 있습니다. 15년간 축적한 IT 전문성과 현장 경험을 바탕으로, 제조업체들이 4차 산업혁명 시대에 성공할 수 있도록 맞춤형 소프트웨어 솔루션을 제공하고 있습니다.<br><br>
-                        
-                        또한 다양한 정부 R&D 과제를 통해 전통 기술의 과학적 연구와 신소재 개발에도 앞장서고 있습니다. <span class="highlight-text">산학연 협력</span>을 통해 우리의 지식과 경험을 나누며, 함께 성장하는 생태계를 만들어가고 있습니다.<br><br>
-                        
-                        KOREVO와 함께 전통의 가치를 현대에 되살리고, 기술로 더 나은 세상을 만들어가는 여정에 동참해주시기 바랍니다.
+                    <div class="business-card">
+                        <div class="business-icon research">🔬</div>
+                        <h3>R&D 연구개발</h3>
+                        <p class="subtitle">정부과제 수행 및 기술혁신</p>
+                        <p>전통 기술의 과학적 분석부터 신소재 개발까지, 다양한 정부 <span class="no-translate">R&D</span> 과제를 성공적으로 수행하고 있습니다. 산학연 협력을 통한 지속적인 기술혁신을 추진합니다.</p>
+                        <div class="business-features">
+                            <span class="feature-tag">소재 연구</span>
+                            <span class="feature-tag">공정 혁신</span>
+                            <span class="feature-tag">산학 협력</span>
+                            <span class="feature-tag">특허 기술</span>
+                        </div>
+                        <a href="#research" class="business-cta">연구성과 보기</a>
                     </div>
-                </div>
-
-                <!-- Vision Cards -->
-                <div class="vision-grid">
-                    <div class="vision-card">
-                        <div class="vision-icon">🏺</div>
-                        <h3 class="vision-title">전통 계승</h3>
-                        <p class="vision-text">천년의 유기 제작 기술을 현대적으로 계승하여 우리만의 독특한 제품을 만듭니다.</p>
-                    </div>
-                    <div class="vision-card">
-                        <div class="vision-icon">🚀</div>
-                        <h3 class="vision-title">기술 혁신</h3>
-                        <p class="vision-text">최신 IT 기술로 전통 산업의 디지털 전환을 선도하며 새로운 가치를 창출합니다.</p>
-                    </div>
-                    <div class="vision-card">
-                        <div class="vision-icon">🌱</div>
-                        <h3 class="vision-title">지속가능성</h3>
-                        <p class="vision-text">환경과 사람을 생각하는 지속가능한 경영으로 더 나은 미래를 만들어갑니다.</p>
-                    </div>
-                </div>
-
-                <!-- Call to Action -->
-                <div class="cta-section">
-                    <h3 class="cta-title">함께 만들어가는 미래</h3>
-                    <p class="cta-text">KOREVO의 여정에 함께하실 파트너와 고객을 기다리고 있습니다</p>
-                    <div class="cta-buttons">
-                        <a href="#inquiry" class="cta-btn primary">문의하기</a>
-                        <a href="#products" class="cta-btn">제품 보기</a>
-                        <a href="#business" class="cta-btn">사업소개</a>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- Features Section -->
-        <section class="content-section">
-            <h2 class="section-title">KOREVO의 특별함</h2>
-            <div class="features-grid">
-                <div class="feature-card">
-                    <div class="feature-icon">🏺</div>
-                    <h3>전통 유기 기술</h3>
-                    <p>천년의 역사를 자랑하는 한국 전통 유기 제작 기술을 현대적으로 계승하여 최고 품질의 제품을 만듭니다.</p>
-                </div>
-                <div class="feature-card">
-                    <div class="feature-icon">💻</div>
-                    <h3>소프트웨어 혁신</h3>
-                    <p>최신 소프트웨어 기술을 활용하여 전통 산업의 효율성을 높이고 새로운 가치를 창출합니다.</p>
-                </div>
-                <div class="feature-card">
-                    <div class="feature-icon">🌿</div>
-                    <h3>지속가능경영</h3>
-                    <p>환경을 생각하는 친환경 소재와 공정을 통해 지속가능한 미래를 위한 제품을 제공합니다.</p>
                 </div>
             </div>
         </section>
@@ -275,380 +995,441 @@
     <footer class="footer">
         <div class="footer-content">
             <div class="footer-section">
-                <h3>KOREVO</h3>
+                <h3 class="no-translate">KOREVO</h3>
                 <p>한국의 전통과 혁신을 담은<br>프리미엄 유기 브랜드</p>
                 <p>전통의 아름다움을 현대에 되살리며<br>지속가능한 미래를 만들어갑니다.</p>
             </div>
             <div class="footer-section">
                 <h3>빠른 링크</h3>
-                <p><a href="#about">회사소개</a></p>
-                <p><a href="#business">사업소개</a></p>
-                <p><a href="#products">제품소개</a></p>
+                <p><a href="#business">회사소개</a></p>
+                <p><a href="#products">사업소개</a></p>
+                <p><a href="#software">제품소개</a></p>
                 <p><a href="#support">고객지원</a></p>
             </div>
             <div class="footer-section">
                 <h3>고객지원</h3>
-                <p>고객센터: 1588-0000</p>
-                <p>이메일: info@korevo.co.kr</p>
+                <p>고객센터: <span class="no-translate">1588-0000</span></p>
+                <p>이메일: <span class="no-translate">info@korevo.co.kr</span></p>
                 <p>운영시간: 평일 09:00-18:00</p>
             </div>
             <div class="footer-section">
                 <h3>주소</h3>
                 <p>서울특별시 강남구<br>테헤란로 123, 코레보빌딩 10층</p>
-                <p>사업자등록번호: 123-45-67890</p>
+                <p class="no-translate">사업자등록번호: 123-45-67890</p>
             </div>
         </div>
         <div class="footer-bottom">
-            <p>&copy; 2025 KOREVO. All rights reserved.</p>
+            <p>&copy; 2025 <span class="no-translate">KOREVO</span>. All rights reserved.</p>
         </div>
     </footer>
 
-    <script src="script.js"></script>
-
-    <!-- CEO 메시지 섹션이 보이도록 하는 인라인 스타일 -->
-    <style>
-        /* 컨테이너 클래스 추가 */
-        .container {
-            max-width: 1400px;
-            margin: 0 auto;
-            padding: 0 2rem;
-            position: relative;
-            z-index: 2;
+    <!-- JavaScript -->
+    <script>
+        // ===== HEADER SCROLL EFFECT =====
+        function initHeaderScrollEffect() {
+            const header = document.getElementById('header');
+            
+            window.addEventListener('scroll', function() {
+                const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+                
+                if (scrollTop > 100) {
+                    header.classList.add('scrolled');
+                } else {
+                    header.classList.remove('scrolled');
+                }
+            });
         }
 
-        /* CEO 메시지 섹션의 모든 요소가 보이도록 보장 */
-        .ceo-message-section .section-header,
-        .ceo-message-section .ceo-profile-card,
-        .ceo-message-section .message-content,
-        .ceo-message-section .vision-card,
-        .ceo-message-section .cta-section {
-            opacity: 1 !important;
-            transform: translateY(0) !important;
-            animation: none !important;
-        }
+        // ===== VIDEO CONTROLS =====
+        function initVideoControls() {
+            const video = document.getElementById('heroVideo');
+            const playPauseBtn = document.getElementById('playPauseBtn');
+            const muteBtn = document.getElementById('muteBtn');
+            const videoFallback = document.getElementById('videoFallback');
 
-        /* Section Header 스타일 */
-        .section-badge {
-            display: inline-block;
-            padding: 0.75rem 2rem;
-            background: linear-gradient(135deg, rgba(255, 215, 0, 0.1), rgba(44, 85, 48, 0.1));
-            border: 1px solid rgba(255, 215, 0, 0.3);
-            border-radius: 50px;
-            font-size: 0.9rem;
-            font-weight: 600;
-            color: #2c5530;
-            margin-bottom: 2rem;
-            backdrop-filter: blur(10px);
-        }
+            // 비디오 로드 에러 처리
+            video.addEventListener('error', function() {
+                console.log('비디오 로드 실패, 폴백 배경 표시');
+                video.style.display = 'none';
+                videoFallback.classList.add('show');
+            });
 
-        .ceo-section-title {
-            font-size: clamp(2.5rem, 5vw, 4rem);
-            font-weight: 700;
-            background: linear-gradient(135deg, #2c5530 0%, #4a7c59 50%, #FFD700 100%);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-            margin-bottom: 1.5rem;
-            letter-spacing: -0.02em;
-        }
+            // 비디오 로드 완료 확인
+            video.addEventListener('loadstart', function() {
+                console.log('비디오 로드 시작');
+            });
 
-        .section-subtitle {
-            font-size: 1.25rem;
-            color: #666;
-            max-width: 600px;
-            margin: 0 auto;
-        }
+            video.addEventListener('canplay', function() {
+                console.log('비디오 재생 준비 완료');
+                videoFallback.classList.remove('show');
+            });
 
-        /* CEO Profile Card 스타일 */
-        .ceo-profile-card {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 4rem;
-            align-items: center;
-            margin-bottom: 6rem;
-            background: rgba(255, 255, 255, 0.7);
-            backdrop-filter: blur(20px);
-            border: 1px solid rgba(255, 255, 255, 0.3);
-            border-radius: 24px;
-            padding: 4rem;
-            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
-            position: relative;
-            overflow: hidden;
-        }
-
-        .ceo-image {
-            width: 300px;
-            height: 300px;
-            border-radius: 50%;
-            background: linear-gradient(135deg, #2c5530 0%, #4a7c59 100%);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 4rem;
-            color: white;
-            position: relative;
-            overflow: hidden;
-            box-shadow: 0 20px 40px rgba(44, 85, 48, 0.3);
-        }
-
-        .ceo-name {
-            font-size: 2.5rem;
-            font-weight: 700;
-            background: linear-gradient(135deg, #2c5530 0%, #FFD700 100%);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-            margin-bottom: 0.5rem;
-        }
-
-        .ceo-title {
-            font-size: 1.25rem;
-            color: #666;
-            margin-bottom: 2rem;
-            font-weight: 500;
-        }
-
-        .ceo-credentials {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 1rem;
-            margin-bottom: 2rem;
-        }
-
-        .credential-badge {
-            padding: 0.5rem 1.25rem;
-            background: linear-gradient(135deg, rgba(255, 215, 0, 0.1), rgba(44, 85, 48, 0.1));
-            border: 1px solid rgba(255, 215, 0, 0.3);
-            border-radius: 25px;
-            font-size: 0.875rem;
-            font-weight: 500;
-            color: #2c5530;
-            backdrop-filter: blur(10px);
-        }
-
-        /* Message Content 스타일 */
-        .message-content {
-            background: rgba(255, 255, 255, 0.8);
-            backdrop-filter: blur(15px);
-            border: 1px solid rgba(255, 255, 255, 0.2);
-            border-radius: 20px;
-            padding: 3rem;
-            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.08);
-            margin-bottom: 4rem;
-        }
-
-        .quote-mark {
-            font-size: 4rem;
-            color: #FFD700;
-            line-height: 1;
-            margin-bottom: 1rem;
-            font-family: Georgia, serif;
-        }
-
-        .message-text {
-            font-size: 1.125rem;
-            line-height: 1.8;
-            color: #444;
-            margin-bottom: 2rem;
-        }
-
-        .highlight-text {
-            background: linear-gradient(135deg, rgba(255, 215, 0, 0.2), rgba(44, 85, 48, 0.1));
-            padding: 0.2rem 0.5rem;
-            border-radius: 6px;
-            font-weight: 600;
-            color: #2c5530;
-        }
-
-        /* Vision Grid 스타일 */
-        .vision-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 2rem;
-            margin-bottom: 4rem;
-        }
-
-        .vision-card {
-            background: rgba(255, 255, 255, 0.6);
-            backdrop-filter: blur(15px);
-            border: 1px solid rgba(255, 255, 255, 0.3);
-            border-radius: 16px;
-            padding: 2rem;
-            text-align: center;
-            transition: all 0.3s ease;
-            position: relative;
-            overflow: hidden;
-        }
-
-        .vision-icon {
-            width: 80px;
-            height: 80px;
-            margin: 0 auto 1.5rem;
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 2rem;
-            background: linear-gradient(135deg, #2c5530 0%, #4a7c59 100%);
-            color: white;
-            box-shadow: 0 10px 20px rgba(44, 85, 48, 0.3);
-        }
-
-        .vision-title {
-            font-size: 1.25rem;
-            font-weight: 700;
-            color: #2c5530;
-            margin-bottom: 1rem;
-        }
-
-        .vision-text {
-            color: #666;
-            line-height: 1.6;
-        }
-
-        /* CTA Section 스타일 */
-        .ceo-message-section .cta-section {
-            text-align: center;
-            padding: 3rem;
-            background: linear-gradient(135deg, #2c5530 0%, #4a7c59 100%);
-            border-radius: 20px;
-            color: white;
-            position: relative;
-            overflow: hidden;
-        }
-
-        .cta-title {
-            font-size: 2rem;
-            font-weight: 700;
-            margin-bottom: 1rem;
-            background: linear-gradient(135deg, #FFD700 0%, #FFA500 100%);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-        }
-
-        .cta-text {
-            font-size: 1.125rem;
-            margin-bottom: 2rem;
-            opacity: 0.9;
-        }
-
-        .ceo-message-section .cta-buttons {
-            display: flex;
-            gap: 1rem;
-            justify-content: center;
-            flex-wrap: wrap;
-        }
-
-        .ceo-message-section .cta-btn {
-            padding: 1rem 2rem;
-            border: 2px solid #FFD700;
-            background: transparent;
-            color: white;
-            text-decoration: none;
-            border-radius: 30px;
-            font-weight: 600;
-            transition: all 0.3s ease;
-            position: relative;
-            overflow: hidden;
-        }
-
-        .ceo-message-section .cta-btn:hover {
-            color: #2c5530;
-            transform: translateY(-2px);
-            box-shadow: 0 10px 20px rgba(255, 215, 0, 0.3);
-        }
-
-        .ceo-message-section .cta-btn.primary {
-            background: linear-gradient(135deg, #FFD700 0%, #FFA500 100%);
-            color: #2c5530;
-        }
-
-        /* 모바일 반응형 */
-        @media (max-width: 768px) {
-            .ceo-profile-card {
-                grid-template-columns: 1fr;
-                gap: 2rem;
-                padding: 2rem;
-                text-align: center;
-                margin-bottom: 4rem;
+            // 재생/일시정지 버튼
+            if (playPauseBtn) {
+                playPauseBtn.addEventListener('click', function() {
+                    if (video.paused) {
+                        video.play();
+                        this.textContent = '⏸️';
+                        this.title = '일시정지';
+                    } else {
+                        video.pause();
+                        this.textContent = '▶️';
+                        this.title = '재생';
+                    }
+                });
             }
 
-            .ceo-image {
-                width: 200px;
-                height: 200px;
-                font-size: 3rem;
+            // 음소거 버튼
+            if (muteBtn) {
+                muteBtn.addEventListener('click', function() {
+                    if (video.muted) {
+                        video.muted = false;
+                        this.textContent = '🔊';
+                        this.title = '음소거';
+                    } else {
+                        video.muted = true;
+                        this.textContent = '🔇';
+                        this.title = '음소거 해제';
+                    }
+                });
             }
 
-            .ceo-name {
-                font-size: 2rem;
-            }
-
-            .ceo-credentials {
-                justify-content: center;
-            }
-
-            .message-content {
-                padding: 2rem;
-                margin-bottom: 3rem;
-            }
-
-            .message-text {
-                font-size: 1rem;
-            }
-
-            .vision-grid {
-                grid-template-columns: 1fr;
-                gap: 1.5rem;
-                margin-bottom: 3rem;
-            }
-
-            .ceo-message-section .cta-section {
-                padding: 2rem;
-            }
-
-            .ceo-message-section .cta-buttons {
-                flex-direction: column;
-                align-items: center;
-            }
-
-            .cta-title {
-                font-size: 1.5rem;
+            // 비디오 자동 재생 시도
+            const playPromise = video.play();
+            if (playPromise !== undefined) {
+                playPromise.then(() => {
+                    console.log('비디오 자동 재생 성공');
+                }).catch(error => {
+                    console.log('비디오 자동 재생 실패:', error);
+                    // 자동 재생이 실패하면 사용자 상호작용을 기다림
+                    video.muted = true;
+                    video.play().catch(() => {
+                        // 그래도 실패하면 폴백 배경 표시
+                        video.style.display = 'none';
+                        videoFallback.classList.add('show');
+                    });
+                });
             }
         }
 
-        /* 섹션 헤더 중앙 정렬 */
-        .ceo-message-section .section-header {
-            text-align: center;
-            margin-bottom: 6rem;
-            position: relative;
+        // ===== MOBILE MENU =====
+        function toggleMenu() {
+            const navMenu = document.getElementById('navMenu');
+            navMenu.classList.toggle('active');
         }
 
-        /* 애니메이션 완전 비활성화 */
-        .ceo-message-section * {
-            animation: none !important;
-            animation-delay: 0s !important;
-            animation-duration: 0s !important;
+        // ===== SMOOTH SCROLLING =====
+        function scrollToSection(sectionId) {
+            console.log(`Scrolling to: ${sectionId}`);
+            
+            // Close mobile menu if open
+            const navMenu = document.getElementById('navMenu');
+            navMenu.classList.remove('active');
+            
+            // Find the target section
+            const targetSection = document.getElementById(sectionId);
+            if (targetSection) {
+                const headerHeight = document.querySelector('.header').offsetHeight;
+                const targetPosition = targetSection.offsetTop - headerHeight - 20;
+                
+                window.scrollTo({
+                    top: targetPosition,
+                    behavior: 'smooth'
+                });
+            } else {
+                // If section doesn't exist yet, scroll to top
+                window.scrollTo({
+                    top: 0,
+                    behavior: 'smooth'
+                });
+            }
         }
 
-        /* 즉시 표시되도록 강제 */
-        .ceo-message-section {
-            opacity: 1 !important;
-            visibility: visible !important;
+        // ===== INTERSECTION OBSERVER FOR ANIMATIONS =====
+        function initScrollAnimations() {
+            const animatedElements = document.querySelectorAll('.business-card');
+            
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach((entry, index) => {
+                    if (entry.isIntersecting) {
+                        setTimeout(() => {
+                            entry.target.style.opacity = '1';
+                            entry.target.style.transform = 'translateY(0)';
+                        }, index * 200);
+                    }
+                });
+            }, { 
+                threshold: 0.1,
+                rootMargin: '50px'
+            });
+
+            animatedElements.forEach((element, index) => {
+                element.style.opacity = '0';
+                element.style.transform = 'translateY(50px)';
+                element.style.transition = 'all 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94)';
+                observer.observe(element);
+            });
         }
 
-        /* First letter 스타일 */
-        .message-text::first-letter {
-            font-size: 3rem;
-            float: left;
-            line-height: 1;
-            margin: 0.1rem 0.5rem 0 0;
-            background: linear-gradient(135deg, #2c5530 0%, #FFD700 100%);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-            font-weight: 700;
+        // ===== LANGUAGE SELECTOR =====
+        function initLanguageSelector() {
+            const langButtons = document.querySelectorAll('.lang-btn');
+            
+            langButtons.forEach(btn => {
+                btn.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    
+                    // Remove active class from all buttons
+                    langButtons.forEach(b => b.classList.remove('active'));
+                    
+                    // Add active class to clicked button
+                    this.classList.add('active');
+                    
+                    // Get selected language
+                    const selectedLang = this.textContent.trim();
+                    console.log(`Language selected: ${selectedLang}`);
+                    
+                    // Add visual feedback
+                    this.style.transform = 'scale(1.1)';
+                    setTimeout(() => {
+                        this.style.transform = 'scale(1.05)';
+                    }, 200);
+                });
+            });
         }
-    </style>
+
+        // ===== MENU CLOSE ON OUTSIDE CLICK =====
+        function initMenuCloseEvents() {
+            document.addEventListener('click', function(e) {
+                const navMenu = document.getElementById('navMenu');
+                const menuToggle = document.querySelector('.menu-toggle');
+                const navContainer = document.querySelector('.nav-container');
+                
+                if (!navContainer.contains(e.target) && navMenu.classList.contains('active')) {
+                    navMenu.classList.remove('active');
+                }
+            });
+        }
+
+        // ===== WINDOW RESIZE HANDLER =====
+        function initResizeHandler() {
+            window.addEventListener('resize', function() {
+                // Close mobile menu on desktop resize
+                if (window.innerWidth > 768) {
+                    const navMenu = document.getElementById('navMenu');
+                    navMenu.classList.remove('active');
+                }
+            });
+        }
+
+        // ===== VIDEO PERFORMANCE OPTIMIZATION =====
+        function initVideoOptimization() {
+            const video = document.getElementById('heroVideo');
+            
+            // 페이지 가시성 변경 시 비디오 일시정지/재생
+            document.addEventListener('visibilitychange', function() {
+                if (document.hidden) {
+                    video.pause();
+                } else if (!video.paused) {
+                    video.play();
+                }
+            });
+
+            // 페이지 언로드 시 비디오 정리
+            window.addEventListener('beforeunload', function() {
+                video.pause();
+                video.src = '';
+                video.load();
+            });
+        }
+
+        // ===== CTA BUTTON INTERACTIONS =====
+        function initCTAInteractions() {
+            const ctaButtons = document.querySelectorAll('.hero-cta-btn, .business-cta');
+            
+            ctaButtons.forEach(button => {
+                button.addEventListener('mouseenter', function() {
+                    this.style.transform = 'translateY(-3px) scale(1.05)';
+                });
+                
+                button.addEventListener('mouseleave', function() {
+                    this.style.transform = 'translateY(0) scale(1)';
+                });
+
+                button.addEventListener('click', function(e) {
+                    // 리플 효과
+                    const ripple = document.createElement('div');
+                    const rect = this.getBoundingClientRect();
+                    const size = Math.max(rect.width, rect.height);
+                    const x = e.clientX - rect.left - size / 2;
+                    const y = e.clientY - rect.top - size / 2;
+                    
+                    ripple.style.cssText = `
+                        position: absolute;
+                        width: ${size}px;
+                        height: ${size}px;
+                        left: ${x}px;
+                        top: ${y}px;
+                        background: radial-gradient(circle, rgba(255, 255, 255, 0.3) 0%, transparent 70%);
+                        border-radius: 50%;
+                        transform: scale(0);
+                        animation: ripple 0.6s ease-out;
+                        pointer-events: none;
+                        z-index: 10;
+                    `;
+                    
+                    this.style.position = 'relative';
+                    this.style.overflow = 'hidden';
+                    this.appendChild(ripple);
+                    
+                    setTimeout(() => {
+                        if (ripple.parentNode) {
+                            ripple.remove();
+                        }
+                    }, 600);
+                });
+            });
+
+            // 리플 애니메이션 CSS 추가
+            if (!document.querySelector('#ripple-styles')) {
+                const style = document.createElement('style');
+                style.id = 'ripple-styles';
+                style.innerHTML = `
+                    @keyframes ripple {
+                        to {
+                            transform: scale(2);
+                            opacity: 0;
+                        }
+                    }
+                `;
+                document.head.appendChild(style);
+            }
+        }
+
+        // ===== ERROR HANDLING =====
+        function initErrorHandling() {
+            window.addEventListener('error', function(e) {
+                console.error('JavaScript Error:', e.error);
+                
+                // 비디오 오류 시 폴백 처리
+                if (e.target && e.target.tagName === 'VIDEO') {
+                    const videoFallback = document.getElementById('videoFallback');
+                    if (videoFallback) {
+                        videoFallback.classList.add('show');
+                    }
+                }
+            });
+        }
+
+        // ===== PERFORMANCE MONITORING =====
+        function initPerformanceMonitoring() {
+            // 페이지 로드 시간 측정
+            window.addEventListener('load', function() {
+                const loadTime = performance.timing.loadEventEnd - performance.timing.navigationStart;
+                console.log(`페이지 로드 시간: ${loadTime}ms`);
+                
+                // 비디오 로드 시간 측정
+                const video = document.getElementById('heroVideo');
+                if (video) {
+                    video.addEventListener('loadeddata', function() {
+                        const videoLoadTime = performance.now();
+                        console.log(`비디오 로드 완료: ${videoLoadTime}ms`);
+                    });
+                }
+            });
+        }
+
+        // ===== SCROLL INDICATOR INTERACTION =====
+        function initScrollIndicator() {
+            const scrollIndicator = document.querySelector('.scroll-indicator');
+            
+            if (scrollIndicator) {
+                scrollIndicator.addEventListener('click', function() {
+                    const businessSection = document.getElementById('business');
+                    if (businessSection) {
+                        businessSection.scrollIntoView({
+                            behavior: 'smooth',
+                            block: 'start'
+                        });
+                    }
+                });
+
+                // 스크롤 시 인디케이터 숨기기
+                window.addEventListener('scroll', function() {
+                    const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+                    if (scrollTop > 200) {
+                        scrollIndicator.style.opacity = '0';
+                        scrollIndicator.style.pointerEvents = 'none';
+                    } else {
+                        scrollIndicator.style.opacity = '1';
+                        scrollIndicator.style.pointerEvents = 'auto';
+                    }
+                });
+            }
+        }
+
+        // ===== MAIN INITIALIZATION =====
+        document.addEventListener('DOMContentLoaded', function() {
+            console.log('KOREVO 비디오 홈페이지 초기화 시작');
+            
+            try {
+                // 모든 기능 초기화
+                initHeaderScrollEffect();
+                initVideoControls();
+                initScrollAnimations();
+                initLanguageSelector();
+                initMenuCloseEvents();
+                initResizeHandler();
+                initVideoOptimization();
+                initCTAInteractions();
+                initErrorHandling();
+                initPerformanceMonitoring();
+                initScrollIndicator();
+                
+                console.log('KOREVO 비디오 홈페이지 초기화 완료');
+            } catch (error) {
+                console.error('초기화 중 오류 발생:', error);
+            }
+        });
+
+        // ===== UTILITY FUNCTIONS =====
+        const KorevoUtils = {
+            // 비디오 품질 조정
+            adjustVideoQuality: function() {
+                const video = document.getElementById('heroVideo');
+                const connection = navigator.connection || navigator.mozConnection || navigator.webkitConnection;
+                
+                if (connection) {
+                    if (connection.effectiveType === 'slow-2g' || connection.effectiveType === '2g') {
+                        // 느린 연결에서는 비디오 품질 조정
+                        video.style.filter = 'blur(1px)';
+                        console.log('느린 연결 감지, 비디오 품질 조정');
+                    }
+                }
+            },
+            
+            // 비디오 프리로드 관리
+            manageVideoPreload: function() {
+                const video = document.getElementById('heroVideo');
+                const observer = new IntersectionObserver((entries) => {
+                    entries.forEach(entry => {
+                        if (entry.isIntersecting) {
+                            video.preload = 'auto';
+                        } else {
+                            video.preload = 'none';
+                        }
+                    });
+                });
+                
+                observer.observe(video);
+            }
+        };
+
+        // 유틸리티 함수 자동 실행
+        document.addEventListener('DOMContentLoaded', function() {
+            KorevoUtils.adjustVideoQuality();
+            KorevoUtils.manageVideoPreload();
+        });
+    </script>
 </body>
 </html>
