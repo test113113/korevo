@@ -6,6 +6,32 @@
     <title>KOREVO - 한국의 전통과 혁신을 담다</title>
     <meta name="description" content="전통 유기 기술과 현대 IT 기술의 융합, KOREVO에서 새로운 가치를 창조합니다.">
     <style>
+        /* ===== APPLE-INSPIRED COLOR SCHEME ===== */
+        :root {
+            /* Apple Color Palette */
+            --apple-black: #000000;
+            --apple-dark: #1D1D1F;
+            --apple-blue: #0066CC;
+            --apple-gray: #F5F5F7;
+            --apple-white: #FFFFFF;
+            --apple-medium-gray: #86868B;
+            --apple-light-gray: #F2F2F7;
+            
+            /* Text Colors */
+            --text-primary: var(--apple-black);
+            --text-secondary: var(--apple-dark);
+            --text-muted: var(--apple-medium-gray);
+            
+            /* Background Colors */
+            --bg-primary: var(--apple-white);
+            --bg-secondary: var(--apple-gray);
+            --bg-accent: var(--apple-light-gray);
+            
+            /* Accent Colors */
+            --accent-primary: var(--apple-blue);
+            --accent-secondary: var(--apple-dark);
+        }
+
         /* ===== RESET & BASE STYLES ===== */
         * {
             margin: 0;
@@ -14,17 +40,18 @@
         }
 
         body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            font-family: -apple-system, BlinkMacSystemFont, 'SF Pro Display', 'Segoe UI', Roboto, sans-serif;
             line-height: 1.6;
-            color: #333;
-            background: #fff;
+            color: var(--text-primary);
+            background: var(--bg-primary);
             overflow-x: hidden;
         }
 
         /* ===== HEADER & NAVIGATION ===== */
         .header {
-            background: rgba(255, 255, 255, 0.95);
-            backdrop-filter: blur(10px);
+            background: rgba(255, 255, 255, 0.8);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
             position: fixed;
             top: 0;
             left: 0;
@@ -44,14 +71,11 @@
         }
 
         .logo {
-            font-size: 2rem;
-            font-weight: bold;
-            background: linear-gradient(135deg, #FFD700 0%, #B8860B 100%);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
+            font-size: 1.75rem;
+            font-weight: 600;
+            color: var(--apple-black);
             text-decoration: none;
-            letter-spacing: 2px;
+            letter-spacing: -0.02em;
         }
 
         .nav-menu {
@@ -60,284 +84,87 @@
             gap: 2rem;
         }
 
-        .nav-item {
-            position: relative;
-        }
-
         .nav-link {
             text-decoration: none;
-            color: #333;
-            font-weight: 500;
-            padding: 0.5rem 0;
-            transition: color 0.3s ease;
-            cursor: pointer;
-            display: block;
+            color: var(--text-secondary);
+            font-weight: 400;
+            font-size: 17px;
+            transition: color 0.2s ease;
         }
 
         .nav-link:hover {
-            background: linear-gradient(135deg, #FFD700 0%, #B8860B 100%);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-        }
-
-        /* ===== DROPDOWN MENUS ===== */
-        .dropdown {
-            position: absolute;
-            top: 100%;
-            left: 0;
-            background: white;
-            min-width: 200px;
-            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
-            border-radius: 12px;
-            opacity: 0;
-            visibility: hidden;
-            transform: translateY(-10px);
-            transition: all 0.3s ease;
-            z-index: 1001;
-            padding: 1rem 0;
-        }
-
-        .nav-item:hover .dropdown {
-            opacity: 1;
-            visibility: visible;
-            transform: translateY(0);
-        }
-
-        .dropdown .dropdown-item {
-            padding: 0.75rem 1.5rem;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            color: #666;
-            font-size: 0.9rem;
-        }
-
-        .dropdown .dropdown-item:hover {
-            background: linear-gradient(135deg, rgba(255, 215, 0, 0.1), rgba(184, 134, 11, 0.1));
-            color: #2c5530;
-            padding-left: 2rem;
-        }
-
-        .mega-dropdown {
-            position: absolute;
-            top: 100%;
-            left: -50px;
-            background: white;
-            min-width: 600px;
-            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
-            border-radius: 12px;
-            opacity: 0;
-            visibility: hidden;
-            transform: translateY(-10px);
-            transition: all 0.3s ease;
-            z-index: 1001;
-            display: flex;
-            padding: 2rem;
-            gap: 2rem;
-        }
-
-        .nav-item:hover .mega-dropdown {
-            opacity: 1;
-            visibility: visible;
-            transform: translateY(0);
-        }
-
-        .dropdown-section {
-            flex: 1;
-            min-width: 180px;
-        }
-
-        .dropdown-section h4 {
-            font-size: 1rem;
-            font-weight: 600;
-            margin-bottom: 1rem;
-            padding-bottom: 0.5rem;
-            border-bottom: 2px solid;
-            border-image: linear-gradient(135deg, #FFD700 0%, #B8860B 100%) 1;
-            background: linear-gradient(135deg, #2c5530 0%, #4a7c59 100%);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-        }
-
-        .dropdown-section .dropdown-item {
-            padding: 0.5rem 0;
-            margin: 0;
-            border: none;
-            font-size: 0.9rem;
-            color: #666;
-            transition: all 0.3s ease;
-            cursor: pointer;
-        }
-
-        .dropdown-section .dropdown-item:hover {
-            background: none;
-            color: #2c5530;
-            padding-left: 0.5rem;
-            background: linear-gradient(135deg, #FFD700 0%, #B8860B 100%);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
+            color: var(--accent-primary);
         }
 
         /* ===== LANGUAGE SELECTOR ===== */
         .lang-selector {
             display: flex;
-            gap: 1rem;
+            gap: 0.5rem;
         }
 
         .lang-btn {
-            padding: 0.5rem 0.8rem;
-            border: 2px solid #ddd;
-            background: white;
-            color: #333;
-            border-radius: 25px;
+            padding: 0.5rem;
+            border: 1px solid rgba(0, 0, 0, 0.1);
+            background: var(--bg-primary);
+            color: var(--text-secondary);
+            border-radius: 8px;
             cursor: pointer;
-            transition: all 0.3s ease;
+            transition: all 0.2s ease;
             text-decoration: none;
-            font-size: 1.2rem;
+            font-size: 14px;
+            width: 40px;
+            height: 40px;
             display: flex;
             align-items: center;
             justify-content: center;
-            width: 45px;
-            height: 45px;
-            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
         }
 
-        .lang-btn:hover {
-            background: linear-gradient(135deg, #FFD700 0%, #B8860B 100%);
-            color: white;
-            border: 2px solid #FFD700;
-            transform: translateY(-2px) scale(1.05);
-            box-shadow: 0 5px 15px rgba(255, 215, 0, 0.3);
-        }
-
+        .lang-btn:hover,
         .lang-btn.active {
-            background: linear-gradient(135deg, #FFD700 0%, #B8860B 100%);
-            color: white;
-            border: 2px solid #FFD700;
-            transform: scale(1.1);
-            box-shadow: 0 5px 15px rgba(255, 215, 0, 0.4);
-        }
-
-        /* ===== MOBILE MENU ===== */
-        .menu-toggle {
-            display: none;
-            flex-direction: column;
-            cursor: pointer;
-            gap: 4px;
-        }
-
-        .menu-toggle span {
-            width: 25px;
-            height: 3px;
-            background: #333;
-            transition: 0.3s;
-        }
-
-        /* ===== MAIN CONTENT ===== */
-        .main-content {
-            margin-top: 80px;
+            background: var(--accent-primary);
+            color: var(--bg-primary);
+            border-color: var(--accent-primary);
         }
 
         /* ===== HERO SECTION ===== */
         .hero {
-            position: relative;
-            color: white;
-            padding: 8rem 2rem;
+            background: var(--bg-primary);
+            color: var(--text-primary);
+            padding: 8rem 2rem 6rem;
             text-align: center;
-            overflow: hidden;
+            position: relative;
             min-height: 100vh;
             display: flex;
             align-items: center;
-        }
-
-        /* Video Background */
-        .hero-video {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            z-index: 1;
-        }
-
-        /* Fallback Background */
-        .hero-bg-fallback {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(135deg, #2c5530 0%, #4a7c59 30%, #1a3d1f 100%);
-            z-index: 1;
-        }
-
-        /* Dark Overlay */
-        .hero::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background: linear-gradient(135deg, rgba(44, 85, 48, 0.8) 0%, rgba(26, 61, 31, 0.7) 100%);
-            z-index: 2;
-        }
-
-        /* Animated Pattern Overlay */
-        .hero::after {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background: radial-gradient(circle at 20% 30%, rgba(255, 215, 0, 0.15) 0%, transparent 50%),
-                        radial-gradient(circle at 80% 70%, rgba(255, 215, 0, 0.1) 0%, transparent 50%);
-            opacity: 0.6;
-            animation: float 20s ease-in-out infinite;
-            z-index: 2;
-        }
-
-        @keyframes float {
-            0%, 100% { transform: translateY(0px) rotate(0deg); }
-            50% { transform: translateY(-20px) rotate(1deg); }
+            justify-content: center;
         }
 
         .hero-content {
-            max-width: 1000px;
+            max-width: 800px;
             margin: 0 auto;
-            position: relative;
-            z-index: 3;
         }
 
         .hero h1 {
-            font-size: clamp(3.5rem, 8vw, 6rem);
-            margin-bottom: 1rem;
-            font-weight: 300;
-            letter-spacing: 2px;
-            background: linear-gradient(135deg, #FFD700 0%, #FFA500 50%, #B8860B 100%);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-            text-shadow: 0 2px 10px rgba(255, 215, 0, 0.3);
+            font-size: clamp(3rem, 8vw, 5rem);
+            font-weight: 700;
+            margin-bottom: 1.5rem;
+            letter-spacing: -0.04em;
+            color: var(--apple-black);
         }
 
         .hero .subtitle {
-            font-size: clamp(1.5rem, 3vw, 2rem);
-            margin-bottom: 2rem;
-            opacity: 0.9;
-            font-weight: 300;
+            font-size: 1.75rem;
+            font-weight: 400;
+            margin-bottom: 1.5rem;
+            color: var(--text-secondary);
         }
 
         .hero .description {
-            font-size: clamp(1.1rem, 2vw, 1.3rem);
+            font-size: 1.125rem;
             margin-bottom: 3rem;
-            line-height: 1.8;
-            opacity: 0.8;
-            max-width: 800px;
+            line-height: 1.6;
+            color: var(--text-muted);
+            max-width: 600px;
             margin-left: auto;
             margin-right: auto;
         }
@@ -345,515 +172,550 @@
         /* ===== CTA BUTTONS ===== */
         .cta-buttons {
             display: flex;
-            gap: 1.5rem;
+            gap: 1rem;
             justify-content: center;
             flex-wrap: wrap;
         }
 
         .cta-btn {
-            padding: 1.2rem 2.5rem;
-            border: 2px solid #FFD700;
-            background: transparent;
-            color: white;
+            padding: 1rem 2rem;
+            border: none;
+            background: var(--accent-primary);
+            color: var(--bg-primary);
             text-decoration: none;
-            border-radius: 50px;
-            font-weight: 600;
-            font-size: 1.1rem;
-            transition: all 0.3s ease;
+            border-radius: 100px;
+            font-weight: 500;
+            font-size: 17px;
+            transition: all 0.2s ease;
             cursor: pointer;
-            position: relative;
-            overflow: hidden;
-        }
-
-        .cta-btn::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: -100%;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(135deg, #FFD700 0%, #B8860B 100%);
-            transition: left 0.3s ease;
-            z-index: -1;
-        }
-
-        .cta-btn:hover::before {
-            left: 0;
+            min-width: 150px;
         }
 
         .cta-btn:hover {
-            color: #2c5530;
-            transform: translateY(-3px);
-            box-shadow: 0 15px 30px rgba(255, 215, 0, 0.4);
+            background: #0051a3;
+            transform: translateY(-1px);
         }
 
-        .cta-btn.primary {
-            background: linear-gradient(135deg, #FFD700 0%, #B8860B 100%);
-            color: #2c5530;
-            font-weight: 700;
-        }
-
-        .cta-btn.primary::before {
+        .cta-btn.secondary {
             background: transparent;
+            color: var(--accent-primary);
+            border: 1px solid var(--accent-primary);
         }
 
-        .cta-btn.primary:hover {
-            background: linear-gradient(135deg, #FFA500 0%, #FF8C00 100%);
-            color: white;
-            border-color: #FFA500;
-        }
-
-        /* ===== CONTAINER ===== */
-        .container {
-            max-width: 1400px;
-            margin: 0 auto;
-            padding: 0 2rem;
+        .cta-btn.secondary:hover {
+            background: var(--accent-primary);
+            color: var(--bg-primary);
         }
 
         /* ===== CONTENT SECTIONS ===== */
         .content-section {
-            padding: 6rem 0;
+            padding: 5rem 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .content-section:nth-child(even) {
+            background: var(--bg-secondary);
         }
 
         .section-title {
             text-align: center;
-            font-size: clamp(2.5rem, 4vw, 3.5rem);
-            margin-bottom: 4rem;
-            background: linear-gradient(135deg, #2c5530 0%, #4a7c59 100%);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
+            font-size: clamp(2rem, 4vw, 2.5rem);
             font-weight: 700;
-            position: relative;
-        }
-
-        .section-title::after {
-            content: '';
-            position: absolute;
-            bottom: -10px;
-            left: 50%;
-            transform: translateX(-50%);
-            width: 60px;
-            height: 3px;
-            background: linear-gradient(135deg, #FFD700 0%, #B8860B 100%);
-            border-radius: 2px;
+            margin-bottom: 3rem;
+            color: var(--apple-black);
+            letter-spacing: -0.02em;
         }
 
         /* ===== BUSINESS OVERVIEW ===== */
         .business-overview {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(380px, 1fr));
-            gap: 3rem;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 2rem;
             margin: 4rem 0;
         }
 
         .business-card {
-            background: white;
-            padding: 3rem;
-            border-radius: 24px;
-            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.1);
+            background: var(--bg-primary);
+            padding: 2.5rem;
+            border-radius: 18px;
+            border: 1px solid rgba(0, 0, 0, 0.1);
             text-align: center;
-            transition: all 0.4s ease;
-            position: relative;
-            overflow: hidden;
-            border: 2px solid transparent;
-        }
-
-        .business-card::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            height: 4px;
-            background: linear-gradient(135deg, #FFD700 0%, #B8860B 100%);
+            transition: all 0.3s ease;
         }
 
         .business-card:hover {
-            transform: translateY(-20px) scale(1.02);
-            box-shadow: 0 25px 50px rgba(255, 215, 0, 0.2);
-            border-color: rgba(255, 215, 0, 0.3);
+            transform: translateY(-5px);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
         }
 
         .business-icon {
-            width: 120px;
-            height: 120px;
-            margin: 0 auto 2rem;
-            border-radius: 50%;
+            width: 80px;
+            height: 80px;
+            margin: 0 auto 1.5rem;
+            border-radius: 16px;
             display: flex;
             align-items: center;
             justify-content: center;
-            font-size: 3rem;
-            color: white;
-            position: relative;
-            overflow: hidden;
-            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.2);
-        }
-
-        .business-icon.onyu {
-            background: linear-gradient(135deg, #2c5530 0%, #4a7c59 100%);
-        }
-
-        .business-icon.software {
-            background: linear-gradient(135deg, #1e3a8a 0%, #3b82f6 100%);
-        }
-
-        .business-icon.research {
-            background: linear-gradient(135deg, #7c2d12 0%, #ea580c 100%);
-        }
-
-        .business-icon::before {
-            content: '';
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            width: 40px;
-            height: 40px;
-            background: linear-gradient(135deg, #FFD700 0%, #B8860B 100%);
-            border-radius: 50%;
-            transform: translate(-50%, -50%);
-            opacity: 0.3;
+            font-size: 2rem;
+            background: var(--bg-secondary);
+            color: var(--text-primary);
         }
 
         .business-card h3 {
-            font-size: 2rem;
-            margin-bottom: 1rem;
-            background: linear-gradient(135deg, #2c5530 0%, #4a7c59 100%);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-            font-weight: 700;
+            font-size: 1.5rem;
+            margin-bottom: 0.5rem;
+            color: var(--apple-black);
+            font-weight: 600;
         }
 
         .business-card .subtitle {
-            font-size: 1.1rem;
-            color: #666;
+            font-size: 1rem;
+            color: var(--text-muted);
             margin-bottom: 1.5rem;
-            font-weight: 500;
+            font-weight: 400;
         }
 
         .business-card p {
-            color: #555;
-            line-height: 1.8;
+            color: var(--text-secondary);
+            line-height: 1.6;
             margin-bottom: 2rem;
-            font-size: 1.05rem;
         }
 
         .business-features {
             display: flex;
             flex-wrap: wrap;
-            gap: 0.75rem;
+            gap: 0.5rem;
             justify-content: center;
-            margin-bottom: 2.5rem;
+            margin-bottom: 2rem;
         }
 
         .feature-tag {
-            background: linear-gradient(135deg, rgba(255, 215, 0, 0.1), rgba(184, 134, 11, 0.1));
-            color: #B8860B;
-            padding: 0.5rem 1rem;
-            border-radius: 20px;
-            font-size: 0.9rem;
-            font-weight: 600;
-            border: 1px solid rgba(184, 134, 11, 0.2);
+            background: var(--bg-secondary);
+            color: var(--text-secondary);
+            padding: 0.25rem 0.75rem;
+            border-radius: 12px;
+            font-size: 0.875rem;
+            font-weight: 400;
         }
 
         .business-cta {
             display: inline-block;
-            padding: 1rem 2rem;
-            background: linear-gradient(135deg, #FFD700 0%, #B8860B 100%);
-            color: #2c5530;
+            padding: 0.75rem 1.5rem;
+            background: var(--accent-primary);
+            color: var(--bg-primary);
             text-decoration: none;
-            border-radius: 30px;
-            font-weight: 600;
-            transition: all 0.3s ease;
-            border: 2px solid transparent;
+            border-radius: 100px;
+            font-weight: 500;
+            transition: all 0.2s ease;
+            font-size: 15px;
         }
 
         .business-cta:hover {
-            background: linear-gradient(135deg, #FFA500 0%, #FF8C00 100%);
-            color: white;
-            transform: translateY(-3px);
-            box-shadow: 0 10px 25px rgba(255, 165, 0, 0.4);
+            background: #0051a3;
+            transform: translateY(-1px);
         }
 
-
-
-        /* ===== ONYU BRAND SHOWCASE ===== */
-        .onyu-showcase {
-            padding: 8rem 0;
-            background: linear-gradient(135deg, #ffffff 0%, #f8fafe 100%);
-        }
-
-        .showcase-grid {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 6rem;
-            align-items: center;
-            margin-top: 4rem;
-        }
-
-        .showcase-content h2 {
-            font-size: clamp(2.5rem, 4vw, 3.5rem);
-            margin-bottom: 2rem;
-            background: linear-gradient(135deg, #2c5530 0%, #FFD700 100%);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-            font-weight: 700;
-        }
-
-        .showcase-content p {
-            font-size: 1.125rem;
-            line-height: 1.8;
-            color: #555;
-            margin-bottom: 2rem;
-        }
-
-        .showcase-features {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 1.5rem;
-            margin: 2rem 0;
-        }
-
-        .showcase-feature {
-            padding: 1.5rem;
-            background: rgba(255, 255, 255, 0.8);
-            border-radius: 12px;
-            border-left: 4px solid #FFD700;
-            transition: all 0.3s ease;
-        }
-
-        .showcase-feature:hover {
-            transform: translateX(10px);
-            box-shadow: 0 10px 20px rgba(255, 215, 0, 0.15);
-        }
-
-        .showcase-feature h4 {
-            color: #2c5530;
-            margin-bottom: 0.5rem;
-            font-weight: 600;
-        }
-
-        .showcase-feature p {
-            color: #666;
-            font-size: 0.9rem;
-            margin: 0;
-        }
-
-        .showcase-visual {
+        /* ===== CEO MESSAGE SECTION ===== */
+        .ceo-message-section {
+            background: var(--bg-secondary);
+            padding: 6rem 0;
             position: relative;
-            height: 500px;
-            background: linear-gradient(135deg, #2c5530 0%, #4a7c59 100%);
-            border-radius: 20px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            overflow: hidden;
         }
 
-        .showcase-visual::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background: radial-gradient(circle at 30% 30%, rgba(255, 215, 0, 0.2) 0%, transparent 50%);
-            opacity: 0.6;
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
         }
 
-        .product-display {
-            position: relative;
-            z-index: 2;
+        .section-header {
             text-align: center;
-            color: white;
-        }
-
-        .product-icon {
-            font-size: 5rem;
-            margin-bottom: 2rem;
-            color: #FFD700;
-        }
-
-        .product-name {
-            font-size: 2rem;
-            font-weight: 700;
-            margin-bottom: 1rem;
-            color: #FFD700;
-        }
-
-        .product-desc {
-            font-size: 1.1rem;
-            opacity: 0.9;
-        }
-
-        /* ===== TECHNOLOGY SECTION ===== */
-        .technology-section {
-            padding: 8rem 0;
-            background: #ffffff;
-        }
-
-        .tech-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 3rem;
-            margin-top: 4rem;
-        }
-
-        .tech-card {
-            background: white;
-            padding: 3rem;
-            border-radius: 20px;
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
-            text-align: center;
-            transition: all 0.4s ease;
-            position: relative;
-            overflow: hidden;
-            border-top: 4px solid;
-        }
-
-        .tech-card.ai {
-            border-top-color: #FFD700;
-        }
-
-        .tech-card.iot {
-            border-top-color: #3b82f6;
-        }
-
-        .tech-card.erp {
-            border-top-color: #10b981;
-        }
-
-        .tech-card:hover {
-            transform: translateY(-15px) scale(1.02);
-            box-shadow: 0 25px 50px rgba(0, 0, 0, 0.15);
-        }
-
-        .tech-icon {
-            width: 100px;
-            height: 100px;
-            margin: 0 auto 2rem;
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 2.5rem;
-            color: white;
-            position: relative;
-        }
-
-        .tech-card.ai .tech-icon {
-            background: linear-gradient(135deg, #FFD700 0%, #B8860B 100%);
-        }
-
-        .tech-card.iot .tech-icon {
-            background: linear-gradient(135deg, #3b82f6 0%, #1e40af 100%);
-        }
-
-        .tech-card.erp .tech-icon {
-            background: linear-gradient(135deg, #10b981 0%, #047857 100%);
-        }
-
-        .tech-card h3 {
-            font-size: 1.5rem;
-            margin-bottom: 1rem;
-            color: #2c5530;
-            font-weight: 700;
-        }
-
-        .tech-card p {
-            color: #666;
-            line-height: 1.7;
-            margin-bottom: 2rem;
-        }
-
-        .tech-stats {
-            display: flex;
-            justify-content: space-around;
-            margin-top: 2rem;
-            padding-top: 2rem;
-            border-top: 1px solid #f0f0f0;
-        }
-
-        .stat-item {
-            text-align: center;
-        }
-
-        .stat-number {
-            font-size: 1.5rem;
-            font-weight: 700;
-            color: #2c5530;
-            display: block;
-        }
-
-        .stat-label {
-            font-size: 0.8rem;
-            color: #999;
-        }
-
-        /* ===== MARKET DATA SECTION ===== */
-        .market-section {
-            padding: 8rem 0;
-            background: linear-gradient(135deg, #f8fafe 0%, #ffffff 100%);
-        }
-
-        .market-stats {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 2rem;
             margin-bottom: 4rem;
         }
 
-        .market-card {
-            background: white;
-            padding: 2.5rem;
-            border-radius: 16px;
-            text-align: center;
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
-            transition: all 0.3s ease;
-            border-top: 4px solid #FFD700;
+        .section-badge {
+            display: inline-block;
+            padding: 0.5rem 1rem;
+            background: var(--bg-primary);
+            border: 1px solid rgba(0, 0, 0, 0.1);
+            border-radius: 20px;
+            font-size: 0.875rem;
+            font-weight: 500;
+            color: var(--text-secondary);
+            margin-bottom: 1rem;
         }
 
-        .market-card:hover {
-            transform: translateY(-10px);
-            box-shadow: 0 20px 40px rgba(255, 215, 0, 0.15);
+        .ceo-section-title {
+            font-size: clamp(2.5rem, 5vw, 3.5rem);
+            font-weight: 700;
+            color: var(--apple-black);
+            margin-bottom: 1rem;
+            letter-spacing: -0.02em;
         }
 
-        .market-number {
-            font-size: 2.5rem;
-            font-weight: 800;
-            color: #2c5530;
+        .section-subtitle {
+            font-size: 1.25rem;
+            color: var(--text-muted);
+            max-width: 600px;
+            margin: 0 auto;
+            font-weight: 400;
+        }
+
+        /* ===== CEO PROFILE CARD ===== */
+        .ceo-profile-card {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+            align-items: center;
+            margin-bottom: 4rem;
+            background: var(--bg-primary);
+            border: 1px solid rgba(0, 0, 0, 0.1);
+            border-radius: 18px;
+            padding: 3rem;
+        }
+
+        .ceo-image {
+            width: 200px;
+            height: 200px;
+            border-radius: 50%;
+            background: var(--bg-secondary);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 3rem;
+            color: var(--text-primary);
+            margin: 0 auto;
+        }
+
+        .ceo-name {
+            font-size: 2rem;
+            font-weight: 700;
+            color: var(--apple-black);
             margin-bottom: 0.5rem;
         }
 
-        .market-label {
-            color: #666;
-            font-weight: 500;
+        .ceo-title {
+            font-size: 1.125rem;
+            color: var(--text-muted);
+            margin-bottom: 1.5rem;
+            font-weight: 400;
         }
 
-        .market-desc {
-            font-size: 0.9rem;
-            color: #999;
-            margin-top: 0.5rem;
+        .ceo-credentials {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+        }
+
+        .credential-badge {
+            padding: 0.5rem 1rem;
+            background: var(--bg-secondary);
+            border: 1px solid rgba(0, 0, 0, 0.1);
+            border-radius: 12px;
+            font-size: 0.875rem;
+            font-weight: 400;
+            color: var(--text-secondary);
+        }
+
+        /* ===== MESSAGE CONTENT ===== */
+        .message-content {
+            background: var(--bg-primary);
+            border: 1px solid rgba(0, 0, 0, 0.1);
+            border-radius: 18px;
+            padding: 3rem;
+            margin-bottom: 3rem;
+        }
+
+        .message-text {
+            font-size: 1.125rem;
+            line-height: 1.6;
+            color: var(--text-secondary);
+        }
+
+        .highlight-text {
+            background: rgba(0, 102, 204, 0.1);
+            padding: 0.2rem 0.4rem;
+            border-radius: 4px;
+            font-weight: 500;
+            color: var(--accent-primary);
+        }
+
+        /* ===== VISION CARDS ===== */
+        .vision-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-bottom: 3rem;
+        }
+
+        .vision-card {
+            background: var(--bg-primary);
+            border: 1px solid rgba(0, 0, 0, 0.1);
+            border-radius: 18px;
+            padding: 2rem;
+            text-align: center;
+            transition: all 0.3s ease;
+        }
+
+        .vision-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+        }
+
+        .vision-icon {
+            width: 60px;
+            height: 60px;
+            margin: 0 auto 1rem;
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            background: var(--bg-secondary);
+            color: var(--text-primary);
+        }
+
+        .vision-title {
+            font-size: 1.25rem;
+            font-weight: 600;
+            color: var(--apple-black);
+            margin-bottom: 0.75rem;
+        }
+
+        .vision-text {
+            color: var(--text-secondary);
+            line-height: 1.5;
+            font-size: 15px;
+        }
+
+        /* ===== FEATURES GRID ===== */
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .feature-card {
+            background: var(--bg-primary);
+            padding: 2rem;
+            border-radius: 18px;
+            border: 1px solid rgba(0, 0, 0, 0.1);
+            text-align: center;
+            transition: all 0.3s ease;
+        }
+
+        .feature-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+        }
+
+        .feature-icon {
+            width: 60px;
+            height: 60px;
+            background: var(--bg-secondary);
+            border-radius: 12px;
+            margin: 0 auto 1.5rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            color: var(--text-primary);
+        }
+
+        .feature-card h3 {
+            font-size: 1.25rem;
+            margin-bottom: 1rem;
+            color: var(--apple-black);
+            font-weight: 600;
+        }
+
+        .feature-card p {
+            color: var(--text-secondary);
+            line-height: 1.6;
+            font-size: 15px;
+        }
+
+        /* ===== PRODUCT SHOWCASE ===== */
+        .product-showcase {
+            margin-top: 3rem;
+        }
+
+        .product-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 2rem;
+        }
+
+        .product-card {
+            background: var(--bg-primary);
+            border: 1px solid rgba(0, 0, 0, 0.1);
+            border-radius: 18px;
+            padding: 2.5rem;
+            text-align: center;
+            transition: all 0.3s ease;
+        }
+
+        .product-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.12);
+        }
+
+        .product-image {
+            width: 100px;
+            height: 100px;
+            background: linear-gradient(135deg, var(--bg-secondary), var(--apple-light-gray));
+            border-radius: 20px;
+            margin: 0 auto 2rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2.5rem;
+        }
+
+        .product-card h3 {
+            font-size: 1.5rem;
+            font-weight: 600;
+            color: var(--apple-black);
+            margin-bottom: 1rem;
+        }
+
+        .product-card p {
+            color: var(--text-secondary);
+            line-height: 1.6;
+            margin-bottom: 2rem;
+        }
+
+        .product-link {
+            display: inline-block;
+            color: var(--accent-primary);
+            text-decoration: none;
+            font-weight: 500;
+            font-size: 15px;
+            transition: color 0.2s ease;
+        }
+
+        .product-link:hover {
+            color: #0051a3;
+        }
+
+        .product-link::after {
+            content: ' →';
+            transition: transform 0.2s ease;
+        }
+
+        .product-link:hover::after {
+            transform: translateX(3px);
+        }
+
+        /* ===== TECHNOLOGY GRID ===== */
+        .tech-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 1.5rem;
+            margin-top: 3rem;
+        }
+
+        .tech-card {
+            background: var(--bg-primary);
+            border: 1px solid rgba(0, 0, 0, 0.1);
+            border-radius: 18px;
+            padding: 2rem;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: flex-start;
+            gap: 1.5rem;
+        }
+
+        .tech-card:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
+        }
+
+        .tech-icon {
+            width: 50px;
+            height: 50px;
+            background: var(--bg-secondary);
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.25rem;
+            flex-shrink: 0;
+        }
+
+        .tech-card h3 {
+            font-size: 1.125rem;
+            font-weight: 600;
+            color: var(--apple-black);
+            margin-bottom: 0.5rem;
+        }
+
+        .tech-card p {
+            color: var(--text-secondary);
+            line-height: 1.5;
+            font-size: 14px;
+        }
+
+        /* ===== FINAL CTA SECTION ===== */
+        .final-cta {
+            background: var(--apple-dark);
+            color: var(--bg-primary);
+            padding: 5rem 2rem;
+            text-align: center;
+            margin-top: 4rem;
+        }
+
+        .final-cta h2 {
+            font-size: clamp(2rem, 4vw, 2.5rem);
+            font-weight: 700;
+            margin-bottom: 1rem;
+            color: var(--bg-primary);
+        }
+
+        .final-cta p {
+            font-size: 1.125rem;
+            margin-bottom: 3rem;
+            color: rgba(255, 255, 255, 0.8);
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .final-cta .cta-buttons {
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        .final-cta .cta-btn {
+            background: var(--bg-primary);
+            color: var(--apple-dark);
+        }
+
+        .final-cta .cta-btn:hover {
+            background: var(--bg-secondary);
+        }
+
+        .final-cta .cta-btn.secondary {
+            background: transparent;
+            color: var(--bg-primary);
+            border: 1px solid rgba(255, 255, 255, 0.3);
+        }
+
+        .final-cta .cta-btn.secondary:hover {
+            background: var(--bg-primary);
+            color: var(--apple-dark);
         }
 
         /* ===== FOOTER ===== */
         .footer {
-            background: linear-gradient(135deg, #2c5530 0%, #1a3d1f 100%);
-            color: white;
-            padding: 4rem 2rem 2rem;
-            position: relative;
-        }
-
-        .footer::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            height: 3px;
-            background: linear-gradient(135deg, #FFD700 0%, #B8860B 100%);
+            background: var(--apple-dark);
+            color: var(--bg-primary);
+            padding: 3rem 2rem 1rem;
+            margin-top: 4rem;
         }
 
         .footer-content {
@@ -861,34 +723,29 @@
             margin: 0 auto;
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 3rem;
+            gap: 2rem;
         }
 
         .footer-section h3 {
-            margin-bottom: 1.5rem;
-            background: linear-gradient(135deg, #FFD700 0%, #B8860B 100%);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-            font-size: 1.3rem;
-            font-weight: 700;
+            margin-bottom: 1rem;
+            color: var(--bg-primary);
+            font-weight: 600;
         }
 
         .footer-section p,
         .footer-section a {
             color: rgba(255, 255, 255, 0.8);
             text-decoration: none;
-            line-height: 2;
-            transition: color 0.3s ease;
+            line-height: 1.6;
         }
 
         .footer-section a:hover {
-            color: #FFD700;
+            color: var(--bg-primary);
         }
 
         .footer-bottom {
             text-align: center;
-            margin-top: 3rem;
+            margin-top: 2rem;
             padding-top: 2rem;
             border-top: 1px solid rgba(255, 255, 255, 0.2);
             color: rgba(255, 255, 255, 0.6);
@@ -898,56 +755,20 @@
         @media (max-width: 768px) {
             .nav-menu {
                 display: none;
-                position: fixed;
-                top: 80px;
-                left: 0;
-                right: 0;
-                background: white;
-                flex-direction: column;
-                padding: 2rem;
-                box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
-                gap: 1rem;
             }
 
-            .nav-menu.active {
-                display: flex;
+            .ceo-profile-card {
+                grid-template-columns: 1fr;
+                gap: 2rem;
+                text-align: center;
             }
 
-            .mega-dropdown,
-            .dropdown {
-                position: static;
-                min-width: auto;
-                box-shadow: none;
-                border-radius: 8px;
-                opacity: 1;
-                visibility: visible;
-                transform: none;
-                flex-direction: column;
-                padding: 1rem;
-                background: #f8f9fa;
-                margin-top: 0.5rem;
-                display: none;
+            .business-overview {
+                grid-template-columns: 1fr;
             }
 
-            .nav-item.active .mega-dropdown,
-            .nav-item.active .dropdown {
-                display: flex;
-            }
-
-            .dropdown-section {
-                margin-bottom: 1rem;
-            }
-
-            .menu-toggle {
-                display: flex;
-            }
-
-            .hero {
-                padding: 6rem 1rem;
-            }
-
-            .hero h1 {
-                font-size: 3rem;
+            .vision-grid {
+                grid-template-columns: 1fr;
             }
 
             .cta-buttons {
@@ -955,98 +776,39 @@
                 align-items: center;
             }
 
-            .business-overview {
-                grid-template-columns: 1fr;
-                gap: 2rem;
+            .hero {
+                padding: 6rem 1rem 4rem;
             }
 
-            .showcase-grid {
-                grid-template-columns: 1fr;
-                gap: 3rem;
-            }
-
-            .showcase-features {
-                grid-template-columns: 1fr;
-                gap: 1rem;
-            }
-
-            .ceo-profile-card {
-                grid-template-columns: 1fr;
-                gap: 2rem;
-                padding: 2rem;
-                text-align: center;
-            }
-
-            .ceo-image {
-                width: 200px;
-                height: 200px;
-                font-size: 3rem;
-            }
-
-            .message-content {
-                padding: 2rem;
-            }
-
-            .vision-grid {
-                grid-template-columns: 1fr;
-                gap: 1.5rem;
-            }
-
-            .tech-grid {
-                grid-template-columns: 1fr;
-                gap: 2rem;
-            }
-
-            .container {
-                padding: 0 1rem;
-            }
-
-            .lang-selector {
-                gap: 0.5rem;
-            }
-
-            .lang-btn {
-                width: 35px;
-                height: 35px;
-                font-size: 1rem;
+            .content-section {
+                padding: 3rem 1rem;
             }
         }
 
-        /* ===== ANIMATIONS ===== */
-        @keyframes fadeInUp {
-            from {
-                opacity: 0;
-                transform: translateY(30px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-
-        .animate-on-scroll {
-            animation: fadeInUp 0.8s ease forwards;
+        /* ===== SMOOTH TRANSITIONS ===== */
+        * {
+            transition: color 0.2s ease, background-color 0.2s ease, border-color 0.2s ease;
         }
 
         /* ===== ACCESSIBILITY ===== */
-        @media (prefers-reduced-motion: reduce) {
-            * {
-                animation-duration: 0.01ms !important;
-                animation-iteration-count: 1 !important;
-                transition-duration: 0.01ms !important;
-            }
+        .sr-only {
+            position: absolute;
+            width: 1px;
+            height: 1px;
+            padding: 0;
+            margin: -1px;
+            overflow: hidden;
+            clip: rect(0, 0, 0, 0);
+            white-space: nowrap;
+            border: 0;
         }
 
-        /* ===== PERFORMANCE OPTIMIZATIONS ===== */
-        .hero::after,
-        .ceo-message-section::before {
-            will-change: transform;
-        }
-
-        .business-card,
-        .tech-card,
-        .vision-card {
-            will-change: transform;
+        /* Focus styles */
+        button:focus,
+        a:focus,
+        input:focus {
+            outline: 2px solid var(--accent-primary);
+            outline-offset: 2px;
         }
     </style>
 </head>
@@ -1056,85 +818,14 @@
         <nav class="nav-container">
             <a href="#home" class="logo">KOREVO</a>
             
-            <ul class="nav-menu" id="navMenu">
-                <li class="nav-item">
-                    <a href="#home" class="nav-link">홈</a>
-                </li>
-                <li class="nav-item">
-                    <a href="#" class="nav-link">회사소개</a>
-                    <div class="dropdown">
-                        <div class="dropdown-item" onclick="window.location.href='greeting.html'">인사말</div>
-                        <div class="dropdown-item" onclick="window.location.href='vision.html'">비전 & 미션</div>
-                        <div class="dropdown-item" onclick="scrollToSection('history')">연혁</div>
-                        <div class="dropdown-item" onclick="scrollToSection('team')">팀 소개</div>
-                    </div>
-                </li>
-                <li class="nav-item">
-                    <a href="#" class="nav-link">사업소개</a>
-                    <div class="mega-dropdown">
-                        <div class="dropdown-section">
-                            <h4>브랜드 스토리</h4>
-                            <div class="dropdown-item" onclick="window.location.href='onyu-brand.html'">온유(溫鍮) 브랜드</div>
-                            <div class="dropdown-item" onclick="scrollToSection('brand-philosophy')">브랜드 철학</div>
-                            <div class="dropdown-item" onclick="scrollToSection('traditional-craft')">전통 기법 계승</div>
-                        </div>
-                        <div class="dropdown-section">
-                            <h4>융합 비즈니스</h4>
-                            <div class="dropdown-item" onclick="scrollToSection('business-model')">사업 모델</div>
-                            <div class="dropdown-item" onclick="scrollToSection('innovation-strategy')">혁신 전략</div>
-                            <div class="dropdown-item" onclick="scrollToSection('sustainability')">지속가능경영</div>
-                        </div>
-                    </div>
-                </li>
-                <li class="nav-item">
-                    <a href="#" class="nav-link">제품/서비스</a>
-                    <div class="mega-dropdown">
-                        <div class="dropdown-section">
-                            <h4>🏺 유기 제품군</h4>
-                            <div class="dropdown-item" onclick="scrollToSection('dining-set')">식기 컬렉션</div>
-                            <div class="dropdown-item" onclick="scrollToSection('health-products')">건강 케어 제품</div>
-                            <div class="dropdown-item" onclick="scrollToSection('gift-sets')">프리미엄 선물세트</div>
-                            <div class="dropdown-item" onclick="scrollToSection('custom-craft')">맞춤 제작 서비스</div>
-                        </div>
-                        <div class="dropdown-section">
-                            <h4>💻 소프트웨어</h4>
-                            <div class="dropdown-item" onclick="scrollToSection('erp-solution')">제조업 ERP 솔루션</div>
-                            <div class="dropdown-item" onclick="scrollToSection('iot-platform')">IoT 품질관리 플랫폼</div>
-                            <div class="dropdown-item" onclick="scrollToSection('ecommerce-system')">전통공예 전자상거래</div>
-                            <div class="dropdown-item" onclick="scrollToSection('consulting')">디지털 전환 컨설팅</div>
-                        </div>
-                        <div class="dropdown-section">
-                            <h4>🔬 R&D 과제</h4>
-                            <div class="dropdown-item" onclick="scrollToSection('current-projects')">진행중 과제</div>
-                            <div class="dropdown-item" onclick="scrollToSection('completed-projects')">완료 과제</div>
-                            <div class="dropdown-item" onclick="scrollToSection('research-outcomes')">연구 성과</div>
-                            <div class="dropdown-item" onclick="scrollToSection('collaboration')">산학연 협력</div>
-                        </div>
-                    </div>
-                </li>
-                <li class="nav-item">
-                    <a href="#" class="nav-link">고객센터</a>
-                    <div class="dropdown">
-                        <div class="dropdown-item" onclick="scrollToSection('product-support')">제품 지원</div>
-                        <div class="dropdown-item" onclick="scrollToSection('software-support')">소프트웨어 지원</div>
-                        <div class="dropdown-item" onclick="scrollToSection('faq')">자주 묻는 질문</div>
-                        <div class="dropdown-item" onclick="scrollToSection('inquiry')">문의하기</div>
-                        <div class="dropdown-item" onclick="scrollToSection('download')">자료실</div>
-                    </div>
-                </li>
-                <li class="nav-item">
-                    <a href="#" class="nav-link">소식</a>
-                    <div class="dropdown">
-                        <div class="dropdown-item" onclick="window.location.href='notice.html'">공지사항</div>
-                        <div class="dropdown-item" onclick="scrollToSection('news')">보도자료</div>
-                        <div class="dropdown-item" onclick="scrollToSection('blog')">기술 블로그</div>
-                        <div class="dropdown-item" onclick="scrollToSection('events')">이벤트</div>
-                        <div class="dropdown-item" onclick="scrollToSection('awards')">수상 내역</div>
-                    </div>
-                </li>
-                <li class="nav-item">
-                    <a href="#shop" class="nav-link">쇼핑몰</a>
-                </li>
+            <ul class="nav-menu">
+                <li><a href="#home" class="nav-link">홈</a></li>
+                <li><a href="#about" class="nav-link">회사소개</a></li>
+                <li><a href="#business" class="nav-link">사업소개</a></li>
+                <li><a href="#products" class="nav-link">제품/서비스</a></li>
+                <li><a href="#support" class="nav-link">고객센터</a></li>
+                <li><a href="#news" class="nav-link">소식</a></li>
+                <li><a href="#shop" class="nav-link">쇼핑몰</a></li>
             </ul>
 
             <div class="lang-selector">
@@ -1143,24 +834,13 @@
                 <a href="#" class="lang-btn">🇨🇳</a>
                 <a href="#" class="lang-btn">🇯🇵</a>
             </div>
-
-            <div class="menu-toggle" onclick="toggleMenu()">
-                <span></span>
-                <span></span>
-                <span></span>
-            </div>
         </nav>
     </header>
 
     <!-- Main Content -->
-    <main class="main-content">
+    <main>
         <!-- Hero Section -->
         <section id="home" class="hero">
-            <!-- Video Background -->
-            <video class="hero-video" autoplay loop muted>
-                <source src="./video/korevo_hero.mp4">
-            </video>
-            
             <div class="hero-content">
                 <h1>KOREVO</h1>
                 <p class="subtitle">한국의 전통과 혁신을 담다</p>
@@ -1169,218 +849,159 @@
                     KOREVO는 전통의 아름다움을 현대에 되살리며, 지속가능한 미래를 만들어갑니다.
                 </p>
                 <div class="cta-buttons">
-                    <a href="#about" class="cta-btn primary">회사소개</a>
-                    <a href="#onyu" class="cta-btn">온유 브랜드</a>
-                    <a href="#technology" class="cta-btn">기술혁신</a>
-                    <a href="#shop" class="cta-btn">쇼핑몰</a>
+                    <a href="#about" class="cta-btn">회사소개</a>
+                    <a href="#products" class="cta-btn secondary">제품보기</a>
                 </div>
             </div>
         </section>
 
         <!-- Business Overview Section -->
-        <section id="about" class="content-section">
-            <div class="container">
-                <h2 class="section-title">KOREVO 융합 비즈니스</h2>
-                <div class="business-overview">
-                    <div class="business-card">
-                        <div class="business-icon onyu">🏺</div>
-                        <h3>온유(溫鍮) 브랜드</h3>
-                        <p class="subtitle">전통 유기 제품의 현대적 재해석</p>
-                        <p>천년의 전통 유기 기술을 바탕으로 현대인의 라이프스타일에 맞는 프리미엄 제품을 제작합니다. AI 맞춤 디자인과 온열 기능이 결합된 혁신적인 건강 케어 제품으로 새로운 웰빙 문화를 제안합니다.</p>
-                        <div class="business-features">
-                            <span class="feature-tag">AI 맞춤 설계</span>
-                            <span class="feature-tag">온열 기능</span>
-                            <span class="feature-tag">항균 효과</span>
-                            <span class="feature-tag">무형문화재 기술</span>
-                            <span class="feature-tag">프리미엄 선물</span>
-                            <span class="feature-tag">개인 맞춤</span>
-                        </div>
-                        <a href="#onyu" class="business-cta">제품 보기</a>
+        <section class="content-section">
+            <h2 class="section-title">KOREVO 융합 비즈니스</h2>
+            <div class="business-overview">
+                <div class="business-card">
+                    <div class="business-icon">🏺</div>
+                    <h3>온유(溫鍮) 브랜드</h3>
+                    <p class="subtitle">전통 유기 제품의 현대적 재해석</p>
+                    <p>천년의 전통 유기 기술을 바탕으로 현대인의 라이프스타일에 맞는 프리미엄 제품을 제작합니다. 건강과 아름다움을 동시에 추구하는 온유만의 철학을 담았습니다.</p>
+                    <div class="business-features">
+                        <span class="feature-tag">식기 컬렉션</span>
+                        <span class="feature-tag">건강 케어</span>
+                        <span class="feature-tag">맞춤 제작</span>
+                        <span class="feature-tag">선물세트</span>
                     </div>
+                    <a href="#products" class="business-cta">제품 보기</a>
+                </div>
 
-                    <div class="business-card">
-                        <div class="business-icon software">💻</div>
-                        <h3>소프트웨어 솔루션</h3>
-                        <p class="subtitle">전통 제조업의 디지털 혁신</p>
-                        <p>15년간 축적한 IT 전문성을 바탕으로 제조업 특화 ERP부터 IoT 품질관리까지, 전통 산업의 디지털 전환을 위한 맞춤형 소프트웨어 솔루션을 제공합니다. 현장 경험이 녹아든 실용적 기술로 4차 산업혁명을 선도합니다.</p>
-                        <div class="business-features">
-                            <span class="feature-tag">제조 ERP</span>
-                            <span class="feature-tag">IoT 플랫폼</span>
-                            <span class="feature-tag">품질관리</span>
-                            <span class="feature-tag">전자상거래</span>
-                            <span class="feature-tag">디지털 전환</span>
-                            <span class="feature-tag">컨설팅</span>
-                        </div>
-                        <a href="#technology" class="business-cta">솔루션 보기</a>
+                <div class="business-card">
+                    <div class="business-icon">💻</div>
+                    <h3>소프트웨어 솔루션</h3>
+                    <p class="subtitle">전통 제조업의 디지털 혁신</p>
+                    <p>제조업 특화 ERP부터 IoT 품질관리까지, 전통 산업의 디지털 전환을 위한 맞춤형 소프트웨어 솔루션을 제공합니다. 현장 경험을 바탕으로 한 실용적 기술입니다.</p>
+                    <div class="business-features">
+                        <span class="feature-tag">제조 ERP</span>
+                        <span class="feature-tag">IoT 플랫폼</span>
+                        <span class="feature-tag">전자상거래</span>
+                        <span class="feature-tag">컨설팅</span>
                     </div>
+                    <a href="#software" class="business-cta">솔루션 보기</a>
+                </div>
 
-                    <div class="business-card">
-                        <div class="business-icon research">🔬</div>
-                        <h3>R&D 연구개발</h3>
-                        <p class="subtitle">정부과제 수행 및 기술혁신</p>
-                        <p>전통 기술의 과학적 분석부터 신소재 개발까지, 다양한 정부 R&D 과제를 성공적으로 수행하고 있습니다. 산학연 협력을 통한 지속적인 기술혁신으로 전통과 현대를 잇는 새로운 가치를 창출합니다.</p>
-                        <div class="business-features">
-                            <span class="feature-tag">소재 연구</span>
-                            <span class="feature-tag">공정 혁신</span>
-                            <span class="feature-tag">산학 협력</span>
-                            <span class="feature-tag">정부 과제</span>
-                            <span class="feature-tag">특허 기술</span>
-                            <span class="feature-tag">기술 이전</span>
-                        </div>
-                        <a href="#research" class="business-cta">연구성과 보기</a>
+                <div class="business-card">
+                    <div class="business-icon">🔬</div>
+                    <h3>R&D 연구개발</h3>
+                    <p class="subtitle">정부과제 수행 및 기술혁신</p>
+                    <p>전통 기술의 과학적 분석부터 신소재 개발까지, 다양한 정부 R&D 과제를 성공적으로 수행하고 있습니다. 산학연 협력을 통한 지속적인 기술혁신을 추진합니다.</p>
+                    <div class="business-features">
+                        <span class="feature-tag">소재 연구</span>
+                        <span class="feature-tag">공정 혁신</span>
+                        <span class="feature-tag">산학 협력</span>
+                        <span class="feature-tag">특허 기술</span>
                     </div>
+                    <a href="#research" class="business-cta">연구성과 보기</a>
                 </div>
             </div>
         </section>
 
-        <!-- Onyu Brand Showcase -->
-        <section id="onyu" class="onyu-showcase">
-            <div class="container">
-                <h2 class="section-title">온유(溫鍮) - 따뜻한 전통이 피부를 깨우다</h2>
-                
-                <div class="showcase-grid">
-                    <div class="showcase-content">
-                        <h2>AI와 장인정신의 만남</h2>
-                        <p>온유(溫鍮)는 "따뜻한 유기"라는 뜻으로, 천년의 역사를 자랑하는 한국 전통 유기 기술에 현대적 감성을 더한 프리미엄 브랜드입니다.</p>
-                        <p>무형문화재 장인들과의 협업을 통해 정통 방짜유기의 품격을 지키면서도, AI 기술과 개인 맞춤형 디자인으로 현대인의 라이프스타일에 맞는 제품을 제공합니다.</p>
-                        
-                        <div class="showcase-features">
-                            <div class="showcase-feature">
-                                <h4>🤖 AI 얼굴 분석</h4>
-                                <p>스마트폰 앱으로 얼굴 형태를 분석하여 최적의 괄사 형태를 제안</p>
-                            </div>
-                            <div class="showcase-feature">
-                                <h4>🔥 온열 기능</h4>
-                                <p>40~45°C 안전 온도로 혈액순환 촉진과 근육 이완 효과 극대화</p>
-                            </div>
-                            <div class="showcase-feature">
-                                <h4>✨ 항균 효과</h4>
-                                <p>유기의 구리 성분으로 강력한 항균력과 위생적인 사용</p>
-                            </div>
-                            <div class="showcase-feature">
-                                <h4>🏺 장인 제작</h4>
-                                <p>무형문화재 보유 장인의 수작업으로 완성되는 프리미엄 품질</p>
-                            </div>
-                        </div>
-                    </div>
-                    
-                    <div class="showcase-visual">
-                        <div class="product-display">
-                            <div class="product-icon">🏺</div>
-                            <div class="product-name">온유 스마트 괄사</div>
-                            <div class="product-desc">AI 맞춤 설계 + 온열 기능</div>
-                        </div>
-                    </div>
+        <!-- Features Section -->
+        <section class="content-section">
+            <h2 class="section-title">KOREVO의 특별함</h2>
+            <div class="features-grid">
+                <div class="feature-card">
+                    <div class="feature-icon">🏺</div>
+                    <h3>전통 유기 기술</h3>
+                    <p>천년의 역사를 자랑하는 한국 전통 유기 제작 기술을 현대적으로 계승하여 최고 품질의 제품을 만듭니다.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">💻</div>
+                    <h3>소프트웨어 혁신</h3>
+                    <p>최신 소프트웨어 기술을 활용하여 전통 산업의 효율성을 높이고 새로운 가치를 창출합니다.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">🌿</div>
+                    <h3>지속가능경영</h3>
+                    <p>환경을 생각하는 친환경 소재와 공정을 통해 지속가능한 미래를 위한 제품을 제공합니다.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">🤖</div>
+                    <h3>AI 맞춤 제작</h3>
+                    <p>인공지능 기술로 개인의 얼굴 형태를 분석하여 맞춤형 유기 제품을 설계하고 제작합니다.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">🔬</div>
+                    <h3>R&D 연구개발</h3>
+                    <p>정부 과제를 통한 전통 기술의 과학적 분석과 신소재 개발로 혁신을 이끌어갑니다.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">🌡️</div>
+                    <h3>온열 기능</h3>
+                    <p>안전한 온열 기능이 탑재된 스마트 유기 제품으로 건강 케어 효과를 극대화합니다.</p>
                 </div>
             </div>
         </section>
 
-
+        <!-- Products Section -->
+        <section class="content-section">
+            <h2 class="section-title">주요 제품 라인업</h2>
+            <div class="product-showcase">
+                <div class="product-grid">
+                    <div class="product-card">
+                        <div class="product-image">🍽️</div>
+                        <h3>식기 컬렉션</h3>
+                        <p>전통 유기 기법으로 제작된 프리미엄 식기 세트. 항균성과 내구성을 겸비한 건강한 식생활의 동반자입니다.</p>
+                        <a href="#" class="product-link">자세히 보기</a>
+                    </div>
+                    <div class="product-card">
+                        <div class="product-image">🌡️</div>
+                        <h3>온열 괄사</h3>
+                        <p>AI 맞춤 설계와 온열 기능이 결합된 혁신적인 건강 케어 제품. 개인 맞춤형 웰니스 솔루션을 제공합니다.</p>
+                        <a href="#" class="product-link">자세히 보기</a>
+                    </div>
+                    <div class="product-card">
+                        <div class="product-image">🎁</div>
+                        <h3>프리미엄 선물세트</h3>
+                        <p>특별한 날을 위한 고급 유기 선물세트. 전통의 품격과 현대적 디자인이 조화를 이룬 선물입니다.</p>
+                        <a href="#" class="product-link">자세히 보기</a>
+                    </div>
+                </div>
+            </div>
+        </section>
 
         <!-- Technology Section -->
-        <section id="technology" class="technology-section">
-            <div class="container">
-                <h2 class="section-title">혁신 기술로 미래를 만들다</h2>
-                <div class="tech-grid">
-                    <div class="tech-card ai">
-                        <div class="tech-icon">🤖</div>
-                        <h3>AI 맞춤 설계</h3>
-                        <p>얼굴 형태 분석을 통한 개인 맞춤형 유기 괄사 설계로, 각자에게 최적화된 제품을 제공합니다. 머신러닝 알고리즘으로 지속적인 개선이 이루어집니다.</p>
-                        <div class="tech-stats">
-                            <div class="stat-item">
-                                <span class="stat-number">98%</span>
-                                <span class="stat-label">정확도</span>
-                            </div>
-                            <div class="stat-item">
-                                <span class="stat-number">2분</span>
-                                <span class="stat-label">분석시간</span>
-                            </div>
-                            <div class="stat-item">
-                                <span class="stat-number">100만+</span>
-                                <span class="stat-label">데이터</span>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="tech-card iot">
-                        <div class="tech-icon">📡</div>
-                        <h3>IoT 품질관리</h3>
-                        <p>실시간 센서 모니터링과 데이터 분석을 통해 제조 공정의 품질을 관리하고, 예측 유지보수로 생산성을 극대화합니다.</p>
-                        <div class="tech-stats">
-                            <div class="stat-item">
-                                <span class="stat-number">24/7</span>
-                                <span class="stat-label">모니터링</span>
-                            </div>
-                            <div class="stat-item">
-                                <span class="stat-number">30%</span>
-                                <span class="stat-label">효율증대</span>
-                            </div>
-                            <div class="stat-item">
-                                <span class="stat-number">99.9%</span>
-                                <span class="stat-label">가동률</span>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="tech-card erp">
-                        <div class="tech-icon">⚙️</div>
-                        <h3>제조업 ERP</h3>
-                        <p>전통 제조업 특화 ERP 시스템으로 생산계획부터 품질관리, 재고관리까지 통합 관리하여 경영 효율성을 극대화합니다.</p>
-                        <div class="tech-stats">
-                            <div class="stat-item">
-                                <span class="stat-number">50+</span>
-                                <span class="stat-label">업체 도입</span>
-                            </div>
-                            <div class="stat-item">
-                                <span class="stat-number">40%</span>
-                                <span class="stat-label">비용절감</span>
-                            </div>
-                            <div class="stat-item">
-                                <span class="stat-number">15년</span>
-                                <span class="stat-label">개발경험</span>
-                            </div>
-                        </div>
-                    </div>
+        <section class="content-section">
+            <h2 class="section-title">혁신 기술</h2>
+            <div class="tech-grid">
+                <div class="tech-card">
+                    <div class="tech-icon">📱</div>
+                    <h3>AI 얼굴 분석</h3>
+                    <p>스마트폰 카메라를 통한 정밀한 얼굴 형태 분석으로 개인 맞춤형 제품 설계를 지원합니다.</p>
+                </div>
+                <div class="tech-card">
+                    <div class="tech-icon">🏭</div>
+                    <h3>제조업 ERP</h3>
+                    <p>전통 제조업을 위한 특화된 ERP 솔루션으로 생산성 향상과 품질 관리를 동시에 실현합니다.</p>
+                </div>
+                <div class="tech-card">
+                    <div class="tech-icon">📡</div>
+                    <h3>IoT 품질관리</h3>
+                    <p>사물인터넷 기술을 활용한 실시간 품질 모니터링으로 최고 수준의 제품 품질을 보장합니다.</p>
+                </div>
+                <div class="tech-card">
+                    <div class="tech-icon">🛒</div>
+                    <h3>전자상거래 플랫폼</h3>
+                    <p>전통공예품 전용 온라인 판매 플랫폼으로 장인과 고객을 직접 연결하는 디지털 마켓플레이스입니다.</p>
                 </div>
             </div>
         </section>
 
-        <!-- Market Data Section -->
-        <section id="market" class="market-section">
-            <div class="container">
-                <h2 class="section-title">시장 현황 및 전망</h2>
-                <div class="market-stats">
-                    <div class="market-card">
-                        <div class="market-number">1.27억</div>
-                        <div class="market-label">괄사 시장 규모</div>
-                        <div class="market-desc">2023년 기준 (단위: 달러)</div>
-                    </div>
-                    <div class="market-card">
-                        <div class="market-number">5.89%</div>
-                        <div class="market-label">연평균 성장률</div>
-                        <div class="market-desc">2024-2030 전망</div>
-                    </div>
-                    <div class="market-card">
-                        <div class="market-number">47%</div>
-                        <div class="market-label">전통요법 점유율</div>
-                        <div class="market-desc">피부 치료 시장</div>
-                    </div>
-                    <div class="market-card">
-                        <div class="market-number">9.0%</div>
-                        <div class="market-label">고급요법 성장률</div>
-                        <div class="market-desc">연평균 증가율</div>
-                    </div>
-                    <div class="market-card">
-                        <div class="market-number">200만+</div>
-                        <div class="market-label">온유 브랜드 가격</div>
-                        <div class="market-desc">AI 맞춤형 (단위: 원)</div>
-                    </div>
-                    <div class="market-card">
-                        <div class="market-number">300만+</div>
-                        <div class="market-label">온열 기능 모델</div>
-                        <div class="market-desc">프리미엄 라인 (단위: 원)</div>
-                    </div>
-                </div>
+        <!-- Final CTA Section -->
+        <section class="final-cta">
+            <h2>KOREVO와 함께하는 혁신</h2>
+            <p>전통과 기술이 만나는 새로운 경험을 시작하세요. 지금 바로 KOREVO의 프리미엄 제품과 서비스를 만나보실 수 있습니다.</p>
+            <div class="cta-buttons">
+                <a href="#contact" class="cta-btn">문의하기</a>
+                <a href="#products" class="cta-btn secondary">제품 보기</a>
+                <a href="#shop" class="cta-btn secondary">쇼핑몰 방문</a>
             </div>
         </section>
     </main>
@@ -1394,31 +1015,22 @@
                 <p>전통의 아름다움을 현대에 되살리며<br>지속가능한 미래를 만들어갑니다.</p>
             </div>
             <div class="footer-section">
-                <h3>주요 사업</h3>
-                <p><a href="#onyu">온유(溫鍮) 브랜드</a></p>
-                <p><a href="#technology">소프트웨어 솔루션</a></p>
-                <p><a href="#research">R&D 연구개발</a></p>
-                <p><a href="#consulting">디지털 전환 컨설팅</a></p>
-            </div>
-            <div class="footer-section">
-                <h3>제품 라인</h3>
-                <p><a href="#">AI 맞춤 괄사</a></p>
-                <p><a href="#">온열 기능 괄사</a></p>
-                <p><a href="#">프리미엄 식기 세트</a></p>
-                <p><a href="#">건강 케어 제품</a></p>
+                <h3>빠른 링크</h3>
+                <p><a href="#about">회사소개</a></p>
+                <p><a href="#business">사업소개</a></p>
+                <p><a href="#products">제품소개</a></p>
+                <p><a href="#support">고객지원</a></p>
             </div>
             <div class="footer-section">
                 <h3>고객지원</h3>
                 <p>고객센터: 1588-0000</p>
                 <p>이메일: info@korevo.co.kr</p>
                 <p>운영시간: 평일 09:00-18:00</p>
-                <p><a href="notice.html">공지사항</a></p>
             </div>
             <div class="footer-section">
-                <h3>회사정보</h3>
+                <h3>주소</h3>
                 <p>서울특별시 강남구<br>테헤란로 123, 코레보빌딩 10층</p>
                 <p>사업자등록번호: 123-45-67890</p>
-                <p>대표이사: 간주호</p>
             </div>
         </div>
         <div class="footer-bottom">
@@ -1427,216 +1039,127 @@
     </footer>
 
     <script>
-        // ===== MOBILE MENU FUNCTIONALITY =====
-        function toggleMenu() {
-            const navMenu = document.getElementById('navMenu');
-            navMenu.classList.toggle('active');
-        }
-
-        // ===== NAVIGATION FUNCTIONALITY =====
-        function scrollToSection(sectionId) {
-            console.log(`Scrolling to: ${sectionId}`);
-            
-            // Close mobile menu if open
-            const navMenu = document.getElementById('navMenu');
-            navMenu.classList.remove('active');
-            
-            // Find the target section
-            const targetSection = document.getElementById(sectionId);
-            if (targetSection) {
-                const headerHeight = document.querySelector('.header').offsetHeight;
-                const targetPosition = targetSection.offsetTop - headerHeight - 20;
-                
-                window.scrollTo({
-                    top: targetPosition,
-                    behavior: 'smooth'
-                });
-            } else {
-                // If section doesn't exist yet, scroll to top
-                window.scrollTo({
-                    top: 0,
-                    behavior: 'smooth'
-                });
-            }
-        }
-
-        // ===== SCROLL ANIMATIONS =====
-        function handleScrollAnimations() {
-            const sections = document.querySelectorAll('.content-section, .onyu-showcase, .technology-section, .market-section');
-            const observer = new IntersectionObserver((entries) => {
-                entries.forEach(entry => {
-                    if (entry.isIntersecting) {
-                        entry.target.classList.add('animate-on-scroll');
-                    }
-                });
-            }, { 
-                threshold: 0.1,
-                rootMargin: '50px 0px -50px 0px'
+        // Smooth scrolling for navigation links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    const headerHeight = document.querySelector('.header').offsetHeight;
+                    const targetPosition = target.offsetTop - headerHeight;
+                    
+                    window.scrollTo({
+                        top: targetPosition,
+                        behavior: 'smooth'
+                    });
+                }
             });
+        });
 
-            sections.forEach(section => {
-                observer.observe(section);
-            });
-        }
-
-        // ===== HEADER SCROLL EFFECT =====
-        function initHeaderScrollEffect() {
-            let lastScrollTop = 0;
+        // Header background on scroll
+        window.addEventListener('scroll', function() {
             const header = document.querySelector('.header');
+            const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
             
-            window.addEventListener('scroll', function() {
-                const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
-                
-                // Add/remove scrolled class for styling
-                if (scrollTop > 100) {
-                    header.style.background = 'rgba(255, 255, 255, 0.98)';
-                    header.style.boxShadow = '0 2px 20px rgba(0, 0, 0, 0.1)';
-                } else {
-                    header.style.background = 'rgba(255, 255, 255, 0.95)';
-                    header.style.boxShadow = 'none';
-                }
-                
-                lastScrollTop = scrollTop;
-            });
-        }
-
-        // ===== CARD HOVER EFFECTS =====
-        function initCardHoverEffects() {
-            const cards = document.querySelectorAll('.business-card, .tech-card, .market-card');
-            
-            cards.forEach(card => {
-                card.addEventListener('mouseenter', function() {
-                    const icon = this.querySelector('.business-icon, .tech-icon');
-                    if (icon) {
-                        icon.style.transform = 'scale(1.1) rotate(5deg)';
-                    }
-                });
-                
-                card.addEventListener('mouseleave', function() {
-                    const icon = this.querySelector('.business-icon, .tech-icon');
-                    if (icon) {
-                        icon.style.transform = 'scale(1) rotate(0deg)';
-                    }
-                });
-            });
-        }
-
-        // ===== COUNTER ANIMATION =====
-        function animateCounters() {
-            const counters = document.querySelectorAll('.market-number, .stat-number');
-            
-            const observerOptions = {
-                threshold: 0.5,
-                rootMargin: '0px 0px -100px 0px'
-            };
-
-            const counterObserver = new IntersectionObserver((entries) => {
-                entries.forEach(entry => {
-                    if (entry.isIntersecting && !entry.target.classList.contains('animated')) {
-                        animateNumber(entry.target);
-                        entry.target.classList.add('animated');
-                    }
-                });
-            }, observerOptions);
-
-            counters.forEach(counter => {
-                counterObserver.observe(counter);
-            });
-        }
-
-        function animateNumber(element) {
-            const finalText = element.textContent;
-            const finalValue = parseFloat(finalText.replace(/[^0-9.]/g, ''));
-            const suffix = finalText.replace(/[0-9.]/g, '');
-            
-            if (isNaN(finalValue)) return;
-            
-            let currentValue = 0;
-            const increment = finalValue / 60;
-            const duration = 2000;
-            const stepTime = duration / 60;
-            
-            const timer = setInterval(() => {
-                currentValue += increment;
-                if (currentValue >= finalValue) {
-                    currentValue = finalValue;
-                    clearInterval(timer);
-                }
-                
-                let displayValue;
-                if (finalText.includes('%')) {
-                    displayValue = currentValue.toFixed(1) + '%';
-                } else if (finalText.includes('만')) {
-                    displayValue = Math.floor(currentValue) + '만+';
-                } else if (finalText.includes('억')) {
-                    displayValue = currentValue.toFixed(2) + '억';
-                } else if (finalText.includes('년')) {
-                    displayValue = Math.floor(currentValue) + '년';
-                } else if (finalText.includes('/')) {
-                    displayValue = Math.floor(currentValue) + '/7';
-                } else {
-                    displayValue = Math.floor(currentValue) + suffix;
-                }
-                
-                element.textContent = displayValue;
-            }, stepTime);
-        }
-
-        // ===== SMOOTH SCROLL FOR ANCHOR LINKS =====
-        function initSmoothScroll() {
-            document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-                anchor.addEventListener('click', function (e) {
-                    e.preventDefault();
-                    const targetId = this.getAttribute('href').substring(1);
-                    if (targetId) {
-                        scrollToSection(targetId);
-                    }
-                });
-            });
-        }
-
-        // ===== RESPONSIVE MENU HANDLING =====
-        function initResponsiveHandling() {
-            // Close mobile menu when clicking outside
-            document.addEventListener('click', function(e) {
-                const navMenu = document.getElementById('navMenu');
-                const menuToggle = document.querySelector('.menu-toggle');
-                const navContainer = document.querySelector('.nav-container');
-                
-                if (!navContainer.contains(e.target) && navMenu.classList.contains('active')) {
-                    navMenu.classList.remove('active');
-                }
-            });
-
-            // Handle window resize
-            window.addEventListener('resize', function() {
-                if (window.innerWidth > 768) {
-                    const navMenu = document.getElementById('navMenu');
-                    navMenu.classList.remove('active');
-                }
-            });
-        }
-
-        // ===== MAIN INITIALIZATION =====
-        document.addEventListener('DOMContentLoaded', function() {
-            console.log('KOREVO website initialized');
-            
-            // Initialize all functionality
-            handleScrollAnimations();
-            initHeaderScrollEffect();
-            initCardHoverEffects();
-            animateCounters();
-            initSmoothScroll();
-            initResponsiveHandling();
-            
-            // Add loaded class to body for CSS animations
-            document.body.classList.add('loaded');
+            if (scrollTop > 50) {
+                header.style.background = 'rgba(255, 255, 255, 0.95)';
+                header.style.borderBottom = '1px solid rgba(0, 0, 0, 0.15)';
+            } else {
+                header.style.background = 'rgba(255, 255, 255, 0.8)';
+                header.style.borderBottom = '1px solid rgba(0, 0, 0, 0.1)';
+            }
         });
 
-        // ===== ERROR HANDLING =====
-        window.addEventListener('error', function(e) {
-            console.error('Website Error:', e.error);
+        // Language selector functionality
+        document.querySelectorAll('.lang-btn').forEach(btn => {
+            btn.addEventListener('click', function(e) {
+                e.preventDefault();
+                
+                // Remove active class from all buttons
+                document.querySelectorAll('.lang-btn').forEach(b => b.classList.remove('active'));
+                
+                // Add active class to clicked button
+                this.classList.add('active');
+                
+                // Add visual feedback
+                this.style.transform = 'scale(0.95)';
+                setTimeout(() => {
+                    this.style.transform = 'scale(1)';
+                }, 100);
+            });
         });
+
+        // Card hover effects
+        document.querySelectorAll('.business-card, .feature-card, .product-card, .tech-card').forEach(card => {
+            card.addEventListener('mouseenter', function() {
+                this.style.transform = 'translateY(-8px)';
+                this.style.boxShadow = '0 15px 40px rgba(0, 0, 0, 0.15)';
+            });
+            
+            card.addEventListener('mouseleave', function() {
+                this.style.transform = 'translateY(0)';
+                this.style.boxShadow = '0 10px 30px rgba(0, 0, 0, 0.1)';
+            });
+        });
+
+        // Button interactions
+        document.querySelectorAll('.cta-btn, .business-cta').forEach(btn => {
+            btn.addEventListener('mousedown', function() {
+                this.style.transform = 'scale(0.98)';
+            });
+            
+            btn.addEventListener('mouseup', function() {
+                this.style.transform = 'scale(1)';
+            });
+            
+            btn.addEventListener('mouseleave', function() {
+                this.style.transform = 'scale(1)';
+            });
+        });
+
+        // CEO image interaction
+        const ceoImage = document.querySelector('.ceo-image');
+        if (ceoImage) {
+            ceoImage.addEventListener('click', function() {
+                this.style.transform = 'scale(1.05) rotate(5deg)';
+                setTimeout(() => {
+                    this.style.transform = 'scale(1) rotate(0deg)';
+                }, 200);
+            });
+        }
+
+        // Intersection Observer for fade-in animations
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.opacity = '1';
+                    entry.target.style.transform = 'translateY(0)';
+                }
+            });
+        }, observerOptions);
+
+        // Observe elements for animation
+        document.querySelectorAll('.business-card, .feature-card, .product-card, .tech-card').forEach((el, index) => {
+            el.style.opacity = '0';
+            el.style.transform = 'translateY(30px)';
+            el.style.transition = `opacity 0.6s ease ${index * 0.1}s, transform 0.6s ease ${index * 0.1}s`;
+            observer.observe(el);
+        });
+
+        // Mobile menu toggle (if needed)
+        function toggleMobileMenu() {
+            const navMenu = document.querySelector('.nav-menu');
+            navMenu.style.display = navMenu.style.display === 'flex' ? 'none' : 'flex';
+        }
+
+        // Console message for developers
+        console.log('🍎 KOREVO with Apple-inspired design loaded successfully!');
+        console.log('Color scheme: Apple Black (#000000), Science Blue (#0066CC), Athens Gray (#F5F5F7), White (#FFFFFF)');
     </script>
 </body>
 </html>
