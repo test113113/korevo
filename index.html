@@ -137,11 +137,35 @@
             display: flex;
             align-items: center;
             justify-content: center;
+            overflow: hidden;
+        }
+
+        .hero-video {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            opacity: 0.1;
+            z-index: 1;
+        }
+
+        .hero-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, rgba(255, 255, 255, 0.9) 0%, rgba(245, 245, 247, 0.8) 100%);
+            z-index: 2;
         }
 
         .hero-content {
             max-width: 800px;
             margin: 0 auto;
+            position: relative;
+            z-index: 3;
         }
 
         .hero h1 {
@@ -658,7 +682,62 @@
             font-size: 14px;
         }
 
-        /* ===== FINAL CTA SECTION ===== */
+        /* ===== VIDEO SHOWCASE ===== */
+        .video-container {
+            margin-top: 3rem;
+        }
+
+        .main-video {
+            margin-bottom: 3rem;
+            text-align: center;
+        }
+
+        .main-video video {
+            width: 100%;
+            max-width: 800px;
+            height: auto;
+            border-radius: 18px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+        }
+
+        .video-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+
+        .video-card {
+            background: var(--bg-primary);
+            border: 1px solid rgba(0, 0, 0, 0.1);
+            border-radius: 18px;
+            padding: 1.5rem;
+            text-align: center;
+            transition: all 0.3s ease;
+        }
+
+        .video-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.12);
+        }
+
+        .video-card video {
+            width: 100%;
+            height: auto;
+            border-radius: 12px;
+            margin-bottom: 1rem;
+        }
+
+        .video-card h3 {
+            font-size: 1.125rem;
+            font-weight: 600;
+            color: var(--apple-black);
+            margin-bottom: 0.5rem;
+        }
+
+        .video-card p {
+            color: var(--text-muted);
+            font-size: 14px;
+        }
         .final-cta {
             background: var(--apple-dark);
             color: var(--bg-primary);
@@ -841,6 +920,15 @@
     <main>
         <!-- Hero Section -->
         <section id="home" class="hero">
+            <!-- Background Video -->
+            <video class="hero-video" autoplay muted loop>
+                <source src="https://sample-videos.com/zip/10/mp4/SampleVideo_1280x720_1mb.mp4" type="video/mp4">
+                <!-- 실제 프로젝트에서는 KOREVO 브랜드 영상으로 교체 -->
+            </video>
+            
+            <!-- Video Overlay -->
+            <div class="hero-overlay"></div>
+            
             <div class="hero-content">
                 <h1>KOREVO</h1>
                 <p class="subtitle">한국의 전통과 혁신을 담다</p>
@@ -851,6 +939,43 @@
                 <div class="cta-buttons">
                     <a href="#about" class="cta-btn">회사소개</a>
                     <a href="#products" class="cta-btn secondary">제품보기</a>
+                    <a href="#video-showcase" class="cta-btn secondary">영상보기</a>
+                </div>
+            </div>
+        </section>
+
+        <!-- Video Showcase Section -->
+        <section id="video-showcase" class="content-section">
+            <h2 class="section-title">KOREVO 브랜드 스토리</h2>
+            <div class="video-container">
+                <div class="main-video">
+                    <video controls poster="https://via.placeholder.com/800x450/F5F5F7/1D1D1F?text=KOREVO+Brand+Story">
+                        <source src="https://sample-videos.com/zip/10/mp4/SampleVideo_1280x720_5mb.mp4" type="video/mp4">
+                        브라우저가 비디오를 지원하지 않습니다.
+                    </video>
+                </div>
+                <div class="video-grid">
+                    <div class="video-card">
+                        <video controls poster="https://via.placeholder.com/400x225/F5F5F7/1D1D1F?text=Traditional+Craft">
+                            <source src="https://sample-videos.com/zip/10/mp4/SampleVideo_640x360_1mb.mp4" type="video/mp4">
+                        </video>
+                        <h3>전통 기법</h3>
+                        <p>천년의 유기 제작 기술</p>
+                    </div>
+                    <div class="video-card">
+                        <video controls poster="https://via.placeholder.com/400x225/F5F5F7/1D1D1F?text=AI+Technology">
+                            <source src="https://sample-videos.com/zip/10/mp4/SampleVideo_640x360_2mb.mp4" type="video/mp4">
+                        </video>
+                        <h3>AI 기술</h3>
+                        <p>맞춤형 디자인 솔루션</p>
+                    </div>
+                    <div class="video-card">
+                        <video controls poster="https://via.placeholder.com/400x225/F5F5F7/1D1D1F?text=Product+Innovation">
+                            <source src="https://sample-videos.com/zip/10/mp4/SampleVideo_640x360_5mb.mp4" type="video/mp4">
+                        </video>
+                        <h3>제품 혁신</h3>
+                        <p>온열 기능 유기 제품</p>
+                    </div>
                 </div>
             </div>
         </section>
