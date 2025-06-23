@@ -920,11 +920,13 @@
             }
 
             .hero-video {
-                display: none; /* 모바일에서는 비디오 숨김 */
+                /* 모바일에서도 비디오 표시하되 성능 최적화 */
+                opacity: 0.3;
+                filter: brightness(1.2) contrast(1.2);
             }
 
             .hero-fallback-image {
-                opacity: 0.6; /* 모바일에서는 배경 밝게 */
+                opacity: 0.3; /* 모바일에서는 폴백 배경 더 투명하게 */
             }
 
             .ceo-profile-card {
@@ -1209,9 +1211,7 @@
                 </div>
             </div>
         </section>
-
         
-
         <!-- Final CTA Section -->
         <section class="final-cta">
             <h2>KOREVO와 함께하는 혁신</h2>
@@ -1484,17 +1484,19 @@
             if (isMobile()) {
                 console.log('Mobile device detected - optimizing experience');
                 
-                // Disable video on mobile to prevent issues
+                // 모바일에서도 비디오 유지하되 최적화 설정
                 const video = document.querySelector('.hero-video');
                 if (video) {
-                    video.style.display = 'none';
-                    video.remove(); // Remove from DOM to save memory
+                    // 모바일 최적화 설정
+                    video.style.opacity = '0.3';
+                    video.style.filter = 'brightness(1.2) contrast(1.2)';
+                    video.preload = 'metadata'; // 데이터 사용량 최소화
                 }
                 
-                // Enhance fallback background on mobile
+                // 폴백 배경 투명도 조정
                 const fallback = document.querySelector('.hero-fallback-image');
                 if (fallback) {
-                    fallback.style.opacity = '0.8';
+                    fallback.style.opacity = '0.3';
                 }
             }
 
@@ -1512,12 +1514,8 @@
             // Optimize for device capabilities
             optimizeForDevice();
             
-            // Initialize video handling only if not mobile
-            if (!isMobile()) {
-                initializeVideo();
-            } else {
-                console.log('Video initialization skipped on mobile device');
-            }
+            // Initialize video handling for all devices
+            initializeVideo();
             
             // Add loaded class to body for any CSS that depends on JS being ready
             document.body.classList.add('js-loaded');
@@ -1579,15 +1577,13 @@
 
         // ===== PRELOAD CRITICAL RESOURCES =====
         function preloadCriticalResources() {
-            // Preload hero video if not on mobile
-            if (!isMobile()) {
-                const link = document.createElement('link');
-                link.rel = 'preload';
-                link.as = 'video';
-                link.href = './video/korevo_hero.mp4';
-                link.type = 'video/mp4';
-                document.head.appendChild(link);
-            }
+            // Preload hero video for all devices
+            const link = document.createElement('link');
+            link.rel = 'preload';
+            link.as = 'video';
+            link.href = './video/korevo_hero.mp4';
+            link.type = 'video/mp4';
+            document.head.appendChild(link);
         }
 
         // Start preloading as soon as possible
