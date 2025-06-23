@@ -150,7 +150,7 @@
             justify-content: center;
             position: relative;
             overflow: hidden;
-            background: linear-gradient(135deg, #1a1a2e 0%, #16213e 50%, #0f3460 100%);
+            background: linear-gradient(135deg, #2a2a3e 0%, #1e2a4a 50%, #1a2f5a 100%);
         }
 
         /* Hero Video Container */
@@ -174,13 +174,14 @@
             width: auto;
             height: auto;
             transform: translate(-50%, -50%);
-            opacity: 0.15;
+            opacity: 0.4;
             object-fit: cover;
             transition: opacity 1s ease;
+            filter: brightness(1.1) contrast(1.1);
         }
 
         .hero-video.loaded {
-            opacity: 0.15;
+            opacity: 0.5;
         }
 
         /* Fallback Background Image */
@@ -190,10 +191,10 @@
             left: 0;
             width: 100%;
             height: 100%;
-            background: linear-gradient(135deg, rgba(26, 26, 46, 0.9) 0%, rgba(22, 33, 62, 0.8) 50%, rgba(15, 52, 96, 0.9) 100%),
-                        url('data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMTAwIiBoZWlnaHQ9IjEwMCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KICA8ZGVmcz4KICAgIDxwYXR0ZXJuIGlkPSJncmFpbiIgd2lkdGg9IjEwMCIgaGVpZ2h0PSIxMDAiIHBhdHRlcm5Vbml0cz0idXNlclNwYWNlT25Vc2UiPgogICAgICA8Y2lyY2xlIGN4PSI1MCIgY3k9IjUwIiByPSIxIiBmaWxsPSJyZ2JhKDI1NSwyNTUsMjU1LDAuMSkiLz4KICAgIDwvcGF0dGVybj4KICA8L2RlZnM+CiAgPHJlY3Qgd2lkdGg9IjEwMCIgaGVpZ2h0PSIxMDAiIGZpbGw9InVybCgjZ3JhaW4pIi8+Cjwvc3ZnPg==');
+            background: linear-gradient(135deg, rgba(42, 42, 62, 0.7) 0%, rgba(30, 42, 74, 0.6) 50%, rgba(26, 47, 90, 0.7) 100%),
+                        url('data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMTAwIiBoZWlnaHQ9IjEwMCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KICA8ZGVmcz4KICAgIDxwYXR0ZXJuIGlkPSJncmFpbiIgd2lkdGg9IjEwMCIgaGVpZ2h0PSIxMDAiIHBhdHRlcm5Vbml0cz0idXNlclNwYWNlT25Vc2UiPgogICAgICA8Y2lyY2xlIGN4PSI1MCIgY3k9IjUwIiByPSIxIiBmaWxsPSJyZ2JhKDI1NSwyNTUsMjU1LDAuMTUpIi8+CiAgICA8L3BhdHRlcm4+CiAgPC9kZWZzPgogIDxyZWN0IHdpZHRoPSIxMDAiIGhlaWdodD0iMTAwIiBmaWxsPSJ1cmwoI2dyYWluKSIvPgo8L3N2Zz4=');
             background-size: cover, 100px 100px;
-            opacity: 0.6;
+            opacity: 0.4;
             z-index: 1;
         }
 
@@ -206,9 +207,9 @@
             height: 100%;
             background: linear-gradient(
                 45deg, 
-                rgba(0, 0, 0, 0.3) 0%, 
-                rgba(0, 0, 0, 0.1) 50%, 
-                rgba(0, 0, 0, 0.3) 100%
+                rgba(0, 0, 0, 0.2) 0%, 
+                rgba(0, 0, 0, 0.05) 50%, 
+                rgba(0, 0, 0, 0.2) 100%
             );
             z-index: 2;
         }
@@ -923,7 +924,7 @@
             }
 
             .hero-fallback-image {
-                opacity: 0.8; /* 모바일에서는 배경 더 진하게 */
+                opacity: 0.6; /* 모바일에서는 배경 밝게 */
             }
 
             .ceo-profile-card {
