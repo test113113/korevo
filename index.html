@@ -126,15 +126,164 @@
             border-color: var(--accent-primary);
         }
 
-       <!-- Hero Section -->
-        <section id="home" class="hero">
-            <!-- Background Video -->
-            <video class="hero-video" autoplay loop muted>
-                <source src="./video/korevo_hero.mp4">
-            </video>
-            
-            <!-- Video Overlay -->
-            <div class="hero-overlay"></div>
+        /* ===== MOBILE MENU ===== */
+        .menu-toggle {
+            display: none;
+            flex-direction: column;
+            cursor: pointer;
+            gap: 4px;
+        }
+
+        .menu-toggle span {
+            width: 25px;
+            height: 3px;
+            background: var(--text-primary);
+            transition: 0.3s;
+            border-radius: 2px;
+        }
+
+        /* ===== HERO SECTION - FIXED ===== */
+        .hero {
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            overflow: hidden;
+            background: linear-gradient(135deg, #1a1a2e 0%, #16213e 50%, #0f3460 100%);
+        }
+
+        /* Hero Video Container */
+        .hero-video-container {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 1;
+            overflow: hidden;
+        }
+
+        /* Background Video */
+        .hero-video {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            min-width: 100%;
+            min-height: 100%;
+            width: auto;
+            height: auto;
+            transform: translate(-50%, -50%);
+            opacity: 0.15;
+            object-fit: cover;
+            transition: opacity 1s ease;
+        }
+
+        .hero-video.loaded {
+            opacity: 0.15;
+        }
+
+        /* Fallback Background Image */
+        .hero-fallback-image {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, rgba(26, 26, 46, 0.9) 0%, rgba(22, 33, 62, 0.8) 50%, rgba(15, 52, 96, 0.9) 100%),
+                        url('data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMTAwIiBoZWlnaHQ9IjEwMCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KICA8ZGVmcz4KICAgIDxwYXR0ZXJuIGlkPSJncmFpbiIgd2lkdGg9IjEwMCIgaGVpZ2h0PSIxMDAiIHBhdHRlcm5Vbml0cz0idXNlclNwYWNlT25Vc2UiPgogICAgICA8Y2lyY2xlIGN4PSI1MCIgY3k9IjUwIiByPSIxIiBmaWxsPSJyZ2JhKDI1NSwyNTUsMjU1LDAuMSkiLz4KICAgIDwvcGF0dGVybj4KICA8L2RlZnM+CiAgPHJlY3Qgd2lkdGg9IjEwMCIgaGVpZ2h0PSIxMDAiIGZpbGw9InVybCgjZ3JhaW4pIi8+Cjwvc3ZnPg==');
+            background-size: cover, 100px 100px;
+            opacity: 0.6;
+            z-index: 1;
+        }
+
+        /* Video Overlay */
+        .hero-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(
+                45deg, 
+                rgba(0, 0, 0, 0.3) 0%, 
+                rgba(0, 0, 0, 0.1) 50%, 
+                rgba(0, 0, 0, 0.3) 100%
+            );
+            z-index: 2;
+        }
+
+        /* Hero Content */
+        .hero-content {
+            text-align: center;
+            color: white;
+            position: relative;
+            z-index: 3;
+            max-width: 900px;
+            padding: 0 2rem;
+            animation: fadeInUp 1.2s ease-out;
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(50px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .hero-content h1 {
+            font-size: clamp(3rem, 8vw, 6rem);
+            font-weight: 700;
+            margin-bottom: 1.5rem;
+            letter-spacing: -0.02em;
+            background: linear-gradient(135deg, #ffffff 0%, #e0e7ff 50%, #c7d2fe 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            text-shadow: 0 4px 20px rgba(255, 255, 255, 0.1);
+        }
+
+        .hero-content .subtitle {
+            font-size: clamp(1.25rem, 3vw, 2rem);
+            margin-bottom: 1.5rem;
+            font-weight: 300;
+            opacity: 0.9;
+            letter-spacing: 0.5px;
+        }
+
+        .hero-content .description {
+            font-size: clamp(1rem, 2vw, 1.25rem);
+            line-height: 1.7;
+            margin-bottom: 3rem;
+            opacity: 0.8;
+            max-width: 700px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        /* Video Error Message */
+        .video-error-message {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: var(--bg-secondary);
+            display: none;
+            align-items: center;
+            justify-content: center;
+            z-index: 1;
+            color: var(--text-muted);
+            font-size: 14px;
+        }
+
+        .hero-video.error + .video-error-message {
+            display: flex;
+        }
 
         /* ===== CTA BUTTONS ===== */
         .cta-buttons {
@@ -153,25 +302,32 @@
             border-radius: 100px;
             font-weight: 500;
             font-size: 17px;
-            transition: all 0.2s ease;
+            transition: all 0.3s ease;
             cursor: pointer;
             min-width: 150px;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
         }
 
         .cta-btn:hover {
             background: #0051a3;
-            transform: translateY(-1px);
+            transform: translateY(-2px);
+            box-shadow: 0 10px 25px rgba(0, 102, 204, 0.3);
         }
 
         .cta-btn.secondary {
-            background: transparent;
-            color: var(--accent-primary);
-            border: 1px solid var(--accent-primary);
+            background: rgba(255, 255, 255, 0.1);
+            color: white;
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            backdrop-filter: blur(10px);
         }
 
         .cta-btn.secondary:hover {
-            background: var(--accent-primary);
-            color: var(--bg-primary);
+            background: rgba(255, 255, 255, 0.2);
+            border-color: rgba(255, 255, 255, 0.5);
+            transform: translateY(-2px);
+            box-shadow: 0 10px 25px rgba(255, 255, 255, 0.1);
         }
 
         /* ===== CONTENT SECTIONS ===== */
@@ -722,6 +878,52 @@
         @media (max-width: 768px) {
             .nav-menu {
                 display: none;
+                position: fixed;
+                top: 80px;
+                left: 0;
+                right: 0;
+                background: rgba(255, 255, 255, 0.95);
+                backdrop-filter: blur(20px);
+                flex-direction: column;
+                padding: 2rem;
+                box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
+                gap: 1rem;
+            }
+
+            .nav-menu.active {
+                display: flex;
+            }
+
+            .menu-toggle {
+                display: flex;
+            }
+
+            .hero {
+                height: 80vh;
+                min-height: 600px;
+            }
+
+            .hero-content {
+                padding: 0 1rem;
+            }
+
+            .cta-buttons {
+                flex-direction: column;
+                align-items: center;
+                max-width: 300px;
+                margin: 0 auto;
+            }
+
+            .cta-btn {
+                width: 100%;
+            }
+
+            .hero-video {
+                display: none; /* 모바일에서는 비디오 숨김 */
+            }
+
+            .hero-fallback-image {
+                opacity: 0.8; /* 모바일에서는 배경 더 진하게 */
             }
 
             .ceo-profile-card {
@@ -738,44 +940,9 @@
                 grid-template-columns: 1fr;
             }
 
-            .cta-buttons {
-                flex-direction: column;
-                align-items: center;
-            }
-
-            .hero {
-                padding: 6rem 1rem 4rem;
-            }
-
             .content-section {
                 padding: 3rem 1rem;
             }
-
-            .hero-video {
-                display: none; /* 모바일에서는 비디오 완전히 숨김 */
-            }
-
-            .hero-fallback-image {
-                opacity: 0.3; /* 모바일에서는 폴백 이미지 더 진하게 */
-            }
-        }
-
-        /* ===== VIDEO ERROR HANDLING ===== */
-        .video-error-message {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: var(--bg-secondary);
-            display: none;
-            align-items: center;
-            justify-content: center;
-            z-index: 1;
-        }
-
-        .hero-video.error + .video-error-message {
-            display: flex;
         }
 
         /* ===== SMOOTH TRANSITIONS ===== */
@@ -803,6 +970,16 @@
             outline: 2px solid var(--accent-primary);
             outline-offset: 2px;
         }
+
+        /* ===== PERFORMANCE OPTIMIZATIONS ===== */
+        .hero-video {
+            will-change: opacity;
+        }
+
+        .cta-btn,
+        .business-card {
+            will-change: transform;
+        }
     </style>
 </head>
 <body>
@@ -811,9 +988,9 @@
         <nav class="nav-container">
             <a href="#home" class="logo">KOREVO</a>
             
-            <ul class="nav-menu">
+            <ul class="nav-menu" id="navMenu">
                 <li><a href="#home" class="nav-link">홈</a></li>
-                <li><a href="#about" class="nav-link">회사소개</a></li>
+                <li><a href="greeting.html" class="nav-link">회사소개</a></li>
                 <li><a href="#business" class="nav-link">사업소개</a></li>
                 <li><a href="#products" class="nav-link">제품/서비스</a></li>
                 <li><a href="#shop" class="nav-link">쇼핑몰</a></li>
@@ -825,12 +1002,18 @@
                 <a href="#" class="lang-btn">🇨🇳</a>
                 <a href="#" class="lang-btn">🇯🇵</a>
             </div>
+
+            <div class="menu-toggle" onclick="toggleMenu()">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
         </nav>
     </header>
 
     <!-- Main Content -->
     <main>
-        <!-- Hero Section -->
+        <!-- Hero Section - FIXED -->
         <section id="home" class="hero">
             <!-- Background Video Container -->
             <div class="hero-video-container">
@@ -842,13 +1025,13 @@
                     loop 
                     playsinline
                     preload="metadata"
-                    oncanplay="this.style.opacity = '0.1'"
+                    oncanplay="handleVideoLoad(this)"
                     onerror="handleVideoError(this)"
-                    onloadeddata="handleVideoLoad(this)"
+                    onloadeddata="handleVideoLoadedData(this)"
                 >
                     <source src="./video/korevo_hero.mp4" type="video/mp4">
                     <source src="./video/korevo_hero.webm" type="video/webm">
-                    <!-- 여러 포맷 지원 -->
+                    Your browser does not support the video tag.
                 </video>
                 
                 <!-- Video Error Message -->
@@ -863,6 +1046,7 @@
             <!-- Video Overlay -->
             <div class="hero-overlay"></div>
             
+            <!-- Hero Content -->
             <div class="hero-content">
                 <h1>KOREVO</h1>
                 <p class="subtitle">한국의 전통과 혁신을 담다</p>
@@ -871,7 +1055,7 @@
                     KOREVO는 전통의 아름다움을 현대에 되살리며, 지속가능한 미래를 만들어갑니다.
                 </p>
                 <div class="cta-buttons">
-                    <a href="#about" class="cta-btn">회사소개</a>
+                    <a href="greeting.html" class="cta-btn">회사소개</a>
                     <a href="#products" class="cta-btn secondary">제품보기</a>
                     <a href="#shop" class="cta-btn secondary">쇼핑몰</a>
                 </div>
@@ -1025,6 +1209,63 @@
             </div>
         </section>
 
+        <!-- CEO Message Section -->
+        <section class="ceo-message-section">
+            <div class="container">
+                <div class="section-header">
+                    <div class="section-badge">Leadership Message</div>
+                    <h2 class="ceo-section-title">대표 인사말</h2>
+                    <p class="section-subtitle">전통과 혁신이 만나는 지점에서, 새로운 미래를 설계합니다</p>
+                </div>
+
+                <div class="ceo-profile-card">
+                    <div class="ceo-image-container">
+                        <div class="ceo-image">👨‍💼</div>
+                    </div>
+                    <div class="ceo-info">
+                        <h3 class="ceo-name">간주호</h3>
+                        <p class="ceo-title">대표이사 / CEO</p>
+                        <div class="ceo-credentials">
+                            <span class="credential-badge">서울대 경영학석사</span>
+                            <span class="credential-badge">15년 IT 경력</span>
+                            <span class="credential-badge">전통공예 전문가</span>
+                            <span class="credential-badge">정부과제 PL</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="message-content">
+                    <div class="message-text">
+                        안녕하십니까. KOREVO 대표이사 간주호입니다.<br><br>
+                        
+                        <span class="highlight-text">천년의 전통</span>이 담긴 한국의 유기 기술과 <span class="highlight-text">최첨단 디지털 기술</span>이 만나는 특별한 여정에 여러분을 초대합니다.<br><br>
+                        
+                        우리는 단순히 제품을 만드는 회사가 아닙니다. 조상들의 지혜와 현대의 혁신을 융합하여 <span class="highlight-text">지속가능한 미래</span>를 만들어가는 기업입니다.<br><br>
+                        
+                        KOREVO와 함께 전통의 가치를 현대에 되살리고, 기술로 더 나은 세상을 만들어가는 여정에 동참해주시기 바랍니다.
+                    </div>
+                </div>
+
+                <div class="vision-grid">
+                    <div class="vision-card">
+                        <div class="vision-icon">🏺</div>
+                        <h3 class="vision-title">전통 계승</h3>
+                        <p class="vision-text">천년의 유기 제작 기술을 현대적으로 계승하여 우리만의 독특한 제품을 만듭니다.</p>
+                    </div>
+                    <div class="vision-card">
+                        <div class="vision-icon">🚀</div>
+                        <h3 class="vision-title">기술 혁신</h3>
+                        <p class="vision-text">최신 IT 기술로 전통 산업의 디지털 전환을 선도하며 새로운 가치를 창출합니다.</p>
+                    </div>
+                    <div class="vision-card">
+                        <div class="vision-icon">🌱</div>
+                        <h3 class="vision-title">지속가능성</h3>
+                        <p class="vision-text">환경과 사람을 생각하는 지속가능한 경영으로 더 나은 미래를 만들어갑니다.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
         <!-- Final CTA Section -->
         <section class="final-cta">
             <h2>KOREVO와 함께하는 혁신</h2>
@@ -1047,7 +1288,7 @@
             </div>
             <div class="footer-section">
                 <h3>빠른 링크</h3>
-                <p><a href="#about">회사소개</a></p>
+                <p><a href="greeting.html">회사소개</a></p>
                 <p><a href="#business">사업소개</a></p>
                 <p><a href="#products">제품소개</a></p>
             </div>
@@ -1069,58 +1310,107 @@
     </footer>
 
     <script>
-        // ===== VIDEO HANDLING FUNCTIONS =====
+        // ===== MOBILE MENU TOGGLE =====
+        function toggleMenu() {
+            const navMenu = document.getElementById('navMenu');
+            navMenu.classList.toggle('active');
+        }
+
+        // ===== ENHANCED VIDEO HANDLING =====
         function handleVideoError(video) {
-            console.log('Video failed to load:', video.src);
+            console.log('Video failed to load:', video.currentSrc || video.src);
             video.style.display = 'none';
             video.classList.add('error');
             
             // Show fallback background
             const fallback = document.querySelector('.hero-fallback-image');
             if (fallback) {
-                fallback.style.opacity = '0.3';
+                fallback.style.opacity = '0.8';
+            }
+            
+            // Log error details
+            if (video.error) {
+                console.error('Video error details:', {
+                    code: video.error.code,
+                    message: video.error.message
+                });
             }
         }
 
         function handleVideoLoad(video) {
-            console.log('Video loaded successfully:', video.src);
-            video.style.opacity = '0.1';
+            console.log('Video can start playing:', video.currentSrc || video.src);
+            video.classList.add('loaded');
+        }
+
+        function handleVideoLoadedData(video) {
+            console.log('Video loaded successfully:', video.currentSrc || video.src);
             
-            // Try to play video if it hasn't started
-            if (video.paused) {
-                const playPromise = video.play();
-                
-                if (playPromise !== undefined) {
-                    playPromise.catch(error => {
+            // Try to play video
+            const playPromise = video.play();
+            
+            if (playPromise !== undefined) {
+                playPromise
+                    .then(() => {
+                        console.log('Video playing successfully');
+                        video.classList.add('loaded');
+                    })
+                    .catch(error => {
                         console.log('Video autoplay failed:', error);
                         handleVideoError(video);
                     });
-                }
             }
         }
 
-        // Enhanced video initialization
+        // ===== VIDEO INITIALIZATION =====
         function initializeVideo() {
             const video = document.querySelector('.hero-video');
             
-            if (!video) return;
+            if (!video) {
+                console.log('No video element found');
+                return;
+            }
 
-            // Check if video file exists
-            video.addEventListener('loadstart', () => {
-                console.log('Video loading started');
-            });
+            // Set video properties for better mobile support
+            video.setAttribute('webkit-playsinline', '');
+            video.setAttribute('playsinline', '');
+            video.muted = true;
+            video.defaultMuted = true;
 
-            video.addEventListener('canplay', () => {
-                console.log('Video can start playing');
-                handleVideoLoad(video);
-            });
+            // Check if video file exists before trying to load
+            fetch('./video/korevo_hero.mp4', { method: 'HEAD' })
+                .then(response => {
+                    if (!response.ok) {
+                        throw new Error(`Video file not found: ${response.status}`);
+                    }
+                    console.log('Video file exists and is accessible');
+                    
+                    // Add event listeners after confirming file exists
+                    video.addEventListener('loadstart', () => {
+                        console.log('Video loading started');
+                    });
 
-            video.addEventListener('error', (e) => {
-                console.error('Video error event:', e);
-                handleVideoError(video);
-            });
+                    video.addEventListener('canplay', () => {
+                        handleVideoLoad(video);
+                    });
 
-            // Force video play attempt on user interaction
+                    video.addEventListener('loadeddata', () => {
+                        handleVideoLoadedData(video);
+                    });
+
+                    video.addEventListener('error', (e) => {
+                        console.error('Video error event:', e);
+                        handleVideoError(video);
+                    });
+
+                    // Start loading the video
+                    video.load();
+                })
+                .catch(error => {
+                    console.error('Video file check failed:', error);
+                    handleVideoError(video);
+                });
+
+            // Force video play on user interaction (for mobile)
             document.addEventListener('click', () => {
                 if (video.paused && !video.classList.contains('error')) {
                     const playPromise = video.play();
@@ -1131,19 +1421,6 @@
                     }
                 }
             }, { once: true });
-
-            // Check video file accessibility
-            fetch('./video/korevo_hero.mp4', { method: 'HEAD' })
-                .then(response => {
-                    if (!response.ok) {
-                        throw new Error('Video file not found');
-                    }
-                    console.log('Video file exists and is accessible');
-                })
-                .catch(error => {
-                    console.error('Video file check failed:', error);
-                    handleVideoError(video);
-                });
         }
 
         // ===== SMOOTH SCROLLING =====
@@ -1252,21 +1529,12 @@
             return window.innerWidth <= 768 || /Android|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
         }
 
-        function isLowPowerMode() {
-            // iOS Low Power Mode detection (approximate)
-            const canvas = document.createElement('canvas');
-            const gl = canvas.getContext('webgl');
-            return gl ? false : true; // Simplified check
+        function isReducedMotion() {
+            return window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
         }
 
-        // ===== INITIALIZATION =====
-        document.addEventListener('DOMContentLoaded', function() {
-            console.log('🍎 KOREVO with Apple-inspired design loaded successfully!');
-            
-            // Initialize video handling
-            initializeVideo();
-            
-            // Mobile optimizations
+        // ===== PERFORMANCE OPTIMIZATION =====
+        function optimizeForDevice() {
             if (isMobile()) {
                 console.log('Mobile device detected - optimizing experience');
                 
@@ -1274,19 +1542,52 @@
                 const video = document.querySelector('.hero-video');
                 if (video) {
                     video.style.display = 'none';
+                    video.remove(); // Remove from DOM to save memory
                 }
                 
                 // Enhance fallback background on mobile
                 const fallback = document.querySelector('.hero-fallback-image');
                 if (fallback) {
-                    fallback.style.opacity = '0.3';
+                    fallback.style.opacity = '0.8';
                 }
             }
+
+            if (isReducedMotion()) {
+                console.log('Reduced motion preference detected');
+                // Disable animations for users who prefer reduced motion
+                document.documentElement.style.setProperty('--animation-duration', '0.01ms');
+            }
+        }
+
+        // ===== INITIALIZATION =====
+        document.addEventListener('DOMContentLoaded', function() {
+            console.log('🍎 KOREVO website loaded successfully!');
+            
+            // Optimize for device capabilities
+            optimizeForDevice();
+            
+            // Initialize video handling only if not mobile
+            if (!isMobile()) {
+                initializeVideo();
+            } else {
+                console.log('Video initialization skipped on mobile device');
+            }
+            
+            // Add loaded class to body for any CSS that depends on JS being ready
+            document.body.classList.add('js-loaded');
         });
 
         // ===== ERROR HANDLING =====
         window.addEventListener('error', function(e) {
             console.error('JavaScript Error:', e.error);
+            
+            // Graceful fallback for video errors
+            if (e.error && e.error.message && e.error.message.includes('video')) {
+                const video = document.querySelector('.hero-video');
+                if (video) {
+                    handleVideoError(video);
+                }
+            }
         });
 
         // ===== PERFORMANCE MONITORING =====
@@ -1297,8 +1598,54 @@
             if (performance.timing) {
                 const loadTime = performance.timing.loadEventEnd - performance.timing.navigationStart;
                 console.log(`Page load time: ${loadTime}ms`);
+                
+                // Log video load status
+                const video = document.querySelector('.hero-video');
+                if (video) {
+                    console.log('Video element status:', {
+                        readyState: video.readyState,
+                        networkState: video.networkState,
+                        error: video.error
+                    });
+                }
             }
         });
+
+        // ===== RESIZE HANDLER =====
+        window.addEventListener('resize', function() {
+            // Close mobile menu on resize
+            const navMenu = document.getElementById('navMenu');
+            if (navMenu && navMenu.classList.contains('active')) {
+                navMenu.classList.remove('active');
+            }
+        });
+
+        // ===== FOCUS MANAGEMENT =====
+        document.addEventListener('keydown', function(e) {
+            // ESC key to close mobile menu
+            if (e.key === 'Escape') {
+                const navMenu = document.getElementById('navMenu');
+                if (navMenu && navMenu.classList.contains('active')) {
+                    navMenu.classList.remove('active');
+                }
+            }
+        });
+
+        // ===== PRELOAD CRITICAL RESOURCES =====
+        function preloadCriticalResources() {
+            // Preload hero video if not on mobile
+            if (!isMobile()) {
+                const link = document.createElement('link');
+                link.rel = 'preload';
+                link.as = 'video';
+                link.href = './video/korevo_hero.mp4';
+                link.type = 'video/mp4';
+                document.head.appendChild(link);
+            }
+        }
+
+        // Start preloading as soon as possible
+        preloadCriticalResources();
     </script>
 </body>
 </html>
