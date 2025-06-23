@@ -140,13 +140,42 @@
             overflow: hidden;
         }
 
-        .hero-video {
+        /* Background Video Container */
+        .hero-video-container {
             position: absolute;
             top: 0;
             left: 0;
             width: 100%;
             height: 100%;
+            z-index: 1;
+            overflow: hidden;
+        }
+
+        .hero-video {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            min-width: 100%;
+            min-height: 100%;
+            width: auto;
+            height: auto;
+            transform: translate(-50%, -50%);
             object-fit: cover;
+            opacity: 0.1;
+            transition: opacity 0.3s ease;
+        }
+
+        /* Fallback Image */
+        .hero-fallback-image {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, 
+                rgba(245, 245, 247, 0.8) 0%, 
+                rgba(255, 255, 255, 0.9) 50%, 
+                rgba(245, 245, 247, 0.8) 100%);
             opacity: 0.1;
             z-index: 1;
         }
@@ -682,62 +711,7 @@
             font-size: 14px;
         }
 
-        /* ===== VIDEO SHOWCASE ===== */
-        .video-container {
-            margin-top: 3rem;
-        }
-
-        .main-video {
-            margin-bottom: 3rem;
-            text-align: center;
-        }
-
-        .main-video video {
-            width: 100%;
-            max-width: 800px;
-            height: auto;
-            border-radius: 18px;
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
-        }
-
-        .video-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 2rem;
-        }
-
-        .video-card {
-            background: var(--bg-primary);
-            border: 1px solid rgba(0, 0, 0, 0.1);
-            border-radius: 18px;
-            padding: 1.5rem;
-            text-align: center;
-            transition: all 0.3s ease;
-        }
-
-        .video-card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.12);
-        }
-
-        .video-card video {
-            width: 100%;
-            height: auto;
-            border-radius: 12px;
-            margin-bottom: 1rem;
-        }
-
-        .video-card h3 {
-            font-size: 1.125rem;
-            font-weight: 600;
-            color: var(--apple-black);
-            margin-bottom: 0.5rem;
-        }
-
-        .video-card p {
-            color: var(--text-muted);
-            font-size: 14px;
-        }
+        /* ===== FINAL CTA ===== */
         .final-cta {
             background: var(--apple-dark);
             color: var(--bg-primary);
@@ -862,6 +836,32 @@
             .content-section {
                 padding: 3rem 1rem;
             }
+
+            .hero-video {
+                display: none; /* 모바일에서는 비디오 완전히 숨김 */
+            }
+
+            .hero-fallback-image {
+                opacity: 0.3; /* 모바일에서는 폴백 이미지 더 진하게 */
+            }
+        }
+
+        /* ===== VIDEO ERROR HANDLING ===== */
+        .video-error-message {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: var(--bg-secondary);
+            display: none;
+            align-items: center;
+            justify-content: center;
+            z-index: 1;
+        }
+
+        .hero-video.error + .video-error-message {
+            display: flex;
         }
 
         /* ===== SMOOTH TRANSITIONS ===== */
@@ -918,11 +918,33 @@
     <main>
         <!-- Hero Section -->
         <section id="home" class="hero">
-            <!-- Background Video -->
-            <video class="hero-video" autoplay muted loop>
-                <source src="./video/korevo_hero.mp4" type="video/mp4">
-                <!-- 실제 프로젝트에서는 KOREVO 브랜드 영상으로 교체 -->
-            </video>
+            <!-- Background Video Container -->
+            <div class="hero-video-container">
+                <!-- Background Video -->
+                <video 
+                    class="hero-video"
+                    autoplay 
+                    muted 
+                    loop 
+                    playsinline
+                    preload="metadata"
+                    oncanplay="this.style.opacity = '0.1'"
+                    onerror="handleVideoError(this)"
+                    onloadeddata="handleVideoLoad(this)"
+                >
+                    <source src="./video/korevo_hero.mp4" type="video/mp4">
+                    <source src="./video/korevo_hero.webm" type="video/webm">
+                    <!-- 여러 포맷 지원 -->
+                </video>
+                
+                <!-- Video Error Message -->
+                <div class="video-error-message">
+                    <p>비디오를 로드할 수 없습니다.</p>
+                </div>
+                
+                <!-- Fallback Background Image -->
+                <div class="hero-fallback-image"></div>
+            </div>
             
             <!-- Video Overlay -->
             <div class="hero-overlay"></div>
@@ -1060,23 +1082,31 @@
             <div class="tech-grid">
                 <div class="tech-card">
                     <div class="tech-icon">📱</div>
-                    <h3>AI 얼굴 분석</h3>
-                    <p>스마트폰 카메라를 통한 정밀한 얼굴 형태 분석으로 개인 맞춤형 제품 설계를 지원합니다.</p>
+                    <div>
+                        <h3>AI 얼굴 분석</h3>
+                        <p>스마트폰 카메라를 통한 정밀한 얼굴 형태 분석으로 개인 맞춤형 제품 설계를 지원합니다.</p>
+                    </div>
                 </div>
                 <div class="tech-card">
                     <div class="tech-icon">🏭</div>
-                    <h3>제조업 ERP</h3>
-                    <p>전통 제조업을 위한 특화된 ERP 솔루션으로 생산성 향상과 품질 관리를 동시에 실현합니다.</p>
+                    <div>
+                        <h3>제조업 ERP</h3>
+                        <p>전통 제조업을 위한 특화된 ERP 솔루션으로 생산성 향상과 품질 관리를 동시에 실현합니다.</p>
+                    </div>
                 </div>
                 <div class="tech-card">
                     <div class="tech-icon">📡</div>
-                    <h3>IoT 품질관리</h3>
-                    <p>사물인터넷 기술을 활용한 실시간 품질 모니터링으로 최고 수준의 제품 품질을 보장합니다.</p>
+                    <div>
+                        <h3>IoT 품질관리</h3>
+                        <p>사물인터넷 기술을 활용한 실시간 품질 모니터링으로 최고 수준의 제품 품질을 보장합니다.</p>
+                    </div>
                 </div>
                 <div class="tech-card">
                     <div class="tech-icon">🛒</div>
-                    <h3>전자상거래 플랫폼</h3>
-                    <p>전통공예품 전용 온라인 판매 플랫폼으로 장인과 고객을 직접 연결하는 디지털 마켓플레이스입니다.</p>
+                    <div>
+                        <h3>전자상거래 플랫폼</h3>
+                        <p>전통공예품 전용 온라인 판매 플랫폼으로 장인과 고객을 직접 연결하는 디지털 마켓플레이스입니다.</p>
+                    </div>
                 </div>
             </div>
         </section>
@@ -1106,7 +1136,7 @@
                 <p><a href="#about">회사소개</a></p>
                 <p><a href="#business">사업소개</a></p>
                 <p><a href="#products">제품소개</a></p>
-                </div>
+            </div>
             <div class="footer-section">
                 <h3>고객지원</h3>
                 <p>고객센터: 1588-0000</p>
@@ -1125,7 +1155,84 @@
     </footer>
 
     <script>
-        // Smooth scrolling for navigation links
+        // ===== VIDEO HANDLING FUNCTIONS =====
+        function handleVideoError(video) {
+            console.log('Video failed to load:', video.src);
+            video.style.display = 'none';
+            video.classList.add('error');
+            
+            // Show fallback background
+            const fallback = document.querySelector('.hero-fallback-image');
+            if (fallback) {
+                fallback.style.opacity = '0.3';
+            }
+        }
+
+        function handleVideoLoad(video) {
+            console.log('Video loaded successfully:', video.src);
+            video.style.opacity = '0.1';
+            
+            // Try to play video if it hasn't started
+            if (video.paused) {
+                const playPromise = video.play();
+                
+                if (playPromise !== undefined) {
+                    playPromise.catch(error => {
+                        console.log('Video autoplay failed:', error);
+                        handleVideoError(video);
+                    });
+                }
+            }
+        }
+
+        // Enhanced video initialization
+        function initializeVideo() {
+            const video = document.querySelector('.hero-video');
+            
+            if (!video) return;
+
+            // Check if video file exists
+            video.addEventListener('loadstart', () => {
+                console.log('Video loading started');
+            });
+
+            video.addEventListener('canplay', () => {
+                console.log('Video can start playing');
+                handleVideoLoad(video);
+            });
+
+            video.addEventListener('error', (e) => {
+                console.error('Video error event:', e);
+                handleVideoError(video);
+            });
+
+            // Force video play attempt on user interaction
+            document.addEventListener('click', () => {
+                if (video.paused && !video.classList.contains('error')) {
+                    const playPromise = video.play();
+                    if (playPromise !== undefined) {
+                        playPromise.catch(error => {
+                            console.log('Manual video play failed:', error);
+                        });
+                    }
+                }
+            }, { once: true });
+
+            // Check video file accessibility
+            fetch('./video/korevo_hero.mp4', { method: 'HEAD' })
+                .then(response => {
+                    if (!response.ok) {
+                        throw new Error('Video file not found');
+                    }
+                    console.log('Video file exists and is accessible');
+                })
+                .catch(error => {
+                    console.error('Video file check failed:', error);
+                    handleVideoError(video);
+                });
+        }
+
+        // ===== SMOOTH SCROLLING =====
         document.querySelectorAll('a[href^="#"]').forEach(anchor => {
             anchor.addEventListener('click', function (e) {
                 e.preventDefault();
@@ -1142,7 +1249,7 @@
             });
         });
 
-        // Header background on scroll
+        // ===== HEADER BACKGROUND ON SCROLL =====
         window.addEventListener('scroll', function() {
             const header = document.querySelector('.header');
             const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
@@ -1156,7 +1263,7 @@
             }
         });
 
-        // Language selector functionality
+        // ===== LANGUAGE SELECTOR =====
         document.querySelectorAll('.lang-btn').forEach(btn => {
             btn.addEventListener('click', function(e) {
                 e.preventDefault();
@@ -1175,7 +1282,7 @@
             });
         });
 
-        // Card hover effects
+        // ===== CARD HOVER EFFECTS =====
         document.querySelectorAll('.business-card, .feature-card, .product-card, .tech-card').forEach(card => {
             card.addEventListener('mouseenter', function() {
                 this.style.transform = 'translateY(-8px)';
@@ -1188,7 +1295,7 @@
             });
         });
 
-        // Button interactions
+        // ===== BUTTON INTERACTIONS =====
         document.querySelectorAll('.cta-btn, .business-cta').forEach(btn => {
             btn.addEventListener('mousedown', function() {
                 this.style.transform = 'scale(0.98)';
@@ -1203,18 +1310,7 @@
             });
         });
 
-        // CEO image interaction
-        const ceoImage = document.querySelector('.ceo-image');
-        if (ceoImage) {
-            ceoImage.addEventListener('click', function() {
-                this.style.transform = 'scale(1.05) rotate(5deg)';
-                setTimeout(() => {
-                    this.style.transform = 'scale(1) rotate(0deg)';
-                }, 200);
-            });
-        }
-
-        // Intersection Observer for fade-in animations
+        // ===== INTERSECTION OBSERVER FOR ANIMATIONS =====
         const observerOptions = {
             threshold: 0.1,
             rootMargin: '0px 0px -50px 0px'
@@ -1237,15 +1333,58 @@
             observer.observe(el);
         });
 
-        // Mobile menu toggle (if needed)
-        function toggleMobileMenu() {
-            const navMenu = document.querySelector('.nav-menu');
-            navMenu.style.display = navMenu.style.display === 'flex' ? 'none' : 'flex';
+        // ===== MOBILE DETECTION AND OPTIMIZATION =====
+        function isMobile() {
+            return window.innerWidth <= 768 || /Android|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
         }
 
-        // Console message for developers
-        console.log('🍎 KOREVO with Apple-inspired design loaded successfully!');
-        console.log('Color scheme: Apple Black (#000000), Science Blue (#0066CC), Athens Gray (#F5F5F7), White (#FFFFFF)');
+        function isLowPowerMode() {
+            // iOS Low Power Mode detection (approximate)
+            const canvas = document.createElement('canvas');
+            const gl = canvas.getContext('webgl');
+            return gl ? false : true; // Simplified check
+        }
+
+        // ===== INITIALIZATION =====
+        document.addEventListener('DOMContentLoaded', function() {
+            console.log('🍎 KOREVO with Apple-inspired design loaded successfully!');
+            
+            // Initialize video handling
+            initializeVideo();
+            
+            // Mobile optimizations
+            if (isMobile()) {
+                console.log('Mobile device detected - optimizing experience');
+                
+                // Disable video on mobile to prevent issues
+                const video = document.querySelector('.hero-video');
+                if (video) {
+                    video.style.display = 'none';
+                }
+                
+                // Enhance fallback background on mobile
+                const fallback = document.querySelector('.hero-fallback-image');
+                if (fallback) {
+                    fallback.style.opacity = '0.3';
+                }
+            }
+        });
+
+        // ===== ERROR HANDLING =====
+        window.addEventListener('error', function(e) {
+            console.error('JavaScript Error:', e.error);
+        });
+
+        // ===== PERFORMANCE MONITORING =====
+        window.addEventListener('load', function() {
+            console.log('Page fully loaded');
+            
+            // Log performance metrics
+            if (performance.timing) {
+                const loadTime = performance.timing.loadEventEnd - performance.timing.navigationStart;
+                console.log(`Page load time: ${loadTime}ms`);
+            }
+        });
     </script>
 </body>
 </html>
