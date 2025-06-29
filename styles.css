@@ -74,6 +74,10 @@ body {
 
 /* ===== DROPDOWN MENUS ===== */
 /* Regular Dropdown Menu */
+.nav-item {
+    position: relative;
+}
+
 .dropdown {
     position: absolute;
     top: 100%;
