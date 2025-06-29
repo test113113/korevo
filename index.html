@@ -992,12 +992,20 @@
             <a href="#home" class="logo">KOREVO</a>
             
             <ul class="nav-menu" id="navMenu">
-                <li><a href="#home" class="nav-link">홈</a></li>
-                <li><a href="greeting.html" class="nav-link">회사소개</a></li>
-                <li><a href="#business" class="nav-link">사업소개</a></li>
-                <li><a href="#products" class="nav-link">제품/서비스</a></li>
-                <li><a href="#shop" class="nav-link">쇼핑몰</a></li>
-            </ul>
+    <li class="nav-item">
+        <a href="#home" class="nav-link">홈</a>
+    </li>
+    <li class="nav-item">
+        <a href="#" class="nav-link">회사소개</a>
+        <div class="dropdown">
+            <div class="dropdown-item" onclick="window.location.href='greeting.html'">인사말</div>
+            <div class="dropdown-item" onclick="navigateToPage('vision')">비전 & 미션</div>
+            <div class="dropdown-item" onclick="navigateToPage('history')">연혁</div>
+            <div class="dropdown-item" onclick="navigateToPage('team')">팀 소개</div>
+        </div>
+    </li>
+    <!-- 나머지 메뉴들도 동일한 구조로... -->
+</ul>
 
             <div class="lang-selector">
                 <a href="#" class="lang-btn active">🇰🇷</a>
