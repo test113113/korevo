@@ -673,8 +673,43 @@
 
         /* ===== RESPONSIVE DESIGN ===== */
         @media (max-width: 768px) {
-            .nav-links {
+            .nav-menu {
                 display: none;
+                position: fixed;
+                top: 80px;
+                left: 0;
+                right: 0;
+                background: rgba(255, 255, 255, 0.95);
+                backdrop-filter: blur(20px);
+                flex-direction: column;
+                padding: 2rem;
+                box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
+                gap: 1rem;
+            }
+
+            .nav-menu.active {
+                display: flex;
+            }
+
+            .nav-item.active .dropdown,
+            .nav-item.active .mega-dropdown {
+                position: static;
+                opacity: 1;
+                visibility: visible;
+                transform: none;
+                box-shadow: none;
+                background: var(--bg-secondary);
+                margin-top: 0.5rem;
+                border-radius: 8px;
+            }
+
+            .mega-dropdown {
+                flex-direction: column;
+                padding: 1rem;
+            }
+
+            .dropdown-section {
+                margin-bottom: 1rem;
             }
 
             .menu-toggle {
@@ -775,13 +810,93 @@
     <header class="header">
         <nav class="nav-container">
             <a href="index.html" class="logo">KOREVO</a>
-            <ul class="nav-links">
-                <li><a href="index.html" class="nav-link">홈</a></li>
-                <li><a href="greeting.html" class="nav-link">인사말</a></li>
-                <li><a href="#" class="nav-link">비전&미션</a></li>
-                <li><a href="#" class="nav-link">사업소개</a></li>
-                <li><a href="#" class="nav-link">제품&서비스</a></li>
+            <ul class="nav-menu" id="navMenu">
+                <li class="nav-item">
+                    <a href="index.html" class="nav-link">홈</a>
+                </li>
+                <li class="nav-item">
+                    <a href="#" class="nav-link">회사소개</a>
+                    <div class="dropdown">
+                        <div class="dropdown-item" onclick="window.location.href='greeting.html'">인사말</div>
+                        <div class="dropdown-item" onclick="navigateToPage('vision')">비전 & 미션</div>
+                        <div class="dropdown-item" onclick="navigateToPage('history')">연혁</div>
+                        <div class="dropdown-item" onclick="navigateToPage('team')">팀 소개</div>
+                    </div>
+                </li>
+                <li class="nav-item">
+                    <a href="#" class="nav-link">사업소개</a>
+                    <div class="mega-dropdown">
+                        <div class="dropdown-section">
+                            <h4>브랜드 스토리</h4>
+                            <div class="dropdown-item" onclick="navigateToPage('onyu-brand')">온유(溫鍮) 브랜드</div>
+                            <div class="dropdown-item" onclick="navigateToPage('brand-philosophy')">브랜드 철학</div>
+                            <div class="dropdown-item" onclick="navigateToPage('traditional-craft')">전통 기법 계승</div>
+                        </div>
+                        <div class="dropdown-section">
+                            <h4>융합 비즈니스</h4>
+                            <div class="dropdown-item" onclick="navigateToPage('business-model')">사업 모델</div>
+                            <div class="dropdown-item" onclick="navigateToPage('innovation-strategy')">혁신 전략</div>
+                            <div class="dropdown-item" onclick="navigateToPage('sustainability')">지속가능경영</div>
+                        </div>
+                    </div>
+                </li>
+                <li class="nav-item">
+                    <a href="#" class="nav-link">제품/서비스</a>
+                    <div class="mega-dropdown">
+                        <div class="dropdown-section">
+                            <h4>🏺 유기 제품군</h4>
+                            <div class="dropdown-item" onclick="navigateToPage('dining-set')">식기 컬렉션</div>
+                            <div class="dropdown-item" onclick="navigateToPage('health-products')">건강 케어 제품</div>
+                            <div class="dropdown-item" onclick="navigateToPage('gift-sets')">프리미엄 선물세트</div>
+                            <div class="dropdown-item" onclick="navigateToPage('custom-craft')">맞춤 제작 서비스</div>
+                        </div>
+                        <div class="dropdown-section">
+                            <h4>💻 소프트웨어</h4>
+                            <div class="dropdown-item" onclick="navigateToPage('erp-solution')">제조업 ERP 솔루션</div>
+                            <div class="dropdown-item" onclick="navigateToPage('iot-platform')">IoT 품질관리 플랫폼</div>
+                            <div class="dropdown-item" onclick="navigateToPage('ecommerce-system')">전통공예 전자상거래</div>
+                            <div class="dropdown-item" onclick="navigateToPage('consulting')">디지털 전환 컨설팅</div>
+                        </div>
+                        <div class="dropdown-section">
+                            <h4>🔬 R&D 과제</h4>
+                            <div class="dropdown-item" onclick="navigateToPage('current-projects')">진행중 과제</div>
+                            <div class="dropdown-item" onclick="navigateToPage('completed-projects')">완료 과제</div>
+                            <div class="dropdown-item" onclick="navigateToPage('research-outcomes')">연구 성과</div>
+                            <div class="dropdown-item" onclick="navigateToPage('collaboration')">산학연 협력</div>
+                        </div>
+                    </div>
+                </li>
+                <li class="nav-item">
+                    <a href="#" class="nav-link">고객센터</a>
+                    <div class="dropdown">
+                        <div class="dropdown-item" onclick="navigateToPage('product-support')">제품 지원</div>
+                        <div class="dropdown-item" onclick="navigateToPage('software-support')">소프트웨어 지원</div>
+                        <div class="dropdown-item" onclick="navigateToPage('faq')">자주 묻는 질문</div>
+                        <div class="dropdown-item" onclick="navigateToPage('inquiry')">문의하기</div>
+                        <div class="dropdown-item" onclick="navigateToPage('download')">자료실</div>
+                    </div>
+                </li>
+                <li class="nav-item">
+                    <a href="#" class="nav-link">소식</a>
+                    <div class="dropdown">
+                        <div class="dropdown-item" onclick="navigateToPage('notice')">공지사항</div>
+                        <div class="dropdown-item" onclick="navigateToPage('news')">보도자료</div>
+                        <div class="dropdown-item" onclick="navigateToPage('blog')">기술 블로그</div>
+                        <div class="dropdown-item" onclick="navigateToPage('events')">이벤트</div>
+                        <div class="dropdown-item" onclick="navigateToPage('awards')">수상 내역</div>
+                    </div>
+                </li>
+                <li class="nav-item">
+                    <a href="#shop" class="nav-link">쇼핑몰</a>
+                </li>
             </ul>
+
+            <div class="lang-selector">
+                <a href="#" class="lang-btn active">🇰🇷</a>
+                <a href="#" class="lang-btn">🇺🇸</a>
+                <a href="#" class="lang-btn">🇨🇳</a>
+                <a href="#" class="lang-btn">🇯🇵</a>
+            </div>
             <div class="menu-toggle" onclick="toggleMenu()">
                 <span></span>
                 <span></span>
@@ -961,8 +1076,17 @@
     <script>
         // ===== MOBILE MENU TOGGLE =====
         function toggleMenu() {
-            console.log('Mobile menu toggle');
-            // Mobile menu functionality can be added here
+            const navMenu = document.getElementById('navMenu');
+            navMenu.classList.toggle('active');
+        }
+
+        // ===== MOBILE DROPDOWN TOGGLE =====
+        function toggleDropdown(event) {
+            if (window.innerWidth <= 768) {
+                event.preventDefault();
+                const navItem = event.target.closest('.nav-item');
+                navItem.classList.toggle('active');
+            }
         }
 
         // ===== PAGE NAVIGATION =====
@@ -970,20 +1094,45 @@
             console.log(`Navigate to: ${page}`);
             
             const pageMap = {
-                'business': '#business',
-                'products': '#products',
-                'support': '#support',
-                'inquiry': '#contact'
+                'vision': 'vision.html',
+                'history': 'history.html',
+                'team': 'team.html',
+                'onyu-brand': 'onyu-brand.html',
+                'brand-philosophy': 'brand-philosophy.html',
+                'traditional-craft': 'traditional-craft.html',
+                'business-model': 'business-model.html',
+                'innovation-strategy': 'innovation-strategy.html',
+                'sustainability': 'sustainability.html',
+                'dining-set': 'dining-set.html',
+                'health-products': 'health-products.html',
+                'gift-sets': 'gift-sets.html',
+                'custom-craft': 'custom-craft.html',
+                'erp-solution': 'erp-solution.html',
+                'iot-platform': 'iot-platform.html',
+                'ecommerce-system': 'ecommerce-system.html',
+                'consulting': 'consulting.html',
+                'current-projects': 'current-projects.html',
+                'completed-projects': 'completed-projects.html',
+                'research-outcomes': 'research-outcomes.html',
+                'collaboration': 'collaboration.html',
+                'product-support': 'product-support.html',
+                'software-support': 'software-support.html',
+                'faq': 'faq.html',
+                'inquiry': 'inquiry.html',
+                'download': 'download.html',
+                'notice': 'notice.html',
+                'news': 'news.html',
+                'blog': 'blog.html',
+                'events': 'events.html',
+                'awards': 'awards.html',
+                'business': 'index.html#business',
+                'products': 'index.html#products',
+                'support': 'index.html#support'
             };
             
             const targetPage = pageMap[page];
             if (targetPage) {
-                if (targetPage.startsWith('#')) {
-                    // Scroll to section on current page or go to index
-                    window.location.href = 'index.html' + targetPage;
-                } else {
-                    window.location.href = targetPage;
-                }
+                window.location.href = targetPage;
             } else {
                 alert(`${getPageDisplayName(page)} 페이지는 준비 중입니다.`);
             }
@@ -991,6 +1140,9 @@
 
         function getPageDisplayName(pageName) {
             const displayNames = {
+                'vision': '비전 & 미션',
+                'history': '연혁',
+                'team': '팀 소개',
                 'business': '사업소개',
                 'products': '제품소개',
                 'support': '고객지원',
@@ -1197,16 +1349,57 @@
             }
         });
 
-        // ===== KEYBOARD NAVIGATION =====
+        // ===== LANGUAGE SELECTOR =====
+        document.querySelectorAll('.lang-btn').forEach(btn => {
+            btn.addEventListener('click', function(e) {
+                e.preventDefault();
+                
+                document.querySelectorAll('.lang-btn').forEach(b => b.classList.remove('active'));
+                this.classList.add('active');
+                
+                this.style.transform = 'scale(0.95)';
+                setTimeout(() => {
+                    this.style.transform = 'scale(1)';
+                }, 100);
+            });
+        });
+
+        // ===== MENU CLOSE EVENTS =====
+        document.addEventListener('click', function(e) {
+            const navMenu = document.getElementById('navMenu');
+            const navContainer = document.querySelector('.nav-container');
+            
+            if (!navContainer.contains(e.target) && navMenu.classList.contains('active')) {
+                navMenu.classList.remove('active');
+            }
+        });
+
+        // ===== MOBILE DROPDOWN EVENTS =====
+        document.querySelectorAll('.nav-link').forEach(link => {
+            link.addEventListener('click', toggleDropdown);
+        });
+
+        // ===== WINDOW RESIZE HANDLER =====
+        window.addEventListener('resize', function() {
+            if (window.innerWidth > 768) {
+                const navMenu = document.getElementById('navMenu');
+                navMenu.classList.remove('active');
+                
+                document.querySelectorAll('.nav-item.active').forEach(item => {
+                    item.classList.remove('active');
+                });
+            }
+        });
+
+        // ===== KEYBOARD EVENTS =====
         document.addEventListener('keydown', function(e) {
-            // ESC key to close any active elements
             if (e.key === 'Escape') {
-                // Close mobile menu if open
-                const navMenu = document.querySelector('.nav-links');
-                if (navMenu && navMenu.classList.contains('active')) {
+                const navMenu = document.getElementById('navMenu');
+                if (navMenu.classList.contains('active')) {
                     navMenu.classList.remove('active');
                 }
             }
+        });
             
             // Arrow keys for mission card navigation
             if (e.key === 'ArrowLeft' || e.key === 'ArrowRight') {
