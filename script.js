@@ -1,40 +1,403 @@
-// ===== MOBILE MENU FUNCTIONALITY =====
+// ===== MOBILE MENU TOGGLE - FIXED ===== 
 function toggleMenu() {
     const navMenu = document.getElementById('navMenu');
+    const menuToggle = document.querySelector('.menu-toggle');
+    
     navMenu.classList.toggle('active');
+    menuToggle.classList.toggle('active');
 }
 
-// Mobile dropdown toggle for touch devices
+// ===== MOBILE DROPDOWN TOGGLE =====
 function toggleDropdown(event) {
     if (window.innerWidth <= 768) {
         event.preventDefault();
         const navItem = event.target.closest('.nav-item');
+        const otherNavItems = document.querySelectorAll('.nav-item');
+        
+        // Close other dropdowns
+        otherNavItems.forEach(item => {
+            if (item !== navItem) {
+                item.classList.remove('active');
+            }
+        });
+        
+        // Toggle current dropdown
         navItem.classList.toggle('active');
     }
 }
 
-// ===== NAVIGATION FUNCTIONALITY =====
-function scrollToSection(sectionId) {
-    console.log(`Scrolling to: ${sectionId}`);
+// ===== PAGE NAVIGATION =====
+function navigateToPage(page) {
+    console.log(`Navigate to: ${page}`);
     
-    // Close mobile menu if open
-    const navMenu = document.getElementById('navMenu');
-    navMenu.classList.remove('active');
+    // 페이지 맵핑
+    const pageMap = {
+        'vision': 'vision.html',
+        'history': 'history.html', 
+        'team': 'team.html',
+        'onyu-brand': 'onyu-brand.html',
+        'brand-philosophy': 'brand-philosophy.html',
+        'traditional-craft': 'traditional-craft.html',
+        'business-model': 'business-model.html',
+        'innovation-strategy': 'innovation-strategy.html',
+        'sustainability': 'sustainability.html',
+        'dining-set': 'dining-set.html',
+        'health-products': 'health-products.html',
+        'gift-sets': 'gift-sets.html',
+        'custom-craft': 'custom-craft.html',
+        'erp-solution': 'erp-solution.html',
+        'iot-platform': 'iot-platform.html',
+        'ecommerce-system': 'ecommerce-system.html',
+        'consulting': 'consulting.html',
+        'current-projects': 'current-projects.html',
+        'completed-projects': 'completed-projects.html',
+        'research-outcomes': 'research-outcomes.html',
+        'collaboration': 'collaboration.html',
+        'product-support': 'product-support.html',
+        'software-support': 'software-support.html',
+        'faq': 'faq.html',
+        'inquiry': 'inquiry.html',
+        'download': 'download.html',
+        'notice': 'notice.html',
+        'news': 'news.html',
+        'blog': 'blog.html',
+        'events': 'events.html',
+        'awards': 'awards.html'
+    };
     
-    // Find the target section
-    const targetSection = document.getElementById(sectionId);
-    if (targetSection) {
-        targetSection.scrollIntoView({
-            behavior: 'smooth',
-            block: 'start'
-        });
+    const targetPage = pageMap[page];
+    if (targetPage) {
+        window.location.href = targetPage;
     } else {
-        // If section doesn't exist yet, scroll to top
-        window.scrollTo({
-            top: 0,
-            behavior: 'smooth'
+        alert('해당 페이지는 준비 중입니다.');
+    }
+}
+
+// ===== ENHANCED VIDEO HANDLING =====
+function handleVideoError(video) {
+    console.log('Video failed to load:', video.currentSrc || video.src);
+    video.style.display = 'none';
+    video.classList.add('error');
+    
+    // Show fallback background
+    const fallback = document.querySelector('.hero-fallback-image');
+    if (fallback) {
+        fallback.style.opacity = '0.8';
+    }
+    
+    // Log error details
+    if (video.error) {
+        console.error('Video error details:', {
+            code: video.error.code,
+            message: video.error.message
         });
     }
+}
+
+function handleVideoLoad(video) {
+    console.log('Video can start playing:', video.currentSrc || video.src);
+    video.classList.add('loaded');
+}
+
+function handleVideoLoadedData(video) {
+    console.log('Video loaded successfully:', video.currentSrc || video.src);
+    
+    // Try to play video
+    const playPromise = video.play();
+    
+    if (playPromise !== undefined) {
+        playPromise
+            .then(() => {
+                console.log('Video playing successfully');
+                video.classList.add('loaded');
+            })
+            .catch(error => {
+                console.log('Video autoplay failed:', error);
+                handleVideoError(video);
+            });
+    }
+}
+
+// ===== VIDEO INITIALIZATION =====
+function initializeVideo() {
+    const video = document.querySelector('.hero-video');
+    
+    if (!video) {
+        console.log('No video element found');
+        return;
+    }
+
+    // Set video properties for better mobile support
+    video.setAttribute('webkit-playsinline', '');
+    video.setAttribute('playsinline', '');
+    video.muted = true;
+    video.defaultMuted = true;
+
+    // Check if video file exists before trying to load
+    fetch('./video/korevo_hero.mp4', { method: 'HEAD' })
+        .then(response => {
+            if (!response.ok) {
+                throw new Error(`Video file not found: ${response.status}`);
+            }
+            console.log('Video file exists and is accessible');
+            
+            // Add event listeners after confirming file exists
+            video.addEventListener('loadstart', () => {
+                console.log('Video loading started');
+            });
+
+            video.addEventListener('canplay', () => {
+                handleVideoLoad(video);
+            });
+
+            video.addEventListener('loadeddata', () => {
+                handleVideoLoadedData(video);
+            });
+
+            video.addEventListener('error', (e) => {
+                console.error('Video error event:', e);
+                handleVideoError(video);
+            });
+
+            // Start loading the video
+            video.load();
+        })
+        .catch(error => {
+            console.error('Video file check failed:', error);
+            handleVideoError(video);
+        });
+
+    // Force video play on user interaction (for mobile)
+    document.addEventListener('click', () => {
+        if (video.paused && !video.classList.contains('error')) {
+            const playPromise = video.play();
+            if (playPromise !== undefined) {
+                playPromise.catch(error => {
+                    console.log('Manual video play failed:', error);
+                });
+            }
+        }
+    }, { once: true });
+}
+
+// ===== SMOOTH SCROLLING =====
+document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+    anchor.addEventListener('click', function (e) {
+        e.preventDefault();
+        const target = document.querySelector(this.getAttribute('href'));
+        if (target) {
+            const headerHeight = document.querySelector('.header').offsetHeight;
+            const targetPosition = target.offsetTop - headerHeight;
+            
+            window.scrollTo({
+                top: targetPosition,
+                behavior: 'smooth'
+            });
+        }
+    });
+});
+
+// ===== HEADER BACKGROUND ON SCROLL =====
+window.addEventListener('scroll', function() {
+    const header = document.querySelector('.header');
+    const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+    
+    if (scrollTop > 50) {
+        header.style.background = 'rgba(255, 255, 255, 0.95)';
+        header.style.borderBottom = '1px solid rgba(0, 0, 0, 0.15)';
+    } else {
+        header.style.background = 'rgba(255, 255, 255, 0.8)';
+        header.style.borderBottom = '1px solid rgba(0, 0, 0, 0.1)';
+    }
+});
+
+// ===== LANGUAGE SELECTOR =====
+document.querySelectorAll('.lang-btn').forEach(btn => {
+    btn.addEventListener('click', function(e) {
+        e.preventDefault();
+        
+        // Remove active class from all buttons
+        document.querySelectorAll('.lang-btn').forEach(b => b.classList.remove('active'));
+        
+        // Add active class to clicked button
+        this.classList.add('active');
+        
+        // Add visual feedback
+        this.style.transform = 'scale(0.95)';
+        setTimeout(() => {
+            this.style.transform = 'scale(1)';
+        }, 100);
+    });
+});
+
+// ===== MOBILE MENU EVENT LISTENERS =====
+function initMobileMenuEvents() {
+    // Add touch event for mobile dropdowns
+    document.querySelectorAll('.nav-link').forEach(link => {
+        link.addEventListener('click', function(e) {
+            // Only toggle dropdown for mobile
+            if (window.innerWidth <= 768) {
+                const parentItem = this.closest('.nav-item');
+                const hasDropdown = parentItem.querySelector('.dropdown, .mega-dropdown');
+                
+                if (hasDropdown) {
+                    e.preventDefault();
+                    toggleDropdown(e);
+                }
+            }
+        });
+    });
+
+    // Close mobile menu when clicking outside
+    document.addEventListener('click', function(e) {
+        const navMenu = document.getElementById('navMenu');
+        const menuToggle = document.querySelector('.menu-toggle');
+        const navContainer = document.querySelector('.nav-container');
+        
+        if (!navContainer.contains(e.target) && navMenu.classList.contains('active')) {
+            navMenu.classList.remove('active');
+            menuToggle.classList.remove('active');
+        }
+    });
+
+    // Close dropdown when clicking outside (mobile)
+    document.addEventListener('click', function(e) {
+        if (window.innerWidth <= 768) {
+            const activeItems = document.querySelectorAll('.nav-item.active');
+            activeItems.forEach(item => {
+                if (!item.contains(e.target)) {
+                    item.classList.remove('active');
+                }
+            });
+        }
+    });
+}
+
+// ===== WINDOW RESIZE HANDLER =====
+function initResizeHandler() {
+    window.addEventListener('resize', function() {
+        // Close mobile menu on desktop resize
+        if (window.innerWidth > 768) {
+            const navMenu = document.getElementById('navMenu');
+            const menuToggle = document.querySelector('.menu-toggle');
+            navMenu.classList.remove('active');
+            menuToggle.classList.remove('active');
+            
+            // Close any active mobile dropdowns
+            document.querySelectorAll('.nav-item.active').forEach(item => {
+                item.classList.remove('active');
+            });
+        }
+    });
+}
+
+// ===== CARD HOVER EFFECTS =====
+document.querySelectorAll('.business-card, .feature-card, .product-card, .tech-card').forEach(card => {
+    card.addEventListener('mouseenter', function() {
+        this.style.transform = 'translateY(-8px)';
+        this.style.boxShadow = '0 15px 40px rgba(0, 0, 0, 0.15)';
+    });
+    
+    card.addEventListener('mouseleave', function() {
+        this.style.transform = 'translateY(0)';
+        this.style.boxShadow = '0 10px 30px rgba(0, 0, 0, 0.1)';
+    });
+});
+
+// ===== BUTTON INTERACTIONS =====
+document.querySelectorAll('.cta-btn, .business-cta').forEach(btn => {
+    btn.addEventListener('mousedown', function() {
+        this.style.transform = 'scale(0.98)';
+    });
+    
+    btn.addEventListener('mouseup', function() {
+        this.style.transform = 'scale(1)';
+    });
+    
+    btn.addEventListener('mouseleave', function() {
+        this.style.transform = 'scale(1)';
+    });
+});
+
+// ===== INTERSECTION OBSERVER FOR ANIMATIONS =====
+const observerOptions = {
+    threshold: 0.1,
+    rootMargin: '0px 0px -50px 0px'
+};
+
+const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+        if (entry.isIntersecting) {
+            entry.target.style.opacity = '1';
+            entry.target.style.transform = 'translateY(0)';
+        }
+    });
+}, observerOptions);
+
+// Observe elements for animation
+document.querySelectorAll('.business-card, .feature-card, .product-card, .tech-card').forEach((el, index) => {
+    el.style.opacity = '0';
+    el.style.transform = 'translateY(30px)';
+    el.style.transition = `opacity 0.6s ease ${index * 0.1}s, transform 0.6s ease ${index * 0.1}s`;
+    observer.observe(el);
+});
+
+// ===== MOBILE DETECTION AND OPTIMIZATION =====
+function isMobile() {
+    return window.innerWidth <= 768 || /Android|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
+}
+
+function isReducedMotion() {
+    return window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+}
+
+// ===== PERFORMANCE OPTIMIZATION =====
+function optimizeForDevice() {
+    if (isMobile()) {
+        console.log('Mobile device detected - optimizing experience');
+        
+        // 모바일에서도 비디오 유지하되 최적화 설정
+        const video = document.querySelector('.hero-video');
+        if (video) {
+            // 모바일 최적화 설정
+            video.style.opacity = '0.3';
+            video.style.filter = 'brightness(1.2) contrast(1.2)';
+            video.preload = 'metadata'; // 데이터 사용량 최소화
+        }
+        
+        // 폴백 배경 투명도 조정
+        const fallback = document.querySelector('.hero-fallback-image');
+        if (fallback) {
+            fallback.style.opacity = '0.3';
+        }
+    }
+
+    if (isReducedMotion()) {
+        console.log('Reduced motion preference detected');
+        // Disable animations for users who prefer reduced motion
+        document.documentElement.style.setProperty('--animation-duration', '0.01ms');
+    }
+}
+
+// ===== KEYBOARD NAVIGATION =====
+function initKeyboardNavigation() {
+    document.addEventListener('keydown', function(e) {
+        // ESC key to close mobile menu
+        if (e.key === 'Escape') {
+            const navMenu = document.getElementById('navMenu');
+            const menuToggle = document.querySelector('.menu-toggle');
+            if (navMenu && navMenu.classList.contains('active')) {
+                navMenu.classList.remove('active');
+                menuToggle.classList.remove('active');
+            }
+        }
+        
+        // Enter or Space to toggle mobile menu
+        if ((e.key === 'Enter' || e.key === ' ') && e.target.classList.contains('menu-toggle')) {
+            e.preventDefault();
+            toggleMenu();
+        }
+    });
 }
 
 // ===== SCROLL ANIMATIONS =====
@@ -66,6 +429,7 @@ function initMenuCloseEvents() {
         
         if (!navContainer.contains(e.target) && navMenu.classList.contains('active')) {
             navMenu.classList.remove('active');
+            menuToggle.classList.remove('active');
         }
     });
 
@@ -106,22 +470,6 @@ function initSmoothScroll() {
     });
 }
 
-// ===== WINDOW RESIZE HANDLER =====
-function initResizeHandler() {
-    window.addEventListener('resize', function() {
-        // Close mobile menu on desktop resize
-        if (window.innerWidth > 768) {
-            const navMenu = document.getElementById('navMenu');
-            navMenu.classList.remove('active');
-            
-            // Close any active mobile dropdowns
-            document.querySelectorAll('.nav-item.active').forEach(item => {
-                item.classList.remove('active');
-            });
-        }
-    });
-}
-
 // ===== HEADER SCROLL EFFECT =====
 function initHeaderScrollEffect() {
     let lastScrollTop = 0;
@@ -158,196 +506,6 @@ function initCTAAnimations() {
             this.style.transform = 'translateY(0) scale(1)';
         });
     });
-}
-
-// ===== CEO MESSAGE SECTION ANIMATIONS =====
-function initCEOMessageAnimations() {
-    // Intersection Observer for CEO section animations
-    const ceoObserverOptions = {
-        threshold: 0.1,
-        rootMargin: '0px 0px -50px 0px'
-    };
-
-    const ceoObserver = new IntersectionObserver((entries) => {
-        entries.forEach(entry => {
-            if (entry.isIntersecting) {
-                entry.target.style.animationPlayState = 'running';
-                
-                // Add special effects for CEO image
-                if (entry.target.classList.contains('ceo-image')) {
-                    setTimeout(() => {
-                        entry.target.style.transform = 'scale(1.02) rotate(2deg)';
-                        setTimeout(() => {
-                            entry.target.style.transform = 'scale(1) rotate(0deg)';
-                        }, 300);
-                    }, 500);
-                }
-            }
-        });
-    }, ceoObserverOptions);
-
-    // Observe CEO section elements
-    const ceoElements = document.querySelectorAll('.ceo-profile-card, .message-content, .vision-card, .cta-section');
-    ceoElements.forEach(el => {
-        ceoObserver.observe(el);
-    });
-}
-
-// ===== CEO IMAGE INTERACTIONS =====
-function initCEOImageInteractions() {
-    const ceoImage = document.querySelector('.ceo-image');
-    if (ceoImage) {
-        ceoImage.addEventListener('mouseenter', function() {
-            this.style.transform = 'scale(1.05) rotate(5deg)';
-        });
-
-        ceoImage.addEventListener('mouseleave', function() {
-            this.style.transform = 'scale(1) rotate(0deg)';
-        });
-
-        // Add click interaction for mobile
-        ceoImage.addEventListener('click', function() {
-            this.style.transform = 'scale(1.1) rotate(10deg)';
-            setTimeout(() => {
-                this.style.transform = 'scale(1) rotate(0deg)';
-            }, 200);
-        });
-    }
-}
-
-// ===== VISION CARDS INTERACTIONS =====
-function initVisionCardInteractions() {
-    const visionCards = document.querySelectorAll('.vision-card');
-    
-    visionCards.forEach(card => {
-        card.addEventListener('mouseenter', function() {
-            this.style.transform = 'translateY(-10px) scale(1.02)';
-            this.style.boxShadow = '0 25px 50px rgba(255, 215, 0, 0.15)';
-        });
-        
-        card.addEventListener('mouseleave', function() {
-            this.style.transform = 'translateY(0) scale(1)';
-            this.style.boxShadow = '0 15px 35px rgba(0, 0, 0, 0.08)';
-        });
-
-        // Add click effect for mobile
-        card.addEventListener('click', function() {
-            this.style.transform = 'translateY(-15px) scale(1.05)';
-            setTimeout(() => {
-                this.style.transform = 'translateY(0) scale(1)';
-            }, 150);
-        });
-    });
-}
-
-// ===== HIGHLIGHT TEXT ANIMATION =====
-function initHighlightTextAnimation() {
-    const highlightTexts = document.querySelectorAll('.highlight-text');
-    
-    const highlightObserver = new IntersectionObserver((entries) => {
-        entries.forEach(entry => {
-            if (entry.isIntersecting) {
-                entry.target.style.background = 'linear-gradient(135deg, rgba(255, 215, 0, 0.3), rgba(44, 85, 48, 0.2))';
-                entry.target.style.transform = 'scale(1.05)';
-                
-                setTimeout(() => {
-                    entry.target.style.background = 'linear-gradient(135deg, rgba(255, 215, 0, 0.2), rgba(44, 85, 48, 0.1))';
-                    entry.target.style.transform = 'scale(1)';
-                }, 300);
-            }
-        });
-    }, { threshold: 1.0 });
-
-    highlightTexts.forEach(text => {
-        highlightObserver.observe(text);
-    });
-}
-
-// ===== CEO SECTION CTA INTERACTIONS =====
-function initCEOCTAInteractions() {
-    const ctaButtons = document.querySelectorAll('.ceo-message-section .cta-btn');
-    
-    ctaButtons.forEach(button => {
-        button.addEventListener('mouseenter', function() {
-            this.style.transform = 'translateY(-3px) scale(1.05)';
-            this.style.boxShadow = '0 15px 30px rgba(255, 215, 0, 0.4)';
-        });
-        
-        button.addEventListener('mouseleave', function() {
-            this.style.transform = 'translateY(0) scale(1)';
-            this.style.boxShadow = '0 10px 20px rgba(255, 215, 0, 0.3)';
-        });
-
-        button.addEventListener('click', function(e) {
-            // Ripple effect
-            const ripple = document.createElement('div');
-            ripple.style.position = 'absolute';
-            ripple.style.borderRadius = '50%';
-            ripple.style.background = 'rgba(255, 255, 255, 0.6)';
-            ripple.style.transform = 'scale(0)';
-            ripple.style.animation = 'ripple 0.6s linear';
-            ripple.style.left = '50%';
-            ripple.style.top = '50%';
-            ripple.style.width = '20px';
-            ripple.style.height = '20px';
-            ripple.style.marginLeft = '-10px';
-            ripple.style.marginTop = '-10px';
-            
-            this.appendChild(ripple);
-            
-            setTimeout(() => {
-                ripple.remove();
-            }, 600);
-        });
-    });
-}
-
-// ===== TYPING ANIMATION FOR CEO MESSAGE =====
-function initTypingAnimation() {
-    const messageText = document.querySelector('.message-text');
-    if (messageText) {
-        const observer = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    // Add typing cursor effect
-                    const cursor = document.createElement('span');
-                    cursor.innerHTML = '|';
-                    cursor.style.animation = 'blink 1s infinite';
-                    cursor.style.fontWeight = 'bold';
-                    cursor.style.color = '#FFD700';
-                    
-                    // Add CSS for cursor animation
-                    if (!document.querySelector('#cursor-style')) {
-                        const style = document.createElement('style');
-                        style.id = 'cursor-style';
-                        style.innerHTML = `
-                            @keyframes blink {
-                                0%, 50% { opacity: 1; }
-                                51%, 100% { opacity: 0; }
-                            }
-                            @keyframes ripple {
-                                to { transform: scale(4); opacity: 0; }
-                            }
-                        `;
-                        document.head.appendChild(style);
-                    }
-                    
-                    messageText.appendChild(cursor);
-                    
-                    // Remove cursor after animation
-                    setTimeout(() => {
-                        if (cursor.parentNode) {
-                            cursor.remove();
-                        }
-                    }, 3000);
-                    
-                    observer.unobserve(entry.target);
-                }
-            });
-        }, { threshold: 0.5 });
-        
-        observer.observe(messageText);
-    }
 }
 
 // ===== LOADING ANIMATIONS =====
@@ -412,80 +570,87 @@ function initCardHoverEffects() {
     });
 }
 
-// ===== PAGE NAVIGATION FUNCTIONS =====
-function navigateToPage(page) {
-    console.log(`Navigate to: ${page}`);
-    
-    // 페이지 네비게이션 로직
-    const pageMap = {
-        'vision': 'vision.html',
-        'history': 'history.html',
-        'team': 'team.html',
-        'onyu-brand': 'onyu-brand.html',
-        'brand-philosophy': 'brand-philosophy.html',
-        'traditional-craft': 'traditional-craft.html',
-        'business-model': 'business-model.html',
-        'innovation-strategy': 'innovation-strategy.html',
-        'sustainability': 'sustainability.html',
-        'dining-set': 'dining-set.html',
-        'health-products': 'health-products.html',
-        'gift-sets': 'gift-sets.html',
-        'custom-craft': 'custom-craft.html',
-        'erp-solution': 'erp-solution.html',
-        'iot-platform': 'iot-platform.html',
-        'ecommerce-system': 'ecommerce-system.html',
-        'consulting': 'consulting.html',
-        'current-projects': 'current-projects.html',
-        'completed-projects': 'completed-projects.html',
-        'research-outcomes': 'research-outcomes.html',
-        'collaboration': 'collaboration.html',
-        'product-support': 'product-support.html',
-        'software-support': 'software-support.html',
-        'faq': 'faq.html',
-        'inquiry': 'inquiry.html',
-        'download': 'download.html',
-        'notice': 'notice.html',
-        'news': 'news.html',
-        'blog': 'blog.html',
-        'events': 'events.html',
-        'awards': 'awards.html'
-    };
-    
-    const targetPage = pageMap[page];
-    if (targetPage) {
-        // 실제 환경에서는 페이지 이동
-        window.location.href = targetPage;
-    } else {
-        console.error(`Page not found: ${page}`);
-    }
-}
-
-// ===== MAIN INITIALIZATION =====
+// ===== INITIALIZATION =====
 document.addEventListener('DOMContentLoaded', function() {
-    console.log('KOREVO website initialized');
+    console.log('🍎 KOREVO website loaded successfully!');
     
-    // Initialize all functionality (언어 선택기 제외 - 번역 시스템에서 처리)
+    // Optimize for device capabilities
+    optimizeForDevice();
+    
+    // Initialize video handling for all devices
+    initializeVideo();
+    
+    // Initialize mobile menu events
+    initMobileMenuEvents();
+    
+    // Initialize resize handler
+    initResizeHandler();
+    
+    // Initialize keyboard navigation
+    initKeyboardNavigation();
+    
+    // Initialize all functionality
     handleScrollAnimations();
     initMenuCloseEvents();
     initMobileDropdownEvents();
     initSmoothScroll();
-    initResizeHandler();
     initHeaderScrollEffect();
     initCTAAnimations();
     initCardHoverEffects();
     initLoadingAnimations();
     
-    // Initialize CEO Message Section
-    initCEOMessageAnimations();
-    initCEOImageInteractions();
-    initVisionCardInteractions();
-    initHighlightTextAnimation();
-    initCEOCTAInteractions();
-    initTypingAnimation();
-    
-    // Add loaded class to body for CSS animations
+    // Add loaded class to body for any CSS that depends on JS being ready
+    document.body.classList.add('js-loaded');
     document.body.classList.add('loaded');
 });
+
+// ===== ERROR HANDLING =====
+window.addEventListener('error', function(e) {
+    console.error('JavaScript Error:', e.error);
+    
+    // Graceful fallback for video errors
+    if (e.error && e.error.message && e.error.message.includes('video')) {
+        const video = document.querySelector('.hero-video');
+        if (video) {
+            handleVideoError(video);
+        }
+    }
+});
+
+// ===== PERFORMANCE MONITORING =====
+window.addEventListener('load', function() {
+    console.log('Page fully loaded');
+    
+    // Log performance metrics
+    if (performance.timing) {
+        const loadTime = performance.timing.loadEventEnd - performance.timing.navigationStart;
+        console.log(`Page load time: ${loadTime}ms`);
+        
+        // Log video load status
+        const video = document.querySelector('.hero-video');
+        if (video) {
+            console.log('Video element status:', {
+                readyState: video.readyState,
+                networkState: video.networkState,
+                error: video.error
+            });
+        }
+    }
+});
+
+// ===== PRELOAD CRITICAL RESOURCES =====
+function preloadCriticalResources() {
+    // Preload hero video for all devices
+    const link = document.createElement('link');
+    link.rel = 'preload';
+    link.as = 'video';
+    link.href = './video/korevo_hero.mp4';
+    link.type = 'video/mp4';
+    document.head.appendChild(link);
+}
+
+// Start preloading as soon as possible
+preloadCriticalResources();
 
 // ===== UTILITY FUNCTIONS =====
 const KorevoUtils = {
@@ -542,17 +707,11 @@ const KorevoUtils = {
     }
 };
 
-// ===== GLOBAL ERROR HANDLING =====
-window.addEventListener('error', function(e) {
-    console.error('JavaScript Error:', e.error);
-});
-
 // ===== EXPORT FOR MODULE USE =====
 if (typeof module !== 'undefined' && module.exports) {
     module.exports = {
         toggleMenu,
-        scrollToSection,
-        KorevoUtils,
-        navigateToPage
+        navigateToPage,
+        KorevoUtils
     };
 }
