@@ -3,847 +3,23 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>온유 식기 컬렉션 | KOREVO</title>
-    <meta name="description" content="전통 유기 기법으로 제작된 온유(溫鍮) 프리미엄 식기 컬렉션. 건강하고 아름다운 식생활을 위한 최고의 선택.">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;700;900&display=swap" rel="stylesheet">
-    <style>
-        /* ===== APPLE-INSPIRED COLOR SCHEME ===== */
-        :root {
-            /* Apple Color Palette */
-            --apple-black: #000000;
-            --apple-dark: #1D1D1F;
-            --apple-blue: #0066CC;
-            --apple-gray: #F5F5F7;
-            --apple-white: #FFFFFF;
-            --apple-medium-gray: #86868B;
-            --apple-light-gray: #F2F2F7;
-            
-            /* Text Colors */
-            --text-primary: var(--apple-black);
-            --text-secondary: var(--apple-dark);
-            --text-muted: var(--apple-medium-gray);
-            
-            /* Background Colors */
-            --bg-primary: var(--apple-white);
-            --bg-secondary: var(--apple-gray);
-            --bg-accent: var(--apple-light-gray);
-            
-            /* Accent Colors */
-            --accent-primary: var(--apple-blue);
-            --accent-secondary: var(--apple-dark);
-        }
-
-        /* ===== RESET & BASE STYLES ===== */
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
-        body {
-            font-family: -apple-system, BlinkMacSystemFont, 'SF Pro Display', 'Segoe UI', Roboto, sans-serif;
-            line-height: 1.6;
-            color: var(--text-primary);
-            background: var(--bg-primary);
-            overflow-x: hidden;
-        }
-
-        /* ===== HEADER & NAVIGATION ===== */
-        .header {
-            background: rgba(255, 255, 255, 0.8);
-            backdrop-filter: blur(20px);
-            -webkit-backdrop-filter: blur(20px);
-            position: fixed;
-            top: 0;
-            left: 0;
-            right: 0;
-            z-index: 1000;
-            padding: 1rem 0;
-            border-bottom: 1px solid rgba(0, 0, 0, 0.1);
-        }
-
-        .nav-container {
-            max-width: 1200px;
-            margin: 0 auto;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 0 2rem;
-        }
-
-        .logo {
-            font-size: 1.75rem;
-            font-weight: 600;
-            color: var(--apple-black);
-            text-decoration: none;
-            letter-spacing: -0.02em;
-        }
-
-        .nav-menu {
-            display: flex;
-            list-style: none;
-            gap: 2rem;
-        }
-
-        .nav-item {
-            position: relative;
-        }
-
-        .nav-link {
-            text-decoration: none;
-            color: var(--text-secondary);
-            font-weight: 400;
-            font-size: 17px;
-            transition: color 0.2s ease;
-            cursor: pointer;
-            display: block;
-            padding: 0.5rem 0;
-        }
-
-        .nav-link:hover {
-            color: var(--accent-primary);
-        }
-
-        .dropdown {
-            position: absolute;
-            top: 100%;
-            left: 0;
-            background: var(--bg-primary);
-            border-radius: 12px;
-            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.1);
-            min-width: 200px;
-            opacity: 0;
-            visibility: hidden;
-            transform: translateY(-10px);
-            transition: all 0.3s ease;
-            z-index: 1001;
-        }
-
-        .mega-dropdown {
-            position: absolute;
-            top: 100%;
-            left: -100px;
-            background: var(--bg-primary);
-            border-radius: 16px;
-            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.15);
-            min-width: 600px;
-            opacity: 0;
-            visibility: hidden;
-            transform: translateY(-10px);
-            transition: all 0.3s ease;
-            z-index: 1001;
-            display: flex;
-            padding: 2rem;
-            gap: 2rem;
-        }
-
-        .nav-item:hover .dropdown,
-        .nav-item:hover .mega-dropdown {
-            opacity: 1;
-            visibility: visible;
-            transform: translateY(0);
-        }
-
-        .dropdown-item {
-            padding: 1rem 1.5rem;
-            color: var(--text-muted);
-            text-decoration: none;
-            display: block;
-            font-size: 15px;
-            transition: all 0.3s ease;
-            cursor: pointer;
-            border-radius: 8px;
-            margin: 0.25rem;
-        }
-
-        .dropdown-item.active {
-            background: var(--bg-accent);
-            color: var(--accent-primary);
-        }
-
-        .dropdown-section h4 {
-            color: var(--text-primary);
-            font-size: 16px;
-            font-weight: 600;
-            margin-bottom: 0.5rem;
-            padding: 0 1rem;
-        }
-
-        .lang-selector {
-            display: flex;
-            gap: 0.5rem;
-        }
-
-        .lang-btn {
-            text-decoration: none;
-            padding: 0.5rem;
-            border-radius: 6px;
-            transition: background 0.3s ease;
-        }
-
-        .lang-btn:hover,
-        .lang-btn.active {
-            background: var(--bg-accent);
-        }
-
-        /* Breadcrumb */
-        .breadcrumb-nav {
-            background: var(--bg-secondary);
-            padding: 1rem 0;
-            margin-top: 80px;
-        }
-
-        .breadcrumb {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 0 2rem;
-            display: flex;
-            align-items: center;
-            gap: 0.5rem;
-            font-size: 15px;
-        }
-
-        .breadcrumb-item {
-            color: var(--text-muted);
-            text-decoration: none;
-            transition: color 0.3s ease;
-        }
-
-        .breadcrumb-item:hover {
-            color: var(--accent-primary);
-        }
-
-        .breadcrumb-item.active {
-            color: var(--text-primary);
-            font-weight: 600;
-        }
-
-        .breadcrumb-separator {
-            color: var(--text-muted);
-        }
-
-        /* Page Header */
-        .page-header {
-            background: var(--apple-dark);
-            color: var(--bg-primary);
-            padding: 6rem 0 4rem;
-            text-align: center;
-            position: relative;
-        }
-
-        .page-header-content {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 0 2rem;
-        }
-
-        .page-icon {
-            font-size: 4rem;
-            margin-bottom: 1.5rem;
-            opacity: 0.9;
-        }
-
-        .page-title {
-            font-size: clamp(2.5rem, 5vw, 4rem);
-            font-weight: 700;
-            margin-bottom: 1rem;
-            letter-spacing: -0.03em;
-        }
-
-        .page-subtitle {
-            font-size: 1.25rem;
-            opacity: 0.8;
-            margin-bottom: 2rem;
-            font-weight: 400;
-            max-width: 600px;
-            margin-left: auto;
-            margin-right: auto;
-        }
-
-        /* Main Content */
-        .main-content {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 3rem 2rem;
-        }
-
-        /* Filter & Sort Section */
-        .filter-section {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            margin-bottom: 3rem;
-            flex-wrap: wrap;
-            gap: 1.5rem;
-            padding: 2rem;
-            background: var(--bg-secondary);
-            border-radius: 20px;
-        }
-
-        .filter-left {
-            display: flex;
-            align-items: center;
-            gap: 2rem;
-            flex-wrap: wrap;
-        }
-
-        .filter-group {
-            display: flex;
-            align-items: center;
-            gap: 1rem;
-        }
-
-        .filter-label {
-            font-weight: 600;
-            color: var(--text-primary);
-            font-size: 15px;
-        }
-
-        .filter-select {
-            padding: 0.75rem 1rem;
-            border: 1px solid rgba(0, 0, 0, 0.1);
-            border-radius: 12px;
-            background: var(--bg-primary);
-            font-size: 15px;
-            cursor: pointer;
-            transition: all 0.2s ease;
-        }
-
-        .filter-select:focus {
-            outline: none;
-            border-color: var(--accent-primary);
-            box-shadow: 0 0 0 3px rgba(0, 102, 204, 0.1);
-        }
-
-        .filter-tags {
-            display: flex;
-            gap: 0.75rem;
-            flex-wrap: wrap;
-        }
-
-        .filter-tag {
-            padding: 0.75rem 1.25rem;
-            background: var(--bg-primary);
-            border: 1px solid rgba(0, 0, 0, 0.1);
-            border-radius: 25px;
-            font-size: 15px;
-            font-weight: 500;
-            cursor: pointer;
-            transition: all 0.2s ease;
-        }
-
-        .filter-tag:hover,
-        .filter-tag.active {
-            background: var(--apple-dark);
-            color: var(--bg-primary);
-            border-color: var(--apple-dark);
-        }
-
-        .view-controls {
-            display: flex;
-            align-items: center;
-            gap: 1rem;
-        }
-
-        .view-buttons {
-            display: flex;
-            border: 1px solid rgba(0, 0, 0, 0.1);
-            border-radius: 12px;
-            overflow: hidden;
-            background: var(--bg-primary);
-        }
-
-        .view-btn {
-            padding: 0.75rem 1rem;
-            border: none;
-            background: transparent;
-            cursor: pointer;
-            font-size: 15px;
-            transition: all 0.2s ease;
-        }
-
-        .view-btn.active {
-            background: var(--apple-dark);
-            color: var(--bg-primary);
-        }
-
-        .sort-select {
-            padding: 0.75rem 1rem;
-            border: 1px solid rgba(0, 0, 0, 0.1);
-            border-radius: 12px;
-            background: var(--bg-primary);
-            font-size: 15px;
-            cursor: pointer;
-            transition: all 0.2s ease;
-        }
-
-        .sort-select:focus {
-            outline: none;
-            border-color: var(--accent-primary);
-            box-shadow: 0 0 0 3px rgba(0, 102, 204, 0.1);
-        }
-
-        /* Product Grid */
-        .products-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-            gap: 2rem;
-            margin-bottom: 4rem;
-        }
-
-        .product-card {
-            background: var(--bg-primary);
-            border-radius: 20px;
-            overflow: hidden;
-            transition: all 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
-            cursor: pointer;
-            position: relative;
-            border: 1px solid rgba(0, 0, 0, 0.05);
-        }
-
-        .product-card:hover {
-            transform: translateY(-8px);
-            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
-        }
-
-        .product-image {
-            width: 100%;
-            height: 300px;
-            background: var(--bg-accent);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 4rem;
-            position: relative;
-            overflow: hidden;
-        }
-
-        .product-badge {
-            position: absolute;
-            top: 1.5rem;
-            left: 1.5rem;
-            background: var(--apple-dark);
-            color: var(--bg-primary);
-            padding: 0.5rem 1rem;
-            border-radius: 20px;
-            font-size: 13px;
-            font-weight: 600;
-            letter-spacing: 0.5px;
-        }
-
-        .product-badge.new {
-            background: var(--accent-primary);
-        }
-
-        .product-badge.bestseller {
-            background: #FF6B35;
-        }
-
-        .product-badge.limited {
-            background: #8E44AD;
-        }
-
-        .product-info {
-            padding: 2rem;
-        }
-
-        .product-category {
-            font-size: 13px;
-            color: var(--text-muted);
-            text-transform: uppercase;
-            letter-spacing: 1px;
-            margin-bottom: 0.75rem;
-            font-weight: 500;
-        }
-
-        .product-name {
-            font-size: 1.25rem;
-            font-weight: 600;
-            margin-bottom: 0.75rem;
-            color: var(--text-primary);
-            line-height: 1.3;
-        }
-
-        .product-description {
-            font-size: 15px;
-            color: var(--text-muted);
-            margin-bottom: 1.5rem;
-            line-height: 1.5;
-        }
-
-        .product-features {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 0.5rem;
-            margin-bottom: 1.5rem;
-        }
-
-        .feature-tag {
-            background: var(--bg-accent);
-            color: var(--text-secondary);
-            padding: 0.25rem 0.75rem;
-            border-radius: 12px;
-            font-size: 12px;
-            font-weight: 500;
-        }
-
-        .product-price {
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            margin-bottom: 1.5rem;
-        }
-
-        .price {
-            font-size: 1.5rem;
-            font-weight: 700;
-            color: var(--text-primary);
-        }
-
-        .original-price {
-            font-size: 1rem;
-            color: var(--text-muted);
-            text-decoration: line-through;
-            margin-right: 0.75rem;
-        }
-
-        .discount {
-            background: #FF6B35;
-            color: var(--bg-primary);
-            padding: 0.25rem 0.75rem;
-            border-radius: 12px;
-            font-size: 12px;
-            font-weight: 600;
-        }
-
-        .add-to-cart {
-            width: 100%;
-            padding: 1rem;
-            background: var(--apple-dark);
-            color: var(--bg-primary);
-            border: none;
-            border-radius: 12px;
-            font-weight: 600;
-            font-size: 15px;
-            cursor: pointer;
-            transition: all 0.2s ease;
-        }
-
-        .add-to-cart:hover {
-            background: var(--apple-black);
-            transform: translateY(-2px);
-        }
-
-        /* List View */
-        .products-list {
-            display: none;
-            flex-direction: column;
-            gap: 1.5rem;
-        }
-
-        .products-list.active {
-            display: flex;
-        }
-
-        .products-grid.hidden {
-            display: none;
-        }
-
-        .product-list-item {
-            display: flex;
-            background: var(--bg-primary);
-            border-radius: 20px;
-            overflow: hidden;
-            transition: all 0.3s ease;
-            cursor: pointer;
-            border: 1px solid rgba(0, 0, 0, 0.05);
-        }
-
-        .product-list-item:hover {
-            transform: translateY(-4px);
-            box-shadow: 0 12px 30px rgba(0, 0, 0, 0.1);
-        }
-
-        .product-list-image {
-            width: 200px;
-            height: 150px;
-            background: var(--bg-accent);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 3rem;
-            flex-shrink: 0;
-        }
-
-        .product-list-content {
-            flex: 1;
-            padding: 2rem;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-
-        .product-list-info {
-            flex: 1;
-        }
-
-        .product-list-actions {
-            text-align: right;
-        }
-
-        /* Pagination */
-        .pagination {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            gap: 0.5rem;
-            margin: 4rem 0;
-        }
-
-        .pagination-btn {
-            padding: 1rem 1.25rem;
-            border: 1px solid rgba(0, 0, 0, 0.1);
-            background: var(--bg-primary);
-            color: var(--text-muted);
-            text-decoration: none;
-            border-radius: 12px;
-            transition: all 0.2s ease;
-            min-width: 48px;
-            text-align: center;
-            font-weight: 500;
-        }
-
-        .pagination-btn:hover {
-            background: var(--apple-dark);
-            color: var(--bg-primary);
-            border-color: var(--apple-dark);
-        }
-
-        .pagination-btn.active {
-            background: var(--apple-dark);
-            color: var(--bg-primary);
-            border-color: var(--apple-dark);
-        }
-
-        .pagination-btn.disabled {
-            opacity: 0.5;
-            cursor: not-allowed;
-        }
-
-        .pagination-btn.disabled:hover {
-            background: var(--bg-primary);
-            color: var(--text-muted);
-            border-color: rgba(0, 0, 0, 0.1);
-        }        /* Mobile Responsive */
-        @media (max-width: 768px) {
-            .nav-menu {
-                display: none;
-            }
-
-            .main-content {
-                padding: 2rem 1rem;
-            }
-
-            .filter-section {
-                flex-direction: column;
-                align-items: flex-start;
-                gap: 1.5rem;
-                padding: 1.5rem;
-            }
-
-            .filter-left {
-                width: 100%;
-                flex-direction: column;
-                align-items: flex-start;
-                gap: 1rem;
-            }
-
-            .view-controls {
-                width: 100%;
-                justify-content: space-between;
-            }
-
-            .products-grid {
-                grid-template-columns: 1fr;
-                gap: 1.5rem;
-            }
-
-            .product-list-item {
-                flex-direction: column;
-            }
-
-            .product-list-image {
-                width: 100%;
-                height: 200px;
-            }
-
-            .product-list-content {
-                flex-direction: column;
-                align-items: flex-start;
-                gap: 1rem;
-            }
-
-            .product-list-actions {
-                width: 100%;
-                text-align: left;
-            }
-
-            .page-title {
-                font-size: 2.5rem;
-            }
-
-            .page-subtitle {
-                font-size: 1.1rem;
-            }
-
-            .page-header {
-                padding: 4rem 0 3rem;
-            }
-        }
-
-        /* Loading States */
-        .loading {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            height: 200px;
-        }
-
-        .spinner {
-            width: 40px;
-            height: 40px;
-            border: 3px solid var(--bg-accent);
-            border-top: 3px solid var(--accent-primary);
-            border-radius: 50%;
-            animation: spin 1s linear infinite;
-        }
-
-        @keyframes spin {
-            0% { transform: rotate(0deg); }
-            100% { transform: rotate(360deg); }
-        }
-
-        /* Product Quick View Modal */
-        .modal {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: rgba(0, 0, 0, 0.8);
-            backdrop-filter: blur(5px);
-            display: none;
-            align-items: center;
-            justify-content: center;
-            z-index: 10000;
-            padding: 2rem;
-        }
-
-        .modal.active {
-            display: flex;
-        }
-
-        .modal-content {
-            background: var(--bg-primary);
-            border-radius: 20px;
-            max-width: 800px;
-            width: 100%;
-            max-height: 90vh;
-            overflow-y: auto;
-            position: relative;
-        }
-
-        .modal-close {
-            position: absolute;
-            top: 1.5rem;
-            right: 1.5rem;
-            background: none;
-            border: none;
-            font-size: 1.5rem;
-            cursor: pointer;
-            width: 40px;
-            height: 40px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            border-radius: 50%;
-            transition: background 0.3s ease;
-            color: var(--text-muted);
-        }
-
-        .modal-close:hover {
-            background: var(--bg-accent);
-            color: var(--text-primary);
-        }
-
-        /* Animation Effects */
-        .product-card {
-            animation: fadeInUp 0.6s ease-out forwards;
-            opacity: 0;
-            transform: translateY(30px);
-        }
-
-        .product-card:nth-child(1) { animation-delay: 0.1s; }
-        .product-card:nth-child(2) { animation-delay: 0.2s; }
-        .product-card:nth-child(3) { animation-delay: 0.3s; }
-        .product-card:nth-child(4) { animation-delay: 0.4s; }
-        .product-card:nth-child(5) { animation-delay: 0.5s; }
-        .product-card:nth-child(6) { animation-delay: 0.6s; }
-
-        @keyframes fadeInUp {
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-
-        /* Smooth transitions */
-        * {
-            transition-duration: 0.2s;
-            transition-timing-function: cubic-bezier(0.25, 0.46, 0.45, 0.94);
-        }
-
-        /* Focus states for accessibility */
-        .filter-tag:focus,
-        .view-btn:focus,
-        .add-to-cart:focus,
-        .pagination-btn:focus {
-            outline: 3px solid var(--accent-primary);
-            outline-offset: 2px;
-        }
-
-        /* High contrast mode support */
-        @media (prefers-contrast: high) {
-            .product-card {
-                border: 2px solid var(--text-primary);
-            }
-            
-            .filter-tag,
-            .view-btn {
-                border: 1px solid var(--text-primary);
-            }
-        }
-
-        /* Reduced motion support */
-        @media (prefers-reduced-motion: reduce) {
-            * {
-                animation-duration: 0.01ms !important;
-                animation-iteration-count: 1 !important;
-                transition-duration: 0.01ms !important;
-            }
-        }
-    </style>
-    </style>
+    <title>온유 식기 컬렉션 - KOREVO</title>
+    <meta name="description" content="전통 유기 기법으로 만든 프리미엄 식기, 건강하고 아름다운 식생활의 시작">
+    
+    <!-- CSS 파일 연결 -->
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="dining-set-styles.css">
+    
+    <!-- 폰트 -->
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;700&display=swap" rel="stylesheet">
 </head>
 <body>
     <!-- Header -->
     <header class="header">
         <nav class="nav-container">
             <a href="index.html" class="logo">KOREVO</a>
-
-            <ul class="nav-menu">
+            
+            <ul class="nav-menu" id="navMenu">
                 <li class="nav-item">
                     <a href="#" class="nav-link">회사소개</a>
                     <div class="dropdown">
@@ -897,14 +73,7 @@
                     </div>
                 </li>
                 <li class="nav-item">
-                    <a href="#" class="nav-link">고객센터</a>
-                    <div class="dropdown">
-                        <div class="dropdown-item" onclick="navigateToPage('product-support')">제품 지원</div>
-                        <div class="dropdown-item" onclick="navigateToPage('software-support')">소프트웨어 지원</div>
-                        <div class="dropdown-item" onclick="navigateToPage('faq')">자주 묻는 질문</div>
-                        <div class="dropdown-item" onclick="navigateToPage('inquiry')">문의하기</div>
-                        <div class="dropdown-item" onclick="navigateToPage('download')">자료실</div>
-                    </div>
+                    <a href="contact.html" class="nav-link">CONTACT</a>
                 </li>
                 <li class="nav-item">
                     <a href="#" class="nav-link">소식</a>
@@ -925,6 +94,12 @@
                 <a href="#" class="lang-btn active">🇰🇷</a>
                 <a href="#" class="lang-btn">🇺🇸</a>
                 <a href="#" class="lang-btn">🇨🇳</a>
+            </div>
+
+            <div class="menu-toggle" onclick="toggleMenu()">
+                <span></span>
+                <span></span>
+                <span></span>
             </div>
         </nav>
     </header>
@@ -1001,11 +176,11 @@
                 <div class="product-info">
                     <div class="product-category">그릇류</div>
                     <h3 class="product-name">온유 밥그릇 세트</h3>
-                    <p class="product-description">전통 유기 기법으로 제작된 항균 밥그릇. 가족 구성원별 맞춤 사이즈로 제공됩니다.</p>
+                    <p class="product-description">전통 유기 기법으로 제작된 항균 밥그릇 세트입니다.</p>
                     <div class="product-features">
-                        <span class="feature-tag">항균효과</span>
+                        <span class="feature-tag">항균성</span>
+                        <span class="feature-tag">친환경</span>
                         <span class="feature-tag">내구성</span>
-                        <span class="feature-tag">안전소재</span>
                     </div>
                     <div class="product-price">
                         <div>
@@ -1016,123 +191,71 @@
                 </div>
             </div>
 
-            <div class="product-card" data-category="bowl" data-price="65000">
+            <div class="product-card" data-category="bowl" data-price="124000">
                 <div class="product-image">
-                    🍲
+                    🍜
                     <div class="product-badge bestseller">베스트</div>
                 </div>
                 <div class="product-info">
                     <div class="product-category">그릇류</div>
-                    <h3 class="product-name">온유 국그릇</h3>
-                    <p class="product-description">깊이감 있는 디자인으로 국물 요리에 최적화된 유기 국그릇입니다.</p>
+                    <h3 class="product-name">온유 국그릇 세트</h3>
+                    <p class="product-description">깊이감이 있는 국그릇으로 따뜻한 국물 요리에 최적화되었습니다.</p>
                     <div class="product-features">
-                        <span class="feature-tag">보온효과</span>
-                        <span class="feature-tag">전통기법</span>
-                        <span class="feature-tag">친환경</span>
+                        <span class="feature-tag">보온성</span>
+                        <span class="feature-tag">깊이감</span>
+                        <span class="feature-tag">전통미</span>
                     </div>
                     <div class="product-price">
                         <div>
-                            <span class="original-price">75,000원</span>
-                            <span class="price">65,000원</span>
+                            <span class="price">124,000원</span>
                         </div>
-                        <span class="discount">13% 할인</span>
                     </div>
                     <button class="add-to-cart" onclick="addToCart('soup-bowl-1')">장바구니 담기</button>
                 </div>
             </div>
 
-            <div class="product-card" data-category="bowl" data-price="120000">
-                <div class="product-image">
-                    🥗
-                    <div class="product-badge limited">한정판</div>
-                </div>
-                <div class="product-info">
-                    <div class="product-category">그릇류</div>
-                    <h3 class="product-name">온유 샐러드 볼</h3>
-                    <p class="product-description">넓은 개방감으로 샐러드와 과일 담기에 완벽한 대형 볼입니다.</p>
-                    <div class="product-features">
-                        <span class="feature-tag">대용량</span>
-                        <span class="feature-tag">세련된디자인</span>
-                        <span class="feature-tag">다용도</span>
-                    </div>
-                    <div class="product-price">
-                        <div>
-                            <span class="price">120,000원</span>
-                        </div>
-                    </div>
-                    <button class="add-to-cart" onclick="addToCart('salad-bowl-1')">장바구니 담기</button>
-                </div>
-            </div>
-
             <!-- 컵류 제품들 -->
-            <div class="product-card" data-category="cup" data-price="45000">
+            <div class="product-card" data-category="cup" data-price="65000">
                 <div class="product-image">
                     ☕
-                    <div class="product-badge">프리미엄</div>
                 </div>
                 <div class="product-info">
                     <div class="product-category">컵류</div>
-                    <h3 class="product-name">온유 차잔</h3>
-                    <p class="product-description">전통 차 문화를 현대적으로 재해석한 프리미엄 차잔입니다.</p>
+                    <h3 class="product-name">온유 찻잔 세트</h3>
+                    <p class="product-description">전통차와 현대적 음료 모두에 어울리는 우아한 찻잔입니다.</p>
                     <div class="product-features">
-                        <span class="feature-tag">보온효과</span>
-                        <span class="feature-tag">우아한디자인</span>
-                        <span class="feature-tag">장인정신</span>
+                        <span class="feature-tag">우아함</span>
+                        <span class="feature-tag">다용도</span>
+                        <span class="feature-tag">손잡이</span>
                     </div>
                     <div class="product-price">
                         <div>
-                            <span class="price">45,000원</span>
+                            <span class="price">65,000원</span>
                         </div>
                     </div>
                     <button class="add-to-cart" onclick="addToCart('tea-cup-1')">장바구니 담기</button>
                 </div>
             </div>
 
-            <div class="product-card" data-category="cup" data-price="38000">
+            <div class="product-card" data-category="cup" data-price="45000">
                 <div class="product-image">
-                    🍵
-                    <div class="product-badge new">신제품</div>
+                    🍺
                 </div>
                 <div class="product-info">
                     <div class="product-category">컵류</div>
                     <h3 class="product-name">온유 물컵</h3>
-                    <p class="product-description">일상에서 사용하기 편리한 적당한 용량의 물컵입니다.</p>
+                    <p class="product-description">일상 사용에 적합한 심플하고 실용적인 물컵입니다.</p>
                     <div class="product-features">
-                        <span class="feature-tag">적정용량</span>
                         <span class="feature-tag">실용성</span>
-                        <span class="feature-tag">항균처리</span>
+                        <span class="feature-tag">심플</span>
+                        <span class="feature-tag">일상용</span>
                     </div>
                     <div class="product-price">
                         <div>
-                            <span class="price">38,000원</span>
+                            <span class="price">45,000원</span>
                         </div>
                     </div>
                     <button class="add-to-cart" onclick="addToCart('water-cup-1')">장바구니 담기</button>
-                </div>
-            </div>
-
-            <div class="product-card" data-category="cup" data-price="95000">
-                <div class="product-image">
-                    🍶
-                    <div class="product-badge bestseller">베스트</div>
-                </div>
-                <div class="product-info">
-                    <div class="product-category">컵류</div>
-                    <h3 class="product-name">온유 주잔 세트</h3>
-                    <p class="product-description">전통주를 더욱 맛있게 즐길 수 있는 특별한 주잔 세트입니다.</p>
-                    <div class="product-features">
-                        <span class="feature-tag">전통주전용</span>
-                        <span class="feature-tag">세트구성</span>
-                        <span class="feature-tag">고급스러움</span>
-                    </div>
-                    <div class="product-price">
-                        <div>
-                            <span class="original-price">110,000원</span>
-                            <span class="price">95,000원</span>
-                        </div>
-                        <span class="discount">14% 할인</span>
-                    </div>
-                    <button class="add-to-cart" onclick="addToCart('sake-cup-set-1')">장바구니 담기</button>
                 </div>
             </div>
 
@@ -1140,15 +263,14 @@
             <div class="product-card" data-category="spoon" data-price="75000">
                 <div class="product-image">
                     🥄
-                    <div class="product-badge">장인제작</div>
                 </div>
                 <div class="product-info">
                     <div class="product-category">수저류</div>
                     <h3 class="product-name">온유 수저 세트</h3>
-                    <p class="product-description">한국 전통 수저를 현대적으로 재해석한 프리미엄 수저 세트입니다.</p>
+                    <p class="product-description">고급 유기 소재로 제작된 프리미엄 수저 세트입니다.</p>
                     <div class="product-features">
-                        <span class="feature-tag">전통기법</span>
-                        <span class="feature-tag">인체공학적</span>
+                        <span class="feature-tag">프리미엄</span>
+                        <span class="feature-tag">위생적</span>
                         <span class="feature-tag">고급소재</span>
                     </div>
                     <div class="product-price">
@@ -1200,10 +322,10 @@
                     </div>
                     <div class="product-price">
                         <div>
-                            <span class="original-price">350,000원</span>
+                            <span class="original-price">320,000원</span>
                             <span class="price">280,000원</span>
+                            <span class="discount">12% 할인</span>
                         </div>
-                        <span class="discount">20% 할인</span>
                     </div>
                     <button class="add-to-cart" onclick="addToCart('premium-set-1')">장바구니 담기</button>
                 </div>
@@ -1212,102 +334,123 @@
             <div class="product-card" data-category="set" data-price="180000">
                 <div class="product-image">
                     🎁
-                    <div class="product-badge limited">한정판</div>
                 </div>
                 <div class="product-info">
                     <div class="product-category">세트</div>
-                    <h3 class="product-name">온유 차생활 세트</h3>
-                    <p class="product-description">전통 차 문화를 즐기기 위한 모든 구성품이 포함된 세트입니다.</p>
+                    <h3 class="product-name">온유 선물 세트</h3>
+                    <p class="product-description">특별한 날을 위한 고급 선물용 식기 세트입니다.</p>
                     <div class="product-features">
-                        <span class="feature-tag">차문화</span>
-                        <span class="feature-tag">전통미</span>
-                        <span class="feature-tag">컬렉션</span>
+                        <span class="feature-tag">선물용</span>
+                        <span class="feature-tag">고급포장</span>
+                        <span class="feature-tag">특별한날</span>
                     </div>
                     <div class="product-price">
                         <div>
                             <span class="price">180,000원</span>
                         </div>
                     </div>
-                    <button class="add-to-cart" onclick="addToCart('tea-set-1')">장바구니 담기</button>
-                </div>
-            </div>
-
-            <div class="product-card" data-category="set" data-price="450000">
-                <div class="product-image">
-                    👑
-                    <div class="product-badge">마스터피스</div>
-                </div>
-                <div class="product-info">
-                    <div class="product-category">세트</div>
-                    <h3 class="product-name">온유 마스터 컬렉션</h3>
-                    <p class="product-description">최고급 장인이 직접 제작한 한정판 마스터피스 컬렉션입니다.</p>
-                    <div class="product-features">
-                        <span class="feature-tag">장인제작</span>
-                        <span class="feature-tag">한정판</span>
-                        <span class="feature-tag">예술품</span>
-                    </div>
-                    <div class="product-price">
-                        <div>
-                            <span class="price">450,000원</span>
-                        </div>
-                    </div>
-                    <button class="add-to-cart" onclick="addToCart('master-collection-1')">장바구니 담기</button>
-                </div>
-            </div>
-
-            <div class="product-card" data-category="bowl" data-price="32000">
-                <div class="product-image">
-                    🥙
-                    <div class="product-badge new">신제품</div>
-                </div>
-                <div class="product-info">
-                    <div class="product-category">그릇류</div>
-                    <h3 class="product-name">온유 미니 볼</h3>
-                    <p class="product-description">반찬이나 소스 담기에 적합한 작고 귀여운 미니 볼입니다.</p>
-                    <div class="product-features">
-                        <span class="feature-tag">소형사이즈</span>
-                        <span class="feature-tag">다용도</span>
-                        <span class="feature-tag">실용성</span>
-                    </div>
-                    <div class="product-price">
-                        <div>
-                            <span class="price">32,000원</span>
-                        </div>
-                    </div>
-                    <button class="add-to-cart" onclick="addToCart('mini-bowl-1')">장바구니 담기</button>
+                    <button class="add-to-cart" onclick="addToCart('gift-set-1')">장바구니 담기</button>
                 </div>
             </div>
         </section>
 
-        <!-- Products List View -->
-        <section class="products-list" id="productsList">
-            <!-- List view items will be generated by JavaScript -->
+        <!-- Product Features Section -->
+        <section class="product-features-section">
+            <div class="container">
+                <h2>온유 식기의 특별한 가치</h2>
+                <div class="features-grid">
+                    <div class="feature-card">
+                        <div class="feature-icon">🌿</div>
+                        <h3>천연 항균성</h3>
+                        <p>놋쇠의 천연 항균 효과로 음식의 신선함을 오래 유지하고 위생적인 식사환경을 제공합니다.</p>
+                    </div>
+                    <div class="feature-card">
+                        <div class="feature-icon">♻️</div>
+                        <h3>친환경 소재</h3>
+                        <p>100% 천연 놋쇠를 사용하여 환경에 무해하며 지속가능한 라이프스타일을 지원합니다.</p>
+                    </div>
+                    <div class="feature-card">
+                        <div class="feature-icon">✨</div>
+                        <h3>세련된 디자인</h3>
+                        <p>전통과 현대가 조화된 아름다운 디자인으로 어떤 공간에서도 우아함을 연출합니다.</p>
+                    </div>
+                    <div class="feature-card">
+                        <div class="feature-icon">💪</div>
+                        <h3>뛰어난 내구성</h3>
+                        <p>전통 기법으로 단련된 견고한 구조로 반영구적으로 사용할 수 있습니다.</p>
+                    </div>
+                </div>
+            </div>
         </section>
 
-        <!-- Pagination -->
-        <nav class="pagination">
-            <a href="#" class="pagination-btn disabled">‹‹</a>
-            <a href="#" class="pagination-btn disabled">‹</a>
-            <a href="#" class="pagination-btn active">1</a>
-            <a href="#" class="pagination-btn">2</a>
-            <a href="#" class="pagination-btn">3</a>
-            <a href="#" class="pagination-btn">›</a>
-            <a href="#" class="pagination-btn">››</a>
-        </nav>
+        <!-- Care Instructions Section -->
+        <section class="care-section">
+            <div class="container">
+                <h2>온유 식기 관리법</h2>
+                <div class="care-content">
+                    <div class="care-instructions">
+                        <div class="care-step">
+                            <div class="step-number">1</div>
+                            <div class="step-content">
+                                <h3>일상 관리</h3>
+                                <p>사용 후 중성세제로 부드럽게 세척하고 물기를 완전히 제거해주세요.</p>
+                            </div>
+                        </div>
+                        <div class="care-step">
+                            <div class="step-number">2</div>
+                            <div class="step-content">
+                                <h3>광택 유지</h3>
+                                <p>주기적으로 전용 광택제를 사용하여 본래의 아름다운 색감을 유지하세요.</p>
+                            </div>
+                        </div>
+                        <div class="care-step">
+                            <div class="step-number">3</div>
+                            <div class="step-content">
+                                <h3>보관 방법</h3>
+                                <p>습기가 적은 곳에 보관하며, 개별 포장지에 싸서 보관하는 것을 권장합니다.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
     </main>
 
-    <!-- Quick View Modal -->
-    <div class="modal" id="quickViewModal">
-        <div class="modal-content">
-            <button class="modal-close" onclick="closeModal()">&times;</button>
-            <div id="modalContent">
-                <!-- Modal content will be loaded here -->
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="footer-content">
+            <div class="footer-section">
+                <h3>KOREVO</h3>
+                <p>한국의 전통과 혁신을 담은<br>프리미엄 유기 브랜드</p>
+                <p>전통의 아름다움을 현대에 되살리며<br>지속가능한 미래를 만들어갑니다.</p>
+            </div>
+            <div class="footer-section">
+                <h3>빠른 링크</h3>
+                <p><a href="greeting.html">회사소개</a></p>
+                <p><a href="#business">사업소개</a></p>
+                <p><a href="#products">제품소개</a></p>
+            </div>
+            <div class="footer-section">
+                <h3>고객지원</h3>
+                <p>고객센터: 1588-0000</p>
+                <p>이메일: info@korevo.co.kr</p>
+                <p>운영시간: 평일 09:00-18:00</p>
+            </div>
+            <div class="footer-section">
+                <h3>주소</h3>
+                <p>서울특별시 강남구<br>테헤란로 123, 코레보빌딩 10층</p>
+                <p>사업자등록번호: 123-45-67890</p>
             </div>
         </div>
-    </div>
+        <div class="footer-bottom">
+            <p>&copy; 2025 KOREVO. All rights reserved.</p>
+        </div>
+    </footer>
 
+    <!-- JavaScript -->
+    <script src="script.js"></script>
     <script>
-        // Navigation function (from main site)
+        // 페이지 네비게이션 함수
         function navigateToPage(page) {
             console.log(`Navigate to: ${page}`);
             
@@ -1315,6 +458,7 @@
                 'vision': 'vision.html',
                 'history': 'history.html',
                 'team': 'team.html',
+                'onyu-brand': 'onyu-brand.html',
                 'brand-philosophy': 'brand-philosophy.html',
                 'traditional-craft': 'traditional-craft.html',
                 'business-model': 'business-model.html',
@@ -1346,24 +490,28 @@
             
             const targetPage = pageMap[page];
             if (targetPage) {
-                // 실제 환경에서는 페이지 이동
-                // window.location.href = targetPage;
-                
-                // 현재는 개발 중 알림
-                alert(`${page} 페이지로 이동합니다.`);
+                window.location.href = targetPage;
+            } else {
+                alert(`${page} 페이지는 준비 중입니다.`);
             }
         }
 
-        // Filter functionality
+        // 메뉴 토글
+        function toggleMenu() {
+            const navMenu = document.getElementById('navMenu');
+            const menuToggle = document.querySelector('.menu-toggle');
+            
+            navMenu.classList.toggle('active');
+            menuToggle.classList.toggle('active');
+        }
+
+        // 필터 기능
         document.addEventListener('DOMContentLoaded', function() {
             const filterTags = document.querySelectorAll('.filter-tag');
             const viewButtons = document.querySelectorAll('.view-btn');
             const productsGrid = document.getElementById('productsGrid');
-            const productsList = document.getElementById('productsList');
-            const sortSelect = document.getElementById('sortSelect');
-            const priceFilter = document.getElementById('priceFilter');
-
-            // Category filter
+            
+            // 카테고리 필터
             filterTags.forEach(tag => {
                 tag.addEventListener('click', function() {
                     filterTags.forEach(t => t.classList.remove('active'));
@@ -1373,245 +521,25 @@
                     filterProducts(category);
                 });
             });
-
-            // View toggle
+            
+            // 뷰 모드 변경
             viewButtons.forEach(btn => {
                 btn.addEventListener('click', function() {
                     viewButtons.forEach(b => b.classList.remove('active'));
                     this.classList.add('active');
                     
                     const view = this.dataset.view;
-                    toggleView(view);
-                });
-            });
-
-            // Sort functionality
-            sortSelect.addEventListener('change', function() {
-                sortProducts(this.value);
-            });
-
-            // Price filter
-            priceFilter.addEventListener('change', function() {
-                filterByPrice(this.value);
-            });
-
-            function filterProducts(category) {
-                const products = document.querySelectorAll('.product-card');
-                products.forEach(product => {
-                    if (category === 'all' || product.dataset.category === category) {
-                        product.style.display = 'block';
-                    } else {
-                        product.style.display = 'none';
-                    }
-                });
-            }
-
-            function toggleView(view) {
-                if (view === 'grid') {
-                    productsGrid.style.display = 'grid';
-                    productsList.style.display = 'none';
-                } else {
-                    productsGrid.style.display = 'none';
-                    productsList.style.display = 'flex';
-                    generateListView();
-                }
-            }
-
-            function generateListView() {
-                const gridItems = document.querySelectorAll('.product-card');
-                productsList.innerHTML = '';
-                
-                gridItems.forEach(item => {
-                    if (item.style.display !== 'none') {
-                        const listItem = createListItem(item);
-                        productsList.appendChild(listItem);
-                    }
-                });
-            }
-
-            function createListItem(gridItem) {
-                const listItem = document.createElement('div');
-                listItem.className = 'product-list-item';
-                
-                const name = gridItem.querySelector('.product-name').textContent;
-                const description = gridItem.querySelector('.product-description').textContent;
-                const price = gridItem.querySelector('.price').textContent;
-                const category = gridItem.querySelector('.product-category').textContent;
-                const image = gridItem.querySelector('.product-image').textContent.trim();
-                
-                listItem.innerHTML = `
-                    <div class="product-list-image">${image}</div>
-                    <div class="product-list-content">
-                        <div class="product-list-info">
-                            <div class="product-category">${category}</div>
-                            <h3 class="product-name">${name}</h3>
-                            <p class="product-description">${description}</p>
-                        </div>
-                        <div class="product-list-actions">
-                            <div class="price">${price}</div>
-                            <button class="add-to-cart" onclick="addToCart('${name}')">장바구니 담기</button>
-                        </div>
-                    </div>
-                `;
-                
-                return listItem;
-            }
-
-            function sortProducts(sortBy) {
-                const products = Array.from(document.querySelectorAll('.product-card'));
-                
-                products.sort((a, b) => {
-                    switch(sortBy) {
-                        case 'price-low':
-                            return parseInt(a.dataset.price) - parseInt(b.dataset.price);
-                        case 'price-high':
-                            return parseInt(b.dataset.price) - parseInt(a.dataset.price);
-                        case 'newest':
-                            return a.querySelector('.product-badge')?.textContent === '신제품' ? -1 : 1;
-                        case 'popular':
-                            return a.querySelector('.product-badge')?.textContent === '베스트' ? -1 : 1;
-                        default:
-                            return 0;
-                    }
-                });
-
-                const container = productsGrid;
-                products.forEach(product => container.appendChild(product));
-            }
-
-            function filterByPrice(priceRange) {
-                const products = document.querySelectorAll('.product-card');
-                
-                products.forEach(product => {
-                    const price = parseInt(product.dataset.price);
-                    let show = true;
-                    
-                    switch(priceRange) {
-                        case 'under50':
-                            show = price < 50000;
-                            break;
-                        case '50to100':
-                            show = price >= 50000 && price < 100000;
-                            break;
-                        case '100to200':
-                            show = price >= 100000 && price < 200000;
-                            break;
-                        case 'over200':
-                            show = price >= 200000;
-                            break;
-                        default:
-                            show = true;
-                    }
-                    
-                    product.style.display = show ? 'block' : 'none';
-                });
-            }
-        });
-
-        // Add to cart functionality
-        function addToCart(productId) {
-            // 실제 쇼핑몰에서는 장바구니 API 호출
-            console.log(`Adding ${productId} to cart`);
-            
-            // 사용자 피드백
-            const button = event.target;
-            const originalText = button.textContent;
-            button.textContent = '담았습니다!';
-            button.style.background = '#28a745';
-            
-            setTimeout(() => {
-                button.textContent = originalText;
-                button.style.background = '#2c5530';
-            }, 2000);
-        }
-
-        // Modal functionality
-        function openQuickView(productId) {
-            const modal = document.getElementById('quickViewModal');
-            modal.classList.add('active');
-            document.body.style.overflow = 'hidden';
-            
-            // Load product details
-            loadProductDetails(productId);
-        }
-
-        function closeModal() {
-            const modal = document.getElementById('quickViewModal');
-            modal.classList.remove('active');
-            document.body.style.overflow = '';
-        }
-
-        function loadProductDetails(productId) {
-            // 실제 구현에서는 API에서 상품 정보를 가져옴
-            const modalContent = document.getElementById('modalContent');
-            modalContent.innerHTML = `
-                <div style="padding: 2rem;">
-                    <h2>상품 상세 정보</h2>
-                    <p>상품 ID: ${productId}</p>
-                    <p>상세 정보를 로딩 중입니다...</p>
-                </div>
-            `;
-        }
-
-        // Product card hover effects
-        document.addEventListener('DOMContentLoaded', function() {
-            const productCards = document.querySelectorAll('.product-card');
-            
-            productCards.forEach(card => {
-                card.addEventListener('click', function() {
-                    const productName = this.querySelector('.product-name').textContent;
-                    openQuickView(productName);
+                    productsGrid.className = view === 'list' ? 'products-list' : 'products-grid';
                 });
             });
         });
 
-        // Smooth scroll for pagination
-        document.querySelectorAll('.pagination-btn').forEach(btn => {
-            btn.addEventListener('click', function(e) {
-                e.preventDefault();
-                
-                // Scroll to top of products
-                document.querySelector('.filter-section').scrollIntoView({
-                    behavior: 'smooth'
-                });
-                
-                // Update active state
-                document.querySelectorAll('.pagination-btn').forEach(b => b.classList.remove('active'));
-                if (!this.classList.contains('disabled')) {
-                    this.classList.add('active');
-                }
-            });
-        });
-
-        // Mobile responsive handling
-        function handleResize() {
-            const viewButtons = document.querySelector('.view-buttons');
-            const filterTags = document.querySelector('.filter-tags');
-            
-            if (window.innerWidth <= 768) {
-                // Mobile view adjustments
-                if (viewButtons) {
-                    const listBtn = viewButtons.querySelector('[data-view="list"]');
-                    if (listBtn && !listBtn.classList.contains('active')) {
-                        listBtn.click();
-                    }
-                }
-            }
-        }
-
-        window.addEventListener('resize', handleResize);
-        window.addEventListener('load', handleResize);
-
-        // Search functionality (if needed)
-        function searchProducts(query) {
+        // 상품 필터링
+        function filterProducts(category) {
             const products = document.querySelectorAll('.product-card');
-            const lowercaseQuery = query.toLowerCase();
             
             products.forEach(product => {
-                const name = product.querySelector('.product-name').textContent.toLowerCase();
-                const description = product.querySelector('.product-description').textContent.toLowerCase();
-                
-                if (name.includes(lowercaseQuery) || description.includes(lowercaseQuery)) {
+                if (category === 'all' || product.dataset.category === category) {
                     product.style.display = 'block';
                 } else {
                     product.style.display = 'none';
@@ -1619,64 +547,10 @@
             });
         }
 
-        // Keyboard navigation
-        document.addEventListener('keydown', function(e) {
-            if (e.key === 'Escape') {
-                closeModal();
-            }
-        });
-
-        // Intersection Observer for lazy loading (future enhancement)
-        if ('IntersectionObserver' in window) {
-            const observer = new IntersectionObserver((entries) => {
-                entries.forEach(entry => {
-                    if (entry.isIntersecting) {
-                        // Load product image or content
-                        entry.target.classList.add('loaded');
-                    }
-                });
-            });
-
-            // Observe product cards for animation
-            document.querySelectorAll('.product-card').forEach(card => {
-                observer.observe(card);
-            });
+        // 장바구니 추가
+        function addToCart(productId) {
+            alert(`${productId} 상품이 장바구니에 추가되었습니다!`);
         }
-
-        // Performance optimization
-        function debounce(func, wait) {
-            let timeout;
-            return function executedFunction(...args) {
-                const later = () => {
-                    clearTimeout(timeout);
-                    func(...args);
-                };
-                clearTimeout(timeout);
-                timeout = setTimeout(later, wait);
-            };
-        }
-
-        // Analytics tracking (placeholder)
-        function trackProductView(productName) {
-            console.log(`Product viewed: ${productName}`);
-            // 실제 구현에서는 Google Analytics 등으로 전송
-        }
-
-        function trackAddToCart(productName) {
-            console.log(`Product added to cart: ${productName}`);
-            // 실제 구현에서는 전자상거래 이벤트 추적
-        }
-
-        // Error handling
-        window.addEventListener('error', function(e) {
-            console.error('Dining set page error:', e.error);
-        });
-
-        // Page load performance
-        window.addEventListener('load', function() {
-            const loadTime = performance.timing.loadEventEnd - performance.timing.navigationStart;
-            console.log(`Page load time: ${loadTime}ms`);
-        });
     </script>
 </body>
 </html>
