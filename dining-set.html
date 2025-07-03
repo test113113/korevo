@@ -6,12 +6,8 @@
     <title>온유 식기 컬렉션 - KOREVO</title>
     <meta name="description" content="전통 유기 기법으로 만든 프리미엄 식기, 건강하고 아름다운 식생활의 시작">
     
-    <!-- CSS 파일 연결 -->
+    <!-- 통합 CSS 파일 -->
     <link rel="stylesheet" href="styles.css">
-    <link rel="stylesheet" href="dining-set-styles.css">
-    
-    <!-- 폰트 -->
-    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;700&display=swap" rel="stylesheet">
 </head>
 <body>
     <!-- Header -->
@@ -20,6 +16,9 @@
             <a href="index.html" class="logo">KOREVO</a>
             
             <ul class="nav-menu" id="navMenu">
+                <li class="nav-item">
+                    <a href="index.html" class="nav-link">홈</a>
+                </li>
                 <li class="nav-item">
                     <a href="#" class="nav-link">회사소개</a>
                     <div class="dropdown">
@@ -30,11 +29,11 @@
                     </div>
                 </li>
                 <li class="nav-item">
-                    <a href="#" class="nav-link">사업소개</a>
+                    <a href="#business" class="nav-link">사업소개</a>
                     <div class="mega-dropdown">
                         <div class="dropdown-section">
                             <h4>브랜드 스토리</h4>
-                            <div class="dropdown-item" onclick="navigateToPage('onyu-brand')">온유(溫鍮) 브랜드</div>
+                            <div class="dropdown-item" onclick="window.location.href='onyu-brand.html'">온유(溫鍮) 브랜드</div>
                             <div class="dropdown-item" onclick="navigateToPage('brand-philosophy')">브랜드 철학</div>
                             <div class="dropdown-item" onclick="navigateToPage('traditional-craft')">전통 기법 계승</div>
                         </div>
@@ -47,11 +46,11 @@
                     </div>
                 </li>
                 <li class="nav-item">
-                    <a href="#" class="nav-link">제품/서비스</a>
+                    <a href="#products" class="nav-link active">제품/서비스</a>
                     <div class="mega-dropdown">
                         <div class="dropdown-section">
                             <h4>🏺 유기 제품군</h4>
-                            <div class="dropdown-item active" onclick="navigateToPage('dining-set')">식기 컬렉션</div>
+                            <div class="dropdown-item active" onclick="window.location.href='dining-set.html'">식기 컬렉션</div>
                             <div class="dropdown-item" onclick="navigateToPage('health-products')">건강 케어 제품</div>
                             <div class="dropdown-item" onclick="navigateToPage('gift-sets')">프리미엄 선물세트</div>
                             <div class="dropdown-item" onclick="navigateToPage('custom-craft')">맞춤 제작 서비스</div>
@@ -78,7 +77,7 @@
                 <li class="nav-item">
                     <a href="#" class="nav-link">소식</a>
                     <div class="dropdown">
-                        <div class="dropdown-item" onclick="navigateToPage('notice')">공지사항</div>
+                        <div class="dropdown-item" onclick="window.location.href='notice.html'">공지사항</div>
                         <div class="dropdown-item" onclick="navigateToPage('news')">보도자료</div>
                         <div class="dropdown-item" onclick="navigateToPage('blog')">기술 블로그</div>
                         <div class="dropdown-item" onclick="navigateToPage('events')">이벤트</div>
@@ -96,11 +95,11 @@
                 <a href="#" class="lang-btn">🇨🇳</a>
             </div>
 
-            <div class="menu-toggle" onclick="toggleMenu()">
+            <button class="menu-toggle" onclick="toggleMenu()" aria-label="메뉴 토글" aria-expanded="false">
                 <span></span>
                 <span></span>
                 <span></span>
-            </div>
+            </button>
         </nav>
     </header>
 
@@ -126,294 +125,296 @@
 
     <!-- Main Content -->
     <main class="main-content">
-        <!-- Filter & Sort Section -->
-        <section class="filter-section">
-            <div class="filter-left">
-                <div class="filter-group">
-                    <span class="filter-label">카테고리:</span>
-                    <div class="filter-tags">
-                        <button class="filter-tag active" data-category="all">전체</button>
-                        <button class="filter-tag" data-category="bowl">그릇류</button>
-                        <button class="filter-tag" data-category="cup">컵류</button>
-                        <button class="filter-tag" data-category="spoon">수저류</button>
-                        <button class="filter-tag" data-category="set">세트</button>
+        <div class="container">
+            <!-- Filter & Sort Section -->
+            <section class="filter-section">
+                <div class="filter-left">
+                    <div class="filter-group">
+                        <span class="filter-label">카테고리:</span>
+                        <div class="filter-tags">
+                            <button class="filter-tag active" data-category="all">전체</button>
+                            <button class="filter-tag" data-category="bowl">그릇류</button>
+                            <button class="filter-tag" data-category="cup">컵류</button>
+                            <button class="filter-tag" data-category="spoon">수저류</button>
+                            <button class="filter-tag" data-category="set">세트</button>
+                        </div>
+                    </div>
+                    <div class="filter-group">
+                        <span class="filter-label">가격대:</span>
+                        <select class="filter-select" id="priceFilter">
+                            <option value="all">전체</option>
+                            <option value="under50">5만원 이하</option>
+                            <option value="50to100">5-10만원</option>
+                            <option value="100to200">10-20만원</option>
+                            <option value="over200">20만원 이상</option>
+                        </select>
                     </div>
                 </div>
-                <div class="filter-group">
-                    <span class="filter-label">가격대:</span>
-                    <select class="filter-select" id="priceFilter">
-                        <option value="all">전체</option>
-                        <option value="under50">5만원 이하</option>
-                        <option value="50to100">5-10만원</option>
-                        <option value="100to200">10-20만원</option>
-                        <option value="over200">20만원 이상</option>
+                <div class="view-controls">
+                    <div class="view-buttons">
+                        <button class="view-btn active" data-view="grid">🔲</button>
+                        <button class="view-btn" data-view="list">📋</button>
+                    </div>
+                    <select class="sort-select" id="sortSelect">
+                        <option value="popular">인기순</option>
+                        <option value="newest">신상품순</option>
+                        <option value="price-low">가격 낮은순</option>
+                        <option value="price-high">가격 높은순</option>
+                        <option value="rating">평점순</option>
                     </select>
                 </div>
-            </div>
-            <div class="view-controls">
-                <div class="view-buttons">
-                    <button class="view-btn active" data-view="grid">🔲</button>
-                    <button class="view-btn" data-view="list">📋</button>
-                </div>
-                <select class="sort-select" id="sortSelect">
-                    <option value="popular">인기순</option>
-                    <option value="newest">신상품순</option>
-                    <option value="price-low">가격 낮은순</option>
-                    <option value="price-high">가격 높은순</option>
-                    <option value="rating">평점순</option>
-                </select>
-            </div>
-        </section>
+            </section>
 
-        <!-- Products Grid -->
-        <section class="products-grid" id="productsGrid">
-            <!-- 그릇류 제품들 -->
-            <div class="product-card" data-category="bowl" data-price="89000">
-                <div class="product-image">
-                    🥣
-                    <div class="product-badge new">신제품</div>
-                </div>
-                <div class="product-info">
-                    <div class="product-category">그릇류</div>
-                    <h3 class="product-name">온유 밥그릇 세트</h3>
-                    <p class="product-description">전통 유기 기법으로 제작된 항균 밥그릇 세트입니다.</p>
-                    <div class="product-features">
-                        <span class="feature-tag">항균성</span>
-                        <span class="feature-tag">친환경</span>
-                        <span class="feature-tag">내구성</span>
+            <!-- Products Grid -->
+            <section class="products-grid" id="productsGrid">
+                <!-- 그릇류 제품들 -->
+                <div class="product-card" data-category="bowl" data-price="89000" data-views="245" data-rating="4.8">
+                    <div class="product-image">
+                        🥣
+                        <div class="product-badge new">신제품</div>
                     </div>
-                    <div class="product-price">
-                        <div>
+                    <div class="product-info">
+                        <div class="product-category">그릇류</div>
+                        <h3 class="product-name">온유 밥그릇 세트</h3>
+                        <p class="product-description">전통 유기 기법으로 제작된 항균 밥그릇 세트입니다. 4인 가족이 사용하기 적합한 사이즈로 구성되어 있습니다.</p>
+                        <div class="product-features">
+                            <span class="feature-tag">항균성</span>
+                            <span class="feature-tag">친환경</span>
+                            <span class="feature-tag">내구성</span>
+                        </div>
+                        <div class="product-price">
                             <span class="price">89,000원</span>
                         </div>
+                        <button class="add-to-cart" onclick="addToCart('bowl-set-1')">장바구니 담기</button>
                     </div>
-                    <button class="add-to-cart" onclick="addToCart('bowl-set-1')">장바구니 담기</button>
                 </div>
-            </div>
 
-            <div class="product-card" data-category="bowl" data-price="124000">
-                <div class="product-image">
-                    🍜
-                    <div class="product-badge bestseller">베스트</div>
-                </div>
-                <div class="product-info">
-                    <div class="product-category">그릇류</div>
-                    <h3 class="product-name">온유 국그릇 세트</h3>
-                    <p class="product-description">깊이감이 있는 국그릇으로 따뜻한 국물 요리에 최적화되었습니다.</p>
-                    <div class="product-features">
-                        <span class="feature-tag">보온성</span>
-                        <span class="feature-tag">깊이감</span>
-                        <span class="feature-tag">전통미</span>
+                <div class="product-card" data-category="bowl" data-price="124000" data-views="389" data-rating="4.9">
+                    <div class="product-image">
+                        🍜
+                        <div class="product-badge bestseller">베스트</div>
                     </div>
-                    <div class="product-price">
-                        <div>
+                    <div class="product-info">
+                        <div class="product-category">그릇류</div>
+                        <h3 class="product-name">온유 국그릇 세트</h3>
+                        <p class="product-description">깊이감이 있는 국그릇으로 따뜻한 국물 요리에 최적화되었습니다. 보온성이 뛰어나 마지막까지 따뜻하게 드실 수 있습니다.</p>
+                        <div class="product-features">
+                            <span class="feature-tag">보온성</span>
+                            <span class="feature-tag">깊이감</span>
+                            <span class="feature-tag">전통미</span>
+                        </div>
+                        <div class="product-price">
                             <span class="price">124,000원</span>
                         </div>
+                        <button class="add-to-cart" onclick="addToCart('soup-bowl-1')">장바구니 담기</button>
                     </div>
-                    <button class="add-to-cart" onclick="addToCart('soup-bowl-1')">장바구니 담기</button>
                 </div>
-            </div>
 
-            <!-- 컵류 제품들 -->
-            <div class="product-card" data-category="cup" data-price="65000">
-                <div class="product-image">
-                    ☕
-                </div>
-                <div class="product-info">
-                    <div class="product-category">컵류</div>
-                    <h3 class="product-name">온유 찻잔 세트</h3>
-                    <p class="product-description">전통차와 현대적 음료 모두에 어울리는 우아한 찻잔입니다.</p>
-                    <div class="product-features">
-                        <span class="feature-tag">우아함</span>
-                        <span class="feature-tag">다용도</span>
-                        <span class="feature-tag">손잡이</span>
-                    </div>
-                    <div class="product-price">
-                        <div>
+                <!-- 컵류 제품들 -->
+                <div class="product-card" data-category="cup" data-price="65000" data-views="156" data-rating="4.7">
+                    <div class="product-image">☕</div>
+                    <div class="product-info">
+                        <div class="product-category">컵류</div>
+                        <h3 class="product-name">온유 찻잔 세트</h3>
+                        <p class="product-description">전통차와 현대적 음료 모두에 어울리는 우아한 찻잔입니다. 손잡이가 있어 뜨거운 음료도 안전하게 드실 수 있습니다.</p>
+                        <div class="product-features">
+                            <span class="feature-tag">우아함</span>
+                            <span class="feature-tag">다용도</span>
+                            <span class="feature-tag">손잡이</span>
+                        </div>
+                        <div class="product-price">
                             <span class="price">65,000원</span>
                         </div>
+                        <button class="add-to-cart" onclick="addToCart('tea-cup-1')">장바구니 담기</button>
                     </div>
-                    <button class="add-to-cart" onclick="addToCart('tea-cup-1')">장바구니 담기</button>
                 </div>
-            </div>
 
-            <div class="product-card" data-category="cup" data-price="45000">
-                <div class="product-image">
-                    🍺
-                </div>
-                <div class="product-info">
-                    <div class="product-category">컵류</div>
-                    <h3 class="product-name">온유 물컵</h3>
-                    <p class="product-description">일상 사용에 적합한 심플하고 실용적인 물컵입니다.</p>
-                    <div class="product-features">
-                        <span class="feature-tag">실용성</span>
-                        <span class="feature-tag">심플</span>
-                        <span class="feature-tag">일상용</span>
-                    </div>
-                    <div class="product-price">
-                        <div>
+                <div class="product-card" data-category="cup" data-price="45000" data-views="198" data-rating="4.6">
+                    <div class="product-image">🍺</div>
+                    <div class="product-info">
+                        <div class="product-category">컵류</div>
+                        <h3 class="product-name">온유 물컵</h3>
+                        <p class="product-description">일상 사용에 적합한 심플하고 실용적인 물컵입니다. 적당한 용량으로 물이나 음료수를 마시기에 최적입니다.</p>
+                        <div class="product-features">
+                            <span class="feature-tag">실용성</span>
+                            <span class="feature-tag">심플</span>
+                            <span class="feature-tag">일상용</span>
+                        </div>
+                        <div class="product-price">
                             <span class="price">45,000원</span>
                         </div>
+                        <button class="add-to-cart" onclick="addToCart('water-cup-1')">장바구니 담기</button>
                     </div>
-                    <button class="add-to-cart" onclick="addToCart('water-cup-1')">장바구니 담기</button>
                 </div>
-            </div>
 
-            <!-- 수저류 제품들 -->
-            <div class="product-card" data-category="spoon" data-price="75000">
-                <div class="product-image">
-                    🥄
-                </div>
-                <div class="product-info">
-                    <div class="product-category">수저류</div>
-                    <h3 class="product-name">온유 수저 세트</h3>
-                    <p class="product-description">고급 유기 소재로 제작된 프리미엄 수저 세트입니다.</p>
-                    <div class="product-features">
-                        <span class="feature-tag">프리미엄</span>
-                        <span class="feature-tag">위생적</span>
-                        <span class="feature-tag">고급소재</span>
-                    </div>
-                    <div class="product-price">
-                        <div>
+                <!-- 수저류 제품들 -->
+                <div class="product-card" data-category="spoon" data-price="75000" data-views="267" data-rating="4.8">
+                    <div class="product-image">🥄</div>
+                    <div class="product-info">
+                        <div class="product-category">수저류</div>
+                        <h3 class="product-name">온유 수저 세트</h3>
+                        <p class="product-description">고급 유기 소재로 제작된 프리미엄 수저 세트입니다. 가족 구성원 모두가 사용할 수 있는 4벌 세트로 구성되어 있습니다.</p>
+                        <div class="product-features">
+                            <span class="feature-tag">프리미엄</span>
+                            <span class="feature-tag">위생적</span>
+                            <span class="feature-tag">고급소재</span>
+                        </div>
+                        <div class="product-price">
                             <span class="price">75,000원</span>
                         </div>
+                        <button class="add-to-cart" onclick="addToCart('spoon-set-1')">장바구니 담기</button>
                     </div>
-                    <button class="add-to-cart" onclick="addToCart('spoon-set-1')">장바구니 담기</button>
                 </div>
-            </div>
 
-            <div class="product-card" data-category="spoon" data-price="55000">
-                <div class="product-image">
-                    🍴
-                    <div class="product-badge new">신제품</div>
-                </div>
-                <div class="product-info">
-                    <div class="product-category">수저류</div>
-                    <h3 class="product-name">온유 개인 수저</h3>
-                    <p class="product-description">개인 위생을 고려한 맞춤형 개인 전용 수저입니다.</p>
-                    <div class="product-features">
-                        <span class="feature-tag">개인맞춤</span>
-                        <span class="feature-tag">위생적</span>
-                        <span class="feature-tag">휴대용</span>
+                <div class="product-card" data-category="spoon" data-price="55000" data-views="123" data-rating="4.9">
+                    <div class="product-image">
+                        🍴
+                        <div class="product-badge new">신제품</div>
                     </div>
-                    <div class="product-price">
-                        <div>
+                    <div class="product-info">
+                        <div class="product-category">수저류</div>
+                        <h3 class="product-name">온유 개인 수저</h3>
+                        <p class="product-description">개인 위생을 고려한 맞춤형 개인 전용 수저입니다. 휴대용 케이스가 함께 제공되어 외출 시에도 사용 가능합니다.</p>
+                        <div class="product-features">
+                            <span class="feature-tag">개인맞춤</span>
+                            <span class="feature-tag">위생적</span>
+                            <span class="feature-tag">휴대용</span>
+                        </div>
+                        <div class="product-price">
                             <span class="price">55,000원</span>
                         </div>
+                        <button class="add-to-cart" onclick="addToCart('personal-spoon-1')">장바구니 담기</button>
                     </div>
-                    <button class="add-to-cart" onclick="addToCart('personal-spoon-1')">장바구니 담기</button>
                 </div>
-            </div>
 
-            <!-- 세트 제품들 -->
-            <div class="product-card" data-category="set" data-price="280000">
-                <div class="product-image">
-                    🍽️
-                    <div class="product-badge bestseller">베스트</div>
-                </div>
-                <div class="product-info">
-                    <div class="product-category">세트</div>
-                    <h3 class="product-name">온유 프리미엄 식기 세트</h3>
-                    <p class="product-description">신혼부부와 가족을 위한 완벽한 구성의 프리미엄 식기 세트입니다.</p>
-                    <div class="product-features">
-                        <span class="feature-tag">완벽구성</span>
-                        <span class="feature-tag">가족용</span>
-                        <span class="feature-tag">선물포장</span>
+                <!-- 세트 제품들 -->
+                <div class="product-card" data-category="set" data-price="280000" data-views="456" data-rating="5.0">
+                    <div class="product-image">
+                        🍽️
+                        <div class="product-badge bestseller">베스트</div>
                     </div>
-                    <div class="product-price">
-                        <div>
+                    <div class="product-info">
+                        <div class="product-category">세트</div>
+                        <h3 class="product-name">온유 프리미엄 식기 세트</h3>
+                        <p class="product-description">신혼부부와 가족을 위한 완벽한 구성의 프리미엄 식기 세트입니다. 밥그릇, 국그릇, 반찬그릇, 수저가 모두 포함되어 있습니다.</p>
+                        <div class="product-features">
+                            <span class="feature-tag">완벽구성</span>
+                            <span class="feature-tag">가족용</span>
+                            <span class="feature-tag">선물포장</span>
+                        </div>
+                        <div class="product-price">
                             <span class="original-price">320,000원</span>
                             <span class="price">280,000원</span>
                             <span class="discount">12% 할인</span>
                         </div>
+                        <button class="add-to-cart" onclick="addToCart('premium-set-1')">장바구니 담기</button>
                     </div>
-                    <button class="add-to-cart" onclick="addToCart('premium-set-1')">장바구니 담기</button>
                 </div>
-            </div>
 
-            <div class="product-card" data-category="set" data-price="180000">
-                <div class="product-image">
-                    🎁
-                </div>
-                <div class="product-info">
-                    <div class="product-category">세트</div>
-                    <h3 class="product-name">온유 선물 세트</h3>
-                    <p class="product-description">특별한 날을 위한 고급 선물용 식기 세트입니다.</p>
-                    <div class="product-features">
-                        <span class="feature-tag">선물용</span>
-                        <span class="feature-tag">고급포장</span>
-                        <span class="feature-tag">특별한날</span>
-                    </div>
-                    <div class="product-price">
-                        <div>
+                <div class="product-card" data-category="set" data-price="180000" data-views="298" data-rating="4.8">
+                    <div class="product-image">🎁</div>
+                    <div class="product-info">
+                        <div class="product-category">세트</div>
+                        <h3 class="product-name">온유 선물 세트</h3>
+                        <p class="product-description">특별한 날을 위한 고급 선물용 식기 세트입니다. 결혼, 집들이, 승진 등 의미 있는 순간을 기념할 수 있는 완벽한 선물입니다.</p>
+                        <div class="product-features">
+                            <span class="feature-tag">선물용</span>
+                            <span class="feature-tag">고급포장</span>
+                            <span class="feature-tag">특별한날</span>
+                        </div>
+                        <div class="product-price">
                             <span class="price">180,000원</span>
                         </div>
+                        <button class="add-to-cart" onclick="addToCart('gift-set-1')">장바구니 담기</button>
                     </div>
-                    <button class="add-to-cart" onclick="addToCart('gift-set-1')">장바구니 담기</button>
                 </div>
-            </div>
-        </section>
+            </section>
 
-        <!-- Product Features Section -->
-        <section class="product-features-section">
-            <div class="container">
-                <h2>온유 식기의 특별한 가치</h2>
-                <div class="features-grid">
-                    <div class="feature-card">
-                        <div class="feature-icon">🌿</div>
-                        <h3>천연 항균성</h3>
-                        <p>놋쇠의 천연 항균 효과로 음식의 신선함을 오래 유지하고 위생적인 식사환경을 제공합니다.</p>
-                    </div>
-                    <div class="feature-card">
-                        <div class="feature-icon">♻️</div>
-                        <h3>친환경 소재</h3>
-                        <p>100% 천연 놋쇠를 사용하여 환경에 무해하며 지속가능한 라이프스타일을 지원합니다.</p>
-                    </div>
-                    <div class="feature-card">
-                        <div class="feature-icon">✨</div>
-                        <h3>세련된 디자인</h3>
-                        <p>전통과 현대가 조화된 아름다운 디자인으로 어떤 공간에서도 우아함을 연출합니다.</p>
-                    </div>
-                    <div class="feature-card">
-                        <div class="feature-icon">💪</div>
-                        <h3>뛰어난 내구성</h3>
-                        <p>전통 기법으로 단련된 견고한 구조로 반영구적으로 사용할 수 있습니다.</p>
+            <!-- Product Features Section -->
+            <section class="product-features-section">
+                <div class="container">
+                    <h2>온유 식기의 특별한 가치</h2>
+                    <div class="features-grid">
+                        <div class="feature-card animate-on-scroll">
+                            <div class="feature-icon">🌿</div>
+                            <h3>천연 항균성</h3>
+                            <p>놋쇠의 천연 항균 효과로 음식의 신선함을 오래 유지하고 위생적인 식사환경을 제공합니다. 화학 첨가물 없이도 자연스럽게 세균 증식을 억제합니다.</p>
+                        </div>
+                        <div class="feature-card animate-on-scroll">
+                            <div class="feature-icon">♻️</div>
+                            <h3>친환경 소재</h3>
+                            <p>100% 천연 놋쇠를 사용하여 환경에 무해하며 지속가능한 라이프스타일을 지원합니다. 재활용이 가능하여 지구 환경 보호에도 기여합니다.</p>
+                        </div>
+                        <div class="feature-card animate-on-scroll">
+                            <div class="feature-icon">✨</div>
+                            <h3>세련된 디자인</h3>
+                            <p>전통과 현대가 조화된 아름다운 디자인으로 어떤 공간에서도 우아함을 연출합니다. 시간이 지날수록 더욱 깊어지는 색감의 변화를 즐길 수 있습니다.</p>
+                        </div>
+                        <div class="feature-card animate-on-scroll">
+                            <div class="feature-icon">💪</div>
+                            <h3>뛰어난 내구성</h3>
+                            <p>전통 기법으로 단련된 견고한 구조로 반영구적으로 사용할 수 있습니다. 적절한 관리만 하면 대를 이어 사용할 수 있는 가보가 됩니다.</p>
+                        </div>
                     </div>
                 </div>
-            </div>
-        </section>
+            </section>
 
-        <!-- Care Instructions Section -->
-        <section class="care-section">
-            <div class="container">
-                <h2>온유 식기 관리법</h2>
-                <div class="care-content">
-                    <div class="care-instructions">
-                        <div class="care-step">
-                            <div class="step-number">1</div>
-                            <div class="step-content">
-                                <h3>일상 관리</h3>
-                                <p>사용 후 중성세제로 부드럽게 세척하고 물기를 완전히 제거해주세요.</p>
+            <!-- Care Instructions Section -->
+            <section class="care-section">
+                <div class="container">
+                    <h2>온유 식기 관리법</h2>
+                    <div class="care-content">
+                        <div class="care-instructions">
+                            <div class="care-step animate-on-scroll">
+                                <div class="step-number">1</div>
+                                <div class="step-content">
+                                    <h3>일상 관리</h3>
+                                    <p>사용 후 중성세제로 부드럽게 세척하고 물기를 완전히 제거해주세요. 거친 수세미보다는 부드러운 스펀지를 사용하시는 것이 좋습니다.</p>
+                                </div>
                             </div>
-                        </div>
-                        <div class="care-step">
-                            <div class="step-number">2</div>
-                            <div class="step-content">
-                                <h3>광택 유지</h3>
-                                <p>주기적으로 전용 광택제를 사용하여 본래의 아름다운 색감을 유지하세요.</p>
+                            <div class="care-step animate-on-scroll">
+                                <div class="step-number">2</div>
+                                <div class="step-content">
+                                    <h3>광택 유지</h3>
+                                    <p>주기적으로 전용 광택제를 사용하여 본래의 아름다운 색감을 유지하세요. 월 1회 정도 관리하시면 오래도록 새것 같은 광택을 유지할 수 있습니다.</p>
+                                </div>
                             </div>
-                        </div>
-                        <div class="care-step">
-                            <div class="step-number">3</div>
-                            <div class="step-content">
-                                <h3>보관 방법</h3>
-                                <p>습기가 적은 곳에 보관하며, 개별 포장지에 싸서 보관하는 것을 권장합니다.</p>
+                            <div class="care-step animate-on-scroll">
+                                <div class="step-number">3</div>
+                                <div class="step-content">
+                                    <h3>보관 방법</h3>
+                                    <p>습기가 적은 곳에 보관하며, 개별 포장지에 싸서 보관하는 것을 권장합니다. 서로 부딪혀 생기는 흠집을 방지할 수 있습니다.</p>
+                                </div>
                             </div>
                         </div>
                     </div>
                 </div>
-            </div>
-        </section>
+            </section>
+
+            <!-- Customer Reviews Section -->
+            <section class="reviews-section">
+                <div class="container">
+                    <h2>고객 후기</h2>
+                    <div class="reviews-grid">
+                        <div class="review-card animate-on-scroll">
+                            <div class="review-rating">⭐⭐⭐⭐⭐</div>
+                            <p class="review-text">"정말 만족스러운 구매였습니다. 전통의 아름다움과 실용성을 모두 갖춘 제품이에요. 가족들 모두 좋아합니다."</p>
+                            <div class="review-author">김○○님 (프리미엄 세트 구매)</div>
+                        </div>
+                        <div class="review-card animate-on-scroll">
+                            <div class="review-rating">⭐⭐⭐⭐⭐</div>
+                            <p class="review-text">"집들이 선물로 구매했는데 너무 좋아하시더라고요. 포장도 고급스럽고 품질도 최고입니다."</p>
+                            <div class="review-author">이○○님 (선물 세트 구매)</div>
+                        </div>
+                        <div class="review-card animate-on-scroll">
+                            <div class="review-rating">⭐⭐⭐⭐⭐</div>
+                            <p class="review-text">"개인 수저가 정말 좋아요. 외출할 때마다 가지고 다니는데 위생적이고 실용적입니다."</p>
+                            <div class="review-author">박○○님 (개인 수저 구매)</div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </div>
     </main>
 
     <!-- Footer -->
@@ -427,8 +428,8 @@
             <div class="footer-section">
                 <h3>빠른 링크</h3>
                 <p><a href="greeting.html">회사소개</a></p>
-                <p><a href="#business">사업소개</a></p>
-                <p><a href="#products">제품소개</a></p>
+                <p><a href="onyu-brand.html">사업소개</a></p>
+                <p><a href="dining-set.html">제품소개</a></p>
             </div>
             <div class="footer-section">
                 <h3>고객지원</h3>
@@ -447,110 +448,7 @@
         </div>
     </footer>
 
-    <!-- JavaScript -->
+    <!-- 통합 JavaScript 파일 -->
     <script src="script.js"></script>
-    <script>
-        // 페이지 네비게이션 함수
-        function navigateToPage(page) {
-            console.log(`Navigate to: ${page}`);
-            
-            const pageMap = {
-                'vision': 'vision.html',
-                'history': 'history.html',
-                'team': 'team.html',
-                'onyu-brand': 'onyu-brand.html',
-                'brand-philosophy': 'brand-philosophy.html',
-                'traditional-craft': 'traditional-craft.html',
-                'business-model': 'business-model.html',
-                'innovation-strategy': 'innovation-strategy.html',
-                'sustainability': 'sustainability.html',
-                'dining-set': 'dining-set.html',
-                'health-products': 'health-products.html',
-                'gift-sets': 'gift-sets.html',
-                'custom-craft': 'custom-craft.html',
-                'erp-solution': 'erp-solution.html',
-                'iot-platform': 'iot-platform.html',
-                'ecommerce-system': 'ecommerce-system.html',
-                'consulting': 'consulting.html',
-                'current-projects': 'current-projects.html',
-                'completed-projects': 'completed-projects.html',
-                'research-outcomes': 'research-outcomes.html',
-                'collaboration': 'collaboration.html',
-                'product-support': 'product-support.html',
-                'software-support': 'software-support.html',
-                'faq': 'faq.html',
-                'inquiry': 'inquiry.html',
-                'download': 'download.html',
-                'notice': 'notice.html',
-                'news': 'news.html',
-                'blog': 'blog.html',
-                'events': 'events.html',
-                'awards': 'awards.html'
-            };
-            
-            const targetPage = pageMap[page];
-            if (targetPage) {
-                window.location.href = targetPage;
-            } else {
-                alert(`${page} 페이지는 준비 중입니다.`);
-            }
-        }
-
-        // 메뉴 토글
-        function toggleMenu() {
-            const navMenu = document.getElementById('navMenu');
-            const menuToggle = document.querySelector('.menu-toggle');
-            
-            navMenu.classList.toggle('active');
-            menuToggle.classList.toggle('active');
-        }
-
-        // 필터 기능
-        document.addEventListener('DOMContentLoaded', function() {
-            const filterTags = document.querySelectorAll('.filter-tag');
-            const viewButtons = document.querySelectorAll('.view-btn');
-            const productsGrid = document.getElementById('productsGrid');
-            
-            // 카테고리 필터
-            filterTags.forEach(tag => {
-                tag.addEventListener('click', function() {
-                    filterTags.forEach(t => t.classList.remove('active'));
-                    this.classList.add('active');
-                    
-                    const category = this.dataset.category;
-                    filterProducts(category);
-                });
-            });
-            
-            // 뷰 모드 변경
-            viewButtons.forEach(btn => {
-                btn.addEventListener('click', function() {
-                    viewButtons.forEach(b => b.classList.remove('active'));
-                    this.classList.add('active');
-                    
-                    const view = this.dataset.view;
-                    productsGrid.className = view === 'list' ? 'products-list' : 'products-grid';
-                });
-            });
-        });
-
-        // 상품 필터링
-        function filterProducts(category) {
-            const products = document.querySelectorAll('.product-card');
-            
-            products.forEach(product => {
-                if (category === 'all' || product.dataset.category === category) {
-                    product.style.display = 'block';
-                } else {
-                    product.style.display = 'none';
-                }
-            });
-        }
-
-        // 장바구니 추가
-        function addToCart(productId) {
-            alert(`${productId} 상품이 장바구니에 추가되었습니다!`);
-        }
-    </script>
 </body>
 </html>
