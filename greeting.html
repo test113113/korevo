@@ -6,9 +6,8 @@
     <title>인사말 - KOREVO</title>
     <meta name="description" content="KOREVO 대표의 인사말과 비전을 확인하세요.">
     
-    <!-- CSS 파일 연결 -->
+    <!-- 통합 CSS 파일 -->
     <link rel="stylesheet" href="styles.css">
-    <link rel="stylesheet" href="greeting-styles.css">
 </head>
 <body>
     <!-- Header -->
@@ -18,20 +17,23 @@
             
             <ul class="nav-menu" id="navMenu">
                 <li class="nav-item">
-                    <a href="#" class="nav-link">회사소개</a>
+                    <a href="index.html" class="nav-link">홈</a>
+                </li>
+                <li class="nav-item">
+                    <a href="#" class="nav-link active">회사소개</a>
                     <div class="dropdown">
-                        <div class="dropdown-item" onclick="window.location.href='greeting.html'">인사말</div>
+                        <div class="dropdown-item active" onclick="window.location.href='greeting.html'">인사말</div>
                         <div class="dropdown-item" onclick="navigateToPage('vision')">비전 & 미션</div>
                         <div class="dropdown-item" onclick="navigateToPage('history')">연혁</div>
                         <div class="dropdown-item" onclick="navigateToPage('team')">팀 소개</div>
                     </div>
                 </li>
                 <li class="nav-item">
-                    <a href="#" class="nav-link">사업소개</a>
+                    <a href="#business" class="nav-link">사업소개</a>
                     <div class="mega-dropdown">
                         <div class="dropdown-section">
                             <h4>브랜드 스토리</h4>
-                            <div class="dropdown-item" onclick="navigateToPage('onyu-brand')">온유(溫鍮) 브랜드</div>
+                            <div class="dropdown-item" onclick="window.location.href='onyu-brand.html'">온유(溫鍮) 브랜드</div>
                             <div class="dropdown-item" onclick="navigateToPage('brand-philosophy')">브랜드 철학</div>
                             <div class="dropdown-item" onclick="navigateToPage('traditional-craft')">전통 기법 계승</div>
                         </div>
@@ -44,11 +46,11 @@
                     </div>
                 </li>
                 <li class="nav-item">
-                    <a href="#" class="nav-link">제품/서비스</a>
+                    <a href="#products" class="nav-link">제품/서비스</a>
                     <div class="mega-dropdown">
                         <div class="dropdown-section">
                             <h4>🏺 유기 제품군</h4>
-                            <div class="dropdown-item" onclick="navigateToPage('dining-set')">식기 컬렉션</div>
+                            <div class="dropdown-item" onclick="window.location.href='dining-set.html'">식기 컬렉션</div>
                             <div class="dropdown-item" onclick="navigateToPage('health-products')">건강 케어 제품</div>
                             <div class="dropdown-item" onclick="navigateToPage('gift-sets')">프리미엄 선물세트</div>
                             <div class="dropdown-item" onclick="navigateToPage('custom-craft')">맞춤 제작 서비스</div>
@@ -75,7 +77,7 @@
                 <li class="nav-item">
                     <a href="#" class="nav-link">소식</a>
                     <div class="dropdown">
-                        <div class="dropdown-item" onclick="navigateToPage('notice')">공지사항</div>
+                        <div class="dropdown-item" onclick="window.location.href='notice.html'">공지사항</div>
                         <div class="dropdown-item" onclick="navigateToPage('news')">보도자료</div>
                         <div class="dropdown-item" onclick="navigateToPage('blog')">기술 블로그</div>
                         <div class="dropdown-item" onclick="navigateToPage('events')">이벤트</div>
@@ -92,6 +94,12 @@
                 <a href="#" class="lang-btn">🇺🇸</a>
                 <a href="#" class="lang-btn">🇨🇳</a>
             </div>
+
+            <button class="menu-toggle" onclick="toggleMenu()" aria-label="메뉴 토글" aria-expanded="false">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
         </nav>
     </header>
 
@@ -117,44 +125,46 @@
 
     <!-- Main Content -->
     <main class="main-content">
-        <div class="greeting-container">
-            <div class="greeting-section">
-                <div class="ceo-info">
-                    <div class="ceo-photo">
-                        <img src="./images/ceo-photo.jpg" alt="CEO" onerror="this.style.display='none'">
-                        <div class="photo-placeholder">CEO</div>
-                    </div>
-                    <div class="ceo-details">
-                        <h2>김대표</h2>
-                        <p class="title">대표이사</p>
-                        <div class="contact-info">
-                            <p>📧 ceo@korevo.co.kr</p>
-                            <p>📞 1588-0000</p>
+        <div class="container">
+            <section class="greeting-section">
+                <div class="greeting-container">
+                    <div class="ceo-info">
+                        <div class="ceo-photo">
+                            <img src="./images/ceo-photo.jpg" alt="CEO" onerror="this.style.display='none'">
+                            <div class="photo-placeholder">CEO</div>
+                        </div>
+                        <div class="ceo-details">
+                            <h2>김대표</h2>
+                            <p class="title">대표이사</p>
+                            <div class="contact-info">
+                                <p>📧 ceo@korevo.co.kr</p>
+                                <p>📞 1588-0000</p>
+                            </div>
                         </div>
                     </div>
-                </div>
 
-                <div class="greeting-content">
-                    <h3>안녕하세요, KOREVO를 찾아주신 여러분께 감사드립니다.</h3>
-                    
-                    <div class="message-section">
-                        <p>KOREVO는 천년의 전통 유기 기술과 현대의 혁신적인 IT 기술을 융합하여 새로운 가치를 창조하는 기업입니다.</p>
+                    <div class="greeting-content">
+                        <h3>안녕하세요, KOREVO를 찾아주신 여러분께 감사드립니다.</h3>
                         
-                        <p>우리의 '온유(溫鍮)' 브랜드는 따뜻함을 의미하는 '온(溫)'과 놋쇠를 뜻하는 '유(鍮)'가 만나 탄생했습니다. 이는 우리가 추구하는 가치 그 자체입니다 - 전통의 따뜻함과 현대 기술의 혁신이 조화를 이루는 것.</p>
-                        
-                        <p>급변하는 시대 속에서도 변하지 않는 가치가 있습니다. 그것은 바로 건강하고 지속가능한 삶에 대한 인간의 본능적 욕구입니다. KOREVO는 이러한 가치를 실현하기 위해 전통 유기 제품의 현대적 재해석과 함께 첨단 IT 솔루션을 제공합니다.</p>
-                        
-                        <p>우리의 제품과 서비스는 단순히 기능적 편의를 제공하는 것을 넘어서, 사용자의 삶의 질을 향상시키고 더 나은 미래를 만들어가는 데 기여하고자 합니다.</p>
-                        
-                        <p>KOREVO와 함께 전통과 혁신이 만나는 특별한 여정을 시작해보세요. 여러분의 관심과 참여가 더 나은 세상을 만드는 원동력이 됩니다.</p>
-                        
-                        <div class="signature">
-                            <p>감사합니다.</p>
-                            <p class="name">KOREVO 대표이사 <strong>김대표</strong></p>
+                        <div class="message-section">
+                            <p>KOREVO는 천년의 전통 유기 기술과 현대의 혁신적인 IT 기술을 융합하여 새로운 가치를 창조하는 기업입니다.</p>
+                            
+                            <p>우리의 '온유(溫鍮)' 브랜드는 따뜻함을 의미하는 '온(溫)'과 놋쇠를 뜻하는 '유(鍮)'가 만나 탄생했습니다. 이는 우리가 추구하는 가치 그 자체입니다 - 전통의 따뜻함과 현대 기술의 혁신이 조화를 이루는 것.</p>
+                            
+                            <p>급변하는 시대 속에서도 변하지 않는 가치가 있습니다. 그것은 바로 건강하고 지속가능한 삶에 대한 인간의 본능적 욕구입니다. KOREVO는 이러한 가치를 실현하기 위해 전통 유기 제품의 현대적 재해석과 함께 첨단 IT 솔루션을 제공합니다.</p>
+                            
+                            <p>우리의 제품과 서비스는 단순히 기능적 편의를 제공하는 것을 넘어서, 사용자의 삶의 질을 향상시키고 더 나은 미래를 만들어가는 데 기여하고자 합니다.</p>
+                            
+                            <p>KOREVO와 함께 전통과 혁신이 만나는 특별한 여정을 시작해보세요. 여러분의 관심과 참여가 더 나은 세상을 만드는 원동력이 됩니다.</p>
+                            
+                            <div class="signature">
+                                <p>감사합니다.</p>
+                                <p class="name">KOREVO 대표이사 <strong>김대표</strong></p>
+                            </div>
                         </div>
                     </div>
                 </div>
-            </div>
+            </section>
         </div>
     </main>
 
@@ -169,8 +179,8 @@
             <div class="footer-section">
                 <h3>빠른 링크</h3>
                 <p><a href="greeting.html">회사소개</a></p>
-                <p><a href="#business">사업소개</a></p>
-                <p><a href="#products">제품소개</a></p>
+                <p><a href="onyu-brand.html">사업소개</a></p>
+                <p><a href="dining-set.html">제품소개</a></p>
             </div>
             <div class="footer-section">
                 <h3>고객지원</h3>
@@ -189,13 +199,7 @@
         </div>
     </footer>
 
-    <!-- JavaScript -->
+    <!-- 통합 JavaScript 파일 -->
     <script src="script.js"></script>
-    <script>
-        function navigateToPage(page) {
-            // 준비 중인 페이지들을 위한 임시 처리
-            alert(`${page} 페이지는 현재 준비 중입니다.`);
-        }
-    </script>
 </body>
 </html>
