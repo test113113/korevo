@@ -6,18 +6,18 @@
     <title>KOREVO - 한국의 전통과 혁신을 담다</title>
     <meta name="description" content="전통 유기 기술과 현대 IT 기술의 융합, KOREVO에서 새로운 가치를 창조합니다.">
     
-    <!-- CSS 파일 연결 -->
+    <!-- 통합 CSS 파일 -->
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
     <!-- Header -->
     <header class="header">
         <nav class="nav-container">
-            <a href="#home" class="logo">KOREVO</a>
+            <a href="index.html" class="logo">KOREVO</a>
             
             <ul class="nav-menu" id="navMenu">
                 <li class="nav-item">
-                    <a href="#home" class="nav-link">홈</a>
+                    <a href="index.html" class="nav-link active">홈</a>
                 </li>
                 <li class="nav-item">
                     <a href="#" class="nav-link">회사소개</a>
@@ -33,7 +33,7 @@
                     <div class="mega-dropdown">
                         <div class="dropdown-section">
                             <h4>브랜드 스토리</h4>
-                            <div class="dropdown-item" onclick="navigateToPage('onyu-brand')">온유(溫鍮) 브랜드</div>
+                            <div class="dropdown-item" onclick="window.location.href='onyu-brand.html'">온유(溫鍮) 브랜드</div>
                             <div class="dropdown-item" onclick="navigateToPage('brand-philosophy')">브랜드 철학</div>
                             <div class="dropdown-item" onclick="navigateToPage('traditional-craft')">전통 기법 계승</div>
                         </div>
@@ -50,7 +50,7 @@
                     <div class="mega-dropdown">
                         <div class="dropdown-section">
                             <h4>🏺 유기 제품군</h4>
-                            <div class="dropdown-item" onclick="navigateToPage('dining-set')">식기 컬렉션</div>
+                            <div class="dropdown-item" onclick="window.location.href='dining-set.html'">식기 컬렉션</div>
                             <div class="dropdown-item" onclick="navigateToPage('health-products')">건강 케어 제품</div>
                             <div class="dropdown-item" onclick="navigateToPage('gift-sets')">프리미엄 선물세트</div>
                             <div class="dropdown-item" onclick="navigateToPage('custom-craft')">맞춤 제작 서비스</div>
@@ -77,7 +77,7 @@
                 <li class="nav-item">
                     <a href="#" class="nav-link">소식</a>
                     <div class="dropdown">
-                        <div class="dropdown-item" onclick="navigateToPage('notice')">공지사항</div>
+                        <div class="dropdown-item" onclick="window.location.href='notice.html'">공지사항</div>
                         <div class="dropdown-item" onclick="navigateToPage('news')">보도자료</div>
                         <div class="dropdown-item" onclick="navigateToPage('blog')">기술 블로그</div>
                         <div class="dropdown-item" onclick="navigateToPage('events')">이벤트</div>
@@ -96,11 +96,11 @@
                 <a href="#" class="lang-btn">🇯🇵</a>
             </div>
 
-            <div class="menu-toggle" onclick="toggleMenu()">
+            <button class="menu-toggle" onclick="toggleMenu()" aria-label="메뉴 토글" aria-expanded="false">
                 <span></span>
                 <span></span>
                 <span></span>
-            </div>
+            </button>
         </nav>
     </header>
 
@@ -110,7 +110,6 @@
         <section id="home" class="hero">
             <!-- Background Video Container -->
             <div class="hero-video-container">
-                <!-- Background Video -->
                 <video 
                     class="hero-video"
                     autoplay 
@@ -127,16 +126,13 @@
                     Your browser does not support the video tag.
                 </video>
                 
-                <!-- Video Error Message -->
                 <div class="video-error-message">
                     <p>비디오를 로드할 수 없습니다.</p>
                 </div>
                 
-                <!-- Fallback Background Image -->
                 <div class="hero-fallback-image"></div>
             </div>
             
-            <!-- Video Overlay -->
             <div class="hero-overlay"></div>
             
             <!-- Hero Content -->
@@ -146,10 +142,11 @@
                 <p class="description">
                     천년의 전통 유기 기술과 현대적 소프트웨어 기술이 만나 새로운 가치를 창조합니다.<br>
                     KOREVO는 전통의 아름다움을 현대에 되살리며, 지속가능한 미래를 만들어갑니다.<br>
-                    지금 바로 KOREVO의 프리미엄 제품과 서비스를 만나보실 수 있습니다.</p>
+                    지금 바로 KOREVO의 프리미엄 제품과 서비스를 만나보실 수 있습니다.
+                </p>
                 <div class="cta-buttons">
                     <a href="contact.html" class="cta-btn">문의하기</a>
-                    <a href="#products" class="cta-btn secondary">제품 보기</a>
+                    <a href="dining-set.html" class="cta-btn secondary">제품 보기</a>
                     <a href="#shop" class="cta-btn secondary">쇼핑몰 방문</a>
                 </div>
             </div>
@@ -167,8 +164,8 @@
             <div class="footer-section">
                 <h3>빠른 링크</h3>
                 <p><a href="greeting.html">회사소개</a></p>
-                <p><a href="#business">사업소개</a></p>
-                <p><a href="#products">제품소개</a></p>
+                <p><a href="onyu-brand.html">사업소개</a></p>
+                <p><a href="dining-set.html">제품소개</a></p>
             </div>
             <div class="footer-section">
                 <h3>고객지원</h3>
@@ -187,7 +184,7 @@
         </div>
     </footer>
 
-    <!-- JavaScript 파일 연결 -->
+    <!-- 통합 JavaScript 파일 -->
     <script src="script.js"></script>
 </body>
 </html>
