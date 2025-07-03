@@ -22,7 +22,7 @@
                 <li><a href="greeting.html" class="nav-link">회사소개</a></li>
                 <li><a href="#" class="nav-link">사업소개</a></li>
                 <li><a href="#" class="nav-link">제품/서비스</a></li>
-                <li><a href="#" class="nav-link">고객센터</a></li>
+                <li><a href="contact.html" class="nav-link">CONTACT</a></li>
                 <li><a href="#" class="nav-link">소식</a></li>
                 <li><a href="#" class="nav-link">쇼핑몰</a></li>
             </ul>
@@ -70,193 +70,153 @@
                 <div class="notice-controls">
                     <div class="search-filter-container">
                         <div class="search-box">
-                            <input type="text" class="search-input" placeholder="검색어를 입력하세요..." id="searchInput">
-                            <button class="search-btn" onclick="searchNotices()">🔍 검색</button>
+                            <input type="text" id="searchInput" placeholder="검색어를 입력하세요" class="search-input">
+                            <button onclick="searchNotices()" class="search-btn">🔍</button>
                         </div>
                         
-                        <select class="filter-select" id="categoryFilter" onchange="filterNotices()">
-                            <option value="all">전체 카테고리</option>
-                            <option value="general">일반</option>
-                            <option value="important">중요</option>
-                            <option value="event">이벤트</option>
-                            <option value="system">시스템</option>
-                        </select>
-                        
-                        <a href="#" class="write-btn" onclick="showWriteModal()">
-                            ✏️ 글쓰기
-                        </a>
+                        <div class="filter-options">
+                            <select id="categoryFilter" onchange="filterNotices()" class="filter-select">
+                                <option value="">전체 카테고리</option>
+                                <option value="general">일반공지</option>
+                                <option value="product">제품공지</option>
+                                <option value="system">시스템공지</option>
+                                <option value="event">이벤트</option>
+                            </select>
+                            
+                            <select id="sortOrder" onchange="sortNotices()" class="filter-select">
+                                <option value="latest">최신순</option>
+                                <option value="oldest">등록순</option>
+                                <option value="popular">조회순</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="view-controls">
+                        <button class="view-btn active" onclick="setViewMode('list')">📋 목록형</button>
+                        <button class="view-btn" onclick="setViewMode('card')">🔲 카드형</button>
+                        <button class="write-btn" onclick="openWriteModal()">✍️ 글쓰기</button>
                     </div>
                 </div>
 
-                <!-- Notice Stats -->
+                <!-- Notice Statistics -->
                 <div class="notice-stats">
-                    <div class="stats-info">
-                        총 <strong id="totalCount">156</strong>건의 공지사항이 있습니다.
+                    <div class="stat-item">
+                        <span class="stat-label">전체 공지</span>
+                        <span class="stat-value" id="totalNotices">12</span>
                     </div>
-                    <div class="view-options">
-                        <button class="view-btn active" onclick="setViewMode('list')">📋</button>
-                        <button class="view-btn" onclick="setViewMode('card')">🎴</button>
+                    <div class="stat-item">
+                        <span class="stat-label">금일 등록</span>
+                        <span class="stat-value" id="todayNotices">2</span>
+                    </div>
+                    <div class="stat-item">
+                        <span class="stat-label">조회수</span>
+                        <span class="stat-value" id="totalViews">1,245</span>
                     </div>
                 </div>
 
                 <!-- Notice List -->
                 <div class="notice-list" id="noticeList">
-                    <!-- Header -->
-                    <div class="notice-header">
-                        <div>분류</div>
-                        <div>제목</div>
-                        <div>작성자</div>
-                        <div>등록일</div>
-                        <div>조회</div>
+                    <!-- Notice Item 1 -->
+                    <div class="notice-item important" data-category="general" data-date="2025-01-15" data-views="156">
+                        <div class="notice-badge important">중요</div>
+                        <div class="notice-title" onclick="openNotice(1)">
+                            KOREVO 온유 브랜드 공식 런칭 안내
+                        </div>
+                        <div class="notice-meta">
+                            <span class="notice-category">일반공지</span>
+                            <span class="notice-date">2025.01.15</span>
+                            <span class="notice-views">👁️ 156</span>
+                            <span class="notice-author">관리자</span>
+                        </div>
                     </div>
 
-                    <!-- Notice Items -->
-                    <div class="notice-item important new" onclick="openNotice(1)">
-                        <div class="notice-category important">중요</div>
-                        <div class="notice-title">
-                            <span class="notice-icon">📌</span>
-                            <span class="no-translate">2025</span>년 설 연휴 배송 및 고객센터 운영 안내
+                    <!-- Notice Item 2 -->
+                    <div class="notice-item new" data-category="product" data-date="2025-01-14" data-views="89">
+                        <div class="notice-badge new">NEW</div>
+                        <div class="notice-title" onclick="openNotice(2)">
+                            온유 식기 컬렉션 신제품 출시 안내
                         </div>
-                        <div class="notice-author">관리자</div>
-                        <div class="notice-date"><span class="no-translate">2025-01-15</span></div>
-                        <div class="notice-views">👁️ <span class="no-translate">1,234</span></div>
+                        <div class="notice-meta">
+                            <span class="notice-category">제품공지</span>
+                            <span class="notice-date">2025.01.14</span>
+                            <span class="notice-views">👁️ 89</span>
+                            <span class="notice-author">제품팀</span>
+                        </div>
                     </div>
 
-                    <div class="notice-item new" onclick="openNotice(2)">
-                        <div class="notice-category event">이벤트</div>
-                        <div class="notice-title">
-                            <span class="notice-icon">🎉</span>
-                            온유 신제품 출시 기념 할인 이벤트 안내
+                    <!-- Notice Item 3 -->
+                    <div class="notice-item" data-category="system" data-date="2025-01-13" data-views="124">
+                        <div class="notice-title" onclick="openNotice(3)">
+                            ERP 솔루션 업데이트 및 유지보수 안내
                         </div>
-                        <div class="notice-author">마케팅팀</div>
-                        <div class="notice-date"><span class="no-translate">2025-01-14</span></div>
-                        <div class="notice-views">👁️ <span class="no-translate">987</span></div>
+                        <div class="notice-meta">
+                            <span class="notice-category">시스템공지</span>
+                            <span class="notice-date">2025.01.13</span>
+                            <span class="notice-views">👁️ 124</span>
+                            <span class="notice-author">기술팀</span>
+                        </div>
                     </div>
 
-                    <div class="notice-item" onclick="openNotice(3)">
-                        <div class="notice-category system">시스템</div>
-                        <div class="notice-title">
-                            <span class="notice-icon">🔧</span>
-                            쇼핑몰 시스템 점검 안내 (<span class="no-translate">1/20 02:00~06:00</span>)
+                    <!-- Notice Item 4 -->
+                    <div class="notice-item" data-category="event" data-date="2025-01-12" data-views="203">
+                        <div class="notice-title" onclick="openNotice(4)">
+                            신년 맞이 온유 제품 특별 할인 이벤트
                         </div>
-                        <div class="notice-author">기술팀</div>
-                        <div class="notice-date"><span class="no-translate">2025-01-13</span></div>
-                        <div class="notice-views">👁️ <span class="no-translate">456</span></div>
+                        <div class="notice-meta">
+                            <span class="notice-category">이벤트</span>
+                            <span class="notice-date">2025.01.12</span>
+                            <span class="notice-views">👁️ 203</span>
+                            <span class="notice-author">마케팅팀</span>
+                        </div>
                     </div>
 
-                    <div class="notice-item" onclick="openNotice(4)">
-                        <div class="notice-category general">일반</div>
-                        <div class="notice-title">
-                            <span class="notice-icon">📦</span>
-                            맞춤 제작 서비스 이용 가이드 업데이트
+                    <!-- Notice Item 5 -->
+                    <div class="notice-item" data-category="general" data-date="2025-01-11" data-views="167">
+                        <div class="notice-title" onclick="openNotice(5)">
+                            KOREVO 고객센터 운영시간 변경 안내
                         </div>
-                        <div class="notice-author">고객서비스팀</div>
-                        <div class="notice-date"><span class="no-translate">2025-01-12</span></div>
-                        <div class="notice-views">👁️ <span class="no-translate">678</span></div>
-                    </div>
-
-                    <div class="notice-item" onclick="openNotice(5)">
-                        <div class="notice-category important">중요</div>
-                        <div class="notice-title">
-                            <span class="notice-icon">🚚</span>
-                            배송비 정책 변경 안내
+                        <div class="notice-meta">
+                            <span class="notice-category">일반공지</span>
+                            <span class="notice-date">2025.01.11</span>
+                            <span class="notice-views">👁️ 167</span>
+                            <span class="notice-author">고객지원팀</span>
                         </div>
-                        <div class="notice-author">물류팀</div>
-                        <div class="notice-date"><span class="no-translate">2025-01-11</span></div>
-                        <div class="notice-views">👁️ <span class="no-translate">1,567</span></div>
-                    </div>
-
-                    <div class="notice-item" onclick="openNotice(6)">
-                        <div class="notice-category event">이벤트</div>
-                        <div class="notice-title">
-                            <span class="notice-icon">💝</span>
-                            신규 회원 가입 혜택 확대 안내
-                        </div>
-                        <div class="notice-author">마케팅팀</div>
-                        <div class="notice-date"><span class="no-translate">2025-01-10</span></div>
-                        <div class="notice-views">👁️ <span class="no-translate">892</span></div>
-                    </div>
-
-                    <div class="notice-item" onclick="openNotice(7)">
-                        <div class="notice-category general">일반</div>
-                        <div class="notice-title">
-                            <span class="notice-icon">🏆</span>
-                            <span class="no-translate">KOREVO</span> 우수 디자인 상품 선정 소식
-                        </div>
-                        <div class="notice-author">홍보팀</div>
-                        <div class="notice-date"><span class="no-translate">2025-01-09</span></div>
-                        <div class="notice-views">👁️ <span class="no-translate">1,123</span></div>
-                    </div>
-
-                    <div class="notice-item" onclick="openNotice(8)">
-                        <div class="notice-category system">시스템</div>
-                        <div class="notice-title">
-                            <span class="notice-icon">📱</span>
-                            모바일 앱 업데이트 안내 (<span class="no-translate">v2.1.0</span>)
-                        </div>
-                        <div class="notice-author">개발팀</div>
-                        <div class="notice-date"><span class="no-translate">2025-01-08</span></div>
-                        <div class="notice-views">👁️ <span class="no-translate">734</span></div>
-                    </div>
-
-                    <div class="notice-item" onclick="openNotice(9)">
-                        <div class="notice-category general">일반</div>
-                        <div class="notice-title">
-                            <span class="notice-icon">🎯</span>
-                            고객 만족도 조사 결과 발표
-                        </div>
-                        <div class="notice-author">품질관리팀</div>
-                        <div class="notice-date"><span class="no-translate">2025-01-07</span></div>
-                        <div class="notice-views">👁️ <span class="no-translate">567</span></div>
-                    </div>
-
-                    <div class="notice-item" onclick="openNotice(10)">
-                        <div class="notice-category event">이벤트</div>
-                        <div class="notice-title">
-                            <span class="notice-icon">🎄</span>
-                            연말연시 특별 프로모션 종료 안내
-                        </div>
-                        <div class="notice-author">마케팅팀</div>
-                        <div class="notice-date"><span class="no-translate">2025-01-06</span></div>
-                        <div class="notice-views">👁️ <span class="no-translate">2,156</span></div>
                     </div>
                 </div>
 
                 <!-- Pagination -->
                 <div class="pagination">
-                    <a href="#" class="pagination-btn disabled">‹‹</a>
-                    <a href="#" class="pagination-btn disabled">‹</a>
-                    <a href="#" class="pagination-btn active">1</a>
-                    <a href="#" class="pagination-btn">2</a>
-                    <a href="#" class="pagination-btn">3</a>
-                    <a href="#" class="pagination-btn">4</a>
-                    <a href="#" class="pagination-btn">5</a>
-                    <span style="padding: 0 1rem; color: #999;">...</span>
-                    <a href="#" class="pagination-btn">16</a>
-                    <a href="#" class="pagination-btn">›</a>
-                    <a href="#" class="pagination-btn">››</a>
+                    <button class="page-btn" onclick="changePage('prev')" disabled>이전</button>
+                    <button class="page-btn active" onclick="changePage(1)">1</button>
+                    <button class="page-btn" onclick="changePage(2)">2</button>
+                    <button class="page-btn" onclick="changePage(3)">3</button>
+                    <button class="page-btn" onclick="changePage('next')">다음</button>
                 </div>
             </section>
         </div>
     </main>
 
-    <!-- Floating Action Button -->
-    <button class="fab" onclick="scrollToTop()" title="맨 위로">↑</button>
-
     <!-- Notice Detail Modal -->
-    <div class="notice-modal" id="noticeModal">
+    <div id="noticeModal" class="modal">
         <div class="modal-content">
-            <button class="modal-close" onclick="closeModal()">&times;</button>
             <div class="modal-header">
-                <h2 class="modal-title" id="modalTitle">공지사항 제목</h2>
-                <div class="modal-meta">
-                    <span>📅 <span id="modalDate">2025-01-15</span></span>
-                    <span>👤 <span id="modalAuthor">관리자</span></span>
-                    <span>👁️ <span id="modalViews">1,234</span>회</span>
+                <h2 id="modalTitle">공지사항 제목</h2>
+                <button class="close-btn" onclick="closeModal()">&times;</button>
+            </div>
+            <div class="modal-body">
+                <div class="notice-info">
+                    <span id="modalCategory">카테고리</span>
+                    <span id="modalDate">2025.01.15</span>
+                    <span id="modalAuthor">작성자</span>
+                    <span id="modalViews">조회수: 156</span>
+                </div>
+                <div class="notice-content" id="modalContent">
+                    공지사항 내용이 여기에 표시됩니다.
                 </div>
             </div>
-            <div class="modal-body" id="modalContent">
-                <!-- 공지사항 내용이 여기에 로드됩니다 -->
+            <div class="modal-footer">
+                <button class="btn-secondary" onclick="closeModal()">닫기</button>
+                <button class="btn-primary" onclick="window.location.href='contact.html'">문의하기</button>
             </div>
         </div>
     </div>
@@ -265,1094 +225,35 @@
     <footer class="footer">
         <div class="footer-content">
             <div class="footer-section">
-                <h3 class="no-translate">KOREVO</h3>
+                <h3>KOREVO</h3>
                 <p>한국의 전통과 혁신을 담은<br>프리미엄 유기 브랜드</p>
                 <p>전통의 아름다움을 현대에 되살리며<br>지속가능한 미래를 만들어갑니다.</p>
             </div>
             <div class="footer-section">
-                <h3>고객지원</h3>
-                <p>고객센터: <span class="no-translate">1588-0000</span></p>
-                <p>이메일: <span class="no-translate">info@korevo.co.kr</span></p>
-                <p>운영시간: 평일 09:00-18:00</p>
+                <h3>빠른 링크</h3>
+                <p><a href="greeting.html">회사소개</a></p>
+                <p><a href="#business">사업소개</a></p>
+                <p><a href="#products">제품소개</a></p>
             </div>
             <div class="footer-section">
-                <h3>빠른 링크</h3>
-                <p><a href="index.html">홈</a></p>
-                <p><a href="greeting.html">회사소개</a></p>
-                <p><a href="#" onclick="showUnderConstruction()">제품소개</a></p>
-                <p><a href="#" onclick="showUnderConstruction()">고객지원</a></p>
+                <h3>고객지원</h3>
+                <p>고객센터: 1588-0000</p>
+                <p>이메일: info@korevo.co.kr</p>
+                <p>운영시간: 평일 09:00-18:00</p>
             </div>
             <div class="footer-section">
                 <h3>주소</h3>
                 <p>서울특별시 강남구<br>테헤란로 123, 코레보빌딩 10층</p>
-                <p class="no-translate">사업자등록번호: 123-45-67890</p>
+                <p>사업자등록번호: 123-45-67890</p>
             </div>
         </div>
         <div class="footer-bottom">
-            <p>&copy; 2025 <span class="no-translate">KOREVO</span>. All rights reserved.</p>
+            <p>&copy; 2025 KOREVO. All rights reserved.</p>
         </div>
     </footer>
 
     <!-- JavaScript 파일 연결 -->
     <script src="script.js"></script>
     <script src="notice-script.js"></script>
-
-    <!-- 임시 인라인 스타일 (외부 CSS 파일이 로드되지 않는 경우를 위한 백업) -->
-    <style>
-        /* 기본 리셋 */
-        * { margin: 0; padding: 0; box-sizing: border-box; }
-        
-        body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            line-height: 1.6;
-            color: #333;
-            background: #fff;
-        }
-
-        /* 헤더 */
-        .header {
-            background: rgba(255, 255, 255, 0.95);
-            backdrop-filter: blur(10px);
-            position: fixed;
-            top: 0;
-            left: 0;
-            right: 0;
-            z-index: 1000;
-            padding: 1rem 0;
-            border-bottom: 1px solid rgba(0, 0, 0, 0.1);
-        }
-
-        .nav-container {
-            max-width: 1200px;
-            margin: 0 auto;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 0 2rem;
-        }
-
-        .logo {
-            font-size: 2rem;
-            font-weight: bold;
-            background: linear-gradient(135deg, #FFD700 0%, #B8860B 100%);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-            text-decoration: none;
-            letter-spacing: 2px;
-        }
-
-        .nav-menu {
-            display: flex;
-            list-style: none;
-            gap: 2rem;
-        }
-
-        .nav-link {
-            text-decoration: none;
-            color: #333;
-            font-weight: 500;
-            transition: color 0.3s ease;
-        }
-
-        .nav-link:hover {
-            color: #FFD700;
-        }
-
-        /* 언어 선택기 */
-        .lang-selector {
-            display: flex;
-            gap: 1rem;
-        }
-
-        .lang-btn {
-            padding: 0.5rem 0.8rem;
-            border: 2px solid #ddd;
-            background: white;
-            color: #333;
-            border-radius: 25px;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            text-decoration: none;
-            font-size: 1.2rem;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            width: 45px;
-            height: 45px;
-        }
-
-        .lang-btn:hover,
-        .lang-btn.active {
-            background: linear-gradient(135deg, #FFD700 0%, #B8860B 100%);
-            color: white;
-            border: 2px solid #FFD700;
-            transform: scale(1.05);
-        }
-
-        /* 메뉴 토글 */
-        .menu-toggle {
-            display: none;
-            flex-direction: column;
-            cursor: pointer;
-            gap: 4px;
-        }
-
-        .menu-toggle span {
-            width: 25px;
-            height: 3px;
-            background: #333;
-            transition: 0.3s;
-        }
-
-        /* 브레드크럼 */
-        .breadcrumb-nav {
-            background: rgba(248, 250, 254, 0.8);
-            backdrop-filter: blur(10px);
-            border-bottom: 1px solid rgba(0, 0, 0, 0.05);
-            padding: 1rem 0;
-            margin-top: 80px;
-        }
-
-        .breadcrumb {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 0 2rem;
-            display: flex;
-            align-items: center;
-            gap: 0.5rem;
-            font-size: 0.9rem;
-        }
-
-        .breadcrumb-item {
-            color: #666;
-            text-decoration: none;
-            transition: color 0.3s ease;
-        }
-
-        .breadcrumb-item:hover {
-            color: #2c5530;
-        }
-
-        .breadcrumb-item.active {
-            color: #2c5530;
-            font-weight: 600;
-        }
-
-        .breadcrumb-separator {
-            color: #999;
-        }
-
-        /* 페이지 헤더 */
-        .page-header {
-            background: linear-gradient(135deg, #2c5530 0%, #4a7c59 100%);
-            color: white;
-            padding: 4rem 0 3rem;
-            position: relative;
-            overflow: hidden;
-        }
-
-        .page-header-content {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 0 2rem;
-            text-align: center;
-            position: relative;
-            z-index: 3;
-        }
-
-        .page-icon {
-            font-size: 3rem;
-            margin-bottom: 1rem;
-            animation: float 3s ease-in-out infinite;
-        }
-
-        @keyframes float {
-            0%, 100% { transform: translateY(0px); }
-            50% { transform: translateY(-10px); }
-        }
-
-        .page-title {
-            font-size: clamp(2.5rem, 5vw, 3.5rem);
-            font-weight: 700;
-            margin-bottom: 1rem;
-            background: linear-gradient(135deg, #FFD700 0%, #FFA500 100%);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-            letter-spacing: -0.02em;
-        }
-
-        .page-subtitle {
-            font-size: 1.25rem;
-            opacity: 0.9;
-            max-width: 600px;
-            margin: 0 auto;
-            font-weight: 300;
-        }
-
-        /* 메인 컨텐츠 */
-        .main-content {
-            background: linear-gradient(180deg, #ffffff 0%, #f8fafe 50%, #ffffff 100%);
-            min-height: calc(100vh - 200px);
-        }
-
-        .container {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 0 2rem;
-        }
-
-        .notice-section {
-            padding: 4rem 0;
-        }
-
-        /* 컨트롤 바 */
-        .notice-controls {
-            background: rgba(255, 255, 255, 0.8);
-            backdrop-filter: blur(15px);
-            border: 1px solid rgba(255, 255, 255, 0.3);
-            border-radius: 20px;
-            padding: 2rem;
-            margin-bottom: 3rem;
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
-        }
-
-        .search-filter-container {
-            display: grid;
-            grid-template-columns: 1fr auto auto;
-            gap: 1rem;
-            align-items: center;
-        }
-
-        .search-box {
-            display: flex;
-            align-items: center;
-            background: white;
-            border: 2px solid #f0f0f0;
-            border-radius: 50px;
-            padding: 0.75rem 1.5rem;
-            transition: all 0.3s ease;
-        }
-
-        .search-box:focus-within {
-            border-color: #FFD700;
-            box-shadow: 0 0 20px rgba(255, 215, 0, 0.2);
-        }
-
-        .search-input {
-            border: none;
-            outline: none;
-            flex: 1;
-            font-size: 1rem;
-            padding: 0.5rem;
-        }
-
-        .search-btn {
-            background: linear-gradient(135deg, #FFD700 0%, #B8860B 100%);
-            border: none;
-            color: #2c5530;
-            padding: 0.5rem 1rem;
-            border-radius: 25px;
-            cursor: pointer;
-            font-weight: 600;
-            transition: all 0.3s ease;
-        }
-
-        .search-btn:hover {
-            background: linear-gradient(135deg, #FFA500 0%, #FF8C00 100%);
-            transform: translateY(-2px);
-            box-shadow: 0 5px 15px rgba(255, 165, 0, 0.3);
-        }
-
-        .filter-select {
-            padding: 0.75rem 1rem;
-            border: 2px solid #f0f0f0;
-            border-radius: 25px;
-            background: white;
-            font-size: 0.9rem;
-            color: #666;
-            cursor: pointer;
-            transition: all 0.3s ease;
-        }
-
-        .write-btn {
-            background: linear-gradient(135deg, #2c5530 0%, #4a7c59 100%);
-            color: white;
-            border: none;
-            padding: 0.75rem 2rem;
-            border-radius: 25px;
-            font-weight: 600;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            text-decoration: none;
-            display: inline-flex;
-            align-items: center;
-            gap: 0.5rem;
-        }
-
-        /* 통계 */
-        .notice-stats {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            margin-bottom: 2rem;
-            padding: 1rem 0;
-            border-bottom: 2px solid #f0f0f0;
-        }
-
-        .stats-info {
-            font-size: 0.9rem;
-            color: #666;
-        }
-
-        .stats-info strong {
-            color: #2c5530;
-            font-weight: 700;
-        }
-
-        .view-options {
-            display: flex;
-            gap: 0.5rem;
-        }
-
-        .view-btn {
-            padding: 0.5rem;
-            border: 1px solid #ddd;
-            background: white;
-            border-radius: 8px;
-            cursor: pointer;
-            transition: all 0.3s ease;
-        }
-
-        .view-btn.active {
-            background: #FFD700;
-            border-color: #FFD700;
-            color: #2c5530;
-        }
-
-        /* 공지사항 리스트 */
-        .notice-list {
-            background: white;
-            border-radius: 16px;
-            overflow: hidden;
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
-            border: 1px solid rgba(0, 0, 0, 0.05);
-        }
-
-        .notice-header {
-            background: linear-gradient(135deg, #f8fafe 0%, #ffffff 100%);
-            padding: 1.5rem 2rem;
-            border-bottom: 2px solid #f0f0f0;
-            display: grid;
-            grid-template-columns: auto 1fr auto auto auto;
-            gap: 2rem;
-            align-items: center;
-            font-weight: 600;
-            color: #2c5530;
-        }
-
-        .notice-item {
-            padding: 1.5rem 2rem;
-            border-bottom: 1px solid #f5f5f5;
-            display: grid;
-            grid-template-columns: auto 1fr auto auto auto;
-            gap: 2rem;
-            align-items: center;
-            transition: all 0.3s ease;
-            cursor: pointer;
-            position: relative;
-        }
-
-        .notice-item:hover {
-            background: rgba(255, 215, 0, 0.05);
-            transform: translateX(5px);
-        }
-
-        .notice-item:last-child {
-            border-bottom: none;
-        }
-
-        .notice-item.important {
-            background: linear-gradient(135deg, rgba(255, 215, 0, 0.1), rgba(255, 165, 0, 0.05));
-            border-left: 4px solid #FFD700;
-        }
-
-        .notice-item.new::before {
-            content: 'NEW';
-            position: absolute;
-            top: 1rem;
-            right: 1rem;
-            background: #ff4757;
-            color: white;
-            padding: 0.25rem 0.5rem;
-            border-radius: 12px;
-            font-size: 0.7rem;
-            font-weight: 700;
-        }
-
-        .notice-category {
-            display: inline-block;
-            padding: 0.4rem 1rem;
-            border-radius: 20px;
-            font-size: 0.8rem;
-            font-weight: 600;
-            text-align: center;
-            min-width: 80px;
-        }
-
-        .notice-category.general {
-            background: linear-gradient(135deg, #e3f2fd, #bbdefb);
-            color: #1565c0;
-        }
-
-        .notice-category.important {
-            background: linear-gradient(135deg, #fff3e0, #ffcc02);
-            color: #e65100;
-        }
-
-        .notice-category.event {
-            background: linear-gradient(135deg, #f3e5f5, #ce93d8);
-            color: #7b1fa2;
-        }
-
-        .notice-category.system {
-            background: linear-gradient(135deg, #e8f5e8, #a5d6a7);
-            color: #2e7d32;
-        }
-
-        .notice-title {
-            font-weight: 600;
-            color: #333;
-            display: flex;
-            align-items: center;
-            gap: 0.5rem;
-        }
-
-        .notice-title:hover {
-            color: #2c5530;
-        }
-
-        .notice-icon {
-            font-size: 1.2rem;
-        }
-
-        .notice-author {
-            color: #666;
-            font-size: 0.9rem;
-        }
-
-        .notice-date {
-            color: #999;
-            font-size: 0.9rem;
-        }
-
-        .notice-views {
-            color: #999;
-            font-size: 0.9rem;
-            display: flex;
-            align-items: center;
-            gap: 0.3rem;
-        }
-
-        /* 페이지네이션 */
-        .pagination {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            gap: 0.5rem;
-            margin-top: 3rem;
-            padding: 2rem 0;
-        }
-
-        .pagination-btn {
-            padding: 0.75rem 1rem;
-            border: 1px solid #ddd;
-            background: white;
-            color: #666;
-            text-decoration: none;
-            border-radius: 8px;
-            transition: all 0.3s ease;
-            min-width: 40px;
-            text-align: center;
-        }
-
-        .pagination-btn:hover {
-            background: #FFD700;
-            border-color: #FFD700;
-            color: #2c5530;
-            transform: translateY(-2px);
-        }
-
-        .pagination-btn.active {
-            background: #2c5530;
-            border-color: #2c5530;
-            color: white;
-        }
-
-        .pagination-btn.disabled {
-            opacity: 0.5;
-            cursor: not-allowed;
-        }
-
-        /* 플로팅 버튼 */
-        .fab {
-            position: fixed;
-            bottom: 2rem;
-            right: 2rem;
-            width: 60px;
-            height: 60px;
-            background: linear-gradient(135deg, #FFD700 0%, #B8860B 100%);
-            color: #2c5530;
-            border: none;
-            border-radius: 50%;
-            box-shadow: 0 10px 25px rgba(255, 215, 0, 0.4);
-            cursor: pointer;
-            font-size: 1.5rem;
-            font-weight: 700;
-            transition: all 0.3s ease;
-            z-index: 999;
-        }
-
-        .fab:hover {
-            background: linear-gradient(135deg, #FFA500 0%, #FF8C00 100%);
-            transform: translateY(-3px) scale(1.1);
-            box-shadow: 0 15px 35px rgba(255, 165, 0, 0.5);
-        }
-
-        /* 모달 */
-        .notice-modal {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: rgba(0, 0, 0, 0.5);
-            backdrop-filter: blur(5px);
-            display: none;
-            align-items: center;
-            justify-content: center;
-            z-index: 10000;
-            padding: 2rem;
-        }
-
-        .modal-content {
-            background: white;
-            border-radius: 20px;
-            box-shadow: 0 25px 50px rgba(0, 0, 0, 0.3);
-            max-width: 800px;
-            width: 100%;
-            max-height: 90vh;
-            overflow-y: auto;
-            position: relative;
-        }
-
-        .modal-header {
-            padding: 2rem;
-            border-bottom: 1px solid #f0f0f0;
-            background: linear-gradient(135deg, #f8fafe 0%, #ffffff 100%);
-            border-radius: 20px 20px 0 0;
-        }
-
-        .modal-title {
-            font-size: 1.5rem;
-            font-weight: 700;
-            color: #2c5530;
-            margin-bottom: 1rem;
-        }
-
-        .modal-meta {
-            display: flex;
-            gap: 2rem;
-            font-size: 0.9rem;
-            color: #666;
-        }
-
-        .modal-body {
-            padding: 2rem;
-            line-height: 1.8;
-            color: #444;
-        }
-
-        .modal-body h3 {
-            color: #2c5530;
-            margin-bottom: 1rem;
-        }
-
-        .modal-body h4 {
-            color: #4a7c59;
-            margin: 1.5rem 0 0.5rem 0;
-        }
-
-        .modal-body ul {
-            margin: 1rem 0;
-            padding-left: 1.5rem;
-        }
-
-        .modal-body li {
-            margin-bottom: 0.5rem;
-        }
-
-        .modal-close {
-            position: absolute;
-            top: 1rem;
-            right: 1rem;
-            width: 40px;
-            height: 40px;
-            border: none;
-            background: rgba(0, 0, 0, 0.1);
-            border-radius: 50%;
-            cursor: pointer;
-            font-size: 1.2rem;
-            color: #666;
-            transition: all 0.3s ease;
-        }
-
-        .modal-close:hover {
-            background: #ff4757;
-            color: white;
-            transform: rotate(90deg);
-        }
-
-        /* 푸터 */
-        .footer {
-            background: linear-gradient(135deg, #2c5530 0%, #1a3d1f 100%);
-            color: white;
-            padding: 3rem 2rem 1rem;
-            margin-top: 4rem;
-            position: relative;
-        }
-
-        .footer::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            height: 3px;
-            background: linear-gradient(135deg, #FFD700 0%, #B8860B 100%);
-        }
-
-        .footer-content {
-            max-width: 1200px;
-            margin: 0 auto;
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 2rem;
-        }
-
-        .footer-section h3 {
-            margin-bottom: 1rem;
-            background: linear-gradient(135deg, #FFD700 0%, #B8860B 100%);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-        }
-
-        .footer-section p,
-        .footer-section a {
-            color: rgba(255, 255, 255, 0.8);
-            text-decoration: none;
-            line-height: 1.8;
-        }
-
-        .footer-section a:hover {
-            color: white;
-        }
-
-        .footer-bottom {
-            text-align: center;
-            margin-top: 2rem;
-            padding-top: 2rem;
-            border-top: 1px solid rgba(255, 255, 255, 0.2);
-            color: rgba(255, 255, 255, 0.6);
-        }
-
-        /* 반응형 */
-        @media (max-width: 768px) {
-            .nav-menu {
-                display: none;
-            }
-
-            .menu-toggle {
-                display: flex;
-            }
-
-            .search-filter-container {
-                grid-template-columns: 1fr;
-                gap: 1rem;
-            }
-
-            .notice-header,
-            .notice-item {
-                grid-template-columns: 1fr;
-                gap: 1rem;
-                text-align: left;
-            }
-
-            .notice-controls {
-                padding: 1.5rem;
-            }
-
-            .notice-stats {
-                flex-direction: column;
-                gap: 1rem;
-                align-items: flex-start;
-            }
-
-            .modal-content {
-                margin: 1rem;
-                width: calc(100% - 2rem);
-            }
-
-            .fab {
-                bottom: 1rem;
-                right: 1rem;
-                width: 50px;
-                height: 50px;
-                font-size: 1.2rem;
-            }
-
-            .container {
-                padding: 0 1rem;
-            }
-
-            .modal-meta {
-                flex-direction: column;
-                gap: 0.5rem;
-            }
-        }
-
-        /* 애니메이션 */
-        @keyframes slideInUp {
-            from {
-                opacity: 0;
-                transform: translateY(30px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-
-        .notice-item {
-            animation: slideInUp 0.5s ease forwards;
-        }
-
-        .notice-item:nth-child(1) { animation-delay: 0.1s; }
-        .notice-item:nth-child(2) { animation-delay: 0.2s; }
-        .notice-item:nth-child(3) { animation-delay: 0.3s; }
-        .notice-item:nth-child(4) { animation-delay: 0.4s; }
-        .notice-item:nth-child(5) { animation-delay: 0.5s; }
-        .notice-item:nth-child(6) { animation-delay: 0.6s; }
-        .notice-item:nth-child(7) { animation-delay: 0.7s; }
-        .notice-item:nth-child(8) { animation-delay: 0.8s; }
-        .notice-item:nth-child(9) { animation-delay: 0.9s; }
-        .notice-item:nth-child(10) { animation-delay: 1.0s; }
-    </style>
-
-    <!-- 임시 인라인 스크립트 (외부 JS 파일이 로드되지 않는 경우를 위한 백업) -->
-    <script>
-        // 공지사항 데이터
-        const noticeData = {
-            1: {
-                title: "2025년 설 연휴 배송 및 고객센터 운영 안내",
-                author: "관리자",
-                date: "2025-01-15",
-                views: 1234,
-                content: `
-                    <h3>🎊 2025년 설 연휴 배송 및 고객센터 운영 안내</h3>
-                    <br>
-                    <p>안녕하세요. KOREVO입니다.</p>
-                    <p>다가오는 설 연휴에 따른 배송 및 고객센터 운영 일정을 안내드립니다.</p>
-                    <br>
-                    <h4>📦 배송 안내</h4>
-                    <ul>
-                        <li><strong>주문 마감:</strong> 2025년 1월 27일(월) 오후 2시</li>
-                        <li><strong>배송 중단:</strong> 2025년 1월 28일(화) ~ 2월 2일(일)</li>
-                        <li><strong>배송 재개:</strong> 2025년 2월 3일(월)부터 순차 배송</li>
-                    </ul>
-                    <br>
-                    <h4>☎️ 고객센터 운영</h4>
-                    <ul>
-                        <li><strong>운영 중단:</strong> 2025년 1월 29일(수) ~ 2월 1일(토)</li>
-                        <li><strong>운영 재개:</strong> 2025년 2월 3일(월) 오전 9시</li>
-                        <li><strong>긴급 문의:</strong> 온라인 문의게시판 또는 이메일 이용</li>
-                    </ul>
-                    <br>
-                    <div style="background: #fff8dc; padding: 1rem; border-radius: 8px; border-left: 4px solid #FFD700;">
-                        <p><strong>💡 참고사항</strong></p>
-                        <p>연휴 기간 중 주문하신 상품은 2월 3일(월)부터 순차적으로 배송됩니다. 급하신 주문은 1월 27일 오후 2시 이전에 완료해 주시기 바랍니다.</p>
-                    </div>
-                    <br>
-                    <p>고객 여러분의 양해를 부탁드리며, 건강하고 행복한 설 연휴 보내시기 바랍니다.</p>
-                    <br>
-                    <p>감사합니다.</p>
-                    <p><strong>KOREVO 드림</strong></p>
-                `
-            },
-            2: {
-                title: "온유 신제품 출시 기념 할인 이벤트 안내",
-                author: "마케팅팀",
-                date: "2025-01-14",
-                views: 987,
-                content: `
-                    <h3>🎉 온유 신제품 출시 기념 할인 이벤트</h3>
-                    <br>
-                    <p>온유(溫鍮) 브랜드의 새로운 제품 출시를 기념하여 특별 할인 이벤트를 진행합니다!</p>
-                    <br>
-                    <h4>🆕 신제품 소개</h4>
-                    <ul>
-                        <li><strong>온유 프리미엄 괄사 세트</strong> - AI 맞춤 설계</li>
-                        <li><strong>온열 기능 업그레이드 모델</strong> - 더욱 정밀한 온도 조절</li>
-                        <li><strong>휴대용 미니 괄사</strong> - 언제 어디서나 간편하게</li>
-                    </ul>
-                    <br>
-                    <h4>💰 할인 혜택</h4>
-                    <ul>
-                        <li><strong>신제품 전체 20% 할인</strong></li>
-                        <li><strong>2개 이상 구매 시 추가 10% 할인</strong></li>
-                        <li><strong>무료 배송</strong> (5만원 이상 구매 시)</li>
-                        <li><strong>선착순 100명 한정 선물</strong> - 온유 전용 파우치</li>
-                    </ul>
-                    <br>
-                    <h4>📅 이벤트 기간</h4>
-                    <p>2025년 1월 15일(수) ~ 1월 31일(금) 23:59까지</p>
-                    <br>
-                    <div style="text-align: center; background: linear-gradient(135deg, #FFD700, #FFA500); padding: 1.5rem; border-radius: 12px; color: white;">
-                        <h4 style="margin-bottom: 0.5rem;">지금 바로 주문하세요!</h4>
-                        <p>할인 코드: <strong>ONYU2025</strong></p>
-                    </div>
-                `
-            },
-            3: {
-                title: "쇼핑몰 시스템 점검 안내 (1/20 02:00~06:00)",
-                author: "기술팀",
-                date: "2025-01-13",
-                views: 456,
-                content: `
-                    <h3>🔧 쇼핑몰 시스템 점검 안내</h3>
-                    <br>
-                    <p>서비스 품질 향상을 위한 시스템 점검을 실시합니다.</p>
-                    <br>
-                    <h4>📅 점검 일정</h4>
-                    <ul>
-                        <li><strong>일시:</strong> 2025년 1월 20일(월) 02:00 ~ 06:00 (4시간)</li>
-                        <li><strong>대상:</strong> 온라인 쇼핑몰 전체</li>
-                    </ul>
-                    <br>
-                    <h4>🚫 점검 중 이용 불가 서비스</h4>
-                    <ul>
-                        <li>상품 주문 및 결제</li>
-                        <li>회원가입 및 로그인</li>
-                        <li>장바구니 및 위시리스트</li>
-                        <li>고객센터 채팅 상담</li>
-                    </ul>
-                    <br>
-                    <h4>✅ 점검 후 개선사항</h4>
-                    <ul>
-                        <li>페이지 로딩 속도 30% 개선</li>
-                        <li>모바일 사용성 향상</li>
-                        <li>결제 시스템 안정성 강화</li>
-                        <li>새로운 검색 필터 기능 추가</li>
-                    </ul>
-                    <br>
-                    <p>점검 시간 중 불편을 드려 죄송합니다. 더 나은 서비스로 보답하겠습니다.</p>
-                `
-            }
-        };
-
-        // 기본 함수들
-        function openNotice(noticeId) {
-            const notice = noticeData[noticeId];
-            if (!notice) return;
-
-            document.getElementById('modalTitle').textContent = notice.title;
-            document.getElementById('modalDate').textContent = notice.date;
-            document.getElementById('modalAuthor').textContent = notice.author;
-            document.getElementById('modalViews').textContent = notice.views.toLocaleString();
-            document.getElementById('modalContent').innerHTML = notice.content;
-
-            const modal = document.getElementById('noticeModal');
-            modal.style.display = 'flex';
-            document.body.style.overflow = 'hidden';
-
-            notice.views++;
-            updateNoticeViews(noticeId, notice.views);
-        }
-
-        function closeModal() {
-            const modal = document.getElementById('noticeModal');
-            modal.style.display = 'none';
-            document.body.style.overflow = '';
-        }
-
-        function updateNoticeViews(noticeId, newViews) {
-            const noticeItems = document.querySelectorAll('.notice-item');
-            noticeItems.forEach((item, index) => {
-                if (index + 1 === noticeId) {
-                    const viewsElement = item.querySelector('.notice-views span:last-child');
-                    if (viewsElement) {
-                        viewsElement.textContent = newViews.toLocaleString();
-                    }
-                }
-            });
-        }
-
-        function searchNotices() {
-            const searchTerm = document.getElementById('searchInput').value.toLowerCase();
-            const noticeItems = document.querySelectorAll('.notice-item');
-
-            noticeItems.forEach(item => {
-                const title = item.querySelector('.notice-title').textContent.toLowerCase();
-                const author = item.querySelector('.notice-author').textContent.toLowerCase();
-                
-                if (title.includes(searchTerm) || author.includes(searchTerm)) {
-                    item.style.display = 'grid';
-                } else {
-                    item.style.display = 'none';
-                }
-            });
-
-            updateStats();
-        }
-
-        function filterNotices() {
-            const selectedCategory = document.getElementById('categoryFilter').value;
-            const noticeItems = document.querySelectorAll('.notice-item');
-
-            noticeItems.forEach(item => {
-                const category = item.querySelector('.notice-category');
-                if (!category) return;
-
-                const categoryClass = Array.from(category.classList).find(cls => 
-                    ['general', 'important', 'event', 'system'].includes(cls)
-                );
-
-                if (selectedCategory === 'all' || categoryClass === selectedCategory) {
-                    item.style.display = 'grid';
-                } else {
-                    item.style.display = 'none';
-                }
-            });
-
-            updateStats();
-        }
-
-        function updateStats() {
-            const visibleItems = document.querySelectorAll('.notice-item[style="display: grid;"], .notice-item:not([style*="display: none"])');
-            const totalElement = document.getElementById('totalCount');
-            totalElement.textContent = visibleItems.length;
-        }
-
-        function setViewMode(mode) {
-            const viewButtons = document.querySelectorAll('.view-btn');
-            const noticeList = document.getElementById('noticeList');
-
-            viewButtons.forEach(btn => btn.classList.remove('active'));
-            event.target.classList.add('active');
-
-            if (mode === 'card') {
-                noticeList.style.display = 'grid';
-                noticeList.style.gridTemplateColumns = 'repeat(auto-fit, minmax(350px, 1fr))';
-                noticeList.style.gap = '1.5rem';
-                
-                const header = noticeList.querySelector('.notice-header');
-                if (header) header.style.display = 'none';
-                
-                const items = noticeList.querySelectorAll('.notice-item');
-                items.forEach(item => {
-                    item.style.display = 'block';
-                    item.style.padding = '1.5rem';
-                    item.style.borderRadius = '12px';
-                    item.style.background = 'white';
-                    item.style.boxShadow = '0 5px 15px rgba(0, 0, 0, 0.1)';
-                });
-            } else {
-                noticeList.style.display = 'block';
-                noticeList.style.gridTemplateColumns = '';
-                noticeList.style.gap = '';
-                
-                const header = noticeList.querySelector('.notice-header');
-                if (header) header.style.display = 'grid';
-                
-                const items = noticeList.querySelectorAll('.notice-item');
-                items.forEach(item => {
-                    item.style.display = 'grid';
-                    item.style.padding = '1.5rem 2rem';
-                    item.style.borderRadius = '';
-                    item.style.background = '';
-                    item.style.boxShadow = '';
-                });
-            }
-        }
-
-        function showWriteModal() {
-            alert('글쓰기 기능은 관리자만 이용할 수 있습니다.\n문의사항은 고객센터를 이용해 주세요.');
-        }
-
-        function scrollToTop() {
-            window.scrollTo({
-                top: 0,
-                behavior: 'smooth'
-            });
-        }
-
-        function showUnderConstruction() {
-            alert('해당 페이지는 준비 중입니다. 빠른 시일 내에 서비스 제공하겠습니다.');
-        }
-
-        function toggleMenu() {
-            const navMenu = document.querySelector('.nav-menu');
-            if (navMenu) {
-                navMenu.classList.toggle('active');
-            }
-        }
-
-        // 키보드 이벤트
-        document.addEventListener('keydown', function(e) {
-            if (e.key === 'Escape') {
-                closeModal();
-            }
-            
-            if (e.key === 'Enter' && e.target.id === 'searchInput') {
-                searchNotices();
-            }
-        });
-
-        // 모달 외부 클릭 시 닫기
-        document.getElementById('noticeModal').addEventListener('click', function(e) {
-            if (e.target === this) {
-                closeModal();
-            }
-        });
-
-        // 스크롤 시 FAB 표시/숨김
-        window.addEventListener('scroll', function() {
-            const fab = document.querySelector('.fab');
-            if (window.pageYOffset > 300) {
-                fab.style.opacity = '1';
-                fab.style.transform = 'scale(1)';
-            } else {
-                fab.style.opacity = '0.7';
-                fab.style.transform = 'scale(0.8)';
-            }
-        });
-
-        // 페이지 로드 시 초기화
-        document.addEventListener('DOMContentLoaded', function() {
-            console.log('공지사항 게시판 로드 완료');
-            
-            const searchInput = document.getElementById('searchInput');
-            if (searchInput) {
-                searchInput.focus();
-            }
-            
-            const noticeItems = document.querySelectorAll('.notice-item');
-            noticeItems.forEach((item, index) => {
-                item.style.animationDelay = `${index * 0.1}s`;
-            });
-        });
-    </script>
 </body>
 </html>
