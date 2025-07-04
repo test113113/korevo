@@ -1,0 +1,675 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>문의하기 - KOREVO</title>
+    <meta name="description" content="KOREVO에게 문의하세요. 제품 문의, 견적 요청, 파트너십 등 모든 문의를 환영합니다.">
+    
+    <!-- Apple Design CSS -->
+    <link rel="stylesheet" href="styles.css">
+    
+    <style>
+        /* Contact Page Specific Styles */
+        .contact-hero {
+            background: linear-gradient(135deg, #1D1D1F 0%, #2C2C2E 50%, #3A3A3C 100%);
+            color: #FFFFFF;
+            padding: 6rem 0 4rem;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .contact-hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(45deg, rgba(0, 122, 255, 0.1) 0%, rgba(29, 29, 31, 0.05) 100%);
+            opacity: 0.6;
+        }
+
+        .contact-main-section {
+            padding: 6rem 0;
+            background: #FFFFFF;
+        }
+
+        .contact-container {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+            align-items: flex-start;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+
+        .contact-image-section {
+            position: relative;
+        }
+
+        .contact-image {
+            width: 100%;
+            height: 500px;
+            object-fit: cover;
+            border-radius: 16px;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+        }
+
+        .contact-image-overlay {
+            position: absolute;
+            bottom: 2rem;
+            left: 2rem;
+            right: 2rem;
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(20px);
+            border-radius: 12px;
+            padding: 1.5rem;
+        }
+
+        .contact-form-section {
+            background: #FFFFFF;
+            border: 0.5px solid rgba(60, 60, 67, 0.12);
+            border-radius: 16px;
+            padding: 2.5rem;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+        }
+
+        .form-title {
+            font-size: 28px;
+            font-weight: 700;
+            color: #1D1D1F;
+            margin-bottom: 0.5rem;
+        }
+
+        .form-subtitle {
+            font-size: 17px;
+            color: #86868B;
+            margin-bottom: 2rem;
+            line-height: 1.47059;
+        }
+
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+
+        .form-label {
+            display: block;
+            font-size: 17px;
+            font-weight: 500;
+            color: #1D1D1F;
+            margin-bottom: 0.5rem;
+        }
+
+        .form-input,
+        .form-select,
+        .form-textarea {
+            width: 100%;
+            padding: 12px 16px;
+            border: 0.5px solid rgba(60, 60, 67, 0.12);
+            border-radius: 8px;
+            font-size: 17px;
+            font-family: -apple-system, BlinkMacSystemFont, 'SF Pro Display', sans-serif;
+            color: #1D1D1F;
+            background: #FFFFFF;
+            transition: all 0.17s ease-out;
+        }
+
+        .form-input:focus,
+        .form-select:focus,
+        .form-textarea:focus {
+            outline: none;
+            border-color: #007AFF;
+            box-shadow: 0 0 0 3px rgba(0, 122, 255, 0.1);
+        }
+
+        .form-textarea {
+            resize: vertical;
+            min-height: 120px;
+            line-height: 1.47059;
+        }
+
+        .form-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1rem;
+        }
+
+        .required {
+            color: #FF3B30;
+        }
+
+        .submit-btn {
+            width: 100%;
+            padding: 16px 24px;
+            background: #007AFF;
+            color: #FFFFFF;
+            border: none;
+            border-radius: 8px;
+            font-size: 17px;
+            font-weight: 500;
+            cursor: pointer;
+            transition: all 0.17s ease-out;
+            margin-top: 1rem;
+        }
+
+        .submit-btn:hover {
+            background: #0056CC;
+            transform: translateY(-1px);
+        }
+
+        .submit-btn:active {
+            transform: translateY(0);
+        }
+
+        .contact-info {
+            background: #F5F5F7;
+            border-radius: 12px;
+            padding: 2rem;
+            margin-top: 3rem;
+        }
+
+        .info-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 2rem;
+        }
+
+        .info-item {
+            text-align: center;
+        }
+
+        .info-icon {
+            width: 48px;
+            height: 48px;
+            background: #007AFF;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 1rem;
+            font-size: 24px;
+            color: #FFFFFF;
+        }
+
+        .info-title {
+            font-size: 17px;
+            font-weight: 600;
+            color: #1D1D1F;
+            margin-bottom: 0.5rem;
+        }
+
+        .info-content {
+            font-size: 15px;
+            color: #86868B;
+            line-height: 1.47059;
+        }
+
+        /* Animation classes */
+        .fade-in {
+            opacity: 0;
+            transform: translateY(20px);
+            animation: fadeInUp 0.6s ease forwards;
+        }
+
+        .fade-in.delay-1 { animation-delay: 0.1s; }
+        .fade-in.delay-2 { animation-delay: 0.2s; }
+        .fade-in.delay-3 { animation-delay: 0.3s; }
+
+        @keyframes fadeInUp {
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .contact-container {
+                grid-template-columns: 1fr;
+                gap: 3rem;
+                padding: 0 1rem;
+            }
+
+            .contact-image {
+                height: 300px;
+            }
+
+            .contact-image-overlay {
+                position: static;
+                margin-top: 1rem;
+            }
+
+            .form-row {
+                grid-template-columns: 1fr;
+                gap: 1.5rem;
+            }
+
+            .contact-info {
+                margin-top: 2rem;
+            }
+
+            .info-grid {
+                grid-template-columns: 1fr;
+                gap: 1.5rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header class="header">
+        <nav class="nav-container">
+            <a href="index.html" class="logo">KOREVO</a>
+            
+            <ul class="nav-menu" id="navMenu">
+                <li class="nav-item">
+                    <a href="index.html" class="nav-link">홈</a>
+                </li>
+                <li class="nav-item">
+                    <a href="#" class="nav-link">회사소개</a>
+                    <div class="dropdown">
+                        <div class="dropdown-item" onclick="window.location.href='greeting.html'">인사말</div>
+                        <div class="dropdown-item" onclick="navigateToPage('vision')">비전 & 미션</div>
+                        <div class="dropdown-item" onclick="navigateToPage('history')">연혁</div>
+                        <div class="dropdown-item" onclick="navigateToPage('team')">팀 소개</div>
+                    </div>
+                </li>
+                <li class="nav-item">
+                    <a href="#business" class="nav-link">사업소개</a>
+                    <div class="mega-dropdown">
+                        <div class="dropdown-section">
+                            <h4>브랜드 스토리</h4>
+                            <div class="dropdown-item" onclick="window.location.href='heonn-brand.html'">헤온(HeOnn) 브랜드</div>
+                            <div class="dropdown-item" onclick="navigateToPage('brand-philosophy')">브랜드 철학</div>
+                            <div class="dropdown-item" onclick="navigateToPage('traditional-craft')">전통 기법 계승</div>
+                        </div>
+                        <div class="dropdown-section">
+                            <h4>융합 비즈니스</h4>
+                            <div class="dropdown-item" onclick="navigateToPage('business-model')">사업 모델</div>
+                            <div class="dropdown-item" onclick="navigateToPage('innovation-strategy')">혁신 전략</div>
+                            <div class="dropdown-item" onclick="navigateToPage('sustainability')">지속가능경영</div>
+                        </div>
+                    </div>
+                </li>
+                <li class="nav-item">
+                    <a href="#products" class="nav-link">제품/서비스</a>
+                    <div class="mega-dropdown">
+                        <div class="dropdown-section">
+                            <h4>🏺 유기 제품군</h4>
+                            <div class="dropdown-item" onclick="window.location.href='dining-set.html'">식기 컬렉션</div>
+                            <div class="dropdown-item" onclick="navigateToPage('health-products')">건강 케어 제품</div>
+                            <div class="dropdown-item" onclick="navigateToPage('gift-sets')">프리미엄 선물세트</div>
+                            <div class="dropdown-item" onclick="navigateToPage('custom-craft')">맞춤 제작 서비스</div>
+                        </div>
+                        <div class="dropdown-section">
+                            <h4>💻 소프트웨어</h4>
+                            <div class="dropdown-item" onclick="navigateToPage('erp-solution')">제조업 ERP 솔루션</div>
+                            <div class="dropdown-item" onclick="navigateToPage('iot-platform')">IoT 품질관리 플랫폼</div>
+                            <div class="dropdown-item" onclick="navigateToPage('ecommerce-system')">전통공예 전자상거래</div>
+                            <div class="dropdown-item" onclick="navigateToPage('consulting')">디지털 전환 컨설팅</div>
+                        </div>
+                        <div class="dropdown-section">
+                            <h4>🔬 R&D 과제</h4>
+                            <div class="dropdown-item" onclick="navigateToPage('current-projects')">진행중 과제</div>
+                            <div class="dropdown-item" onclick="navigateToPage('completed-projects')">완료 과제</div>
+                            <div class="dropdown-item" onclick="navigateToPage('research-outcomes')">연구 성과</div>
+                            <div class="dropdown-item" onclick="navigateToPage('collaboration')">산학연 협력</div>
+                        </div>
+                    </div>
+                </li>
+                <li class="nav-item">
+                    <a href="contact.html" class="nav-link active">CONTACT</a>
+                </li>
+                <li class="nav-item">
+                    <a href="#shop" class="nav-link">쇼핑몰</a>
+                </li>
+            </ul>
+
+            <div class="lang-selector">
+                <a href="#" class="lang-btn active">🇰🇷</a>
+                <a href="#" class="lang-btn">🇺🇸</a>
+                <a href="#" class="lang-btn">🇨🇳</a>
+                <a href="#" class="lang-btn">🇯🇵</a>
+            </div>
+
+            <button class="menu-toggle" onclick="toggleMenu()" aria-label="메뉴 토글" aria-expanded="false">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+        </nav>
+    </header>
+
+    <!-- Breadcrumb -->
+    <nav class="breadcrumb-nav">
+        <div class="breadcrumb">
+            <a href="index.html" class="breadcrumb-item">홈</a>
+            <span class="breadcrumb-separator">></span>
+            <span class="breadcrumb-item active">문의하기</span>
+        </div>
+    </nav>
+
+    <!-- Page Header -->
+    <section class="contact-hero">
+        <div class="page-header-content">
+            <div class="page-icon">💬</div>
+            <h1 class="page-title">Contact Us</h1>
+            <p class="page-subtitle">KOREVO에게 문의하세요. 언제든지 도움을 드릴 준비가 되어 있습니다.</p>
+        </div>
+    </section>
+
+    <!-- Main Content -->
+    <main class="main-content">
+        <section class="contact-main-section">
+            <div class="contact-container">
+                <!-- Left Side - Image -->
+                <div class="contact-image-section fade-in">
+                    <img src="./images/Contact_Building.jpg" alt="KOREVO 본사 건물" class="contact-image" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+                    <div style="display: none; width: 100%; height: 500px; background: linear-gradient(135deg, #F5F5F7 0%, #E5E5EA 100%); border-radius: 16px; align-items: center; justify-content: center; font-size: 48px; color: #86868B;">🏢</div>
+                    
+                    <div class="contact-image-overlay">
+                        <h3 style="font-size: 20px; font-weight: 600; color: #1D1D1F; margin-bottom: 0.5rem;">KOREVO 본사</h3>
+                        <p style="font-size: 15px; color: #86868B; margin: 0;">서울특별시 강남구 테헤란로 123</p>
+                    </div>
+                </div>
+
+                <!-- Right Side - Contact Form -->
+                <div class="contact-form-section fade-in delay-1">
+                    <h2 class="form-title">문의하기</h2>
+                    <p class="form-subtitle">제품 문의, 견적 요청, 파트너십 등 모든 문의를 환영합니다. 빠른 시일 내에 답변드리겠습니다.</p>
+
+                    <form id="contactForm" onsubmit="submitContactForm(event)">
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="company" class="form-label">회사명 / Company</label>
+                                <input type="text" id="company" name="company" class="form-input" placeholder="회사명을 입력하세요">
+                            </div>
+                            <div class="form-group">
+                                <label for="name" class="form-label">이름 / Name <span class="required">*</span></label>
+                                <input type="text" id="name" name="name" class="form-input" placeholder="이름을 입력하세요" required>
+                            </div>
+                        </div>
+
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="phone" class="form-label">연락처 / Phone</label>
+                                <input type="tel" id="phone" name="phone" class="form-input" placeholder="연락처를 입력하세요">
+                            </div>
+                            <div class="form-group">
+                                <label for="email" class="form-label">이메일 / Email <span class="required">*</span></label>
+                                <input type="email" id="email" name="email" class="form-input" placeholder="이메일을 입력하세요" required>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="inquiryType" class="form-label">문의 유형 / Inquiry Type <span class="required">*</span></label>
+                            <select id="inquiryType" name="inquiryType" class="form-select" required>
+                                <option value="">문의 유형을 선택하세요</option>
+                                <option value="product">제품 문의</option>
+                                <option value="quote">견적 요청</option>
+                                <option value="partnership">파트너십</option>
+                                <option value="support">A/S 및 기술지원</option>
+                                <option value="business">사업 협력</option>
+                                <option value="media">언론 및 미디어</option>
+                                <option value="career">채용 문의</option>
+                                <option value="other">기타</option>
+                            </select>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="subject" class="form-label">제목 / Subject <span class="required">*</span></label>
+                            <input type="text" id="subject" name="subject" class="form-input" placeholder="문의 제목을 입력하세요" required>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="message" class="form-label">문의 내용 / Message <span class="required">*</span></label>
+                            <textarea id="message" name="message" class="form-textarea" placeholder="문의 내용을 자세히 입력해주세요" required></textarea>
+                        </div>
+
+                        <button type="submit" class="submit-btn">문의하기</button>
+                    </form>
+                </div>
+            </div>
+
+            <!-- Contact Information -->
+            <div class="contact-info fade-in delay-2">
+                <div class="info-grid">
+                    <div class="info-item">
+                        <div class="info-icon">📞</div>
+                        <h3 class="info-title">전화 문의</h3>
+                        <div class="info-content">
+                            1588-0000<br>
+                            평일 09:00-18:00
+                        </div>
+                    </div>
+                    <div class="info-item">
+                        <div class="info-icon">✉️</div>
+                        <h3 class="info-title">이메일</h3>
+                        <div class="info-content">
+                            info@korevo.dooray.com<br>
+                            24시간 접수 가능
+                        </div>
+                    </div>
+                    <div class="info-item">
+                        <div class="info-icon">📍</div>
+                        <h3 class="info-title">주소</h3>
+                        <div class="info-content">
+                            서울특별시 강남구<br>
+                            테헤란로 123, 코레보빌딩 10층
+                        </div>
+                    </div>
+                    <div class="info-item">
+                        <div class="info-icon">🕒</div>
+                        <h3 class="info-title">운영시간</h3>
+                        <div class="info-content">
+                            평일: 09:00 - 18:00<br>
+                            토요일: 09:00 - 13:00<br>
+                            일요일, 공휴일 휴무
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="footer-content">
+            <div class="footer-section">
+                <h3>KOREVO</h3>
+                <p>한국의 전통과 혁신을 담은<br>프리미엄 유기 브랜드</p>
+                <p>전통의 아름다움을 현대에 되살리며<br>지속가능한 미래를 만들어갑니다.</p>
+            </div>
+            <div class="footer-section">
+                <h3>빠른 링크</h3>
+                <p><a href="greeting.html">회사소개</a></p>
+                <p><a href="heonn-brand.html">사업소개</a></p>
+                <p><a href="dining-set.html">제품소개</a></p>
+                <p><a href="contact.html">문의하기</a></p>
+            </div>
+            <div class="footer-section">
+                <h3>고객지원</h3>
+                <p>고객센터: 1588-0000</p>
+                <p>이메일: info@korevo.dooray.com</p>
+                <p>운영시간: 평일 09:00-18:00</p>
+            </div>
+            <div class="footer-section">
+                <h3>주소</h3>
+                <p>서울특별시 강남구<br>테헤란로 123, 코레보빌딩 10층</p>
+                <p>사업자등록번호: 123-45-67890</p>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2025 KOREVO. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <!-- JavaScript -->
+    <script src="script.js"></script>
+    <script>
+        // Contact Form Submission
+        function submitContactForm(event) {
+            event.preventDefault();
+            
+            const form = event.target;
+            const formData = new FormData(form);
+            const data = Object.fromEntries(formData);
+            
+            // Validate required fields
+            if (!data.name || !data.email || !data.inquiryType || !data.subject || !data.message) {
+                showAppleNotification('필수 항목을 모두 입력해주세요.', 'error');
+                return;
+            }
+            
+            // Email validation
+            const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+            if (!emailRegex.test(data.email)) {
+                showAppleNotification('올바른 이메일 주소를 입력해주세요.', 'error');
+                return;
+            }
+            
+            // Show loading state
+            const submitBtn = form.querySelector('.submit-btn');
+            const originalText = submitBtn.textContent;
+            submitBtn.textContent = '전송 중...';
+            submitBtn.disabled = true;
+            submitBtn.style.opacity = '0.6';
+            
+            // Prepare email content
+            const emailSubject = `[KOREVO 문의] ${data.subject}`;
+            const emailBody = `
+안녕하세요. KOREVO 홈페이지를 통해 문의가 접수되었습니다.
+
+=== 문의자 정보 ===
+회사명: ${data.company || '개인'}
+이름: ${data.name}
+연락처: ${data.phone || '미입력'}
+이메일: ${data.email}
+
+=== 문의 내용 ===
+문의 유형: ${getInquiryTypeText(data.inquiryType)}
+제목: ${data.subject}
+
+내용:
+${data.message}
+
+=== 접수 정보 ===
+접수 일시: ${new Date().toLocaleString('ko-KR')}
+접수 경로: KOREVO 홈페이지 문의 폼
+
+감사합니다.
+            `.trim();
+            
+            // Create mailto link
+            const mailtoLink = `mailto:info@korevo.dooray.com?subject=${encodeURIComponent(emailSubject)}&body=${encodeURIComponent(emailBody)}`;
+            
+            // Simulate processing time
+            setTimeout(() => {
+                // Open mail client
+                window.location.href = mailtoLink;
+                
+                // Show success message
+                showAppleNotification('문의가 접수되었습니다. 메일 클라이언트에서 전송을 완료해주세요.', 'success');
+                
+                // Reset form
+                form.reset();
+                
+                // Reset button
+                submitBtn.textContent = originalText;
+                submitBtn.disabled = false;
+                submitBtn.style.opacity = '1';
+            }, 1000);
+        }
+        
+        function getInquiryTypeText(type) {
+            const types = {
+                'product': '제품 문의',
+                'quote': '견적 요청', 
+                'partnership': '파트너십',
+                'support': 'A/S 및 기술지원',
+                'business': '사업 협력',
+                'media': '언론 및 미디어',
+                'career': '채용 문의',
+                'other': '기타'
+            };
+            return types[type] || type;
+        }
+        
+        // Apple notification function (if not included in script.js)
+        function showAppleNotification(message, type = 'info') {
+            const existingNotification = document.querySelector('.apple-notification');
+            if (existingNotification) {
+                existingNotification.remove();
+            }
+
+            const notification = document.createElement('div');
+            notification.className = `apple-notification apple-notification-${type}`;
+            
+            const icon = type === 'success' ? '✓' : type === 'error' ? '✕' : 'ℹ';
+            const bgColor = type === 'success' ? '#34C759' : type === 'error' ? '#FF3B30' : '#007AFF';
+            
+            notification.innerHTML = `
+                <div style="display: flex; align-items: center; gap: 12px;">
+                    <span style="font-size: 18px;">${icon}</span>
+                    <span>${message}</span>
+                </div>
+            `;
+
+            notification.style.cssText = `
+                position: fixed;
+                top: 60px;
+                right: 24px;
+                z-index: 1100;
+                max-width: 400px;
+                background: ${bgColor};
+                color: white;
+                padding: 16px 20px;
+                border-radius: 12px;
+                box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+                backdrop-filter: blur(20px);
+                opacity: 0;
+                transform: translateX(100%) scale(0.9);
+                transition: all 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+                font-size: 15px;
+                font-weight: 500;
+            `;
+
+            document.body.appendChild(notification);
+
+            requestAnimationFrame(() => {
+                notification.style.opacity = '1';
+                notification.style.transform = 'translateX(0) scale(1)';
+            });
+
+            setTimeout(() => {
+                notification.style.opacity = '0';
+                notification.style.transform = 'translateX(100%) scale(0.9)';
+                setTimeout(() => notification.remove(), 300);
+            }, 4000);
+        }
+        
+        // Initialize page animations
+        document.addEventListener('DOMContentLoaded', function() {
+            const observerOptions = {
+                threshold: 0.1,
+                rootMargin: '0px 0px -50px 0px'
+            };
+
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.style.opacity = '1';
+                        entry.target.style.transform = 'translateY(0)';
+                    }
+                });
+            }, observerOptions);
+
+            document.querySelectorAll('.fade-in').forEach(el => {
+                observer.observe(el);
+            });
+        });
+    </script>
+</body>
+</html>
