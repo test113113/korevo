@@ -1,6 +1,6 @@
 /**
- * KOREVO 통합 JavaScript 파일
- * 모든 HTML 페이지에서 사용하는 공용 스크립트
+ * KOREVO Apple Design System JavaScript
+ * Unified JavaScript for all pages with Apple-inspired interactions
  */
 
 'use strict';
@@ -9,11 +9,12 @@
 let isMenuOpen = false;
 let scrollTimeout = null;
 let resizeTimeout = null;
+let currentTheme = 'light';
 
 // ===== UTILITY FUNCTIONS =====
 
 /**
- * 디바운스 유틸리티 함수
+ * Debounce utility function
  */
 function debounce(func, wait) {
     let timeout;
@@ -28,7 +29,7 @@ function debounce(func, wait) {
 }
 
 /**
- * 스로틀 유틸리티 함수
+ * Throttle utility function
  */
 function throttle(func, limit) {
     let inThrottle;
@@ -44,21 +45,21 @@ function throttle(func, limit) {
 }
 
 /**
- * 모바일 디바이스 감지
+ * Detect mobile device
  */
 function isMobileDevice() {
     return window.innerWidth <= 768 || /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
 }
 
 /**
- * 축소된 모션 설정 감지
+ * Detect reduced motion preference
  */
 function isReducedMotion() {
     return window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 }
 
 /**
- * 요소가 뷰포트에 있는지 확인
+ * Check if element is in viewport
  */
 function isElementInViewport(el) {
     const rect = el.getBoundingClientRect();
@@ -70,10 +71,17 @@ function isElementInViewport(el) {
     );
 }
 
+/**
+ * Apple-style smooth animation helper
+ */
+function appleEasing(t) {
+    return t === 1 ? 1 : 1 - Math.pow(2, -10 * t);
+}
+
 // ===== NAVIGATION FUNCTIONS =====
 
 /**
- * 모바일 메뉴 토글
+ * Toggle mobile menu with Apple-style animation
  */
 function toggleMenu() {
     const navMenu = document.getElementById('navMenu');
@@ -83,26 +91,56 @@ function toggleMenu() {
     
     isMenuOpen = !isMenuOpen;
     
+    // Add Apple-style spring animation
     navMenu.classList.toggle('active', isMenuOpen);
     menuToggle.classList.toggle('active', isMenuOpen);
     
-    // 접근성: aria-expanded 속성 업데이트
+    // Update ARIA attributes for accessibility
     menuToggle.setAttribute('aria-expanded', isMenuOpen);
     
-    // 메뉴가 열렸을 때 첫 번째 링크에 포커스
     if (isMenuOpen) {
+        // Focus management
         const firstLink = navMenu.querySelector('.nav-link');
         if (firstLink) {
-            setTimeout(() => firstLink.focus(), 100);
+            setTimeout(() => firstLink.focus(), 150);
         }
         document.body.style.overflow = 'hidden';
+        
+        // Add backdrop blur effect
+        const backdrop = document.createElement('div');
+        backdrop.className = 'menu-backdrop';
+        backdrop.style.cssText = `
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.1);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            z-index: 999;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        `;
+        document.body.appendChild(backdrop);
+        
+        requestAnimationFrame(() => {
+            backdrop.style.opacity = '1';
+        });
+        
+        backdrop.addEventListener('click', toggleMenu);
     } else {
         document.body.style.overflow = '';
+        const backdrop = document.querySelector('.menu-backdrop');
+        if (backdrop) {
+            backdrop.style.opacity = '0';
+            setTimeout(() => backdrop.remove(), 300);
+        }
     }
 }
 
 /**
- * 페이지 네비게이션
+ * Page navigation with Apple-style loading
  */
 function navigateToPage(page) {
     console.log(`Navigate to: ${page}`);
@@ -143,25 +181,23 @@ function navigateToPage(page) {
     
     const targetPage = pageMap[page];
     if (targetPage) {
-        // 로딩 인디케이터 표시
-        showLoadingIndicator();
+        showAppleLoadingIndicator();
         
-        // 페이지 이동
+        // Apple-style page transition
         setTimeout(() => {
             window.location.href = targetPage;
-        }, 300);
+        }, 150);
     } else {
-        // 페이지가 준비되지 않은 경우
-        showNotification(`${getPageDisplayName(page)} 페이지는 준비 중입니다.`, 'info');
+        showAppleNotification(`${getPageDisplayName(page)} 페이지는 준비 중입니다.`, 'info');
     }
 }
 
 /**
- * 페이지 표시 이름 가져오기
+ * Get page display name
  */
 function getPageDisplayName(pageName) {
     const displayNames = {
-        'vision': '비전 & 미션',
+        'vision': 'Vision & Mission',
         'history': '연혁',
         'team': '팀 소개',
         'onyu-brand': '온유 브랜드',
@@ -199,7 +235,7 @@ function getPageDisplayName(pageName) {
 // ===== VIDEO HANDLING =====
 
 /**
- * 비디오 에러 핸들링
+ * Handle video error with Apple-style feedback
  */
 function handleVideoError(video) {
     console.warn('Video failed to load:', video.currentSrc || video.src);
@@ -220,7 +256,7 @@ function handleVideoError(video) {
 }
 
 /**
- * 비디오 로드 성공
+ * Handle video load success
  */
 function handleVideoLoad(video) {
     console.log('Video can start playing:', video.currentSrc || video.src);
@@ -228,7 +264,7 @@ function handleVideoLoad(video) {
 }
 
 /**
- * 비디오 데이터 로드 완료
+ * Handle video data loaded
  */
 function handleVideoLoadedData(video) {
     console.log('Video loaded successfully:', video.currentSrc || video.src);
@@ -249,20 +285,20 @@ function handleVideoLoadedData(video) {
 }
 
 /**
- * 비디오 초기화
+ * Initialize video with Apple-style loading
  */
 function initializeVideo() {
     const video = document.querySelector('.hero-video');
     
     if (!video) return;
 
-    // 모바일 지원을 위한 속성 설정
+    // Enhanced mobile support
     video.setAttribute('webkit-playsinline', '');
     video.setAttribute('playsinline', '');
     video.muted = true;
     video.defaultMuted = true;
 
-    // 비디오 파일 존재 확인
+    // Check video file existence
     fetch('./video/korevo_hero.mp4', { method: 'HEAD' })
         .then(response => {
             if (!response.ok) {
@@ -279,7 +315,7 @@ function initializeVideo() {
 // ===== SCROLL HANDLING =====
 
 /**
- * 헤더 스크롤 효과
+ * Apple-style header scroll effect
  */
 const handleHeaderScroll = throttle(function() {
     const header = document.querySelector('.header');
@@ -287,17 +323,19 @@ const handleHeaderScroll = throttle(function() {
     
     const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
     
-    if (scrollTop > 50) {
-        header.style.background = 'rgba(255, 255, 255, 0.95)';
-        header.style.borderBottom = '1px solid rgba(0, 0, 0, 0.12)';
-    } else {
+    if (scrollTop > 44) {
         header.style.background = 'rgba(255, 255, 255, 0.8)';
-        header.style.borderBottom = '1px solid rgba(0, 0, 0, 0.08)';
+        header.style.backdropFilter = 'saturate(180%) blur(20px)';
+        header.style.borderBottom = '0.5px solid rgba(60, 60, 67, 0.12)';
+    } else {
+        header.style.background = 'rgba(255, 255, 255, 0.72)';
+        header.style.backdropFilter = 'saturate(180%) blur(20px)';
+        header.style.borderBottom = '0.5px solid rgba(60, 60, 67, 0.12)';
     }
 }, 16);
 
 /**
- * 부드러운 스크롤
+ * Apple-style smooth scrolling
  */
 function initSmoothScroll() {
     document.querySelectorAll('a[href^="#"]').forEach(anchor => {
@@ -305,45 +343,68 @@ function initSmoothScroll() {
             e.preventDefault();
             const target = document.querySelector(this.getAttribute('href'));
             if (target) {
-                const headerHeight = document.querySelector('.header')?.offsetHeight || 72;
+                const headerHeight = document.querySelector('.header')?.offsetHeight || 44;
                 const targetPosition = target.offsetTop - headerHeight;
                 
-                window.scrollTo({
-                    top: targetPosition,
-                    behavior: 'smooth'
-                });
+                smoothScrollTo(targetPosition, 600);
             }
         });
     });
 }
 
 /**
- * 스크롤 애니메이션
+ * Apple-style smooth scroll function
+ */
+function smoothScrollTo(target, duration = 600) {
+    const start = window.pageYOffset;
+    const distance = target - start;
+    let startTime = null;
+
+    function animateScroll(currentTime) {
+        if (startTime === null) startTime = currentTime;
+        const timeElapsed = currentTime - startTime;
+        const progress = Math.min(timeElapsed / duration, 1);
+        
+        // Apple's preferred easing curve
+        const easeProgress = appleEasing(progress);
+        
+        window.scrollTo(0, start + distance * easeProgress);
+        
+        if (timeElapsed < duration) {
+            requestAnimationFrame(animateScroll);
+        }
+    }
+
+    requestAnimationFrame(animateScroll);
+}
+
+/**
+ * Apple-style scroll animations
  */
 function initScrollAnimations() {
     if (isReducedMotion()) return;
     
     const observerOptions = {
         threshold: 0.1,
-        rootMargin: '50px 0px -50px 0px'
+        rootMargin: '0px 0px -50px 0px'
     };
 
     const observer = new IntersectionObserver((entries) => {
         entries.forEach(entry => {
             if (entry.isIntersecting) {
-                entry.target.classList.add('visible');
                 entry.target.style.opacity = '1';
                 entry.target.style.transform = 'translateY(0)';
+                entry.target.classList.add('visible');
             }
         });
     }, observerOptions);
 
-    // 애니메이션 대상 요소들 관찰
+    // Observe elements for animation
     document.querySelectorAll('.animate-on-scroll, .fade-in').forEach(el => {
         if (!el.classList.contains('visible')) {
             el.style.opacity = '0';
-            el.style.transform = 'translateY(30px)';
-            el.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
+            el.style.transform = 'translateY(20px)';
+            el.style.transition = 'opacity 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94), transform 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94)';
         }
         observer.observe(el);
     });
@@ -352,7 +413,7 @@ function initScrollAnimations() {
 // ===== FORM HANDLING =====
 
 /**
- * 연락처 폼 제출
+ * Apple-style form submission
  */
 function submitForm(event) {
     event.preventDefault();
@@ -361,49 +422,52 @@ function submitForm(event) {
     const formData = new FormData(form);
     const data = Object.fromEntries(formData);
     
-    // 폼 검증
+    // Validate form
     if (!validateForm(data)) {
         return;
     }
     
-    // 로딩 상태 표시
+    // Apple-style loading state
     const submitBtn = form.querySelector('.submit-btn, .btn-primary');
     const originalText = submitBtn.textContent;
+    
     submitBtn.textContent = '전송중...';
     submitBtn.disabled = true;
+    submitBtn.style.opacity = '0.6';
     
-    // 실제 구현에서는 서버로 데이터 전송
+    // Simulate API call
     setTimeout(() => {
-        showNotification('문의가 성공적으로 전송되었습니다. 빠른 시일 내에 답변드리겠습니다.', 'success');
+        showAppleNotification('문의가 성공적으로 전송되었습니다.', 'success');
         form.reset();
         submitBtn.textContent = originalText;
         submitBtn.disabled = false;
-    }, 1500);
+        submitBtn.style.opacity = '1';
+    }, 1000);
 }
 
 /**
- * 폼 검증
+ * Enhanced form validation
  */
 function validateForm(data) {
     const required = ['name', 'email', 'phone', 'category', 'subject', 'message'];
     const missing = required.filter(field => !data[field] || data[field].trim() === '');
     
     if (missing.length > 0) {
-        showNotification(`다음 필드를 입력해주세요: ${missing.join(', ')}`, 'error');
+        showAppleNotification(`다음 필드를 입력해주세요: ${missing.join(', ')}`, 'error');
         return false;
     }
     
-    // 이메일 검증
+    // Email validation
     const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
     if (!emailRegex.test(data.email)) {
-        showNotification('올바른 이메일 주소를 입력해주세요.', 'error');
+        showAppleNotification('올바른 이메일 주소를 입력해주세요.', 'error');
         return false;
     }
     
-    // 전화번호 검증 (한국 형식)
+    // Phone validation
     const phoneRegex = /^[\d-\s()]+$/;
     if (!phoneRegex.test(data.phone)) {
-        showNotification('올바른 전화번호를 입력해주세요.', 'error');
+        showAppleNotification('올바른 전화번호를 입력해주세요.', 'error');
         return false;
     }
     
@@ -413,25 +477,37 @@ function validateForm(data) {
 // ===== PRODUCT FUNCTIONS =====
 
 /**
- * 제품 필터링
+ * Filter products with Apple-style animation
  */
 function filterProducts(category) {
     const products = document.querySelectorAll('.product-card');
     let visibleCount = 0;
     
-    products.forEach(product => {
+    products.forEach((product, index) => {
         const productCategory = product.dataset.category;
         const shouldShow = category === 'all' || productCategory === category;
         
         if (shouldShow) {
             product.style.display = 'block';
+            product.style.opacity = '0';
+            product.style.transform = 'translateY(20px)';
+            
+            setTimeout(() => {
+                product.style.opacity = '1';
+                product.style.transform = 'translateY(0)';
+            }, index * 50);
+            
             visibleCount++;
         } else {
-            product.style.display = 'none';
+            product.style.opacity = '0';
+            product.style.transform = 'translateY(-20px)';
+            setTimeout(() => {
+                product.style.display = 'none';
+            }, 150);
         }
     });
     
-    // 필터 버튼 활성화 상태 업데이트
+    // Update filter button states
     document.querySelectorAll('.filter-tag').forEach(tag => {
         tag.classList.toggle('active', tag.dataset.category === category);
     });
@@ -440,7 +516,7 @@ function filterProducts(category) {
 }
 
 /**
- * 제품 정렬
+ * Sort products with Apple-style transitions
  */
 function sortProducts(sortBy) {
     const container = document.querySelector('.products-grid');
@@ -464,49 +540,108 @@ function sortProducts(sortBy) {
         }
     });
     
-    // DOM 재정렬
-    products.forEach(product => container.appendChild(product));
+    // Apple-style reordering animation
+    products.forEach((product, index) => {
+        product.style.opacity = '0';
+        product.style.transform = 'scale(0.95)';
+        
+        setTimeout(() => {
+            container.appendChild(product);
+            product.style.opacity = '1';
+            product.style.transform = 'scale(1)';
+        }, index * 30);
+    });
 }
 
 /**
- * 장바구니에 추가
+ * Add to cart with Apple-style feedback
  */
 function addToCart(productId) {
-    // 실제 구현에서는 로컬 스토리지나 서버에 저장
     console.log(`Adding product ${productId} to cart`);
     
-    // 시각적 피드백
     const button = event.target;
     const originalText = button.textContent;
+    
+    // Apple-style button animation
+    button.style.transform = 'scale(0.95)';
     button.textContent = '추가됨!';
-    button.style.background = '#28a745';
+    button.style.background = '#34C759';
+    
+    setTimeout(() => {
+        button.style.transform = 'scale(1)';
+    }, 100);
     
     setTimeout(() => {
         button.textContent = originalText;
         button.style.background = '';
     }, 2000);
     
-    showNotification('제품이 장바구니에 추가되었습니다.', 'success');
+    showAppleNotification('제품이 장바구니에 추가되었습니다.', 'success');
     updateCartCount();
+    
+    // Add to cart animation (optional)
+    createAppleCartAnimation(button);
 }
 
 /**
- * 장바구니 개수 업데이트
+ * Apple-style cart animation
+ */
+function createAppleCartAnimation(button) {
+    const rect = button.getBoundingClientRect();
+    const cart = document.querySelector('.cart-icon');
+    
+    if (!cart) return;
+    
+    const cartRect = cart.getBoundingClientRect();
+    const particle = document.createElement('div');
+    
+    particle.style.cssText = `
+        position: fixed;
+        width: 20px;
+        height: 20px;
+        background: #007AFF;
+        border-radius: 50%;
+        left: ${rect.left + rect.width / 2}px;
+        top: ${rect.top + rect.height / 2}px;
+        z-index: 9999;
+        pointer-events: none;
+        transition: all 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    `;
+    
+    document.body.appendChild(particle);
+    
+    requestAnimationFrame(() => {
+        particle.style.left = cartRect.left + cartRect.width / 2 + 'px';
+        particle.style.top = cartRect.top + cartRect.height / 2 + 'px';
+        particle.style.transform = 'scale(0)';
+        particle.style.opacity = '0';
+    });
+    
+    setTimeout(() => particle.remove(), 600);
+}
+
+/**
+ * Update cart count
  */
 function updateCartCount() {
-    // 실제 구현에서는 저장된 장바구니 데이터에서 개수 계산
-    const cartCount = Math.floor(Math.random() * 5) + 1; // 임시 데이터
+    const cartCount = Math.floor(Math.random() * 5) + 1;
     const cartBadge = document.querySelector('.cart-count');
     if (cartBadge) {
         cartBadge.textContent = cartCount;
         cartBadge.style.display = cartCount > 0 ? 'inline' : 'none';
+        
+        // Apple-style badge animation
+        cartBadge.style.transform = 'scale(1.2)';
+        setTimeout(() => {
+            cartBadge.style.transform = 'scale(1)';
+        }, 150);
     }
 }
 
 // ===== NOTICE FUNCTIONS =====
 
 /**
- * 공지사항 데이터
+ * Notice data with Apple-style structure
  */
 const noticeData = {
     1: {
@@ -515,28 +650,28 @@ const noticeData = {
         date: "2025.01.15",
         views: 156,
         content: `
-            <h3>🎉 KOREVO 온유 브랜드 공식 런칭</h3>
-            <br>
-            <p>안녕하세요, KOREVO입니다.</p>
-            <br>
-            <p>드디어 저희가 오랫동안 준비해온 온유(溫鍮) 브랜드를 공식적으로 런칭하게 되었습니다.</p>
-            <br>
-            <h4>📅 런칭 일정</h4>
-            <ul>
-                <li><strong>공식 런칭:</strong> 2025년 2월 1일</li>
-                <li><strong>사전 예약:</strong> 2025년 1월 20일부터</li>
-                <li><strong>매장 오픈:</strong> 2025년 2월 15일</li>
-            </ul>
-            <br>
-            <h4>🏺 출시 제품</h4>
-            <ul>
-                <li>온유 프리미엄 식기 세트</li>
-                <li>온유 개인 맞춤 수저</li>
-                <li>온유 티 컬렉션</li>
-                <li>온유 선물 세트</li>
-            </ul>
-            <br>
-            <p>많은 관심과 기대 부탁드립니다.</p>
+            <div class="notice-content-wrapper">
+                <h3>🎉 KOREVO 온유 브랜드 공식 런칭</h3>
+                <p>안녕하세요, KOREVO입니다.</p>
+                <p>드디어 저희가 오랫동안 준비해온 온유(溫鍮) 브랜드를 공식적으로 런칭하게 되었습니다.</p>
+                
+                <h4>📅 런칭 일정</h4>
+                <ul>
+                    <li>공식 런칭: 2025년 2월 1일</li>
+                    <li>사전 예약: 2025년 1월 20일부터</li>
+                    <li>매장 오픈: 2025년 2월 15일</li>
+                </ul>
+                
+                <h4>🏺 출시 제품</h4>
+                <ul>
+                    <li>온유 프리미엄 식기 세트</li>
+                    <li>온유 개인 맞춤 수저</li>
+                    <li>온유 티 컬렉션</li>
+                    <li>온유 선물 세트</li>
+                </ul>
+                
+                <p>많은 관심과 기대 부탁드립니다.</p>
+            </div>
         `
     },
     2: {
@@ -545,18 +680,19 @@ const noticeData = {
         date: "2025.01.14",
         views: 89,
         content: `
-            <h3>🍽️ 온유 식기 컬렉션 신제품 출시</h3>
-            <br>
-            <p>전통 유기 기법으로 제작된 새로운 식기 컬렉션을 출시합니다.</p>
-            <br>
-            <h4>🆕 신제품 라인업</h4>
-            <ul>
-                <li><strong>온유 밥그릇 세트:</strong> 89,000원</li>
-                <li><strong>온유 국그릇 세트:</strong> 124,000원</li>
-                <li><strong>온유 개인 수저:</strong> 55,000원</li>
-            </ul>
-            <br>
-            <p>모든 제품은 전통 장인의 수작업으로 제작되어 품질을 보장합니다.</p>
+            <div class="notice-content-wrapper">
+                <h3>🍽️ 온유 식기 컬렉션 신제품 출시</h3>
+                <p>전통 유기 기법으로 제작된 새로운 식기 컬렉션을 출시합니다.</p>
+                
+                <h4>🆕 신제품 라인업</h4>
+                <ul>
+                    <li>온유 밥그릇 세트: 89,000원</li>
+                    <li>온유 국그릇 세트: 124,000원</li>
+                    <li>온유 개인 수저: 55,000원</li>
+                </ul>
+                
+                <p>모든 제품은 전통 장인의 수작업으로 제작되어 품질을 보장합니다.</p>
+            </div>
         `
     },
     3: {
@@ -565,27 +701,28 @@ const noticeData = {
         date: "2025.01.13",
         views: 124,
         content: `
-            <h3>💻 ERP 솔루션 업데이트</h3>
-            <br>
-            <p>시스템 성능 향상을 위한 업데이트를 진행합니다.</p>
-            <br>
-            <h4>📋 업데이트 내용</h4>
-            <ul>
-                <li>데이터베이스 최적화</li>
-                <li>사용자 인터페이스 개선</li>
-                <li>보안 기능 강화</li>
-                <li>새로운 리포트 기능 추가</li>
-            </ul>
-            <br>
-            <h4>⏰ 유지보수 일정</h4>
-            <p><strong>일시:</strong> 2025년 1월 20일 (일) 02:00 ~ 06:00</p>
-            <p>해당 시간 동안 시스템 접속이 제한될 수 있습니다.</p>
+            <div class="notice-content-wrapper">
+                <h3>💻 ERP 솔루션 업데이트</h3>
+                <p>시스템 성능 향상을 위한 업데이트를 진행합니다.</p>
+                
+                <h4>📋 업데이트 내용</h4>
+                <ul>
+                    <li>데이터베이스 최적화</li>
+                    <li>사용자 인터페이스 개선</li>
+                    <li>보안 기능 강화</li>
+                    <li>새로운 리포트 기능 추가</li>
+                </ul>
+                
+                <h4>⏰ 유지보수 일정</h4>
+                <p><strong>일시:</strong> 2025년 1월 20일 (일) 02:00 ~ 06:00</p>
+                <p>해당 시간 동안 시스템 접속이 제한될 수 있습니다.</p>
+            </div>
         `
     }
 };
 
 /**
- * 공지사항 열기
+ * Open notice with Apple-style modal
  */
 function openNotice(noticeId) {
     const notice = noticeData[noticeId];
@@ -594,71 +731,82 @@ function openNotice(noticeId) {
         return;
     }
 
-    // 모달 내용 업데이트
     const modal = document.getElementById('noticeModal');
     if (!modal) return;
 
+    // Update modal content
     document.getElementById('modalTitle').textContent = notice.title;
     document.getElementById('modalDate').textContent = notice.date;
     document.getElementById('modalAuthor').textContent = notice.author;
     document.getElementById('modalViews').textContent = `조회수: ${notice.views.toLocaleString()}`;
     document.getElementById('modalContent').innerHTML = notice.content;
 
-    // 모달 표시
+    // Apple-style modal animation
     modal.style.display = 'flex';
+    modal.style.opacity = '0';
     document.body.style.overflow = 'hidden';
 
-    // 조회수 증가
-    notice.views++;
-    updateNoticeViews(noticeId, notice.views);
-
-    // 모달 열림 애니메이션
     requestAnimationFrame(() => {
         modal.style.opacity = '1';
         const modalContent = modal.querySelector('.modal-content');
         if (modalContent) {
-            modalContent.style.transform = 'translateY(0) scale(1)';
+            modalContent.style.transform = 'scale(1)';
         }
     });
+
+    // Increment views
+    notice.views++;
+    updateNoticeViews(noticeId, notice.views);
 }
 
 /**
- * 모달 닫기
+ * Close modal with Apple-style animation
  */
 function closeModal() {
     const modal = document.getElementById('noticeModal');
     if (!modal) return;
     
-    // 닫힘 애니메이션
-    modal.style.opacity = '0';
     const modalContent = modal.querySelector('.modal-content');
     if (modalContent) {
-        modalContent.style.transform = 'translateY(-20px) scale(0.95)';
+        modalContent.style.transform = 'scale(0.95)';
     }
+    modal.style.opacity = '0';
     
     setTimeout(() => {
         modal.style.display = 'none';
         document.body.style.overflow = '';
-    }, 300);
+    }, 150);
 }
 
 /**
- * 공지사항 검색
+ * Search notices with Apple-style filtering
  */
 function searchNotices() {
     const searchTerm = document.getElementById('searchInput')?.value.toLowerCase() || '';
     const notices = document.querySelectorAll('.notice-item');
     let visibleCount = 0;
 
-    notices.forEach(notice => {
+    notices.forEach((notice, index) => {
         const title = notice.querySelector('.notice-title')?.textContent.toLowerCase() || '';
         const content = notice.textContent.toLowerCase();
         
         if (title.includes(searchTerm) || content.includes(searchTerm)) {
             notice.style.display = '';
+            notice.style.opacity = '0';
+            notice.style.transform = 'translateY(10px)';
+            
+            setTimeout(() => {
+                notice.style.opacity = '1';
+                notice.style.transform = 'translateY(0)';
+            }, index * 30);
+            
             visibleCount++;
         } else {
-            notice.style.display = 'none';
+            notice.style.opacity = '0';
+            notice.style.transform = 'translateY(-10px)';
+            setTimeout(() => {
+                notice.style.display = 'none';
+            }, 150);
         }
     });
 
@@ -667,21 +815,30 @@ function searchNotices() {
 }
 
 /**
- * 공지사항 필터링
+ * Filter notices by category
  */
 function filterNotices() {
     const category = document.getElementById('categoryFilter')?.value || '';
     const notices = document.querySelectorAll('.notice-item');
     let visibleCount = 0;
 
-    notices.forEach(notice => {
+    notices.forEach((notice, index) => {
         const noticeCategory = notice.dataset.category || '';
         
         if (!category || noticeCategory === category) {
             notice.style.display = '';
+            notice.style.opacity = '0';
+            
+            setTimeout(() => {
+                notice.style.opacity = '1';
+            }, index * 30);
+            
             visibleCount++;
         } else {
-            notice.style.display = 'none';
+            notice.style.opacity = '0';
+            setTimeout(() => {
+                notice.style.display = 'none';
+            }, 150);
         }
     });
 
@@ -689,7 +846,7 @@ function filterNotices() {
 }
 
 /**
- * 공지사항 정렬
+ * Sort notices
  */
 function sortNotices() {
     const sortOrder = document.getElementById('sortOrder')?.value || 'latest';
@@ -710,17 +867,24 @@ function sortNotices() {
         }
     });
 
-    notices.forEach(notice => container.appendChild(notice));
+    // Apple-style reordering
+    notices.forEach((notice, index) => {
+        notice.style.opacity = '0';
+        setTimeout(() => {
+            container.appendChild(notice);
+            notice.style.opacity = '1';
+        }, index * 20);
+    });
 }
 
 /**
- * 공지사항 보기 모드 변경
+ * Set view mode for notices
  */
 function setViewMode(mode) {
     const noticeList = document.getElementById('noticeList');
     if (!noticeList) return;
 
-    // 버튼 상태 업데이트
+    // Update button states
     document.querySelectorAll('.view-btn').forEach(btn => {
         btn.classList.toggle('active', btn.textContent.includes(mode === 'list' ? '목록' : '카드'));
     });
@@ -728,7 +892,7 @@ function setViewMode(mode) {
     if (mode === 'card') {
         noticeList.style.display = 'grid';
         noticeList.style.gridTemplateColumns = 'repeat(auto-fit, minmax(350px, 1fr))';
-        noticeList.style.gap = '1.5rem';
+        noticeList.style.gap = '24px';
     } else {
         noticeList.style.display = 'block';
         noticeList.style.gridTemplateColumns = '';
@@ -737,7 +901,7 @@ function setViewMode(mode) {
 }
 
 /**
- * 공지사항 통계 업데이트
+ * Update notice statistics
  */
 function updateNoticeStats(visibleCount = null) {
     if (visibleCount !== null) {
@@ -749,7 +913,7 @@ function updateNoticeStats(visibleCount = null) {
 }
 
 /**
- * 공지사항 조회수 업데이트
+ * Update notice views count
  */
 function updateNoticeViews(noticeId, views) {
     const noticeElement = document.querySelector(`.notice-item[onclick*="${noticeId}"]`);
@@ -764,98 +928,102 @@ function updateNoticeViews(noticeId, views) {
 // ===== UI COMPONENTS =====
 
 /**
- * 알림 표시
+ * Apple-style notification system
  */
-function showNotification(message, type = 'info') {
-    // 기존 알림 제거
-    const existingNotification = document.querySelector('.notification');
+function showAppleNotification(message, type = 'info') {
+    // Remove existing notification
+    const existingNotification = document.querySelector('.apple-notification');
     if (existingNotification) {
         existingNotification.remove();
     }
 
     const notification = document.createElement('div');
-    notification.className = `notification notification-${type}`;
+    notification.className = `apple-notification apple-notification-${type}`;
+    
+    const icon = getAppleNotificationIcon(type);
+    
     notification.innerHTML = `
         <div class="notification-content">
-            <span class="notification-icon">${getNotificationIcon(type)}</span>
+            <span class="notification-icon">${icon}</span>
             <span class="notification-message">${message}</span>
-            <button class="notification-close" onclick="this.parentElement.parentElement.remove()">&times;</button>
         </div>
     `;
 
-    // 스타일 적용
+    // Apple-style notification styling
     notification.style.cssText = `
         position: fixed;
-        top: 20px;
-        right: 20px;
+        top: 60px;
+        right: 24px;
         z-index: 1100;
         max-width: 400px;
-        background: ${getNotificationColor(type)};
-        color: white;
-        padding: 1rem 1.5rem;
+        background: ${getAppleNotificationColor(type)};
+        color: ${type === 'info' || type === 'error' ? 'white' : '#1D1D1F'};
+        padding: 16px 20px;
         border-radius: 12px;
-        box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+        backdrop-filter: blur(20px);
+        -webkit-backdrop-filter: blur(20px);
         opacity: 0;
-        transform: translateX(100%);
-        transition: all 0.3s ease;
+        transform: translateX(100%) scale(0.9);
+        transition: all 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+        font-size: 15px;
+        font-weight: 500;
     `;
 
     document.body.appendChild(notification);
 
-    // 애니메이션
+    // Apple-style entrance animation
     requestAnimationFrame(() => {
         notification.style.opacity = '1';
-        notification.style.transform = 'translateX(0)';
+        notification.style.transform = 'translateX(0) scale(1)';
     });
 
-    // 자동 제거
+    // Auto remove with Apple-style exit animation
     setTimeout(() => {
-        if (notification.parentElement) {
-            notification.style.opacity = '0';
-            notification.style.transform = 'translateX(100%)';
-            setTimeout(() => notification.remove(), 300);
-        }
-    }, 5000);
+        notification.style.opacity = '0';
+        notification.style.transform = 'translateX(100%) scale(0.9)';
+        setTimeout(() => notification.remove(), 300);
+    }, 4000);
 }
 
 /**
- * 알림 아이콘 가져오기
+ * Get Apple-style notification icon
  */
-function getNotificationIcon(type) {
+function getAppleNotificationIcon(type) {
     const icons = {
-        'success': '✅',
-        'error': '❌',
-        'warning': '⚠️',
-        'info': 'ℹ️'
+        'success': '✓',
+        'error': '✕',
+        'warning': '⚠',
+        'info': 'ℹ'
     };
     return icons[type] || icons.info;
 }
 
 /**
- * 알림 색상 가져오기
+ * Get Apple-style notification color
  */
-function getNotificationColor(type) {
+function getAppleNotificationColor(type) {
     const colors = {
-        'success': '#28a745',
-        'error': '#dc3545',
-        'warning': '#ffc107',
-        'info': '#007bff'
+        'success': '#34C759',
+        'error': '#FF3B30',
+        'warning': '#FF9500',
+        'info': '#007AFF'
     };
     return colors[type] || colors.info;
 }
 
 /**
- * 로딩 인디케이터 표시
+ * Apple-style loading indicator
  */
-function showLoadingIndicator() {
-    if (document.querySelector('.loading-indicator')) return;
+function showAppleLoadingIndicator() {
+    if (document.querySelector('.apple-loading-indicator')) return;
 
     const loader = document.createElement('div');
-    loader.className = 'loading-indicator';
+    loader.className = 'apple-loading-indicator';
     loader.innerHTML = `
         <div class="loading-content">
-            <div class="loading-spinner"></div>
-            <p>페이지를 로드하는 중...</p>
+            <div class="apple-spinner"></div>
+            <p>로딩 중...</p>
         </div>
     `;
 
@@ -865,8 +1033,9 @@ function showLoadingIndicator() {
         left: 0;
         width: 100%;
         height: 100%;
-        background: rgba(255, 255, 255, 0.9);
-        backdrop-filter: blur(5px);
+        background: rgba(0, 0, 0, 0.2);
+        backdrop-filter: blur(20px);
+        -webkit-backdrop-filter: blur(20px);
         display: flex;
         align-items: center;
         justify-content: center;
@@ -878,19 +1047,37 @@ function showLoadingIndicator() {
     const loadingContent = loader.querySelector('.loading-content');
     loadingContent.style.cssText = `
         text-align: center;
-        color: #2c5530;
+        color: #1D1D1F;
+        background: rgba(255, 255, 255, 0.9);
+        padding: 32px;
+        border-radius: 16px;
+        backdrop-filter: blur(20px);
+        -webkit-backdrop-filter: blur(20px);
     `;
 
-    const spinner = loader.querySelector('.loading-spinner');
+    const spinner = loader.querySelector('.apple-spinner');
     spinner.style.cssText = `
-        width: 40px;
-        height: 40px;
-        border: 4px solid #f3f3f3;
-        border-top: 4px solid #2c5530;
+        width: 32px;
+        height: 32px;
+        border: 2px solid #F2F2F7;
+        border-top: 2px solid #007AFF;
         border-radius: 50%;
-        animation: spin 1s linear infinite;
-        margin: 0 auto 1rem;
+        animation: appleSpinner 1s linear infinite;
+        margin: 0 auto 16px;
     `;
+
+    // Add keyframe animation
+    if (!document.getElementById('apple-spinner-styles')) {
+        const style = document.createElement('style');
+        style.id = 'apple-spinner-styles';
+        style.innerHTML = `
+            @keyframes appleSpinner {
+                0% { transform: rotate(0deg); }
+                100% { transform: rotate(360deg); }
+            }
+        `;
+        document.head.appendChild(style);
+    }
 
     document.body.appendChild(loader);
     requestAnimationFrame(() => {
@@ -899,10 +1086,10 @@ function showLoadingIndicator() {
 }
 
 /**
- * 로딩 인디케이터 숨기기
+ * Hide Apple-style loading indicator
  */
-function hideLoadingIndicator() {
-    const loader = document.querySelector('.loading-indicator');
+function hideAppleLoadingIndicator() {
+    const loader = document.querySelector('.apple-loading-indicator');
     if (loader) {
         loader.style.opacity = '0';
         setTimeout(() => loader.remove(), 300);
@@ -912,11 +1099,11 @@ function hideLoadingIndicator() {
 // ===== EVENT LISTENERS =====
 
 /**
- * 키보드 이벤트 핸들러
+ * Apple-style keyboard event handling
  */
 function initKeyboardEvents() {
     document.addEventListener('keydown', function(e) {
-        // ESC 키로 모달 닫기
+        // ESC key to close modals
         if (e.key === 'Escape') {
             closeModal();
             if (isMenuOpen) {
@@ -924,13 +1111,23 @@ function initKeyboardEvents() {
             }
         }
         
-        // Enter 키로 검색
+        // Enter key for search
         if (e.key === 'Enter' && e.target.id === 'searchInput') {
             e.preventDefault();
             searchNotices();
         }
 
-        // 접근성: Tab 키 트랩 (모달이 열려있을 때)
+        // Command/Ctrl + K for search focus (Apple-style)
+        if ((e.metaKey || e.ctrlKey) && e.key === 'k') {
+            e.preventDefault();
+            const searchInput = document.getElementById('searchInput');
+            if (searchInput) {
+                searchInput.focus();
+                searchInput.select();
+            }
+        }
+
+        // Tab key trapping for modals
         if (e.key === 'Tab') {
             const modal = document.getElementById('noticeModal');
             if (modal && modal.style.display === 'flex') {
@@ -941,7 +1138,7 @@ function initKeyboardEvents() {
 }
 
 /**
- * Tab 키 트랩 (모달 접근성)
+ * Tab key trapping for accessibility
  */
 function trapTabKey(e, modal) {
     const focusableElements = modal.querySelectorAll(
@@ -964,40 +1161,50 @@ function trapTabKey(e, modal) {
 }
 
 /**
- * 모바일 메뉴 외부 클릭 핸들러
+ * Apple-style menu outside click handling
  */
 function initMenuCloseEvents() {
     document.addEventListener('click', function(e) {
-        const navMenu = document.getElementById('navMenu');
-        const menuToggle = document.querySelector('.menu-toggle');
         const nav = document.querySelector('.nav-container');
+        const backdrop = document.querySelector('.menu-backdrop');
         
-        if (isMenuOpen && nav && !nav.contains(e.target)) {
+        if (isMenuOpen && (!nav || !nav.contains(e.target))) {
             toggleMenu();
         }
     });
 }
 
 /**
- * 폼 이벤트 초기화
+ * Apple-style form event initialization
  */
 function initFormEvents() {
-    // 연락처 폼
+    // Contact form
     const contactForm = document.getElementById('contactForm');
     if (contactForm) {
         contactForm.addEventListener('submit', submitForm);
     }
 
-    // 실시간 폼 검증
+    // Real-time form validation with Apple-style feedback
     document.querySelectorAll('.form-input, .form-textarea').forEach(input => {
+        input.addEventListener('focus', function() {
+            this.style.borderColor = '#007AFF';
+            this.style.boxShadow = '0 0 0 3px rgba(0, 122, 255, 0.1)';
+        });
+
         input.addEventListener('blur', function() {
+            this.style.borderColor = 'rgba(60, 60, 67, 0.12)';
+            this.style.boxShadow = 'none';
             validateField(this);
+        });
+
+        input.addEventListener('input', function() {
+            clearFieldError(this);
         });
     });
 }
 
 /**
- * 개별 필드 검증
+ * Apple-style field validation
  */
 function validateField(field) {
     const value = field.value.trim();
@@ -1005,13 +1212,13 @@ function validateField(field) {
     let isValid = true;
     let message = '';
 
-    // 필수 필드 검증
+    // Required field validation
     if (field.hasAttribute('required') && !value) {
         isValid = false;
         message = '이 필드는 필수입니다.';
     }
 
-    // 이메일 필드 검증
+    // Email field validation
     if (fieldName === 'email' && value) {
         const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
         if (!emailRegex.test(value)) {
@@ -1020,7 +1227,7 @@ function validateField(field) {
         }
     }
 
-    // 전화번호 필드 검증
+    // Phone field validation
     if (fieldName === 'phone' && value) {
         const phoneRegex = /^[\d-\s()]+$/;
         if (!phoneRegex.test(value)) {
@@ -1029,41 +1236,58 @@ function validateField(field) {
         }
     }
 
-    // 검증 결과 표시
+    // Show validation result
     showFieldValidation(field, isValid, message);
 }
 
 /**
- * 필드 검증 결과 표시
+ * Apple-style field validation display
  */
 function showFieldValidation(field, isValid, message) {
-    // 기존 메시지 제거
-    const existingMessage = field.parentElement.querySelector('.field-error');
-    if (existingMessage) {
-        existingMessage.remove();
-    }
+    clearFieldError(field);
 
     if (!isValid) {
         const errorElement = document.createElement('div');
         errorElement.className = 'field-error';
         errorElement.textContent = message;
         errorElement.style.cssText = `
-            color: #dc3545;
-            font-size: 0.875rem;
-            margin-top: 0.25rem;
+            color: #FF3B30;
+            font-size: 13px;
+            margin-top: 4px;
+            opacity: 0;
+            transform: translateY(-4px);
+            transition: all 0.2s ease;
         `;
+        
         field.parentElement.appendChild(errorElement);
-        field.style.borderColor = '#dc3545';
+        field.style.borderColor = '#FF3B30';
+        
+        requestAnimationFrame(() => {
+            errorElement.style.opacity = '1';
+            errorElement.style.transform = 'translateY(0)';
+        });
     } else {
-        field.style.borderColor = '';
+        field.style.borderColor = 'rgba(60, 60, 67, 0.12)';
     }
 }
 
 /**
- * 제품 관련 이벤트 초기화
+ * Clear field error
+ */
+function clearFieldError(field) {
+    const existingError = field.parentElement.querySelector('.field-error');
+    if (existingError) {
+        existingError.style.opacity = '0';
+        existingError.style.transform = 'translateY(-4px)';
+        setTimeout(() => existingError.remove(), 200);
+    }
+}
+
+/**
+ * Apple-style product event initialization
  */
 function initProductEvents() {
-    // 필터 태그 이벤트
+    // Filter tag events
     document.querySelectorAll('.filter-tag').forEach(tag => {
         tag.addEventListener('click', function() {
             const category = this.dataset.category;
@@ -1071,7 +1295,7 @@ function initProductEvents() {
         });
     });
 
-    // 정렬 선택 이벤트
+    // Sort select events
     const sortSelect = document.getElementById('sortSelect');
     if (sortSelect) {
         sortSelect.addEventListener('change', function() {
@@ -1079,7 +1303,7 @@ function initProductEvents() {
         });
     }
 
-    // 뷰 모드 변경 이벤트
+    // View mode events
     document.querySelectorAll('.view-btn').forEach(btn => {
         btn.addEventListener('click', function() {
             const view = this.dataset.view || (this.textContent.includes('목록') ? 'list' : 'grid');
@@ -1087,17 +1311,28 @@ function initProductEvents() {
         });
     });
 
-    // 가격 필터 이벤트
+    // Price filter events
     const priceFilter = document.getElementById('priceFilter');
     if (priceFilter) {
         priceFilter.addEventListener('change', function() {
             filterProductsByPrice(this.value);
         });
     }
+
+    // Product card hover effects
+    document.querySelectorAll('.product-card').forEach(card => {
+        card.addEventListener('mouseenter', function() {
+            this.style.transform = 'translateY(-8px) scale(1.02)';
+        });
+
+        card.addEventListener('mouseleave', function() {
+            this.style.transform = 'translateY(0) scale(1)';
+        });
+    });
 }
 
 /**
- * 가격별 제품 필터링
+ * Filter products by price range
  */
 function filterProductsByPrice(priceRange) {
     const products = document.querySelectorAll('.product-card');
@@ -1124,77 +1359,101 @@ function filterProductsByPrice(priceRange) {
                 shouldShow = true;
         }
 
-        product.style.display = shouldShow ? 'block' : 'none';
+        if (shouldShow) {
+            product.style.display = 'block';
+            product.style.opacity = '1';
+        } else {
+            product.style.opacity = '0';
+            setTimeout(() => {
+                product.style.display = 'none';
+            }, 150);
+        }
     });
 }
 
 /**
- * 공지사항 이벤트 초기화
+ * Apple-style notice event initialization
  */
 function initNoticeEvents() {
-    // 검색 입력 실시간 처리
+    // Real-time search with debouncing
     const searchInput = document.getElementById('searchInput');
     if (searchInput) {
         const debouncedSearch = debounce(searchNotices, 300);
         searchInput.addEventListener('input', debouncedSearch);
     }
 
-    // 필터 변경 이벤트
+    // Filter change events
     const categoryFilter = document.getElementById('categoryFilter');
     if (categoryFilter) {
         categoryFilter.addEventListener('change', filterNotices);
     }
 
-    // 정렬 변경 이벤트
+    // Sort change events
     const sortOrder = document.getElementById('sortOrder');
     if (sortOrder) {
         sortOrder.addEventListener('change', sortNotices);
     }
+
+    // Notice item hover effects
+    document.querySelectorAll('.notice-item').forEach(item => {
+        item.addEventListener('mouseenter', function() {
+            this.style.backgroundColor = '#F5F5F7';
+            this.style.transform = 'translateX(4px)';
+        });
+
+        item.addEventListener('mouseleave', function() {
+            this.style.backgroundColor = '';
+            this.style.transform = 'translateX(0)';
+        });
+    });
 }
 
 // ===== MAIN INITIALIZATION =====
 
 /**
- * 디바이스별 최적화
+ * Apple-style device optimization
  */
 function optimizeForDevice() {
     if (isMobileDevice()) {
-        console.log('Mobile device detected - optimizing experience');
+        console.log('Mobile device detected - applying optimizations');
         
-        // 모바일 비디오 최적화
+        // Mobile video optimization
         const video = document.querySelector('.hero-video');
         if (video) {
             video.style.opacity = '0.4';
             video.preload = 'metadata';
         }
+        
+        // Add mobile-specific styles
+        document.body.classList.add('mobile-device');
     }
 
     if (isReducedMotion()) {
         console.log('Reduced motion preference detected');
-        document.documentElement.style.setProperty('--animation-duration', '0.01ms');
+        document.body.classList.add('reduced-motion');
     }
 }
 
 /**
- * 리사이즈 핸들러
+ * Apple-style resize handler
  */
 const handleResize = debounce(function() {
-    // 모바일 메뉴 상태 초기화
+    // Close mobile menu on resize
     if (window.innerWidth > 768 && isMenuOpen) {
         toggleMenu();
     }
 
-    // 반응형 레이아웃 조정
+    // Adjust responsive layouts
     adjustResponsiveLayouts();
 }, 250);
 
 /**
- * 반응형 레이아웃 조정
+ * Adjust responsive layouts
  */
 function adjustResponsiveLayouts() {
     const isMobile = window.innerWidth <= 768;
     
-    // 공지사항 뷰 모드 자동 조정
+    // Auto-adjust notice view mode on mobile
     if (isMobile) {
         const listBtn = document.querySelector('.view-btn[data-view="list"], .view-btn:first-child');
         if (listBtn && !listBtn.classList.contains('active')) {
@@ -1204,12 +1463,12 @@ function adjustResponsiveLayouts() {
 }
 
 /**
- * 페이지 로드 완료 시 초기화
+ * Main page initialization
  */
 function initializePage() {
-    console.log('KOREVO JavaScript initialized');
+    console.log('🍎 KOREVO Apple Design System initialized');
     
-    // 기본 기능 초기화
+    // Core functionality
     optimizeForDevice();
     initializeVideo();
     initSmoothScroll();
@@ -1220,11 +1479,11 @@ function initializePage() {
     initProductEvents();
     initNoticeEvents();
     
-    // 이벤트 리스너 등록
+    // Event listeners
     window.addEventListener('scroll', handleHeaderScroll, { passive: true });
     window.addEventListener('resize', handleResize, { passive: true });
     
-    // 페이지별 특화 초기화
+    // Page-specific initialization
     const pathname = window.location.pathname;
     if (pathname.includes('notice')) {
         initNoticeBoard();
@@ -1234,10 +1493,10 @@ function initializePage() {
         initContactPage();
     }
     
-    // 로드 완료 클래스 추가
+    // Mark as loaded
     document.body.classList.add('js-loaded', 'loaded');
     
-    // 초기 애니메이션 트리거
+    // Trigger initial animations
     setTimeout(() => {
         document.querySelectorAll('.animate-on-scroll').forEach(el => {
             if (isElementInViewport(el)) {
@@ -1248,39 +1507,35 @@ function initializePage() {
 }
 
 /**
- * 공지사항 페이지 초기화
+ * Notice board initialization
  */
 function initNoticeBoard() {
     console.log('Notice board initialized');
     
-    // 검색 입력창에 포커스
     const searchInput = document.getElementById('searchInput');
     if (searchInput) {
         searchInput.focus();
     }
     
-    // 초기 통계 설정
     updateNoticeStats();
 }
 
 /**
- * 제품 카탈로그 초기화
+ * Product catalog initialization
  */
 function initProductCatalog() {
     console.log('Product catalog initialized');
     
-    // 초기 제품 개수 표시
     const products = document.querySelectorAll('.product-card');
     console.log(`${products.length} products loaded`);
 }
 
 /**
- * 연락처 페이지 초기화
+ * Contact page initialization
  */
 function initContactPage() {
     console.log('Contact page initialized');
     
-    // 첫 번째 입력 필드에 포커스
     const firstInput = document.querySelector('.form-input');
     if (firstInput) {
         firstInput.focus();
@@ -1290,12 +1545,12 @@ function initContactPage() {
 // ===== ERROR HANDLING =====
 
 /**
- * 전역 에러 핸들러
+ * Global error handler
  */
 window.addEventListener('error', function(e) {
     console.error('JavaScript Error:', e.error);
     
-    // 비디오 에러 처리
+    // Video error handling
     if (e.error && e.error.message && e.error.message.includes('video')) {
         const video = document.querySelector('.hero-video');
         if (video) {
@@ -1305,7 +1560,7 @@ window.addEventListener('error', function(e) {
 });
 
 /**
- * Promise 거부 핸들러
+ * Promise rejection handler
  */
 window.addEventListener('unhandledrejection', function(e) {
     console.error('Unhandled Promise Rejection:', e.reason);
@@ -1314,20 +1569,20 @@ window.addEventListener('unhandledrejection', function(e) {
 // ===== PERFORMANCE MONITORING =====
 
 /**
- * 성능 모니터링
+ * Performance monitoring
  */
 window.addEventListener('load', function() {
-    console.log('Page fully loaded');
+    console.log('🍎 Page fully loaded');
     
     if (performance.timing) {
         const loadTime = performance.timing.loadEventEnd - performance.timing.navigationStart;
-        console.log(`Page load time: ${loadTime}ms`);
+        console.log(`⚡ Page load time: ${loadTime}ms`);
     }
     
-    // 비디오 상태 로깅
+    // Video status logging
     const video = document.querySelector('.hero-video');
     if (video) {
-        console.log('Video element status:', {
+        console.log('📹 Video element status:', {
             readyState: video.readyState,
             networkState: video.networkState,
             error: video.error
@@ -1335,13 +1590,68 @@ window.addEventListener('load', function() {
     }
 });
 
+// ===== THEME HANDLING =====
+
+/**
+ * Detect and handle system theme changes
+ */
+function initThemeHandling() {
+    // Detect initial theme
+    if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) {
+        currentTheme = 'dark';
+        document.body.classList.add('dark-theme');
+    }
+
+    // Listen for theme changes
+    if (window.matchMedia) {
+        const mediaQuery = window.matchMedia('(prefers-color-scheme: dark)');
+        mediaQuery.addEventListener('change', function(e) {
+            currentTheme = e.matches ? 'dark' : 'light';
+            document.body.classList.toggle('dark-theme', e.matches);
+            console.log(`🎨 Theme changed to: ${currentTheme}`);
+        });
+    }
+}
+
+// ===== HAPTIC FEEDBACK (for supported devices) =====
+
+/**
+ * Apple-style haptic feedback simulation
+ */
+function triggerHapticFeedback(type = 'light') {
+    if ('vibrate' in navigator) {
+        switch (type) {
+            case 'light':
+                navigator.vibrate(10);
+                break;
+            case 'medium':
+                navigator.vibrate(20);
+                break;
+            case 'heavy':
+                navigator.vibrate(30);
+                break;
+        }
+    }
+}
+
+// Add haptic feedback to buttons
+document.addEventListener('click', function(e) {
+    if (e.target.matches('button, .btn, .cta-btn')) {
+        triggerHapticFeedback('light');
+    }
+});
+
 // ===== INITIALIZATION =====
 
-// DOM 준비 완료 시 초기화
+// Initialize when DOM is ready
 if (document.readyState === 'loading') {
-    document.addEventListener('DOMContentLoaded', initializePage);
+    document.addEventListener('DOMContentLoaded', function() {
+        initializePage();
+        initThemeHandling();
+    });
 } else {
     initializePage();
+    initThemeHandling();
 }
 
 // ===== EXPORT FOR TESTING =====
@@ -1357,6 +1667,7 @@ if (typeof module !== 'undefined' && module.exports) {
         searchNotices,
         filterNotices,
         submitForm,
-        showNotification
+        showAppleNotification,
+        smoothScrollTo
     };
 }
