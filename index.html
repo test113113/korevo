@@ -75,6 +75,16 @@
                     <a href="contact.html" class="nav-link">CONTACT</a>
                 </li>
                 <li class="nav-item">
+                    <a href="#" class="nav-link">소식</a>
+                    <div class="dropdown">
+                        <div class="dropdown-item" onclick="window.location.href='notice.html'">공지사항</div>
+                        <div class="dropdown-item" onclick="navigateToPage('news')">보도자료</div>
+                        <div class="dropdown-item" onclick="navigateToPage('blog')">기술 블로그</div>
+                        <div class="dropdown-item" onclick="navigateToPage('events')">이벤트</div>
+                        <div class="dropdown-item" onclick="navigateToPage('awards')">수상 내역</div>
+                    </div>
+                </li>
+                <li class="nav-item">
                     <a href="#shop" class="nav-link">쇼핑몰</a>
                 </li>
             </ul>
@@ -134,38 +144,74 @@
                     KOREVO는 전통의 아름다움을 현대에 되살리며, 지속가능한 미래를 만들어갑니다.
                 </p>
                 <div class="cta-buttons">
-                    <a href="contact.html" class="cta-btn primary">문의하기</a>
-                    <a href="dining-set.html" class="cta-btn">제품 보기</a>
+                    <a href="contact.html" class="cta-btn">문의하기</a>
+                    <a href="dining-set.html" class="cta-btn secondary">제품 보기</a>
                     <a href="#shop" class="cta-btn secondary">쇼핑몰 방문</a>
                 </div>
             </div>
         </section>
 
-        <!-- About Section -->
-        <section id="about" class="about-section">
+        <!-- Introduction Section -->
+        <section class="intro-section">
             <div class="container">
-                <div class="section-header">
-                    <h2 class="section-title">KOREVO 소개</h2>
-                    <p class="section-subtitle">전통과 혁신이 만나는 특별한 여정</p>
+                <div class="intro-content">
+                    <h2 class="intro-title">전통과 혁신의 만남</h2>
+                    <p class="intro-description">
+                        KOREVO는 천년의 역사를 자랑하는 한국의 전통 유기 기술과 
+                        최첨단 IT 기술을 융합하여 새로운 가치를 창조하는 기업입니다.
+                        우리의 온유(溫鍮) 브랜드를 통해 건강하고 지속가능한 
+                        라이프스타일을 제안합니다.
+                    </p>
+                    <div class="cta-buttons">
+                        <a href="onyu-brand.html" class="btn-primary">브랜드 스토리</a>
+                        <a href="greeting.html" class="btn-secondary">회사소개</a>
+                    </div>
                 </div>
-                
-                <div class="about-grid">
-                    <div class="about-card animate-on-scroll">
-                        <div class="about-icon">🏺</div>
-                        <h3>천년의 전통</h3>
-                        <p>우리나라 전통 유기 기술을 현대에 되살려 건강하고 아름다운 제품을 만듭니다. 무형문화재와의 협력을 통해 정통 기법을 계승합니다.</p>
+            </div>
+        </section>
+
+        <!-- Features Section -->
+        <section id="features" class="features-section">
+            <div class="container">
+                <div class="features-header">
+                    <h2 class="features-title">KOREVO의 특별함</h2>
+                    <p class="features-subtitle">
+                        전통 기법과 현대 기술의 완벽한 조화를 통해 
+                        최고의 품질과 가치를 제공합니다.
+                    </p>
+                </div>
+                <div class="features-grid">
+                    <div class="feature-card animate-on-scroll">
+                        <span class="feature-icon">🏺</span>
+                        <h3 class="feature-title">전통 유기 기법</h3>
+                        <p class="feature-description">
+                            무형문화재와 협력하여 정통 유기 제작 기법을 
+                            현대에 되살린 프리미엄 제품을 선보입니다.
+                        </p>
                     </div>
-                    
-                    <div class="about-card animate-on-scroll">
-                        <div class="about-icon">💻</div>
-                        <h3>현대적 혁신</h3>
-                        <p>최신 IT 기술과 AI를 활용하여 맞춤형 솔루션을 제공합니다. 전통 산업의 디지털 전환을 선도합니다.</p>
+                    <div class="feature-card animate-on-scroll">
+                        <span class="feature-icon">🔬</span>
+                        <h3 class="feature-title">과학적 검증</h3>
+                        <p class="feature-description">
+                            전통 소재의 항균성과 안전성을 현대 과학으로 
+                            검증하여 믿을 수 있는 품질을 보장합니다.
+                        </p>
                     </div>
-                    
-                    <div class="about-card animate-on-scroll">
-                        <div class="about-icon">🌱</div>
-                        <h3>지속가능한 미래</h3>
-                        <p>환경을 생각하는 친환경 제품으로 미래 세대를 위한 지속가능한 라이프스타일을 제안합니다.</p>
+                    <div class="feature-card animate-on-scroll">
+                        <span class="feature-icon">💻</span>
+                        <h3 class="feature-title">IT 기술 융합</h3>
+                        <p class="feature-description">
+                            AI 맞춤 설계, IoT 품질관리 등 최신 IT 기술을 
+                            접목한 혁신적인 서비스를 제공합니다.
+                        </p>
+                    </div>
+                    <div class="feature-card animate-on-scroll">
+                        <span class="feature-icon">🌱</span>
+                        <h3 class="feature-title">지속가능성</h3>
+                        <p class="feature-description">
+                            친환경 소재와 제작 과정을 통해 
+                            지속가능한 미래를 위한 책임경영을 실천합니다.
+                        </p>
                     </div>
                 </div>
             </div>
@@ -174,208 +220,86 @@
         <!-- Business Section -->
         <section id="business" class="business-section">
             <div class="container">
-                <div class="section-header">
-                    <h2 class="section-title">사업 영역</h2>
-                    <p class="section-subtitle">전통과 기술이 융합된 혁신적 비즈니스</p>
+                <div class="business-header">
+                    <h2 class="business-title">주요 사업 영역</h2>
+                    <p class="business-subtitle">
+                        다양한 분야에서 전통과 혁신을 바탕으로 
+                        고객에게 새로운 가치를 제공합니다.
+                    </p>
                 </div>
-                
                 <div class="business-grid">
                     <div class="business-card animate-on-scroll">
-                        <div class="business-image">
-                            <div class="business-icon onyu">🏺</div>
+                        <span class="business-icon">🍽️</span>
+                        <h3 class="business-card-title">온유 식기 컬렉션</h3>
+                        <p class="business-card-description">
+                            전통 유기 기법으로 제작된 프리미엄 식기로 
+                            건강하고 품격 있는 식문화를 제안합니다.
+                        </p>
+                        <div class="business-features">
+                            <span class="business-feature-tag">항균성</span>
+                            <span class="business-feature-tag">친환경</span>
+                            <span class="business-feature-tag">프리미엄</span>
                         </div>
-                        <div class="business-content">
-                            <h3>온유(溫鍮) 브랜드</h3>
-                            <p class="business-subtitle">프리미엄 유기 제품</p>
-                            <p>전통 유기 기법으로 제작된 건강하고 아름다운 식기와 생활용품을 선보입니다.</p>
-                            <div class="business-features">
-                                <span class="feature-tag">항균성</span>
-                                <span class="feature-tag">친환경</span>
-                                <span class="feature-tag">전통미</span>
-                            </div>
-                            <a href="onyu-brand.html" class="business-cta">자세히 보기</a>
-                        </div>
+                        <a href="dining-set.html" class="business-cta">자세히 보기</a>
                     </div>
-                    
                     <div class="business-card animate-on-scroll">
-                        <div class="business-image">
-                            <div class="business-icon software">💻</div>
+                        <span class="business-icon">💻</span>
+                        <h3 class="business-card-title">제조업 ERP 솔루션</h3>
+                        <p class="business-card-description">
+                            전통 제조업체를 위한 맞춤형 ERP 시스템으로 
+                            디지털 전환을 지원합니다.
+                        </p>
+                        <div class="business-features">
+                            <span class="business-feature-tag">맞춤형</span>
+                            <span class="business-feature-tag">클라우드</span>
+                            <span class="business-feature-tag">통합관리</span>
                         </div>
-                        <div class="business-content">
-                            <h3>소프트웨어 솔루션</h3>
-                            <p class="business-subtitle">디지털 전환 서비스</p>
-                            <p>제조업 ERP, IoT 품질관리, 전자상거래 시스템 등 전문 소프트웨어를 제공합니다.</p>
-                            <div class="business-features">
-                                <span class="feature-tag">맞춤형</span>
-                                <span class="feature-tag">AI 기반</span>
-                                <span class="feature-tag">효율성</span>
-                            </div>
-                            <a href="#" onclick="navigateToPage('erp-solution')" class="business-cta">자세히 보기</a>
-                        </div>
+                        <a href="#" class="business-cta" onclick="navigateToPage('erp-solution')">자세히 보기</a>
                     </div>
-                    
                     <div class="business-card animate-on-scroll">
-                        <div class="business-image">
-                            <div class="business-icon research">🔬</div>
+                        <span class="business-icon">🔬</span>
+                        <h3 class="business-card-title">R&D 과제 수행</h3>
+                        <p class="business-card-description">
+                            정부 과제 및 산학연 협력을 통해 
+                            전통 산업의 혁신을 이끌어갑니다.
+                        </p>
+                        <div class="business-features">
+                            <span class="business-feature-tag">정부과제</span>
+                            <span class="business-feature-tag">산학연협력</span>
+                            <span class="business-feature-tag">혁신연구</span>
                         </div>
-                        <div class="business-content">
-                            <h3>R&D 과제</h3>
-                            <p class="business-subtitle">연구개발 프로젝트</p>
-                            <p>정부 과제 및 산학연 협력을 통해 혁신적인 기술 개발과 사회적 가치 창출에 기여합니다.</p>
-                            <div class="business-features">
-                                <span class="feature-tag">혁신 기술</span>
-                                <span class="feature-tag">산학협력</span>
-                                <span class="feature-tag">사회기여</span>
-                            </div>
-                            <a href="#" onclick="navigateToPage('current-projects')" class="business-cta">자세히 보기</a>
+                        <a href="#" class="business-cta" onclick="navigateToPage('current-projects')">자세히 보기</a>
+                    </div>
+                    <div class="business-card animate-on-scroll">
+                        <span class="business-icon">🎁</span>
+                        <h3 class="business-card-title">맞춤 제작 서비스</h3>
+                        <p class="business-card-description">
+                            AI 분석을 통한 개인 맞춤형 유기 제품 
+                            제작 서비스를 제공합니다.
+                        </p>
+                        <div class="business-features">
+                            <span class="business-feature-tag">AI분석</span>
+                            <span class="business-feature-tag">개인맞춤</span>
+                            <span class="business-feature-tag">수작업</span>
                         </div>
+                        <a href="#" class="business-cta" onclick="navigateToPage('custom-craft')">자세히 보기</a>
                     </div>
                 </div>
             </div>
         </section>
 
-        <!-- Products Section -->
-        <section id="products" class="products-section">
+        <!-- CTA Section -->
+        <section class="cta-section">
             <div class="container">
-                <div class="section-header">
-                    <h2 class="section-title">주요 제품</h2>
-                    <p class="section-subtitle">건강한 삶을 위한 프리미엄 제품</p>
-                </div>
-                
-                <div class="products-grid">
-                    <div class="product-showcase animate-on-scroll">
-                        <div class="product-image">🥣</div>
-                        <h3>온유 식기 컬렉션</h3>
-                        <p>전통 유기 기법으로 제작된 항균 식기 세트</p>
-                        <div class="product-price">89,000원~</div>
-                        <a href="dining-set.html" class="product-btn">보러가기</a>
-                    </div>
-                    
-                    <div class="product-showcase animate-on-scroll">
-                        <div class="product-image">🍵</div>
-                        <h3>온유 티 컬렉션</h3>
-                        <p>우아한 디자인의 프리미엄 찻잔 세트</p>
-                        <div class="product-price">65,000원~</div>
-                        <a href="#" onclick="navigateToPage('gift-sets')" class="product-btn">보러가기</a>
-                    </div>
-                    
-                    <div class="product-showcase animate-on-scroll">
-                        <div class="product-image">🍴</div>
-                        <h3>개인 맞춤 수저</h3>
-                        <p>AI 분석 기반 개인 전용 맞춤 수저</p>
-                        <div class="product-price">55,000원~</div>
-                        <a href="#" onclick="navigateToPage('custom-craft')" class="product-btn">보러가기</a>
-                    </div>
-                    
-                    <div class="product-showcase animate-on-scroll">
-                        <div class="product-image">🎁</div>
-                        <h3>프리미엄 선물세트</h3>
-                        <p>특별한 날을 위한 고급 선물용 세트</p>
-                        <div class="product-price">180,000원~</div>
-                        <a href="#" onclick="navigateToPage('gift-sets')" class="product-btn">보러가기</a>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- Features Section -->
-        <section class="features-section">
-            <div class="container">
-                <div class="section-header">
-                    <h2 class="section-title">KOREVO의 특별함</h2>
-                    <p class="section-subtitle">차별화된 가치와 경쟁력</p>
-                </div>
-                
-                <div class="features-grid">
-                    <div class="feature-item animate-on-scroll">
-                        <div class="feature-icon">🌿</div>
-                        <h3>천연 항균성</h3>
-                        <p>놋쇠의 천연 항균 효과로 위생적이고 안전한 식생활을 보장합니다.</p>
-                    </div>
-                    
-                    <div class="feature-item animate-on-scroll">
-                        <div class="feature-icon">🎨</div>
-                        <h3>맞춤형 디자인</h3>
-                        <p>AI 기술을 활용한 개인별 맞춤 디자인으로 특별함을 선사합니다.</p>
-                    </div>
-                    
-                    <div class="feature-item animate-on-scroll">
-                        <div class="feature-icon">♻️</div>
-                        <h3>지속가능성</h3>
-                        <p>환경친화적 소재와 제조공정으로 지구를 생각하는 제품을 만듭니다.</p>
-                    </div>
-                    
-                    <div class="feature-item animate-on-scroll">
-                        <div class="feature-icon">💎</div>
-                        <h3>프리미엄 품질</h3>
-                        <p>전통 장인의 기법과 현대 기술의 결합으로 최고 품질을 구현합니다.</p>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- Shop Section -->
-        <section id="shop" class="shop-section">
-            <div class="container">
-                <div class="shop-content">
-                    <div class="shop-info animate-on-scroll">
-                        <h2>KOREVO 온라인 쇼핑몰</h2>
-                        <p>프리미엄 온유 제품을 온라인으로 만나보세요.<br>전국 무료배송과 함께 특별한 혜택을 제공합니다.</p>
-                        <div class="shop-features">
-                            <div class="shop-feature">
-                                <span class="shop-feature-icon">🚚</span>
-                                <span>전국 무료배송</span>
-                            </div>
-                            <div class="shop-feature">
-                                <span class="shop-feature-icon">🎁</span>
-                                <span>프리미엄 포장</span>
-                            </div>
-                            <div class="shop-feature">
-                                <span class="shop-feature-icon">🔒</span>
-                                <span>안전한 결제</span>
-                            </div>
-                        </div>
-                        <a href="#" onclick="showUnderConstruction()" class="shop-btn">쇼핑몰 바로가기</a>
-                    </div>
-                    
-                    <div class="shop-visual animate-on-scroll">
-                        <div class="shop-image">
-                            <div class="shop-placeholder">🛒</div>
-                            <p>온라인 쇼핑몰 준비중</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- News Section -->
-        <section class="news-section">
-            <div class="container">
-                <div class="section-header">
-                    <h2 class="section-title">최신 소식</h2>
-                    <p class="section-subtitle">KOREVO의 새로운 소식을 확인하세요</p>
-                </div>
-                
-                <div class="news-grid">
-                    <div class="news-item animate-on-scroll">
-                        <div class="news-date">2025.01.15</div>
-                        <h3>온유 브랜드 공식 런칭</h3>
-                        <p>전통과 혁신이 만난 프리미엄 유기 브랜드 온유가 공식 출시되었습니다.</p>
-                        <a href="#" onclick="navigateToPage('notice')" class="news-link">더보기</a>
-                    </div>
-                    
-                    <div class="news-item animate-on-scroll">
-                        <div class="news-date">2025.01.12</div>
-                        <h3>AI 맞춤 디자인 서비스 시작</h3>
-                        <p>개인별 맞춤형 디자인을 위한 AI 분석 서비스를 새롭게 선보입니다.</p>
-                        <a href="#" onclick="navigateToPage('notice')" class="news-link">더보기</a>
-                    </div>
-                    
-                    <div class="news-item animate-on-scroll">
-                        <div class="news-date">2025.01.10</div>
-                        <h3>정부 R&D 과제 선정</h3>
-                        <p>전통공예 디지털화 사업 정부 과제에 선정되어 기술 개발에 박차를 가합니다.</p>
-                        <a href="#" onclick="navigateToPage('notice')" class="news-link">더보기</a>
+                <div class="cta-content">
+                    <h2 class="cta-title">KOREVO와 함께하세요</h2>
+                    <p class="cta-subtitle">
+                        전통과 혁신이 만나는 특별한 여정에 함께해주세요.
+                        더 나은 미래를 만들어가는 KOREVO의 파트너가 되어보세요.
+                    </p>
+                    <div class="cta-buttons">
+                        <a href="contact.html" class="cta-btn">파트너십 문의</a>
+                        <a href="notice.html" class="cta-btn secondary">최신 소식</a>
                     </div>
                 </div>
             </div>
@@ -395,21 +319,25 @@
                 <p><a href="greeting.html">회사소개</a></p>
                 <p><a href="onyu-brand.html">사업소개</a></p>
                 <p><a href="dining-set.html">제품소개</a></p>
+                <p><a href="contact.html">문의하기</a></p>
+            </div>
+            <div class="footer-section">
+                <h3>제품 & 서비스</h3>
+                <p><a href="dining-set.html">온유 식기 컬렉션</a></p>
+                <p><a href="#" onclick="navigateToPage('erp-solution')">ERP 솔루션</a></p>
+                <p><a href="#" onclick="navigateToPage('custom-craft')">맞춤 제작</a></p>
+                <p><a href="#" onclick="navigateToPage('consulting')">컨설팅</a></p>
             </div>
             <div class="footer-section">
                 <h3>고객지원</h3>
                 <p>고객센터: 1588-0000</p>
                 <p>이메일: info@korevo.co.kr</p>
                 <p>운영시간: 평일 09:00-18:00</p>
-            </div>
-            <div class="footer-section">
-                <h3>주소</h3>
-                <p>서울특별시 강남구<br>테헤란로 123, 코레보빌딩 10층</p>
-                <p>사업자등록번호: 123-45-67890</p>
+                <p>주소: 서울특별시 강남구 테헤란로 123</p>
             </div>
         </div>
         <div class="footer-bottom">
-            <p>&copy; 2025 KOREVO. All rights reserved.</p>
+            <p>&copy; 2025 KOREVO. All rights reserved. | 사업자등록번호: 123-45-67890</p>
         </div>
     </footer>
 
