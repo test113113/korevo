@@ -12,7 +12,12 @@
     <style>
         /* Contact Page Specific Styles */
         .contact-hero {
-            background: linear-gradient(135deg, #1D1D1F 0%, #2C2C2E 50%, #3A3A3C 100%);
+            background: 
+                linear-gradient(135deg, rgba(29, 29, 31, 0.7) 0%, rgba(44, 44, 46, 0.6) 50%, rgba(58, 58, 60, 0.7) 100%),
+                url('./images/Contact_background_banner.jpg');
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
             color: #FFFFFF;
             padding: 6rem 0 4rem;
             position: relative;
@@ -26,8 +31,20 @@
             left: 0;
             right: 0;
             bottom: 0;
-            background: linear-gradient(45deg, rgba(0, 122, 255, 0.1) 0%, rgba(29, 29, 31, 0.05) 100%);
-            opacity: 0.6;
+            background: linear-gradient(45deg, rgba(0, 122, 255, 0.15) 0%, rgba(29, 29, 31, 0.1) 100%);
+            opacity: 0.8;
+        }
+
+        .contact-hero::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMTAwIiBoZWlnaHQ9IjEwMCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KICA8ZGVmcz4KICAgIDxwYXR0ZXJuIGlkPSJncmFpbiIgd2lkdGg9IjEwMCIgaGVpZ2h0PSIxMDAiIHBhdHRlcm5Vbml0cz0idXNlclNwYWNlT25Vc2UiPgogICAgICA8Y2lyY2xlIGN4PSI1MCIgY3k9IjUwIiByPSIxIiBmaWxsPSJyZ2JhKDI1NSwyNTUsMjU1LDAuMDgpIi8+CiAgICA8L3BhdHRlcm4+CiAgPC9kZWZzPgogIDxyZWN0IHdpZHRoPSIxMDAiIGhlaWdodD0iMTAwIiBmaWxsPSJ1cmwoI2dyYWluKSIvPgo8L3N2Zz4=');
+            background-size: 100px 100px;
+            opacity: 0.3;
         }
 
         .contact-main-section {
