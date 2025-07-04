@@ -1,0 +1,395 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HeOnn 브랜드 - KOREVO</title>
+    <meta name="description" content="헤언(HeOnn) - 전통과 현대가 만나는 프리미엄 유기 브랜드">
+    
+    <!-- Apple Design CSS -->
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <!-- Header -->
+    <header class="header">
+        <nav class="nav-container">
+            <a href="index.html" class="logo">KOREVO</a>
+            
+            <ul class="nav-menu" id="navMenu">
+                <li class="nav-item">
+                    <a href="index.html" class="nav-link">홈</a>
+                </li>
+                <li class="nav-item">
+                    <a href="#" class="nav-link">회사소개</a>
+                    <div class="dropdown">
+                        <div class="dropdown-item" onclick="window.location.href='greeting.html'">인사말</div>
+                        <div class="dropdown-item" onclick="navigateToPage('vision')">비전 & 미션</div>
+                        <div class="dropdown-item" onclick="navigateToPage('history')">연혁</div>
+                        <div class="dropdown-item" onclick="navigateToPage('team')">팀 소개</div>
+                    </div>
+                </li>
+                <li class="nav-item">
+                    <a href="#business" class="nav-link active">사업소개</a>
+                    <div class="mega-dropdown">
+                        <div class="dropdown-section">
+                            <h4>브랜드 스토리</h4>
+                            <div class="dropdown-item active" onclick="window.location.href='heonn-brand.html'">헤언(HeOnn) 브랜드</div>
+                            <div class="dropdown-item" onclick="navigateToPage('brand-philosophy')">브랜드 철학</div>
+                            <div class="dropdown-item" onclick="navigateToPage('traditional-craft')">전통 기법 계승</div>
+                        </div>
+                        <div class="dropdown-section">
+                            <h4>융합 비즈니스</h4>
+                            <div class="dropdown-item" onclick="navigateToPage('business-model')">사업 모델</div>
+                            <div class="dropdown-item" onclick="navigateToPage('innovation-strategy')">혁신 전략</div>
+                            <div class="dropdown-item" onclick="navigateToPage('sustainability')">지속가능경영</div>
+                        </div>
+                    </div>
+                </li>
+                <li class="nav-item">
+                    <a href="#products" class="nav-link">제품/서비스</a>
+                    <div class="mega-dropdown">
+                        <div class="dropdown-section">
+                            <h4>🏺 유기 제품군</h4>
+                            <div class="dropdown-item" onclick="window.location.href='dining-set.html'">식기 컬렉션</div>
+                            <div class="dropdown-item" onclick="navigateToPage('health-products')">건강 케어 제품</div>
+                            <div class="dropdown-item" onclick="navigateToPage('gift-sets')">프리미엄 선물세트</div>
+                            <div class="dropdown-item" onclick="navigateToPage('custom-craft')">맞춤 제작 서비스</div>
+                        </div>
+                        <div class="dropdown-section">
+                            <h4>💻 소프트웨어</h4>
+                            <div class="dropdown-item" onclick="navigateToPage('erp-solution')">제조업 ERP 솔루션</div>
+                            <div class="dropdown-item" onclick="navigateToPage('iot-platform')">IoT 품질관리 플랫폼</div>
+                            <div class="dropdown-item" onclick="navigateToPage('ecommerce-system')">전통공예 전자상거래</div>
+                            <div class="dropdown-item" onclick="navigateToPage('consulting')">디지털 전환 컨설팅</div>
+                        </div>
+                        <div class="dropdown-section">
+                            <h4>🔬 R&D 과제</h4>
+                            <div class="dropdown-item" onclick="navigateToPage('current-projects')">진행중 과제</div>
+                            <div class="dropdown-item" onclick="navigateToPage('completed-projects')">완료 과제</div>
+                            <div class="dropdown-item" onclick="navigateToPage('research-outcomes')">연구 성과</div>
+                            <div class="dropdown-item" onclick="navigateToPage('collaboration')">산학연 협력</div>
+                        </div>
+                    </div>
+                </li>
+                <li class="nav-item">
+                    <a href="contact.html" class="nav-link">CONTACT</a>
+                </li>
+                <li class="nav-item">
+                    <a href="#" class="nav-link">소식</a>
+                    <div class="dropdown">
+                        <div class="dropdown-item" onclick="window.location.href='notice.html'">공지사항</div>
+                        <div class="dropdown-item" onclick="navigateToPage('news')">보도자료</div>
+                        <div class="dropdown-item" onclick="navigateToPage('blog')">기술 블로그</div>
+                        <div class="dropdown-item" onclick="navigateToPage('events')">이벤트</div>
+                        <div class="dropdown-item" onclick="navigateToPage('awards')">수상 내역</div>
+                    </div>
+                </li>
+                <li class="nav-item">
+                    <a href="#shop" class="nav-link">쇼핑몰</a>
+                </li>
+            </ul>
+
+            <div class="lang-selector">
+                <a href="#" class="lang-btn active">🇰🇷</a>
+                <a href="#" class="lang-btn">🇺🇸</a>
+                <a href="#" class="lang-btn">🇨🇳</a>
+                <a href="#" class="lang-btn">🇯🇵</a>
+            </div>
+
+            <button class="menu-toggle" onclick="toggleMenu()" aria-label="메뉴 토글" aria-expanded="false">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+        </nav>
+    </header>
+
+    <!-- Breadcrumb -->
+    <nav class="breadcrumb-nav">
+        <div class="breadcrumb">
+            <a href="index.html" class="breadcrumb-item">홈</a>
+            <span class="breadcrumb-separator">></span>
+            <a href="#" class="breadcrumb-item">사업소개</a>
+            <span class="breadcrumb-separator">></span>
+            <span class="breadcrumb-item active">헤언 브랜드</span>
+        </div>
+    </nav>
+
+    <!-- Page Header -->
+    <section class="page-header">
+        <div class="page-header-content">
+            <div class="page-icon">🏺</div>
+            <h1 class="page-title">HeOnn</h1>
+            <p class="page-subtitle">헤언 - 전통과 현대가 만나는 프리미엄 유기 브랜드</p>
+        </div>
+    </section>
+
+    <!-- Main Content -->
+    <main class="main-content">
+        <!-- Brand Introduction Section -->
+        <section class="intro-section">
+            <div class="container">
+                <div class="intro-content">
+                    <h2 class="intro-title">HeOnn, 새로운 시작</h2>
+                    <p class="intro-description">
+                        헤언(HeOnn)은 천년의 전통 유기 기술과 현대적 디자인이 만나 
+                        탄생한 프리미엄 브랜드입니다. 건강과 아름다움, 전통과 혁신이 
+                        조화를 이루는 특별한 라이프스타일을 제안합니다.
+                    </p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Brand Story Section -->
+        <section class="features-section">
+            <div class="container">
+                <div class="features-header">
+                    <h2 class="features-title">브랜드 스토리</h2>
+                    <p class="features-subtitle">
+                        헤언(HeOnn)의 이름에 담긴 의미와 철학을 알아보세요
+                    </p>
+                </div>
+                <div class="features-grid">
+                    <div class="feature-card animate-on-scroll">
+                        <span class="feature-icon">🔥</span>
+                        <h3 class="feature-title">He - 해(解)</h3>
+                        <p class="feature-description">
+                            '해결하다', '풀다'의 의미로 전통과 현대의 
+                            경계를 허물고 새로운 가능성을 열어갑니다.
+                        </p>
+                    </div>
+                    <div class="feature-card animate-on-scroll">
+                        <span class="feature-icon">🌊</span>
+                        <h3 class="feature-title">O - 온(溫)</h3>
+                        <p class="feature-description">
+                            '따뜻함'을 의미하며, 사용자에게 따뜻한 
+                            정성과 마음을 전달하는 브랜드를 지향합니다.
+                        </p>
+                    </div>
+                    <div class="feature-card animate-on-scroll">
+                        <span class="feature-icon">✨</span>
+                        <h3 class="feature-title">nn - 은(銀)</h3>
+                        <p class="feature-description">
+                            '은'의 순수함과 고귀함을 담아 최고 품질의 
+                            제품과 서비스를 제공합니다.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Brand Philosophy Section -->
+        <section class="business-section">
+            <div class="container">
+                <div class="business-header">
+                    <h2 class="business-title">브랜드 철학</h2>
+                    <p class="business-subtitle">
+                        헤언이 추구하는 핵심 가치와 철학
+                    </p>
+                </div>
+                <div class="business-grid">
+                    <div class="business-card animate-on-scroll">
+                        <span class="business-icon">🌱</span>
+                        <h3 class="business-card-title">자연과의 조화</h3>
+                        <p class="business-card-description">
+                            자연에서 얻은 순수한 소재로 만든 제품을 통해 
+                            인간과 자연이 조화롭게 공존하는 삶을 추구합니다.
+                        </p>
+                        <div class="business-features">
+                            <span class="business-feature-tag">친환경</span>
+                            <span class="business-feature-tag">순수소재</span>
+                            <span class="business-feature-tag">지속가능</span>
+                        </div>
+                    </div>
+                    <div class="business-card animate-on-scroll">
+                        <span class="business-icon">🏮</span>
+                        <h3 class="business-card-title">전통의 계승</h3>
+                        <p class="business-card-description">
+                            우리나라 전통 공예 기술을 보존하고 발전시켜 
+                            다음 세대에 전달하는 것이 우리의 사명입니다.
+                        </p>
+                        <div class="business-features">
+                            <span class="business-feature-tag">무형문화재</span>
+                            <span class="business-feature-tag">전통기법</span>
+                            <span class="business-feature-tag">장인정신</span>
+                        </div>
+                    </div>
+                    <div class="business-card animate-on-scroll">
+                        <span class="business-icon">💡</span>
+                        <h3 class="business-card-title">현대적 혁신</h3>
+                        <p class="business-card-description">
+                            전통을 바탕으로 하되, 현대인의 라이프스타일에 
+                            맞는 혁신적인 디자인과 기능을 제공합니다.
+                        </p>
+                        <div class="business-features">
+                            <span class="business-feature-tag">AI설계</span>
+                            <span class="business-feature-tag">현대디자인</span>
+                            <span class="business-feature-tag">개인맞춤</span>
+                        </div>
+                    </div>
+                    <div class="business-card animate-on-scroll">
+                        <span class="business-icon">❤️</span>
+                        <h3 class="business-card-title">건강한 삶</h3>
+                        <p class="business-card-description">
+                            몸과 마음이 건강한 삶을 위한 제품과 서비스를 통해 
+                            고객의 웰빙에 기여합니다.
+                        </p>
+                        <div class="business-features">
+                            <span class="business-feature-tag">항균성</span>
+                            <span class="business-feature-tag">웰빙</span>
+                            <span class="business-feature-tag">안전성</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Brand Values Section -->
+        <section class="features-section">
+            <div class="container">
+                <div class="features-header">
+                    <h2 class="features-title">헤언이 추구하는 가치</h2>
+                    <p class="features-subtitle">
+                        고객과 함께 만들어가는 더 나은 세상
+                    </p>
+                </div>
+                <div class="grid grid-4">
+                    <div class="card animate-on-scroll">
+                        <div style="text-align: center; margin-bottom: 24px;">
+                            <div style="width: 60px; height: 60px; background: #007AFF; border-radius: 50%; display: flex; align-items: center; justify-content: center; margin: 0 auto 16px; font-size: 24px; color: white; font-weight: bold;">01</div>
+                            <h3 style="font-size: 20px; font-weight: 600; color: #1D1D1F; margin-bottom: 8px;">정성 (誠心)</h3>
+                        </div>
+                        <p style="color: #86868B; text-align: center; line-height: 1.47059;">
+                            한 땀 한 땀 정성을 다해 만든 제품으로 
+                            고객에게 진심을 전달합니다.
+                        </p>
+                    </div>
+                    <div class="card animate-on-scroll">
+                        <div style="text-align: center; margin-bottom: 24px;">
+                            <div style="width: 60px; height: 60px; background: #007AFF; border-radius: 50%; display: flex; align-items: center; justify-content: center; margin: 0 auto 16px; font-size: 24px; color: white; font-weight: bold;">02</div>
+                            <h3 style="font-size: 20px; font-weight: 600; color: #1D1D1F; margin-bottom: 8px;">품격 (品格)</h3>
+                        </div>
+                        <p style="color: #86868B; text-align: center; line-height: 1.47059;">
+                            최고의 품질과 우아한 디자인으로 
+                            고급스러운 품격을 선사합니다.
+                        </p>
+                    </div>
+                    <div class="card animate-on-scroll">
+                        <div style="text-align: center; margin-bottom: 24px;">
+                            <div style="width: 60px; height: 60px; background: #007AFF; border-radius: 50%; display: flex; align-items: center; justify-content: center; margin: 0 auto 16px; font-size: 24px; color: white; font-weight: bold;">03</div>
+                            <h3 style="font-size: 20px; font-weight: 600; color: #1D1D1F; margin-bottom: 8px;">지속가능성</h3>
+                        </div>
+                        <p style="color: #86868B; text-align: center; line-height: 1.47059;">
+                            환경을 생각하는 지속가능한 제품으로 
+                            미래 세대를 위한 책임을 다합니다.
+                        </p>
+                    </div>
+                    <div class="card animate-on-scroll">
+                        <div style="text-align: center; margin-bottom: 24px;">
+                            <div style="width: 60px; height: 60px; background: #007AFF; border-radius: 50%; display: flex; align-items: center; justify-content: center; margin: 0 auto 16px; font-size: 24px; color: white; font-weight: bold;">04</div>
+                            <h3 style="font-size: 20px; font-weight: 600; color: #1D1D1F; margin-bottom: 8px;">혁신 (革新)</h3>
+                        </div>
+                        <p style="color: #86868B; text-align: center; line-height: 1.47059;">
+                            전통을 바탕으로 한 창의적 혁신으로 
+                            새로운 가치를 창조합니다.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Heritage Section -->
+        <section class="business-section">
+            <div class="container">
+                <div class="business-header">
+                    <h2 class="business-title">전통 기법의 현대적 계승</h2>
+                    <p class="business-subtitle">
+                        천년의 역사를 자랑하는 전통 기술과 현대 과학의 만남
+                    </p>
+                </div>
+                <div class="features-grid">
+                    <div class="feature-card animate-on-scroll">
+                        <span class="feature-icon">⚒️</span>
+                        <h3 class="feature-title">전통 단조 기법</h3>
+                        <p class="feature-description">
+                            수백 년간 전해 내려온 단조 기법을 그대로 보존하여 
+                            제품의 견고함과 내구성을 보장합니다.
+                        </p>
+                    </div>
+                    <div class="feature-card animate-on-scroll">
+                        <span class="feature-icon">🎨</span>
+                        <h3 class="feature-title">현대적 디자인</h3>
+                        <p class="feature-description">
+                            전통의 아름다움을 현대적 감각으로 재해석하여 
+                            어떤 공간에서도 조화를 이루는 디자인을 추구합니다.
+                        </p>
+                    </div>
+                    <div class="feature-card animate-on-scroll">
+                        <span class="feature-icon">🔬</span>
+                        <h3 class="feature-title">과학적 검증</h3>
+                        <p class="feature-description">
+                            전통 기법의 효과를 현대 과학으로 검증하여 
+                            제품의 안전성과 효능을 입증합니다.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- CTA Section -->
+        <section class="cta-section">
+            <div class="container">
+                <div class="cta-content">
+                    <h2 class="cta-title">헤언과 함께하는 특별한 여정</h2>
+                    <p class="cta-subtitle">
+                        전통과 현대가 만나는 헤언의 세계를 경험해보세요.
+                        건강하고 아름다운 라이프스타일이 시작됩니다.
+                    </p>
+                    <div class="cta-buttons">
+                        <a href="dining-set.html" class="cta-btn">제품 둘러보기</a>
+                        <a href="contact.html" class="cta-btn secondary">브랜드 문의</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="footer-content">
+            <div class="footer-section">
+                <h3>KOREVO</h3>
+                <p>한국의 전통과 혁신을 담은<br>프리미엄 유기 브랜드</p>
+                <p>전통의 아름다움을 현대에 되살리며<br>지속가능한 미래를 만들어갑니다.</p>
+            </div>
+            <div class="footer-section">
+                <h3>헤언 브랜드</h3>
+                <p><a href="heonn-brand.html">브랜드 스토리</a></p>
+                <p><a href="dining-set.html">제품 컬렉션</a></p>
+                <p><a href="#" onclick="navigateToPage('custom-craft')">맞춤 제작</a></p>
+                <p><a href="#" onclick="navigateToPage('brand-philosophy')">브랜드 철학</a></p>
+            </div>
+            <div class="footer-section">
+                <h3>고객지원</h3>
+                <p>고객센터: 1588-0000</p>
+                <p>이메일: info@korevo.co.kr</p>
+                <p>운영시간: 평일 09:00-18:00</p>
+                <p>주소: 서울특별시 강남구 테헤란로 123</p>
+            </div>
+            <div class="footer-section">
+                <h3>소셜 미디어</h3>
+                <p><a href="#">Instagram</a></p>
+                <p><a href="#">Facebook</a></p>
+                <p><a href="#">YouTube</a></p>
+                <p><a href="#">카카오톡</a></p>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2025 KOREVO. All rights reserved. | 사업자등록번호: 123-45-67890</p>
+        </div>
+    </footer>
+
+    <!-- JavaScript -->
+    <script src="script.js"></script>
+</body>
+</html>
