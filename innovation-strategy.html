@@ -1,0 +1,509 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>혁신 전략 - KOREVO</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=SF+Pro+Display:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="nav-logo">
+                <a href="index.html" class="logo-link">
+                    <span style="font-weight: 700; font-size: 1.5rem; color: var(--text-primary);">KOREVO</span>
+                </a>
+            </div>
+            <ul class="nav-menu">
+                <li class="nav-item">
+                    <a href="index.html" class="nav-link">홈</a>
+                </li>
+                <li class="nav-item">
+                    <a href="#company" class="nav-link">회사소개</a>
+                    <div class="dropdown">
+                        <div class="dropdown-item" onclick="navigateToPage('greeting')">인사말</div>
+                        <div class="dropdown-item" onclick="navigateToPage('vision')">비전&미션</div>
+                        <div class="dropdown-item" onclick="navigateToPage('history')">연혁</div>
+                        <div class="dropdown-item" onclick="navigateToPage('team')">팀 소개</div>
+                    </div>
+                </li>
+                <li class="nav-item">
+                    <a href="#business" class="nav-link">사업소개</a>
+                    <div class="mega-dropdown">
+                        <div class="dropdown-section">
+                            <h4>브랜드 스토리</h4>
+                            <div class="dropdown-item" onclick="window.location.href='heonn-brand.html'">헤온(HeOnn) 브랜드</div>
+                            <div class="dropdown-item" onclick="navigateToPage('brand-philosophy')">브랜드 철학</div>
+                            <div class="dropdown-item" onclick="navigateToPage('traditional-craft')">전통 기법 계승</div>
+                        </div>
+                        <div class="dropdown-section">
+                            <h4>융합 비즈니스</h4>
+                            <div class="dropdown-item" onclick="navigateToPage('business-model')">사업 모델</div>
+                            <div class="dropdown-item active" onclick="window.location.href='innovation-strategy.html'">혁신 전략</div>
+                            <div class="dropdown-item" onclick="navigateToPage('sustainability')">지속가능경영</div>
+                        </div>
+                    </div>
+                </li>
+                <li class="nav-item">
+                    <a href="#products" class="nav-link">제품/서비스</a>
+                    <div class="mega-dropdown">
+                        <div class="dropdown-section">
+                            <h4>🏺 유기 제품군</h4>
+                            <div class="dropdown-item" onclick="window.location.href='dining-set.html'">식기 컬렉션</div>
+                            <div class="dropdown-item" onclick="navigateToPage('health-products')">건강 케어 제품</div>
+                            <div class="dropdown-item" onclick="navigateToPage('gift-sets')">프리미엄 선물세트</div>
+                            <div class="dropdown-item" onclick="navigateToPage('custom-craft')">맞춤 제작 서비스</div>
+                        </div>
+                        <div class="dropdown-section">
+                            <h4>💻 소프트웨어</h4>
+                            <div class="dropdown-item" onclick="navigateToPage('erp-solution')">제조업 ERP 솔루션</div>
+                            <div class="dropdown-item" onclick="navigateToPage('iot-platform')">IoT 품질관리 플랫폼</div>
+                            <div class="dropdown-item" onclick="navigateToPage('ecommerce-system')">전통공예 전자상거래</div>
+                            <div class="dropdown-item" onclick="navigateToPage('consulting')">디지털 전환 컨설팅</div>
+                        </div>
+                        <div class="dropdown-section">
+                            <h4>🔬 R&D 과제</h4>
+                            <div class="dropdown-item" onclick="navigateToPage('current-projects')">진행중인 과제</div>
+                            <div class="dropdown-item" onclick="navigateToPage('completed-projects')">완료 과제</div>
+                            <div class="dropdown-item" onclick="navigateToPage('research-outcomes')">연구 성과</div>
+                            <div class="dropdown-item" onclick="navigateToPage('collaboration')">산학연 협력</div>
+                        </div>
+                    </div>
+                </li>
+                <li class="nav-item">
+                    <a href="contact.html" class="nav-link">CONTACT</a>
+                </li>
+            </ul>
+            <div class="nav-hamburger">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Breadcrumb -->
+    <nav class="breadcrumb">
+        <div class="container">
+            <span class="breadcrumb-item"><a href="index.html">홈</a></span>
+            <span class="breadcrumb-separator">></span>
+            <span class="breadcrumb-item"><a href="#business">사업소개</a></span>
+            <span class="breadcrumb-separator">></span>
+            <span class="breadcrumb-item"><a href="#convergence">융합 비즈니스</a></span>
+            <span class="breadcrumb-separator">></span>
+            <span class="breadcrumb-item active">혁신 전략</span>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="innovation-hero">
+        <div class="container">
+            <div class="hero-content">
+                <div style="text-align: center; position: relative; z-index: 3;">
+                    <div style="font-size: 4rem; margin-bottom: 2rem; animation: float 3s ease-in-out infinite;">🚀</div>
+                    <h1 style="font-size: clamp(3rem, 6vw, 5rem); font-weight: 700; margin-bottom: 1.5rem; color: white; letter-spacing: -0.02em;">혁신 전략</h1>
+                    <p style="font-size: 1.5rem; opacity: 0.9; max-width: 800px; margin: 0 auto 3rem; font-weight: 300; line-height: 1.6;">
+                        전통과 첨단기술의 융합을 통한 혁신적 가치 창출<br>
+                        지속가능한 성장을 위한 차세대 전략
+                    </p>
+                    <div style="display: flex; gap: 1.5rem; justify-content: center; flex-wrap: wrap;">
+                        <a href="#innovation-framework" style="padding: 1rem 2.5rem; background: var(--apple-blue); color: white; text-decoration: none; border-radius: 50px; font-weight: 600; transition: all 0.3s ease;">혁신 체계</a>
+                        <a href="#technology-roadmap" style="padding: 1rem 2.5rem; border: 2px solid white; color: white; text-decoration: none; border-radius: 50px; font-weight: 600; transition: all 0.3s ease;">기술 로드맵</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Main Content -->
+    <main class="main-content">
+        <!-- Innovation Framework -->
+        <section id="innovation-framework" class="innovation-framework">
+            <div class="container">
+                <div style="text-align: center; margin-bottom: 4rem;">
+                    <div style="font-size: 3rem; margin-bottom: 1rem;">⚡</div>
+                    <h2 style="font-size: clamp(2.5rem, 4vw, 3.5rem); font-weight: 700; margin-bottom: 1rem; color: var(--text-primary);">혁신 체계</h2>
+                    <p style="font-size: 1.25rem; color: var(--text-secondary); max-width: 600px; margin: 0 auto;">
+                        KOREVO만의 독창적인 혁신 프레임워크로 지속가능한 성장 동력을 확보합니다
+                    </p>
+                </div>
+
+                <div class="framework-grid">
+                    <div class="framework-pillar">
+                        <div class="pillar-icon">🎯</div>
+                        <h3 class="pillar-title">전략 혁신</h3>
+                        <div class="pillar-content">
+                            <div class="pillar-description">
+                                전통과 현대의 융합을 통한 새로운 가치 창출 전략
+                            </div>
+                            <ul class="pillar-features">
+                                <li>블루오션 시장 개척</li>
+                                <li>차별화된 브랜드 포지셔닝</li>
+                                <li>프리미엄 마켓 진출</li>
+                                <li>글로벌 진출 전략</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <div class="framework-pillar">
+                        <div class="pillar-icon">🔧</div>
+                        <h3 class="pillar-title">기술 혁신</h3>
+                        <div class="pillar-content">
+                            <div class="pillar-description">
+                                AI와 IoT 기술을 활용한 전통공예 프로세스 혁신
+                            </div>
+                            <ul class="pillar-features">
+                                <li>AI 기반 품질 관리</li>
+                                <li>IoT 스마트 팩토리</li>
+                                <li>3D 프린팅 기술 융합</li>
+                                <li>AR/VR 체험 서비스</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <div class="framework-pillar">
+                        <div class="pillar-icon">👥</div>
+                        <h3 class="pillar-title">조직 혁신</h3>
+                        <div class="pillar-content">
+                            <div class="pillar-description">
+                                창의적이고 유연한 조직 문화 구축
+                            </div>
+                            <ul class="pillar-features">
+                                <li>애자일 조직 운영</li>
+                                <li>크로스 펑셔널 팀</li>
+                                <li>지속 학습 문화</li>
+                                <li>개방형 혁신 플랫폼</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <div class="framework-pillar">
+                        <div class="pillar-icon">💡</div>
+                        <h3 class="pillar-title">서비스 혁신</h3>
+                        <div class="pillar-content">
+                            <div class="pillar-description">
+                                고객 경험 중심의 혁신적 서비스 모델 구축
+                            </div>
+                            <ul class="pillar-features">
+                                <li>개인 맞춤 서비스</li>
+                                <li>옴니채널 플랫폼</li>
+                                <li>디지털 트윈 기술</li>
+                                <li>구독 기반 서비스</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Technology Roadmap -->
+        <section id="technology-roadmap" class="technology-roadmap">
+            <div class="container">
+                <div style="text-align: center; margin-bottom: 4rem;">
+                    <div style="font-size: 3rem; margin-bottom: 1rem;">🗺️</div>
+                    <h2 style="font-size: clamp(2.5rem, 4vw, 3.5rem); font-weight: 700; margin-bottom: 1rem; color: var(--text-primary);">기술 로드맵</h2>
+                    <p style="font-size: 1.25rem; color: var(--text-secondary); max-width: 600px; margin: 0 auto;">
+                        체계적인 기술 발전 계획으로 미래 경쟁력을 확보합니다
+                    </p>
+                </div>
+
+                <div class="roadmap-timeline">
+                    <div class="roadmap-phase">
+                        <div class="phase-period">2025</div>
+                        <div class="phase-title">기반 기술 구축</div>
+                        <div class="phase-content">
+                            <h4>핵심 기술 개발</h4>
+                            <ul>
+                                <li>AI 기반 품질 관리 시스템</li>
+                                <li>IoT 센서 네트워크 구축</li>
+                                <li>전통공예 디지털 아카이브</li>
+                                <li>스마트 제조 플랫폼</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <div class="roadmap-phase">
+                        <div class="phase-period">2026</div>
+                        <div class="phase-title">플랫폼 확장</div>
+                        <div class="phase-content">
+                            <h4>서비스 고도화</h4>
+                            <ul>
+                                <li>개인화 추천 엔진</li>
+                                <li>AR/VR 체험 서비스</li>
+                                <li>블록체인 인증 시스템</li>
+                                <li>지능형 공급망 관리</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <div class="roadmap-phase">
+                        <div class="phase-period">2027</div>
+                        <div class="phase-title">생태계 구축</div>
+                        <div class="phase-content">
+                            <h4>통합 플랫폼</h4>
+                            <ul>
+                                <li>메타버스 전시관</li>
+                                <li>글로벌 전자상거래 플랫폼</li>
+                                <li>AI 디자인 어시스턴트</li>
+                                <li>탄소중립 추적 시스템</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <div class="roadmap-phase">
+                        <div class="phase-period">2028+</div>
+                        <div class="phase-title">미래 기술</div>
+                        <div class="phase-content">
+                            <h4>차세대 혁신</h4>
+                            <ul>
+                                <li>양자 컴퓨팅 활용</li>
+                                <li>완전 자율 생산 시스템</li>
+                                <li>홀로그램 체험 공간</li>
+                                <li>뇌-컴퓨터 인터페이스</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Innovation Metrics -->
+        <section class="innovation-metrics">
+            <div class="container">
+                <div style="text-align: center; margin-bottom: 4rem;">
+                    <div style="font-size: 3rem; margin-bottom: 1rem;">📊</div>
+                    <h2 style="font-size: clamp(2.5rem, 4vw, 3.5rem); font-weight: 700; margin-bottom: 1rem; color: var(--text-primary);">혁신 지표</h2>
+                    <p style="font-size: 1.25rem; color: var(--text-secondary); max-width: 600px; margin: 0 auto;">
+                        데이터 기반의 혁신 성과 관리 체계
+                    </p>
+                </div>
+
+                <div class="metrics-grid">
+                    <div class="metric-card">
+                        <div class="metric-icon">💰</div>
+                        <div class="metric-value">35%</div>
+                        <div class="metric-label">R&D 투자 비율</div>
+                        <div class="metric-description">
+                            매출 대비 연구개발 투자 비중을 지속적으로 확대하여 
+                            혁신 역량을 강화합니다
+                        </div>
+                    </div>
+
+                    <div class="metric-card">
+                        <div class="metric-icon">🏆</div>
+                        <div class="metric-value">12</div>
+                        <div class="metric-label">연간 특허 출원</div>
+                        <div class="metric-description">
+                            핵심 기술에 대한 지적재산권 확보를 통해 
+                            경쟁 우위를 지속적으로 확보합니다
+                        </div>
+                    </div>
+
+                    <div class="metric-card">
+                        <div class="metric-icon">🚀</div>
+                        <div class="metric-value">85%</div>
+                        <div class="metric-label">프로젝트 성공률</div>
+                        <div class="metric-description">
+                            체계적인 프로젝트 관리와 위험 관리를 통해 
+                            높은 성공률을 달성합니다
+                        </div>
+                    </div>
+
+                    <div class="metric-card">
+                        <div class="metric-icon">⚡</div>
+                        <div class="metric-value">60%</div>
+                        <div class="metric-label">프로세스 효율성</div>
+                        <div class="metric-description">
+                            AI와 자동화 기술 도입으로 전체 프로세스 
+                            효율성을 대폭 향상시켰습니다
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Innovation Ecosystem -->
+        <section class="innovation-ecosystem">
+            <div class="container">
+                <div style="text-align: center; margin-bottom: 4rem;">
+                    <div style="font-size: 3rem; margin-bottom: 1rem;">🌐</div>
+                    <h2 style="font-size: clamp(2.5rem, 4vw, 3.5rem); font-weight: 700; margin-bottom: 1rem; color: var(--text-primary);">혁신 생태계</h2>
+                    <p style="font-size: 1.25rem; color: var(--text-secondary); max-width: 600px; margin: 0 auto;">
+                        다양한 파트너들과의 협력을 통한 개방형 혁신 추진
+                    </p>
+                </div>
+
+                <div class="ecosystem-container">
+                    <div class="ecosystem-center">
+                        <div class="center-logo">KOREVO</div>
+                        <div class="center-subtitle">혁신 허브</div>
+                    </div>
+                    
+                    <div class="ecosystem-partners">
+                        <div class="partner-node partner-universities">
+                            <div class="partner-icon">🎓</div>
+                            <div class="partner-name">대학 연구소</div>
+                            <div class="partner-description">기초 연구 협력</div>
+                        </div>
+                        
+                        <div class="partner-node partner-tech">
+                            <div class="partner-icon">🔧</div>
+                            <div class="partner-name">기술 기업</div>
+                            <div class="partner-description">기술 개발 파트너십</div>
+                        </div>
+                        
+                        <div class="partner-node partner-startup">
+                            <div class="partner-icon">🚀</div>
+                            <div class="partner-name">스타트업</div>
+                            <div class="partner-description">혁신 아이디어 발굴</div>
+                        </div>
+                        
+                        <div class="partner-node partner-government">
+                            <div class="partner-icon">🏛️</div>
+                            <div class="partner-name">정부 기관</div>
+                            <div class="partner-description">정책 지원 협력</div>
+                        </div>
+                        
+                        <div class="partner-node partner-global">
+                            <div class="partner-icon">🌍</div>
+                            <div class="partner-name">글로벌 파트너</div>
+                            <div class="partner-description">해외 시장 진출</div>
+                        </div>
+                        
+                        <div class="partner-node partner-artisan">
+                            <div class="partner-icon">🎨</div>
+                            <div class="partner-name">전통 장인</div>
+                            <div class="partner-description">전통 기술 보존</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Innovation Culture -->
+        <section class="innovation-culture">
+            <div class="container">
+                <div style="text-align: center; margin-bottom: 4rem;">
+                    <div style="font-size: 3rem; margin-bottom: 1rem;">🎯</div>
+                    <h2 style="font-size: clamp(2.5rem, 4vw, 3.5rem); font-weight: 700; margin-bottom: 1rem; color: var(--text-primary);">혁신 문화</h2>
+                    <p style="font-size: 1.25rem; color: var(--text-secondary); max-width: 600px; margin: 0 auto;">
+                        창의적이고 도전적인 기업 문화로 혁신 역량을 극대화합니다
+                    </p>
+                </div>
+
+                <div class="culture-grid">
+                    <div class="culture-card">
+                        <div class="culture-icon">💡</div>
+                        <h3 class="culture-title">창의적 사고</h3>
+                        <div class="culture-description">
+                            고정관념을 벗어난 창의적 아이디어를 장려하고, 
+                            실패를 두려워하지 않는 도전 정신을 추구합니다.
+                        </div>
+                        <div class="culture-initiatives">
+                            <span class="initiative-tag">아이디어 공모전</span>
+                            <span class="initiative-tag">혁신 워크숍</span>
+                            <span class="initiative-tag">브레인스토밍</span>
+                        </div>
+                    </div>
+
+                    <div class="culture-card">
+                        <div class="culture-icon">🤝</div>
+                        <h3 class="culture-title">협업 문화</h3>
+                        <div class="culture-description">
+                            부서 간 경계를 허물고 자유로운 소통과 협업을 통해 
+                            시너지 효과를 극대화합니다.
+                        </div>
+                        <div class="culture-initiatives">
+                            <span class="initiative-tag">크로스 펑셔널 팀</span>
+                            <span class="initiative-tag">오픈 이노베이션</span>
+                            <span class="initiative-tag">협업 툴</span>
+                        </div>
+                    </div>
+
+                    <div class="culture-card">
+                        <div class="culture-icon">📚</div>
+                        <h3 class="culture-title">학습 조직</h3>
+                        <div class="culture-description">
+                            지속적인 학습과 성장을 통해 변화하는 시장에 
+                            빠르게 적응할 수 있는 조직 역량을 구축합니다.
+                        </div>
+                        <div class="culture-initiatives">
+                            <span class="initiative-tag">교육 프로그램</span>
+                            <span class="initiative-tag">지식 공유</span>
+                            <span class="initiative-tag">외부 교육</span>
+                        </div>
+                    </div>
+
+                    <div class="culture-card">
+                        <div class="culture-icon">⚡</div>
+                        <h3 class="culture-title">신속한 실행</h3>
+                        <div class="culture-description">
+                            빠른 의사결정과 실행을 통해 시장 기회를 놓치지 않고 
+                            경쟁 우위를 선점합니다.
+                        </div>
+                        <div class="culture-initiatives">
+                            <span class="initiative-tag">애자일 방법론</span>
+                            <span class="initiative-tag">신속 프로토타이핑</span>
+                            <span class="initiative-tag">MVP 개발</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- CTA Section -->
+        <section class="cta-section">
+            <div class="container">
+                <div class="cta-content">
+                    <h2 class="cta-title">혁신의 여정에 함께하세요</h2>
+                    <p class="cta-subtitle">
+                        KOREVO의 혁신 전략과 함께 전통과 기술의 새로운 융합을 경험하고, 
+                        미래를 선도하는 혁신 파트너가 되어보세요.
+                    </p>
+                    <div class="cta-buttons">
+                        <a href="contact.html" class="cta-btn">혁신 파트너십 문의</a>
+                        <a href="business-model.html" class="cta-btn secondary">사업 모델 보기</a>
+                        <a href="heonn-brand.html" class="cta-btn secondary">헤온 브랜드 알아보기</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="footer-content">
+            <div class="footer-section">
+                <h3>KOREVO</h3>
+                <p>한국의 전통과 혁신을 담은<br>프리미엄 유기 브랜드</p>
+                <p>전통의 아름다움을 현대에 되살리며<br>지속가능한 미래를 만들어갑니다.</p>
+            </div>
+            <div class="footer-section">
+                <h3>혁신 전략</h3>
+                <p><a href="#innovation-framework">혁신 체계</a></p>
+                <p><a href="#technology-roadmap">기술 로드맵</a></p>
+                <p><a href="#innovation-metrics">혁신 지표</a></p>
+                <p><a href="contact.html">혁신 파트너십</a></p>
+            </div>
+            <div class="footer-section">
+                <h3>고객지원</h3>
+                <p>고객센터: 1588-0000</p>
+                <p>이메일: info@korevo.co.kr</p>
+                <p>운영시간: 평일 09:00-18:00</p>
+                <p>주소: 서울특별시 강남구 테헤란로 123</p>
+            </div>
+            <div class="footer-section">
+                <h3>사업 분야</h3>
+                <p><a href="heonn-brand.html">헤온(HeOnn) 브랜드</a></p>
+                <p><a href="dining-set.html">유기 제품군</a></p>
+                <p><a href="erp-solution.html">소프트웨어 솔루션</a></p>
+                <p><a href="current-projects.html">R&D 과제</a></p>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2025 KOREVO. All rights reserved.</p>
+        </div>
