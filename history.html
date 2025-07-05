@@ -1,0 +1,973 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>연혁 - KOREVO</title>
+    <meta name="description" content="KOREVO의 발자취와 성장 과정, 전통과 혁신의 여정을 확인하세요.">
+    
+    <!-- 통합 CSS 파일 -->
+    <link rel="stylesheet" href="styles.css">
+    
+    <!-- History Page Specific Styles -->
+    <style>
+        /* ===== TIMELINE SECTION ===== */
+        .timeline-section {
+            padding: 8rem 0;
+            background: var(--bg-primary);
+            position: relative;
+        }
+
+        .timeline-header {
+            text-align: center;
+            margin-bottom: 6rem;
+        }
+
+        .timeline-title {
+            font-size: var(--font-size-display-medium);
+            font-weight: var(--font-weight-bold);
+            color: var(--text-primary);
+            margin-bottom: var(--spacing-lg);
+            line-height: 1.08333;
+            letter-spacing: -0.003em;
+        }
+
+        .timeline-subtitle {
+            font-size: var(--font-size-title2);
+            color: var(--text-secondary);
+            max-width: 600px;
+            margin: 0 auto;
+            line-height: 1.4;
+        }
+
+        /* Timeline Container */
+        .timeline-container {
+            position: relative;
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 0 var(--spacing-lg);
+        }
+
+        .timeline-line {
+            position: absolute;
+            left: 50%;
+            top: 0;
+            bottom: 0;
+            width: 2px;
+            background: linear-gradient(180deg, var(--apple-blue), var(--text-tertiary), var(--apple-blue));
+            transform: translateX(-50%);
+            z-index: 1;
+        }
+
+        /* Timeline Items */
+        .timeline-item {
+            display: flex;
+            align-items: center;
+            margin-bottom: 6rem;
+            position: relative;
+            opacity: 0;
+            transform: translateY(40px);
+            transition: all 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+        }
+
+        .timeline-item.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .timeline-item:nth-child(even) {
+            flex-direction: row-reverse;
+        }
+
+        /* Timeline Content */
+        .timeline-content {
+            flex: 1;
+            background: var(--bg-primary);
+            border: 0.5px solid var(--separator);
+            border-radius: var(--radius-xl);
+            padding: var(--spacing-2xl);
+            box-shadow: var(--shadow-sm);
+            margin: 0 var(--spacing-xl);
+            position: relative;
+            transition: all 0.3s ease;
+        }
+
+        .timeline-content:hover {
+            transform: scale(1.02);
+            box-shadow: var(--shadow-apple-card);
+        }
+
+        /* Timeline Content Arrow */
+        .timeline-item:nth-child(odd) .timeline-content::after {
+            content: '';
+            position: absolute;
+            right: -12px;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 0;
+            height: 0;
+            border: 12px solid transparent;
+            border-left-color: var(--bg-primary);
+        }
+
+        .timeline-item:nth-child(even) .timeline-content::after {
+            content: '';
+            position: absolute;
+            left: -12px;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 0;
+            height: 0;
+            border: 12px solid transparent;
+            border-right-color: var(--bg-primary);
+        }
+
+        /* Timeline Date */
+        .timeline-date {
+            position: absolute;
+            left: 50%;
+            transform: translateX(-50%);
+            background: var(--apple-blue);
+            color: var(--bg-primary);
+            padding: var(--spacing-md) var(--spacing-lg);
+            border-radius: 980px;
+            font-weight: var(--font-weight-semibold);
+            font-size: var(--font-size-callout);
+            white-space: nowrap;
+            box-shadow: 0 8px 20px rgba(0, 122, 255, 0.3);
+            z-index: 2;
+            min-width: 120px;
+            text-align: center;
+        }
+
+        /* Timeline Icon */
+        .timeline-icon {
+            width: 60px;
+            height: 60px;
+            background: linear-gradient(135deg, var(--apple-blue), #0051D5);
+            border-radius: var(--radius-full);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: var(--font-size-title2);
+            color: var(--bg-primary);
+            position: absolute;
+            left: 50%;
+            transform: translateX(-50%);
+            z-index: 3;
+            box-shadow: 0 8px 20px rgba(0, 122, 255, 0.3);
+            margin-top: 40px;
+        }
+
+        /* Content Elements */
+        .event-title {
+            font-size: var(--font-size-title2);
+            font-weight: var(--font-weight-semibold);
+            color: var(--text-primary);
+            margin-bottom: var(--spacing-md);
+            line-height: 1.273;
+        }
+
+        .event-description {
+            color: var(--text-secondary);
+            line-height: 1.47059;
+            margin-bottom: var(--spacing-lg);
+            font-size: var(--font-size-callout);
+        }
+
+        .event-highlights {
+            display: flex;
+            flex-wrap: wrap;
+            gap: var(--spacing-sm);
+            margin-bottom: var(--spacing-lg);
+        }
+
+        .highlight-tag {
+            background: var(--bg-secondary);
+            color: var(--text-secondary);
+            padding: var(--spacing-xs) var(--spacing-sm);
+            border-radius: 980px;
+            font-size: var(--font-size-caption1);
+            font-weight: var(--font-weight-medium);
+        }
+
+        .event-achievement {
+            background: rgba(0, 122, 255, 0.1);
+            border-left: 3px solid var(--apple-blue);
+            padding: var(--spacing-md);
+            border-radius: 0 var(--radius-md) var(--radius-md) 0;
+            margin-top: var(--spacing-md);
+        }
+
+        .event-achievement p {
+            color: var(--text-primary);
+            font-weight: var(--font-weight-medium);
+            margin: 0;
+        }
+
+        /* Milestones Section */
+        .milestones-section {
+            padding: 6rem 0;
+            background: var(--bg-secondary);
+        }
+
+        .milestones-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: var(--spacing-xl);
+            margin-top: var(--spacing-2xl);
+        }
+
+        .milestone-card {
+            background: var(--bg-primary);
+            border: 0.5px solid var(--separator);
+            border-radius: var(--radius-xl);
+            padding: var(--spacing-xl);
+            text-align: center;
+            transition: all 0.3s ease;
+            box-shadow: var(--shadow-sm);
+        }
+
+        .milestone-card:hover {
+            transform: translateY(-8px);
+            box-shadow: var(--shadow-apple-card);
+        }
+
+        .milestone-number {
+            font-size: var(--font-size-display-small);
+            font-weight: var(--font-weight-bold);
+            color: var(--apple-blue);
+            margin-bottom: var(--spacing-sm);
+            line-height: 1;
+        }
+
+        .milestone-label {
+            font-size: var(--font-size-callout);
+            color: var(--text-secondary);
+            font-weight: var(--font-weight-medium);
+        }
+
+        /* Future Vision Section */
+        .future-vision-section {
+            padding: 6rem 0;
+            background: var(--apple-dark);
+            color: var(--bg-primary);
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .future-vision-section::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(45deg, rgba(0, 122, 255, 0.1) 0%, rgba(0, 122, 255, 0.05) 100%);
+            opacity: 0.6;
+        }
+
+        .future-content {
+            position: relative;
+            z-index: 2;
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 0 var(--spacing-lg);
+        }
+
+        .future-title {
+            font-size: var(--font-size-display-small);
+            font-weight: var(--font-weight-bold);
+            margin-bottom: var(--spacing-lg);
+            color: var(--bg-primary);
+        }
+
+        .future-description {
+            font-size: var(--font-size-title3);
+            line-height: 1.4;
+            margin-bottom: var(--spacing-2xl);
+            color: var(--bg-primary);
+            opacity: 0.9;
+        }
+
+        /* Awards Section */
+        .awards-section {
+            padding: 6rem 0;
+            background: var(--bg-primary);
+        }
+
+        .awards-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: var(--spacing-xl);
+            margin-top: var(--spacing-2xl);
+        }
+
+        .award-card {
+            background: var(--bg-primary);
+            border: 0.5px solid var(--separator);
+            border-radius: var(--radius-xl);
+            padding: var(--spacing-xl);
+            text-align: center;
+            transition: all 0.3s ease;
+            box-shadow: var(--shadow-sm);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .award-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: linear-gradient(90deg, #FFD700, var(--apple-blue));
+        }
+
+        .award-card:hover {
+            transform: translateY(-8px);
+            box-shadow: var(--shadow-apple-card);
+        }
+
+        .award-icon {
+            font-size: 3rem;
+            margin-bottom: var(--spacing-lg);
+        }
+
+        .award-title {
+            font-size: var(--font-size-title3);
+            font-weight: var(--font-weight-semibold);
+            color: var(--text-primary);
+            margin-bottom: var(--spacing-sm);
+        }
+
+        .award-date {
+            color: var(--text-tertiary);
+            font-size: var(--font-size-footnote);
+            margin-bottom: var(--spacing-md);
+        }
+
+        .award-description {
+            color: var(--text-secondary);
+            line-height: 1.47059;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .timeline-line {
+                left: 2rem;
+            }
+
+            .timeline-item,
+            .timeline-item:nth-child(even) {
+                flex-direction: column;
+                align-items: flex-start;
+                padding-left: 4rem;
+            }
+
+            .timeline-content {
+                margin: 2rem 0 0 0;
+                width: 100%;
+            }
+
+            .timeline-content::after {
+                display: none;
+            }
+
+            .timeline-date {
+                left: 2rem;
+                transform: none;
+                position: relative;
+                margin-bottom: var(--spacing-lg);
+            }
+
+            .timeline-icon {
+                left: 2rem;
+                transform: none;
+                margin-top: 0;
+                position: relative;
+                margin-bottom: var(--spacing-lg);
+            }
+
+            .timeline-title {
+                font-size: var(--font-size-display-small);
+            }
+
+            .milestones-grid {
+                grid-template-columns: repeat(2, 1fr);
+                gap: var(--spacing-lg);
+            }
+
+            .awards-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .future-title {
+                font-size: var(--font-size-title1);
+            }
+        }
+
+        /* Animation delays */
+        .timeline-item:nth-child(1) { transition-delay: 0.1s; }
+        .timeline-item:nth-child(2) { transition-delay: 0.2s; }
+        .timeline-item:nth-child(3) { transition-delay: 0.3s; }
+        .timeline-item:nth-child(4) { transition-delay: 0.4s; }
+        .timeline-item:nth-child(5) { transition-delay: 0.5s; }
+        .timeline-item:nth-child(6) { transition-delay: 0.6s; }
+
+        /* Scroll animations */
+        .milestone-card,
+        .award-card {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.6s ease;
+        }
+
+        .milestone-card.visible,
+        .award-card.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header class="header">
+        <nav class="nav-container">
+            <a href="index.html" class="logo">KOREVO</a>
+            
+            <ul class="nav-menu" id="navMenu">
+                <li class="nav-item">
+                    <a href="index.html" class="nav-link">홈</a>
+                </li>
+                <li class="nav-item">
+                    <a href="#" class="nav-link active">회사소개</a>
+                    <div class="dropdown">
+                        <div class="dropdown-item" onclick="window.location.href='greeting.html'">인사말</div>
+                        <div class="dropdown-item" onclick="navigateToPage('vision')">비전 & 미션</div>
+                        <div class="dropdown-item active" onclick="window.location.href='history.html'">연혁</div>
+                        <div class="dropdown-item" onclick="navigateToPage('team')">팀 소개</div>
+                    </div>
+                </li>
+                <li class="nav-item">
+                    <a href="#business" class="nav-link">사업소개</a>
+                    <div class="mega-dropdown">
+                        <div class="dropdown-section">
+                            <h4>브랜드 스토리</h4>
+                            <div class="dropdown-item" onclick="window.location.href='heonn-brand.html'">헤온(HeOnn) 브랜드</div>
+                            <div class="dropdown-item" onclick="navigateToPage('brand-philosophy')">브랜드 철학</div>
+                            <div class="dropdown-item" onclick="navigateToPage('traditional-craft')">전통 기법 계승</div>
+                        </div>
+                        <div class="dropdown-section">
+                            <h4>융합 비즈니스</h4>
+                            <div class="dropdown-item" onclick="navigateToPage('business-model')">사업 모델</div>
+                            <div class="dropdown-item" onclick="navigateToPage('innovation-strategy')">혁신 전략</div>
+                            <div class="dropdown-item" onclick="navigateToPage('sustainability')">지속가능경영</div>
+                        </div>
+                    </div>
+                </li>
+                <li class="nav-item">
+                    <a href="#products" class="nav-link">제품/서비스</a>
+                    <div class="mega-dropdown">
+                        <div class="dropdown-section">
+                            <h4>🏺 유기 제품군</h4>
+                            <div class="dropdown-item" onclick="window.location.href='dining-set.html'">식기 컬렉션</div>
+                            <div class="dropdown-item" onclick="navigateToPage('health-products')">건강 케어 제품</div>
+                            <div class="dropdown-item" onclick="navigateToPage('gift-sets')">프리미엄 선물세트</div>
+                            <div class="dropdown-item" onclick="navigateToPage('custom-craft')">맞춤 제작 서비스</div>
+                        </div>
+                        <div class="dropdown-section">
+                            <h4>💻 소프트웨어</h4>
+                            <div class="dropdown-item" onclick="navigateToPage('erp-solution')">제조업 ERP 솔루션</div>
+                            <div class="dropdown-item" onclick="navigateToPage('iot-platform')">IoT 품질관리 플랫폼</div>
+                            <div class="dropdown-item" onclick="navigateToPage('ecommerce-system')">전통공예 전자상거래</div>
+                            <div class="dropdown-item" onclick="navigateToPage('consulting')">디지털 전환 컨설팅</div>
+                        </div>
+                        <div class="dropdown-section">
+                            <h4>🔬 R&D 과제</h4>
+                            <div class="dropdown-item" onclick="navigateToPage('current-projects')">진행중 과제</div>
+                            <div class="dropdown-item" onclick="navigateToPage('completed-projects')">완료 과제</div>
+                            <div class="dropdown-item" onclick="navigateToPage('research-outcomes')">연구 성과</div>
+                            <div class="dropdown-item" onclick="navigateToPage('collaboration')">산학연 협력</div>
+                        </div>
+                    </div>
+                </li>
+                <li class="nav-item">
+                    <a href="contact.html" class="nav-link">CONTACT</a>
+                </li>
+                <li class="nav-item">
+                    <a href="#shop" class="nav-link">쇼핑몰</a>
+                </li>
+            </ul>
+
+            <div class="lang-selector">
+                <a href="#" class="lang-btn active">🇰🇷</a>
+                <a href="#" class="lang-btn">🇺🇸</a>
+                <a href="#" class="lang-btn">🇨🇳</a>
+                <a href="#" class="lang-btn">🇯🇵</a>
+            </div>
+
+            <button class="menu-toggle" onclick="toggleMenu()" aria-label="메뉴 토글" aria-expanded="false">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+        </nav>
+    </header>
+
+    <!-- Breadcrumb -->
+    <nav class="breadcrumb-nav">
+        <div class="breadcrumb">
+            <a href="index.html" class="breadcrumb-item">홈</a>
+            <span class="breadcrumb-separator">></span>
+            <a href="#" class="breadcrumb-item">회사소개</a>
+            <span class="breadcrumb-separator">></span>
+            <span class="breadcrumb-item active">연혁</span>
+        </div>
+    </nav>
+
+    <!-- Page Header -->
+    <section class="page-header">
+        <div class="page-header-content">
+            <div class="page-icon">📚</div>
+            <h1 class="page-title">연혁</h1>
+            <p class="page-subtitle">KOREVO의 발자취와 성장 여정, 전통과 혁신이 만나는 역사</p>
+        </div>
+    </section>
+
+    <!-- Main Content -->
+    <main class="main-content">
+        <!-- Timeline Section -->
+        <section class="timeline-section">
+            <div class="container">
+                <div class="timeline-header">
+                    <h2 class="timeline-title">KOREVO의 여정</h2>
+                    <p class="timeline-subtitle">
+                        전통의 가치를 현대에 되살리며 혁신을 통해 새로운 미래를 만들어가는 KOREVO의 발자취입니다.
+                    </p>
+                </div>
+                
+                <div class="timeline-container">
+                    <div class="timeline-line"></div>
+                    
+                    <!-- 2025년 6월 - 법인 설립 -->
+                    <div class="timeline-item">
+                        <div class="timeline-date">2025.06</div>
+                        <div class="timeline-icon">🏢</div>
+                        <div class="timeline-content">
+                            <h3 class="event-title">KOREVO 법인 설립</h3>
+                            <p class="event-description">
+                                전통 유기 기술과 현대 IT 기술의 융합을 목표로 하는 혁신 기업 KOREVO가 공식 출범했습니다. 
+                                전통과 혁신이 만나는 새로운 비즈니스 모델의 시작점이 되었습니다.
+                            </p>
+                            <div class="event-highlights">
+                                <span class="highlight-tag">법인설립</span>
+                                <span class="highlight-tag">사업계획 수립</span>
+                                <span class="highlight-tag">팀 구성</span>
+                            </div>
+                            <div class="event-achievement">
+                                <p>📍 서울 강남구에 본사 설립 및 핵심 인력 영입 완료</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- 2025년 8월 - 전통 기법 연구 시작 -->
+                    <div class="timeline-item">
+                        <div class="timeline-date">2025.08</div>
+                        <div class="timeline-icon">🔬</div>
+                        <div class="timeline-content">
+                            <h3 class="event-title">전통 유기 기법 연구 프로젝트 착수</h3>
+                            <p class="event-description">
+                                무형문화재 장인들과의 협력을 통해 전통 유기 제작 기법을 현대적으로 계승하고 발전시키는 
+                                연구 프로젝트를 본격 시작했습니다.
+                            </p>
+                            <div class="event-highlights">
+                                <span class="highlight-tag">무형문화재 협력</span>
+                                <span class="highlight-tag">기법 연구</span>
+                                <span class="highlight-tag">품질 표준화</span>
+                            </div>
+                            <div class="event-achievement">
+                                <p>🎯 전통 장인 3명과 MOU 체결 및 연구소 설립</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- 2025년 10월 - 브랜드 개발 -->
+                    <div class="timeline-item">
+                        <div class="timeline-date">2025.10</div>
+                        <div class="timeline-icon">🏺</div>
+                        <div class="timeline-content">
+                            <h3 class="event-title">헤온(HeOnn) 브랜드 개발</h3>
+                            <p class="event-description">
+                                전통과 현대가 만나는 프리미엄 유기 브랜드 '헤온(HeOnn)'을 개발하고 
+                                브랜드 아이덴티티 및 철학을 확립했습니다.
+                            </p>
+                            <div class="event-highlights">
+                                <span class="highlight-tag">브랜드 개발</span>
+                                <span class="highlight-tag">디자인 시스템</span>
+                                <span class="highlight-tag">브랜드 철학</span>
+                            </div>
+                            <div class="event-achievement">
+                                <p>✨ 헤온 브랜드 상표 등록 및 CI/BI 완성</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- 2025년 12월 - 소프트웨어 개발 착수 -->
+                    <div class="timeline-item">
+                        <div class="timeline-date">2025.12</div>
+                        <div class="timeline-icon">💻</div>
+                        <div class="timeline-content">
+                            <h3 class="event-title">IT 솔루션 개발 착수</h3>
+                            <p class="event-description">
+                                전통 제조업체를 위한 ERP 시스템과 IoT 품질관리 플랫폼 개발에 착수하여 
+                                전통 산업의 디지털 전환을 위한 기술 기반을 마련했습니다.
+                            </p>
+                            <div class="event-highlights">
+                                <span class="highlight-tag">ERP 개발</span>
+                                <span class="highlight-tag">IoT 플랫폼</span>
+                                <span class="highlight-tag">디지털 전환</span>
+                            </div>
+                            <div class="event-achievement">
+                                <p>🚀 MVP(Minimum Viable Product) 개발 완료</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- 2026년 2월 - 정부 과제 선정 -->
+                    <div class="timeline-item">
+                        <div class="timeline-date">2026.02</div>
+                        <div class="timeline-icon">🏆</div>
+                        <div class="timeline-content">
+                            <h3 class="event-title">정부 R&D 과제 선정</h3>
+                            <p class="event-description">
+                                중소벤처기업부 주관 '전통산업 디지털 혁신' 과제에 선정되어 
+                                정부 지원을 받아 본격적인 연구개발을 시작했습니다.
+                            </p>
+                            <div class="event-highlights">
+                                <span class="highlight-tag">정부 과제</span>
+                                <span class="highlight-tag">R&D 지원</span>
+                                <span class="highlight-tag">혁신 인정</span>
+                            </div>
+                            <div class="event-achievement">
+                                <p>💰 총 15억원 규모의 정부 R&D 과제 선정</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- 2026년 4월 - 첫 제품 출시 -->
+                    <div class="timeline-item">
+                        <div class="timeline-date">2026.04</div>
+                        <div class="timeline-icon">🎉</div>
+                        <div class="timeline-content">
+                            <h3 class="event-title">헤온 첫 제품 라인 출시</h3>
+                            <p class="event-description">
+                                헤온 브랜드의 첫 번째 제품인 프리미엄 식기 컬렉션을 공식 출시하여 
+                                시장에 선보였습니다. 전통과 현대가 조화된 디자인으로 큰 호응을 얻었습니다.
+                            </p>
+                            <div class="event-highlights">
+                                <span class="highlight-tag">제품 출시</span>
+                                <span class="highlight-tag">시장 진입</span>
+                                <span class="highlight-tag">고객 만족</span>
+                            </div>
+                            <div class="event-achievement">
+                                <p>📈 출시 첫 달 매출 목표 150% 달성</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Key Milestones Section -->
+        <section class="milestones-section">
+            <div class="container">
+                <div class="features-header">
+                    <h2 class="features-title">주요 성과</h2>
+                    <p class="features-subtitle">
+                        KOREVO가 달성한 의미 있는 성과들
+                    </p>
+                </div>
+                <div class="milestones-grid">
+                    <div class="milestone-card">
+                        <div class="milestone-number">10+</div>
+                        <div class="milestone-label">개월의 성장</div>
+                    </div>
+                    <div class="milestone-card">
+                        <div class="milestone-number">3</div>
+                        <div class="milestone-label">무형문화재 파트너</div>
+                    </div>
+                    <div class="milestone-card">
+                        <div class="milestone-number">15억</div>
+                        <div class="milestone-label">정부 R&D 과제</div>
+                    </div>
+                    <div class="milestone-card">
+                        <div class="milestone-number">100+</div>
+                        <div class="milestone-label">출시 제품 SKU</div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Awards & Recognition Section -->
+        <section class="awards-section">
+            <div class="container">
+                <div class="features-header">
+                    <h2 class="features-title">수상 및 인정</h2>
+                    <p class="features-subtitle">
+                        KOREVO의 혁신과 노력을 인정받은 주요 성과들
+                    </p>
+                </div>
+                <div class="awards-grid">
+                    <div class="award-card">
+                        <div class="award-icon">🏆</div>
+                        <h3 class="award-title">중소벤처기업부 장관상</h3>
+                        <div class="award-date">2026년 3월</div>
+                        <p class="award-description">
+                            전통 산업 디지털 전환 부문에서 혁신적인 성과를 인정받아 수상
+                        </p>
+                    </div>
+                    <div class="award-card">
+                        <div class="award-icon">🌟</div>
+                        <h3 class="award-title">K-스타트업 대상</h3>
+                        <div class="award-date">2026년 1월</div>
+                        <p class="award-description">
+                            전통과 기술 융합 분야 우수 스타트업으로 선정
+                        </p>
+                    </div>
+                    <div class="award-card">
+                        <div class="award-icon">💎</div>
+                        <h3 class="award-title">굿디자인 어워드</h3>
+                        <div class="award-date">2025년 12월</div>
+                        <p class="award-description">
+                            헤온 브랜드 디자인의 우수성을 인정받아 굿디자인상 수상
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Future Vision Section -->
+        <section class="future-vision-section">
+            <div class="container">
+                <div class="future-content">
+                    <h2 class="future-title">미래를 향한 여정</h2>
+                    <p class="future-description">
+                        KOREVO는 전통의 가치를 현대에 되살리며, 지속가능한 미래를 만들어가는 
+                        글로벌 리더로 성장해나갈 것입니다. 우리의 여정은 이제 시작입니다.
+                    </p>
+                    <div class="cta-buttons">
+                        <a href="contact.html" class="cta-btn">함께하기</a>
+                        <a href="heonn-brand.html" class="cta-btn secondary">브랜드 스토리</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="footer-content">
+            <div class="footer-section">
+                <h3>KOREVO</h3>
+                <p>한국의 전통과 혁신을 담은<br>프리미엄 유기 브랜드</p>
+                <p>전통의 아름다움을 현대에 되살리며<br>지속가능한 미래를 만들어갑니다.</p>
+            </div>
+            <div class="footer-section">
+                <h3>빠른 링크</h3>
+                <p><a href="greeting.html">인사말</a></p>
+                <p><a href="vision.html">비전 & 미션</a></p>
+                <p><a href="history.html">연혁</a></p>
+                <p><a href="heonn-brand.html">사업소개</a></p>
+            </div>
+            <div class="footer-section">
+                <h3>고객지원</h3>
+                <p>고객센터: 1588-0000</p>
+                <p>이메일: info@korevo.co.kr</p>
+                <p>운영시간: 평일 09:00-18:00</p>
+            </div>
+            <div class="footer-section">
+                <h3>주소</h3>
+                <p>서울특별시 강남구<br>테헤란로 123, 코레보빌딩 10층</p>
+                <p>사업자등록번호: 123-45-67890</p>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2025 KOREVO. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <!-- 통합 JavaScript 파일 -->
+    <script src="script.js"></script>
+    
+    <!-- History Page Specific JavaScript -->
+    <script>
+        // ===== TIMELINE ANIMATIONS =====
+        function initTimelineAnimations() {
+            const timelineItems = document.querySelectorAll('.timeline-item');
+            const milestoneCards = document.querySelectorAll('.milestone-card');
+            const awardCards = document.querySelectorAll('.award-card');
+
+            // Intersection Observer for timeline items
+            const timelineObserver = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('visible');
+                    }
+                });
+            }, {
+                threshold: 0.1,
+                rootMargin: '0px 0px -50px 0px'
+            });
+
+            // Intersection Observer for milestone and award cards
+            const cardObserver = new IntersectionObserver((entries) => {
+                entries.forEach((entry, index) => {
+                    if (entry.isIntersecting) {
+                        setTimeout(() => {
+                            entry.target.classList.add('visible');
+                        }, index * 100);
+                    }
+                });
+            }, {
+                threshold: 0.1,
+                rootMargin: '0px 0px -50px 0px'
+            });
+
+            // Observe timeline items
+            timelineItems.forEach(item => {
+                timelineObserver.observe(item);
+            });
+
+            // Observe milestone cards
+            milestoneCards.forEach(card => {
+                cardObserver.observe(card);
+            });
+
+            // Observe award cards
+            awardCards.forEach(card => {
+                cardObserver.observe(card);
+            });
+        }
+
+        // ===== NUMBER ANIMATION =====
+        function animateNumbers() {
+            const milestoneNumbers = document.querySelectorAll('.milestone-number');
+            
+            milestoneNumbers.forEach(numberElement => {
+                const observer = new IntersectionObserver((entries) => {
+                    entries.forEach(entry => {
+                        if (entry.isIntersecting && !entry.target.classList.contains('animated')) {
+                            entry.target.classList.add('animated');
+                            animateNumber(entry.target);
+                        }
+                    });
+                }, { threshold: 0.5 });
+
+                observer.observe(numberElement);
+            });
+        }
+
+        function animateNumber(element) {
+            const finalText = element.textContent;
+            const numericPart = finalText.match(/\d+/)[0];
+            const suffix = finalText.replace(numericPart, '');
+            const finalNumber = parseInt(numericPart);
+            
+            let currentNumber = 0;
+            const increment = finalNumber / 60; // 60 frames for smooth animation
+            const duration = 2000; // 2 seconds
+            
+            const timer = setInterval(() => {
+                currentNumber += increment;
+                if (currentNumber >= finalNumber) {
+                    currentNumber = finalNumber;
+                    clearInterval(timer);
+                }
+                
+                element.textContent = Math.floor(currentNumber) + suffix;
+            }, duration / 60);
+        }
+
+        // ===== TIMELINE ITEM HOVER EFFECTS =====
+        function initTimelineHoverEffects() {
+            const timelineContents = document.querySelectorAll('.timeline-content');
+            
+            timelineContents.forEach(content => {
+                content.addEventListener('mouseenter', function() {
+                    this.style.transform = 'scale(1.02)';
+                    this.style.boxShadow = '0 20px 40px rgba(0, 122, 255, 0.15)';
+                });
+                
+                content.addEventListener('mouseleave', function() {
+                    this.style.transform = 'scale(1)';
+                    this.style.boxShadow = 'var(--shadow-sm)';
+                });
+            });
+        }
+
+        // ===== SCROLL PROGRESS INDICATOR =====
+        function initScrollProgress() {
+            const timelineLine = document.querySelector('.timeline-line');
+            
+            if (timelineLine) {
+                window.addEventListener('scroll', () => {
+                    const timelineSection = document.querySelector('.timeline-section');
+                    const rect = timelineSection.getBoundingClientRect();
+                    const sectionHeight = timelineSection.offsetHeight;
+                    const windowHeight = window.innerHeight;
+                    
+                    // Calculate progress
+                    const scrolled = Math.max(0, windowHeight - rect.top);
+                    const progress = Math.min(scrolled / (sectionHeight - windowHeight), 1);
+                    
+                    // Update timeline line gradient
+                    timelineLine.style.background = `linear-gradient(180deg, 
+                        var(--apple-blue) 0%, 
+                        var(--apple-blue) ${progress * 100}%, 
+                        var(--text-tertiary) ${progress * 100}%, 
+                        var(--text-tertiary) 100%)`;
+                }, { passive: true });
+            }
+        }
+
+        // ===== INITIALIZATION =====
+        document.addEventListener('DOMContentLoaded', function() {
+            console.log('📚 KOREVO History page loaded');
+            
+            // Initialize animations
+            initTimelineAnimations();
+            animateNumbers();
+            initTimelineHoverEffects();
+            initScrollProgress();
+        });
+
+        // ===== RESPONSIVE TIMELINE ADJUSTMENTS =====
+        function adjustTimelineForMobile() {
+            if (window.innerWidth <= 768) {
+                const timelineItems = document.querySelectorAll('.timeline-item');
+                timelineItems.forEach((item, index) => {
+                    item.style.animationDelay = `${index * 0.1}s`;
+                });
+            }
+        }
+
+        window.addEventListener('resize', debounce(adjustTimelineForMobile, 250));
+        adjustTimelineForMobile(); // Initial call
+        
+        function debounce(func, wait) {
+            let timeout;
+            return function executedFunction(...args) {
+                const later = () => {
+                    clearTimeout(timeout);
+                    func(...args);
+                };
+                clearTimeout(timeout);
+                timeout = setTimeout(later, wait);
+            };
+        }
+    </script>
+</body>
+</html>
