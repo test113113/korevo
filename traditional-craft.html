@@ -1,0 +1,1066 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>전통 기법 계승 - KOREVO</title>
+    <meta name="description" content="천년의 전통 기법과 현대 AI 기술의 완벽한 융합, KOREVO가 계승하는 전통의 가치">
+    
+    <!-- Apple Design CSS -->
+    <link rel="stylesheet" href="styles.css">
+    
+    <style>
+        /* ===== TRADITIONAL CRAFT SPECIFIC STYLES ===== */
+        
+        /* Hero Section with Traditional Elements */
+        .craft-hero {
+            background: linear-gradient(135deg, #1a1a1a 0%, #2c2c2e 50%, #1a1a1a 100%);
+            color: white;
+            padding: 8rem 0;
+            position: relative;
+            overflow: hidden;
+            min-height: 90vh;
+            display: flex;
+            align-items: center;
+        }
+
+        .craft-hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(45deg, rgba(255, 215, 0, 0.08) 0%, rgba(184, 134, 11, 0.03) 100%);
+            opacity: 0.6;
+        }
+
+        .craft-hero::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><circle cx="25" cy="25" r="2" fill="rgba(255,215,0,0.1)"/><circle cx="75" cy="75" r="1" fill="rgba(255,215,0,0.06)"/><circle cx="50" cy="10" r="1.5" fill="rgba(255,215,0,0.08)"/></svg>');
+            opacity: 0.3;
+            animation: float 20s ease-in-out infinite;
+        }
+
+        /* Heritage Process Section */
+        .heritage-process {
+            padding: 8rem 0;
+            background: var(--bg-primary);
+        }
+
+        .process-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 4rem;
+            margin-top: 4rem;
+        }
+
+        .process-card {
+            background: white;
+            border: 1px solid rgba(0, 0, 0, 0.1);
+            border-radius: 20px;
+            padding: 3rem;
+            transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+            position: relative;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+        }
+
+        .process-card:hover {
+            transform: translateY(-10px) scale(1.02);
+            box-shadow: 0 25px 50px rgba(0, 122, 255, 0.15);
+        }
+
+        .process-image {
+            width: 100%;
+            height: 200px;
+            border-radius: 16px;
+            overflow: hidden;
+            margin-bottom: 2rem;
+            position: relative;
+        }
+
+        .process-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.4s ease;
+        }
+
+        .process-card:hover .process-image img {
+            transform: scale(1.05);
+        }
+
+        .process-number {
+            position: absolute;
+            top: 1rem;
+            right: 1rem;
+            width: 50px;
+            height: 50px;
+            background: rgba(0, 122, 255, 0.9);
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.25rem;
+            font-weight: 700;
+            backdrop-filter: blur(10px);
+        }
+
+        .process-title {
+            font-size: 1.5rem;
+            font-weight: 600;
+            color: var(--text-primary);
+            margin-bottom: 1rem;
+        }
+
+        .process-description {
+            color: var(--text-secondary);
+            line-height: 1.6;
+            margin-bottom: 1.5rem;
+        }
+
+        .process-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+        }
+
+        .process-tag {
+            background: rgba(0, 122, 255, 0.1);
+            color: var(--apple-blue);
+            padding: 0.25rem 0.75rem;
+            border-radius: 12px;
+            font-size: 0.875rem;
+            font-weight: 500;
+        }
+
+        /* AI Integration Section */
+        .ai-integration {
+            padding: 8rem 0;
+            background: var(--bg-secondary);
+            position: relative;
+        }
+
+        .ai-fusion-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 6rem;
+            align-items: center;
+            margin-top: 4rem;
+        }
+
+        .ai-visual {
+            position: relative;
+            height: 500px;
+            background: linear-gradient(135deg, #ffffff 0%, #f8f9fa 100%);
+            border-radius: 20px;
+            overflow: hidden;
+            border: 1px solid rgba(0, 0, 0, 0.1);
+        }
+
+        .ai-diagram {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            text-align: center;
+        }
+
+        .ai-circle {
+            width: 200px;
+            height: 200px;
+            border: 3px solid var(--apple-blue);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 2rem;
+            position: relative;
+            animation: pulse 3s ease-in-out infinite;
+        }
+
+        .ai-circle::before {
+            content: '';
+            position: absolute;
+            width: 220px;
+            height: 220px;
+            border: 1px solid rgba(0, 122, 255, 0.3);
+            border-radius: 50%;
+            animation: pulse 3s ease-in-out infinite reverse;
+        }
+
+        .ai-icon {
+            font-size: 4rem;
+            color: var(--apple-blue);
+        }
+
+        .ai-features {
+            margin-top: 2rem;
+        }
+
+        .ai-feature {
+            display: flex;
+            align-items: center;
+            margin-bottom: 1.5rem;
+            padding: 1.5rem;
+            background: white;
+            border-radius: 12px;
+            transition: all 0.3s ease;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.08);
+        }
+
+        .ai-feature:hover {
+            background: rgba(0, 122, 255, 0.05);
+            transform: translateX(10px);
+        }
+
+        .ai-feature-icon {
+            width: 60px;
+            height: 60px;
+            background: linear-gradient(135deg, var(--apple-blue) 0%, #0051a3 100%);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-right: 1.5rem;
+            font-size: 1.5rem;
+            color: white;
+            flex-shrink: 0;
+        }
+
+        .ai-feature-content h4 {
+            color: var(--text-primary);
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+        }
+
+        .ai-feature-content p {
+            color: var(--text-secondary);
+            font-size: 0.9rem;
+            margin: 0;
+        }
+
+        /* Craftsman Section */
+        .craftsman-section {
+            padding: 8rem 0;
+            background: white;
+        }
+
+        .craftsman-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 3rem;
+            margin-top: 4rem;
+        }
+
+        .craftsman-card {
+            background: white;
+            border: 1px solid rgba(0, 0, 0, 0.1);
+            border-radius: 20px;
+            overflow: hidden;
+            transition: all 0.4s ease;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+        }
+
+        .craftsman-card:hover {
+            transform: translateY(-15px);
+            box-shadow: 0 25px 50px rgba(0, 0, 0, 0.15);
+        }
+
+        .craftsman-image {
+            width: 100%;
+            height: 250px;
+            background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 3rem;
+            color: var(--text-secondary);
+            position: relative;
+        }
+
+        .craftsman-info {
+            padding: 2rem;
+        }
+
+        .craftsman-badge {
+            background: linear-gradient(135deg, #FFD700 0%, #B8860B 100%);
+            color: #1a1a1a;
+            padding: 0.25rem 0.75rem;
+            border-radius: 12px;
+            font-size: 0.75rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            margin-bottom: 1rem;
+            display: inline-block;
+        }
+
+        .craftsman-name {
+            font-size: 1.25rem;
+            font-weight: 600;
+            color: var(--text-primary);
+            margin-bottom: 0.5rem;
+        }
+
+        .craftsman-title {
+            color: var(--text-secondary);
+            font-size: 0.9rem;
+            margin-bottom: 1rem;
+        }
+
+        .craftsman-description {
+            color: var(--text-secondary);
+            line-height: 1.6;
+            font-size: 0.9rem;
+        }
+
+        /* Innovation Timeline */
+        .innovation-timeline {
+            padding: 8rem 0;
+            background: var(--bg-secondary);
+        }
+
+        .timeline-container {
+            position: relative;
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+
+        .timeline-line {
+            position: absolute;
+            left: 50%;
+            top: 0;
+            bottom: 0;
+            width: 3px;
+            background: linear-gradient(180deg, var(--apple-blue), #FFD700, var(--apple-blue));
+            transform: translateX(-50%);
+        }
+
+        .timeline-item {
+            display: flex;
+            align-items: center;
+            margin-bottom: 4rem;
+            position: relative;
+        }
+
+        .timeline-item:nth-child(even) {
+            flex-direction: row-reverse;
+        }
+
+        .timeline-content {
+            flex: 1;
+            background: white;
+            padding: 2.5rem;
+            border-radius: 16px;
+            margin: 0 2rem;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            position: relative;
+        }
+
+        .timeline-item:nth-child(odd) .timeline-content::before {
+            content: '';
+            position: absolute;
+            right: -10px;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 0;
+            height: 0;
+            border: 10px solid transparent;
+            border-left-color: white;
+        }
+
+        .timeline-item:nth-child(even) .timeline-content::before {
+            content: '';
+            position: absolute;
+            left: -10px;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 0;
+            height: 0;
+            border: 10px solid transparent;
+            border-right-color: white;
+        }
+
+        .timeline-year {
+            position: absolute;
+            left: 50%;
+            transform: translateX(-50%);
+            background: var(--apple-blue);
+            color: white;
+            padding: 0.75rem 1.5rem;
+            border-radius: 25px;
+            font-weight: 700;
+            font-size: 1rem;
+            box-shadow: 0 4px 15px rgba(0, 122, 255, 0.3);
+        }
+
+        .timeline-title {
+            font-size: 1.25rem;
+            font-weight: 600;
+            color: var(--text-primary);
+            margin-bottom: 1rem;
+        }
+
+        .timeline-description {
+            color: var(--text-secondary);
+            line-height: 1.6;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .ai-fusion-grid {
+                grid-template-columns: 1fr;
+                gap: 3rem;
+            }
+
+            .timeline-line {
+                left: 2rem;
+            }
+
+            .timeline-item {
+                flex-direction: column !important;
+                padding-left: 4rem;
+            }
+
+            .timeline-year {
+                left: 2rem;
+                transform: none;
+            }
+
+            .timeline-content {
+                margin: 2rem 0 0 0;
+            }
+
+            .timeline-content::before {
+                display: none;
+            }
+
+            .process-grid {
+                grid-template-columns: 1fr;
+                gap: 2rem;
+            }
+
+            .craftsman-grid {
+                grid-template-columns: 1fr;
+                gap: 2rem;
+            }
+        }
+
+        /* Animation keyframes */
+        @keyframes pulse {
+            0%, 100% { transform: translate(-50%, -50%) scale(1); }
+            50% { transform: translate(-50%, -50%) scale(1.05); }
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0px) rotate(0deg); }
+            50% { transform: translateY(-20px) rotate(1deg); }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header class="header">
+        <nav class="nav-container">
+            <a href="index.html" class="logo">KOREVO</a>
+            
+            <ul class="nav-menu" id="navMenu">
+                <li class="nav-item">
+                    <a href="index.html" class="nav-link">홈</a>
+                </li>
+                <li class="nav-item">
+                    <a href="#" class="nav-link">회사소개</a>
+                    <div class="dropdown">
+                        <div class="dropdown-item" onclick="window.location.href='greeting.html'">인사말</div>
+                        <div class="dropdown-item" onclick="navigateToPage('vision')">비전 & 미션</div>
+                        <div class="dropdown-item" onclick="navigateToPage('history')">연혁</div>
+                        <div class="dropdown-item" onclick="navigateToPage('team')">팀 소개</div>
+                    </div>
+                </li>
+                <li class="nav-item">
+                    <a href="#business" class="nav-link active">사업소개</a>
+                    <div class="mega-dropdown">
+                        <div class="dropdown-section">
+                            <h4>브랜드 스토리</h4>
+                            <div class="dropdown-item" onclick="window.location.href='heonn-brand.html'">헤온(HeOnn) 브랜드</div>
+                            <div class="dropdown-item" onclick="navigateToPage('brand-philosophy')">브랜드 철학</div>
+                            <div class="dropdown-item active" onclick="window.location.href='traditional-craft.html'">전통 기법 계승</div>
+                        </div>
+                        <div class="dropdown-section">
+                            <h4>융합 비즈니스</h4>
+                            <div class="dropdown-item" onclick="navigateToPage('business-model')">사업 모델</div>
+                            <div class="dropdown-item" onclick="navigateToPage('innovation-strategy')">혁신 전략</div>
+                            <div class="dropdown-item" onclick="navigateToPage('sustainability')">지속가능경영</div>
+                        </div>
+                    </div>
+                </li>
+                <li class="nav-item">
+                    <a href="#products" class="nav-link">제품/서비스</a>
+                    <div class="mega-dropdown">
+                        <div class="dropdown-section">
+                            <h4>🏺 유기 제품군</h4>
+                            <div class="dropdown-item" onclick="window.location.href='dining-set.html'">식기 컬렉션</div>
+                            <div class="dropdown-item" onclick="navigateToPage('health-products')">건강 케어 제품</div>
+                            <div class="dropdown-item" onclick="navigateToPage('gift-sets')">프리미엄 선물세트</div>
+                            <div class="dropdown-item" onclick="navigateToPage('custom-craft')">맞춤 제작 서비스</div>
+                        </div>
+                        <div class="dropdown-section">
+                            <h4>💻 소프트웨어</h4>
+                            <div class="dropdown-item" onclick="navigateToPage('erp-solution')">제조업 ERP 솔루션</div>
+                            <div class="dropdown-item" onclick="navigateToPage('iot-platform')">IoT 품질관리 플랫폼</div>
+                            <div class="dropdown-item" onclick="navigateToPage('ecommerce-system')">전통공예 전자상거래</div>
+                            <div class="dropdown-item" onclick="navigateToPage('consulting')">디지털 전환 컨설팅</div>
+                        </div>
+                        <div class="dropdown-section">
+                            <h4>🔬 R&D 과제</h4>
+                            <div class="dropdown-item" onclick="navigateToPage('current-projects')">진행중 과제</div>
+                            <div class="dropdown-item" onclick="navigateToPage('completed-projects')">완료 과제</div>
+                            <div class="dropdown-item" onclick="navigateToPage('research-outcomes')">연구 성과</div>
+                            <div class="dropdown-item" onclick="navigateToPage('collaboration')">산학연 협력</div>
+                        </div>
+                    </div>
+                </li>
+                <li class="nav-item">
+                    <a href="contact.html" class="nav-link">CONTACT</a>
+                </li>
+                <li class="nav-item">
+                    <a href="#shop" class="nav-link">쇼핑몰</a>
+                </li>
+            </ul>
+
+            <div class="lang-selector">
+                <a href="#" class="lang-btn active">🇰🇷</a>
+                <a href="#" class="lang-btn">🇺🇸</a>
+                <a href="#" class="lang-btn">🇨🇳</a>
+                <a href="#" class="lang-btn">🇯🇵</a>
+            </div>
+
+            <button class="menu-toggle" onclick="toggleMenu()" aria-label="메뉴 토글" aria-expanded="false">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+        </nav>
+    </header>
+
+    <!-- Breadcrumb -->
+    <nav class="breadcrumb-nav">
+        <div class="breadcrumb">
+            <a href="index.html" class="breadcrumb-item">홈</a>
+            <span class="breadcrumb-separator">></span>
+            <a href="#" class="breadcrumb-item">사업소개</a>
+            <span class="breadcrumb-separator">></span>
+            <span class="breadcrumb-item active">전통 기법 계승</span>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="craft-hero">
+        <div class="container">
+            <div class="hero-content">
+                <div style="text-align: center; position: relative; z-index: 3;">
+                    <div style="font-size: 4rem; margin-bottom: 2rem; animation: float 3s ease-in-out infinite;">⚒️</div>
+                    <h1 style="font-size: clamp(3rem, 6vw, 5rem); font-weight: 700; margin-bottom: 1.5rem; color: white; letter-spacing: -0.02em;">전통 기법 계승</h1>
+                    <p style="font-size: 1.5rem; opacity: 0.9; max-width: 800px; margin: 0 auto 3rem; font-weight: 300; line-height: 1.6;">
+                        천년의 전통 기법과 현대 AI 기술의 완벽한 융합,<br>
+                        KOREVO가 계승하는 전통의 가치와 혁신의 조화
+                    </p>
+                    <div style="display: flex; gap: 1.5rem; justify-content: center; flex-wrap: wrap;">
+                        <a href="#heritage-process" style="padding: 1rem 2.5rem; background: var(--apple-blue); color: white; text-decoration: none; border-radius: 50px; font-weight: 600; transition: all 0.3s ease;">전통 기법 보기</a>
+                        <a href="#ai-integration" style="padding: 1rem 2.5rem; border: 2px solid white; color: white; text-decoration: none; border-radius: 50px; font-weight: 600; transition: all 0.3s ease;">AI 융합 기술</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Heritage Process Section -->
+    <section id="heritage-process" class="heritage-process">
+        <div class="container">
+            <div style="text-align: center; margin-bottom: 4rem;">
+                <div style="font-size: 3rem; margin-bottom: 1rem;">🏺</div>
+                <h2 style="font-size: clamp(2.5rem, 4vw, 3.5rem); font-weight: 700; margin-bottom: 1rem; color: var(--text-primary);">전통 제작 과정</h2>
+                <p style="font-size: 1.25rem; color: var(--text-secondary); max-width: 600px; margin: 0 auto;">
+                    무형문화재 장인들과 함께하는 정통 유기 제작의 전 과정
+                </p>
+            </div>
+
+            <div class="process-grid">
+                <div class="process-card animate-on-scroll">
+                    <div class="process-image">
+                        <img src="./images/jeon_01.jpg" alt="전통 기법 1단계" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+                        <div style="display: none; width: 100%; height: 100%; background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%); align-items: center; justify-content: center; font-size: 3rem; color: var(--text-secondary);">🔥</div>
+                        <div class="process-number">1</div>
+                    </div>
+                    <h3 class="process-title">소재 준비 및 용해</h3>
+                    <p class="process-description">
+                        순수한 구리와 아연을 정확한 비율로 배합하여 전통 놋쇠를 만드는 첫 번째 단계입니다. 
+                        장인의 오랜 경험으로 최적의 합금 비율을 유지합니다.
+                    </p>
+                    <div class="process-tags">
+                        <span class="process-tag">전통 배합법</span>
+                        <span class="process-tag">순수 소재</span>
+                        <span class="process-tag">장인 기법</span>
+                    </div>
+                </div>
+
+                <div class="process-card animate-on-scroll">
+                    <div class="process-image">
+                        <img src="./images/jeon_02.jpg" alt="전통 기법 2단계" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+                        <div style="display: none; width: 100%; height: 100%; background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%); align-items: center; justify-content: center; font-size: 3rem; color: var(--text-secondary);">⚒️</div>
+                        <div class="process-number">2</div>
+                    </div>
+                    <h3 class="process-title">단조 및 성형</h3>
+                    <p class="process-description">
+                        뜨겁게 달궈진 놋쇠를 망치로 두드려 원하는 형태로 만드는 전통 단조 기법입니다. 
+                        수백 번의 두드림을 통해 강도와 아름다움을 동시에 완성합니다.
+                    </p>
+                    <div class="process-tags">
+                        <span class="process-tag">수작업 단조</span>
+                        <span class="process-tag">형태 조성</span>
+                        <span class="process-tag">강도 향상</span>
+                    </div>
+                </div>
+
+                <div class="process-card animate-on-scroll">
+                    <div class="process-image">
+                        <img src="./images/jeon_03.jpg" alt="전통 기법 3단계" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+                        <div style="display: none; width: 100%; height: 100%; background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%); align-items: center; justify-content: center; font-size: 3rem; color: var(--text-secondary);">✨</div>
+                        <div class="process-number">3</div>
+                    </div>
+                    <h3 class="process-title">정밀 가공 및 마감</h3>
+                    <p class="process-description">
+                        세밀한 부분까지 정교하게 다듬고 표면을 매끄럽게 다듬는 과정입니다. 
+                        전통 도구를 사용하여 완벽한 곡선과 균일한 두께를 구현합니다.
+                    </p>
+                    <div class="process-tags">
+                        <span class="process-tag">정밀 가공</span>
+                        <span class="process-tag">표면 처리</span>
+                        <span class="process-tag">품질 완성</span>
+                    </div>
+                </div>
+
+                <div class="process-card animate-on-scroll">
+                    <div class="process-image">
+                        <img src="./images/jeon_04.jpg" alt="전통 기법 4단계" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+                        <div style="display: none; width: 100%; height: 100%; background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%); align-items: center; justify-content: center; font-size: 3rem; color: var(--text-secondary);">🎨</div>
+                        <div class="process-number">4</div>
+                    </div>
+                    <h3 class="process-title">최종 검수 및 완성</h3>
+                    <p class="process-description">
+                        장인의 엄격한 품질 기준에 따라 최종 검수를 진행합니다. 
+                        전통의 아름다움과 현대적 완성도를 모두 갖춘 작품으로 완성됩니다.
+                    </p>
+                    <div class="process-tags">
+                        <span class="process-tag">품질 검수</span>
+                        <span class="process-tag">최종 완성</span>
+                        <span class="process-tag">전통 계승</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- AI Integration Section -->
+    <section id="ai-integration" class="ai-integration">
+        <div class="container">
+            <div style="text-align: center; margin-bottom: 4rem;">
+                <div style="font-size: 3rem; margin-bottom: 1rem;">🤖</div>
+                <h2 style="font-size: clamp(2.5rem, 4vw, 3.5rem); font-weight: 700; margin-bottom: 1rem; color: var(--text-primary);">AI 기술 융합</h2>
+                <p style="font-size: 1.25rem; color: var(--text-secondary); max-width: 600px; margin: 0 auto;">
+                    전통 기법과 현대 AI 기술의 혁신적 결합으로 새로운 가치를 창조합니다
+                </p>
+            </div>
+
+            <div class="ai-fusion-grid">
+                <div class="ai-visual">
+                    <div class="ai-diagram">
+                        <div class="ai-circle">
+                            <div class="ai-icon">🧠</div>
+                        </div>
+                        <h3 style="font-size: 1.5rem; font-weight: 600; color: var(--text-primary); margin-bottom: 1rem;">전통 + AI</h3>
+                        <p style="color: var(--text-secondary);">혁신적 융합 기술</p>
+                    </div>
+                </div>
+
+                <div class="ai-features">
+                    <h3 style="font-size: 2rem; font-weight: 600; color: var(--text-primary); margin-bottom: 2rem;">AI 맞춤 설계 시스템</h3>
+                    <p style="color: var(--text-secondary); font-size: 1.125rem; line-height: 1.6; margin-bottom: 2rem;">
+                        개인의 얼굴형, 사용 패턴, 선호도를 AI로 분석하여 
+                        최적의 헤온 제품을 설계합니다.
+                    </p>
+
+                    <div class="ai-feature">
+                        <div class="ai-feature-icon">📱</div>
+                        <div class="ai-feature-content">
+                            <h4>3D 스캔 분석</h4>
+                            <p>스마트폰 카메라로 얼굴형을 3D 스캔하여 개인별 최적 사이즈를 도출합니다.</p>
+                        </div>
+                    </div>
+
+                    <div class="ai-feature">
+                        <div class="ai-feature-icon">🎯</div>
+                        <div class="ai-feature-content">
+                            <h4>사용 패턴 학습</h4>
+                            <p>개인의 식사 습관과 사용 패턴을 학습하여 맞춤형 제품을 추천합니다.</p>
+                        </div>
+                    </div>
+
+                    <div class="ai-feature">
+                        <div class="ai-feature-icon">⚙️</div>
+                        <div class="ai-feature-content">
+                            <h4>자동 설계 생성</h4>
+                            <p>AI가 분석한 데이터를 바탕으로 자동으로 개인 맞춤 설계도를 생성합니다.</p>
+                        </div>
+                    </div>
+
+                    <div class="ai-feature">
+                        <div class="ai-feature-icon">🔄</div>
+                        <div class="ai-feature-content">
+                            <h4>지속적 최적화</h4>
+                            <p>사용 피드백을 통해 지속적으로 설계를 개선하고 최적화합니다.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Innovation Timeline -->
+    <section class="innovation-timeline">
+        <div class="container">
+            <div style="text-align: center; margin-bottom: 4rem;">
+                <div style="font-size: 3rem; margin-bottom: 1rem;">⏰</div>
+                <h2 style="font-size: clamp(2.5rem, 4vw, 3.5rem); font-weight: 700; margin-bottom: 1rem; color: var(--text-primary);">혁신의 발자취</h2>
+                <p style="font-size: 1.25rem; color: var(--text-secondary); max-width: 600px; margin: 0 auto;">
+                    KOREVO가 걸어온 전통 기법 계승과 혁신의 여정
+                </p>
+            </div>
+
+            <div class="timeline-container">
+                <div class="timeline-line"></div>
+
+                <div class="timeline-item">
+                    <div class="timeline-content">
+                        <h3 class="timeline-title">전통 기법 연구 시작</h3>
+                        <p class="timeline-description">
+                            무형문화재 장인들과의 협력을 통해 전통 유기 제작 기법에 대한 
+                            체계적인 연구를 시작했습니다. 잊혀져가는 전통 기술의 복원에 착수했습니다.
+                        </p>
+                    </div>
+                    <div class="timeline-year">2020</div>
+                </div>
+
+                <div class="timeline-item">
+                    <div class="timeline-content">
+                        <h3 class="timeline-title">AI 기술 도입 연구</h3>
+                        <p class="timeline-description">
+                            개인 맞춤형 제품 설계를 위한 AI 기술 연구를 시작했습니다. 
+                            3D 스캔 기술과 머신러닝 알고리즘을 활용한 설계 시스템을 개발했습니다.
+                        </p>
+                    </div>
+                    <div class="timeline-year">2021</div>
+                </div>
+
+                <div class="timeline-item">
+                    <div class="timeline-content">
+                        <h3 class="timeline-title">첫 번째 융합 제품 출시</h3>
+                        <p class="timeline-description">
+                            전통 기법과 AI 기술을 결합한 첫 번째 헤온 제품을 출시했습니다. 
+                            개인 맞춤형 수저를 통해 혁신의 가능성을 입증했습니다.
+                        </p>
+                    </div>
+                    <div class="timeline-year">2022</div>
+                </div>
+
+                <div class="timeline-item">
+                    <div class="timeline-content">
+                        <h3 class="timeline-title">기술 고도화 및 확장</h3>
+                        <p class="timeline-description">
+                            AI 알고리즘을 더욱 정교화하고 제품 라인을 확장했습니다. 
+                            식기 전반으로 맞춤형 기술을 확대 적용했습니다.
+                        </p>
+                    </div>
+                    <div class="timeline-year">2023</div>
+                </div>
+
+                <div class="timeline-item">
+                    <div class="timeline-content">
+                        <h3 class="timeline-title">글로벌 인증 및 수상</h3>
+                        <p class="timeline-description">
+                            전통과 혁신의 완벽한 융합을 인정받아 다수의 국제 디자인상을 수상했습니다. 
+                            해외 시장 진출의 발판을 마련했습니다.
+                        </p>
+                    </div>
+                    <div class="timeline-year">2024</div>
+                </div>
+
+                <div class="timeline-item">
+                    <div class="timeline-content">
+                        <h3 class="timeline-title">차세대 기술 개발</h3>
+                        <p class="timeline-description">
+                            더욱 진보된 AI 기술과 IoT 융합을 통한 스마트 헤온 시스템을 개발 중입니다. 
+                            전통 계승의 새로운 패러다임을 제시하고 있습니다.
+                        </p>
+                    </div>
+                    <div class="timeline-year">2025</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Craftsman Section -->
+    <section class="craftsman-section">
+        <div class="container">
+            <div style="text-align: center; margin-bottom: 4rem;">
+                <div style="font-size: 3rem; margin-bottom: 1rem;">👨‍🎨</div>
+                <h2 style="font-size: clamp(2.5rem, 4vw, 3.5rem); font-weight: 700; margin-bottom: 1rem; color: var(--text-primary);">장인과의 협력</h2>
+                <p style="font-size: 1.25rem; color: var(--text-secondary); max-width: 600px; margin: 0 auto;">
+                    KOREVO와 함께하는 무형문화재 장인들의 소중한 기술 전수
+                </p>
+            </div>
+
+            <div class="craftsman-grid">
+                <div class="craftsman-card animate-on-scroll">
+                    <div class="craftsman-image">👨‍🔧</div>
+                    <div class="craftsman-info">
+                        <div class="craftsman-badge">무형문화재</div>
+                        <h3 class="craftsman-name">이수봉 장인</h3>
+                        <p class="craftsman-title">유기장 기능보유자</p>
+                        <p class="craftsman-description">
+                            50년간 전통 유기 제작에 매진해온 이수봉 장인은 KOREVO의 
+                            핵심 기술 자문위원으로 활동하며 정통 기법을 전수하고 계십니다.
+                        </p>
+                    </div>
+                </div>
+
+                <div class="craftsman-card animate-on-scroll">
+                    <div class="craftsman-image">👩‍🎨</div>
+                    <div class="craftsman-info">
+                        <div class="craftsman-badge">전승 공예사</div>
+                        <h3 class="craftsman-name">김미영 장인</h3>
+                        <p class="craftsman-title">전통 문양 전문가</p>
+                        <p class="craftsman-description">
+                            전통 문양과 장식 기법의 대가로, 헤온 제품의 아름다운 
+                            디자인 요소를 현대적으로 재해석하는 작업을 담당하고 있습니다.
+                        </p>
+                    </div>
+                </div>
+
+                <div class="craftsman-card animate-on-scroll">
+                    <div class="craftsman-image">👨‍💼</div>
+                    <div class="craftsman-info">
+                        <div class="craftsman-badge">기술 융합</div>
+                        <h3 class="craftsman-name">박철수 박사</h3>
+                        <p class="craftsman-title">AI 기술 총괄</p>
+                        <p class="craftsman-description">
+                            전통 기법과 AI 기술의 융합을 이끄는 기술 책임자로, 
+                            혁신적인 맞춤형 설계 시스템을 개발하고 있습니다.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Future Vision Section -->
+    <section class="features-section">
+        <div class="container">
+            <div class="features-header">
+                <h2 class="features-title">미래 비전</h2>
+                <p class="features-subtitle">
+                    전통 계승의 새로운 패러다임을 제시하는 KOREVO의 미래 계획
+                </p>
+            </div>
+            <div class="features-grid">
+                <div class="feature-card animate-on-scroll">
+                    <span class="feature-icon">🌐</span>
+                    <h3 class="feature-title">글로벌 전통 플랫폼</h3>
+                    <p class="feature-description">
+                        한국의 전통 기법을 세계에 알리는 글로벌 플랫폼을 구축하여 
+                        K-전통문화의 우수성을 널리 전파하겠습니다.
+                    </p>
+                </div>
+                <div class="feature-card animate-on-scroll">
+                    <span class="feature-icon">🎓</span>
+                    <h3 class="feature-title">차세대 장인 양성</h3>
+                    <p class="feature-description">
+                        전통 기법과 현대 기술을 모두 익힌 차세대 장인을 양성하여 
+                        전통의 지속적인 발전과 계승을 도모하겠습니다.
+                    </p>
+                </div>
+                <div class="feature-card animate-on-scroll">
+                    <span class="feature-icon">🔬</span>
+                    <h3 class="feature-title">기술 혁신 지속</h3>
+                    <p class="feature-description">
+                        AI, IoT, VR/AR 등 최신 기술을 활용하여 전통 기법의 
+                        현대적 계승 방법을 지속적으로 연구개발하겠습니다.
+                    </p>
+                </div>
+                <div class="feature-card animate-on-scroll">
+                    <span class="feature-icon">🤝</span>
+                    <h3 class="feature-title">산업 생태계 구축</h3>
+                    <p class="feature-description">
+                        전통 공예 업계의 디지털 전환을 지원하고 협력 네트워크를 
+                        구축하여 함께 성장하는 생태계를 만들어가겠습니다.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="cta-section">
+        <div class="container">
+            <div class="cta-content">
+                <h2 class="cta-title">전통의 미래를 함께 만들어가세요</h2>
+                <p class="cta-subtitle">
+                    KOREVO와 함께 천년의 전통을 현대에 되살리고, 
+                    AI 기술과의 융합을 통해 새로운 가치를 창조해보세요.
+                </p>
+                <div class="cta-buttons">
+                    <a href="heonn-brand.html" class="cta-btn">헤온 브랜드 보기</a>
+                    <a href="dining-set.html" class="cta-btn secondary">제품 컬렉션</a>
+                    <a href="contact.html" class="cta-btn secondary">협력 문의</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="footer-content">
+            <div class="footer-section">
+                <h3>KOREVO</h3>
+                <p>한국의 전통과 혁신을 담은<br>프리미엄 유기 브랜드</p>
+                <p>전통의 아름다움을 현대에 되살리며<br>지속가능한 미래를 만들어갑니다.</p>
+            </div>
+            <div class="footer-section">
+                <h3>전통 기법</h3>
+                <p><a href="#heritage-process">제작 과정</a></p>
+                <p><a href="#ai-integration">AI 융합 기술</a></p>
+                <p><a href="#craftsman-section">장인 협력</a></p>
+                <p><a href="heonn-brand.html">브랜드 스토리</a></p>
+            </div>
+            <div class="footer-section">
+                <h3>고객지원</h3>
+                <p>고객센터: 1588-0000</p>
+                <p>이메일: info@korevo.co.kr</p>
+                <p>운영시간: 평일 09:00-18:00</p>
+                <p>주소: 서울특별시 강남구 테헤란로 123</p>
+            </div>
+            <div class="footer-section">
+                <h3>협력 문의</h3>
+                <p><a href="contact.html">기술 협력</a></p>
+                <p><a href="contact.html">장인 협력</a></p>
+                <p><a href="contact.html">연구 개발</a></p>
+                <p><a href="contact.html">사업 제휴</a></p>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2025 KOREVO. All rights reserved. | 사업자등록번호: 123-45-67890</p>
+        </div>
+    </footer>
+
+    <!-- JavaScript -->
+    <script src="script.js"></script>
+    
+    <script>
+        // 페이지 특화 JavaScript
+        document.addEventListener('DOMContentLoaded', function() {
+            // 스크롤 애니메이션 초기화
+            initScrollAnimations();
+            
+            // 프로세스 카드 호버 효과
+            initProcessCardEffects();
+            
+            // AI 기능 카드 순차 애니메이션
+            initAIFeatureAnimations();
+        });
+
+        function initScrollAnimations() {
+            const observerOptions = {
+                threshold: 0.1,
+                rootMargin: '0px 0px -50px 0px'
+            };
+
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.style.opacity = '1';
+                        entry.target.style.transform = 'translateY(0)';
+                    }
+                });
+            }, observerOptions);
+
+            document.querySelectorAll('.animate-on-scroll').forEach(el => {
+                el.style.opacity = '0';
+                el.style.transform = 'translateY(20px)';
+                el.style.transition = 'all 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94)';
+                observer.observe(el);
+            });
+        }
+
+        function initProcessCardEffects() {
+            document.querySelectorAll('.process-card').forEach(card => {
+                card.addEventListener('mouseenter', function() {
+                    this.style.transform = 'translateY(-15px) scale(1.03)';
+                    this.style.boxShadow = '0 30px 60px rgba(0, 122, 255, 0.2)';
+                });
+
+                card.addEventListener('mouseleave', function() {
+                    this.style.transform = 'translateY(0) scale(1)';
+                    this.style.boxShadow = '0 10px 30px rgba(0, 0, 0, 0.05)';
+                });
+            });
+        }
+
+        function initAIFeatureAnimations() {
+            const aiFeatures = document.querySelectorAll('.ai-feature');
+            
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach((entry, index) => {
+                    if (entry.isIntersecting) {
+                        setTimeout(() => {
+                            entry.target.style.opacity = '1';
+                            entry.target.style.transform = 'translateX(0)';
+                        }, index * 200);
+                    }
+                });
+            }, { threshold: 0.3 });
+
+            aiFeatures.forEach(feature => {
+                feature.style.opacity = '0';
+                feature.style.transform = 'translateX(-20px)';
+                feature.style.transition = 'all 0.6s ease';
+                observer.observe(feature);
+            });
+        }
+
+        // 부드러운 스크롤 네비게이션
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    const headerHeight = document.querySelector('.header').offsetHeight;
+                    const targetPosition = target.offsetTop - headerHeight - 20;
+                    
+                    window.scrollTo({
+                        top: targetPosition,
+                        behavior: 'smooth'
+                    });
+                }
+            });
+        });
+    </script>
+</body>
+</html>
