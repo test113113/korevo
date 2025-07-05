@@ -12,14 +12,21 @@
     <style>
         /* ===== TRADITIONAL CRAFT SPECIFIC STYLES ===== */
         
-        /* Hero Section with Traditional Elements */
+        /* Hero Section with Traditional Background Image */
         .craft-hero {
-            background: linear-gradient(135deg, #1a1a1a 0%, #2c2c2e 50%, #1a1a1a 100%);
+            background: linear-gradient(
+                rgba(0, 0, 0, 0.7), 
+                rgba(0, 0, 0, 0.5), 
+                rgba(0, 0, 0, 0.8)
+            ), url('./images/jeon_01.png');
+            background-size: cover;
+            background-position: center center;
+            background-attachment: fixed;
             color: white;
             padding: 8rem 0;
             position: relative;
             overflow: hidden;
-            min-height: 90vh;
+            min-height: 100vh;
             display: flex;
             align-items: center;
         }
@@ -31,8 +38,14 @@
             left: 0;
             right: 0;
             bottom: 0;
-            background: linear-gradient(45deg, rgba(255, 215, 0, 0.08) 0%, rgba(184, 134, 11, 0.03) 100%);
-            opacity: 0.6;
+            background: linear-gradient(
+                135deg, 
+                rgba(0, 0, 0, 0.6) 0%, 
+                rgba(0, 0, 0, 0.3) 50%, 
+                rgba(0, 0, 0, 0.7) 100%
+            );
+            backdrop-filter: blur(1px);
+            z-index: 1;
         }
 
         .craft-hero::after {
@@ -42,9 +55,110 @@
             left: 0;
             right: 0;
             bottom: 0;
-            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><circle cx="25" cy="25" r="2" fill="rgba(255,215,0,0.1)"/><circle cx="75" cy="75" r="1" fill="rgba(255,215,0,0.06)"/><circle cx="50" cy="10" r="1.5" fill="rgba(255,215,0,0.08)"/></svg>');
-            opacity: 0.3;
-            animation: float 20s ease-in-out infinite;
+            background: linear-gradient(
+                45deg, 
+                rgba(255, 215, 0, 0.1) 0%, 
+                transparent 30%,
+                transparent 70%,
+                rgba(184, 134, 11, 0.1) 100%
+            );
+            z-index: 2;
+            animation: shimmer 4s ease-in-out infinite;
+        }
+
+        @keyframes shimmer {
+            0%, 100% { opacity: 0.3; }
+            50% { opacity: 0.6; }
+        }
+
+        /* Enhanced text readability */
+        .craft-hero .hero-content {
+            position: relative;
+            z-index: 10;
+            text-align: center;
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+
+        .craft-hero h1 {
+            font-size: clamp(3.5rem, 8vw, 6rem) !important;
+            font-weight: 800 !important;
+            margin-bottom: 2rem !important;
+            color: #ffffff !important;
+            text-shadow: 
+                2px 2px 4px rgba(0, 0, 0, 0.8),
+                0 0 20px rgba(0, 0, 0, 0.5),
+                0 0 40px rgba(255, 215, 0, 0.2) !important;
+            letter-spacing: -0.02em !important;
+            line-height: 1.1 !important;
+        }
+
+        .craft-hero .subtitle {
+            font-size: 1.75rem !important;
+            opacity: 0.95 !important;
+            margin-bottom: 3rem !important;
+            font-weight: 400 !important;
+            line-height: 1.4 !important;
+            text-shadow: 
+                1px 1px 3px rgba(0, 0, 0, 0.8),
+                0 0 15px rgba(0, 0, 0, 0.6) !important;
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            padding: 1.5rem 2rem;
+            border-radius: 16px;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+
+        .craft-hero .page-icon {
+            font-size: 5rem !important;
+            margin-bottom: 2rem !important;
+            text-shadow: 
+                2px 2px 4px rgba(0, 0, 0, 0.8),
+                0 0 20px rgba(255, 215, 0, 0.3) !important;
+            animation: float 3s ease-in-out infinite;
+            filter: drop-shadow(0 0 10px rgba(255, 215, 0, 0.5));
+        }
+
+        .craft-hero .cta-buttons {
+            gap: 2rem !important;
+            margin-top: 3rem !important;
+        }
+
+        .craft-hero .cta-buttons a {
+            padding: 1.25rem 3rem !important;
+            font-size: 1.1rem !important;
+            font-weight: 600 !important;
+            border-radius: 50px !important;
+            transition: all 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94) !important;
+            text-decoration: none !important;
+            text-shadow: none !important;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .craft-hero .cta-buttons a:first-child {
+            background: linear-gradient(135deg, var(--apple-blue) 0%, #0051a3 100%) !important;
+            color: white !important;
+            box-shadow: 0 10px 30px rgba(0, 122, 255, 0.4);
+        }
+
+        .craft-hero .cta-buttons a:first-child:hover {
+            transform: translateY(-3px) scale(1.05) !important;
+            box-shadow: 0 15px 40px rgba(0, 122, 255, 0.6) !important;
+        }
+
+        .craft-hero .cta-buttons a:not(:first-child) {
+            background: rgba(255, 255, 255, 0.1) !important;
+            color: white !important;
+            border: 2px solid rgba(255, 255, 255, 0.3) !important;
+            backdrop-filter: blur(10px);
+        }
+
+        .craft-hero .cta-buttons a:not(:first-child):hover {
+            background: rgba(255, 255, 255, 0.2) !important;
+            border-color: rgba(255, 255, 255, 0.6) !important;
+            transform: translateY(-3px) scale(1.05) !important;
         }
 
         /* Heritage Process Section */
@@ -416,6 +530,43 @@
 
         /* Responsive Design */
         @media (max-width: 768px) {
+            .craft-hero {
+                min-height: 70vh;
+                padding: 4rem 0;
+                background-attachment: scroll; /* 모바일에서 fixed 해제 */
+            }
+
+            .craft-hero h1 {
+                font-size: clamp(2.5rem, 8vw, 4rem) !important;
+                text-shadow: 
+                    2px 2px 6px rgba(0, 0, 0, 0.9),
+                    0 0 25px rgba(0, 0, 0, 0.7) !important;
+            }
+
+            .craft-hero .subtitle {
+                font-size: 1.25rem !important;
+                padding: 1rem 1.5rem !important;
+                margin-bottom: 2rem !important;
+            }
+
+            .craft-hero .page-icon {
+                font-size: 3.5rem !important;
+                margin-bottom: 1.5rem !important;
+            }
+
+            .craft-hero .cta-buttons {
+                flex-direction: column !important;
+                align-items: center !important;
+                gap: 1rem !important;
+            }
+
+            .craft-hero .cta-buttons a {
+                width: 100% !important;
+                max-width: 280px !important;
+                padding: 1rem 2rem !important;
+                font-size: 1rem !important;
+            }
+
             .ai-fusion-grid {
                 grid-template-columns: 1fr;
                 gap: 3rem;
@@ -566,17 +717,15 @@
     <section class="craft-hero">
         <div class="container">
             <div class="hero-content">
-                <div style="text-align: center; position: relative; z-index: 3;">
-                    <div style="font-size: 4rem; margin-bottom: 2rem; animation: float 3s ease-in-out infinite;">⚒️</div>
-                    <h1 style="font-size: clamp(3rem, 6vw, 5rem); font-weight: 700; margin-bottom: 1.5rem; color: white; letter-spacing: -0.02em;">전통 기법 계승</h1>
-                    <p style="font-size: 1.5rem; opacity: 0.9; max-width: 800px; margin: 0 auto 3rem; font-weight: 300; line-height: 1.6;">
-                        천년의 전통 기법과 현대 AI 기술의 완벽한 융합,<br>
-                        KOREVO가 계승하는 전통의 가치와 혁신의 조화
-                    </p>
-                    <div style="display: flex; gap: 1.5rem; justify-content: center; flex-wrap: wrap;">
-                        <a href="#heritage-process" style="padding: 1rem 2.5rem; background: var(--apple-blue); color: white; text-decoration: none; border-radius: 50px; font-weight: 600; transition: all 0.3s ease;">전통 기법 보기</a>
-                        <a href="#ai-integration" style="padding: 1rem 2.5rem; border: 2px solid white; color: white; text-decoration: none; border-radius: 50px; font-weight: 600; transition: all 0.3s ease;">AI 융합 기술</a>
-                    </div>
+                <div class="page-icon">⚒️</div>
+                <h1>전통 기법 계승</h1>
+                <p class="subtitle">
+                    천년의 전통 기법과 현대 AI 기술의 완벽한 융합<br>
+                    KOREVO가 계승하는 전통의 가치와 혁신의 조화
+                </p>
+                <div class="cta-buttons">
+                    <a href="#heritage-process">전통 기법 보기</a>
+                    <a href="#ai-integration">AI 융합 기술</a>
                 </div>
             </div>
         </div>
@@ -596,32 +745,30 @@
             <div class="process-grid">
                 <div class="process-card animate-on-scroll">
                     <div class="process-image">
-                        <img src="./images/jeon_01.jpg" alt="전통 기법 1단계" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
-                        <div style="display: none; width: 100%; height: 100%; background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%); align-items: center; justify-content: center; font-size: 3rem; color: var(--text-secondary);">🔥</div>
+                        <img src="./images/jeon_01.jpg" alt="전통 기법 1단계 - 소재 준비" style="width: 100%; height: 100%; object-fit: cover; border-radius: 16px;">
                         <div class="process-number">1</div>
                     </div>
                     <h3 class="process-title">소재 준비 및 용해</h3>
                     <p class="process-description">
                         순수한 구리와 아연을 정확한 비율로 배합하여 전통 놋쇠를 만드는 첫 번째 단계입니다. 
-                        장인의 오랜 경험으로 최적의 합금 비율을 유지합니다.
+                        장인의 오랜 경험으로 최적의 합금 비율을 유지하며, 고온에서 소재를 용해시킵니다.
                     </p>
                     <div class="process-tags">
                         <span class="process-tag">전통 배합법</span>
                         <span class="process-tag">순수 소재</span>
-                        <span class="process-tag">장인 기법</span>
+                        <span class="process-tag">고온 용해</span>
                     </div>
                 </div>
 
                 <div class="process-card animate-on-scroll">
                     <div class="process-image">
-                        <img src="./images/jeon_02.jpg" alt="전통 기법 2단계" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
-                        <div style="display: none; width: 100%; height: 100%; background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%); align-items: center; justify-content: center; font-size: 3rem; color: var(--text-secondary);">⚒️</div>
+                        <img src="./images/jeon_02.jpg" alt="전통 기법 2단계 - 단조 작업" style="width: 100%; height: 100%; object-fit: cover; border-radius: 16px;">
                         <div class="process-number">2</div>
                     </div>
                     <h3 class="process-title">단조 및 성형</h3>
                     <p class="process-description">
-                        뜨겁게 달궈진 놋쇠를 망치로 두드려 원하는 형태로 만드는 전통 단조 기법입니다. 
-                        수백 번의 두드림을 통해 강도와 아름다움을 동시에 완성합니다.
+                        뜨겁게 달궈진 놋쇠를 전통 망치로 두드려 원하는 형태로 만드는 단조 기법입니다. 
+                        수백 번의 정교한 두드림을 통해 강도와 아름다운 곡선을 동시에 완성합니다.
                     </p>
                     <div class="process-tags">
                         <span class="process-tag">수작업 단조</span>
@@ -632,36 +779,34 @@
 
                 <div class="process-card animate-on-scroll">
                     <div class="process-image">
-                        <img src="./images/jeon_03.jpg" alt="전통 기법 3단계" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
-                        <div style="display: none; width: 100%; height: 100%; background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%); align-items: center; justify-content: center; font-size: 3rem; color: var(--text-secondary);">✨</div>
+                        <img src="./images/jeon_03.jpg" alt="전통 기법 3단계 - 정밀 가공" style="width: 100%; height: 100%; object-fit: cover; border-radius: 16px;">
                         <div class="process-number">3</div>
                     </div>
-                    <h3 class="process-title">정밀 가공 및 마감</h3>
+                    <h3 class="process-title">정밀 가공 및 세부 작업</h3>
                     <p class="process-description">
-                        세밀한 부분까지 정교하게 다듬고 표면을 매끄럽게 다듬는 과정입니다. 
-                        전통 도구를 사용하여 완벽한 곡선과 균일한 두께를 구현합니다.
+                        세밀한 부분까지 정교하게 다듬고 표면을 매끄럽게 처리하는 과정입니다. 
+                        전통 도구를 사용하여 완벽한 곡선과 균일한 두께를 구현하며, 장식적 요소를 추가합니다.
                     </p>
                     <div class="process-tags">
                         <span class="process-tag">정밀 가공</span>
                         <span class="process-tag">표면 처리</span>
-                        <span class="process-tag">품질 완성</span>
+                        <span class="process-tag">세부 작업</span>
                     </div>
                 </div>
 
                 <div class="process-card animate-on-scroll">
                     <div class="process-image">
-                        <img src="./images/jeon_04.jpg" alt="전통 기법 4단계" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
-                        <div style="display: none; width: 100%; height: 100%; background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%); align-items: center; justify-content: center; font-size: 3rem; color: var(--text-secondary);">🎨</div>
+                        <img src="./images/jeon_04.jpg" alt="전통 기법 4단계 - 최종 완성" style="width: 100%; height: 100%; object-fit: cover; border-radius: 16px;">
                         <div class="process-number">4</div>
                     </div>
-                    <h3 class="process-title">최종 검수 및 완성</h3>
+                    <h3 class="process-title">광택 처리 및 최종 완성</h3>
                     <p class="process-description">
-                        장인의 엄격한 품질 기준에 따라 최종 검수를 진행합니다. 
-                        전통의 아름다움과 현대적 완성도를 모두 갖춘 작품으로 완성됩니다.
+                        장인의 엄격한 품질 기준에 따라 최종 광택 처리와 검수를 진행합니다. 
+                        전통의 아름다움과 현대적 완성도를 모두 갖춘 헤온 작품으로 완성됩니다.
                     </p>
                     <div class="process-tags">
+                        <span class="process-tag">광택 처리</span>
                         <span class="process-tag">품질 검수</span>
-                        <span class="process-tag">최종 완성</span>
                         <span class="process-tag">전통 계승</span>
                     </div>
                 </div>
