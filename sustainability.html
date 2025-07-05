@@ -1,0 +1,1414 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>지속가능경영 - KOREVO</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=SF+Pro+Display:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="nav-logo">
+                <a href="index.html" class="logo-link">
+                    <span style="font-weight: 700; font-size: 1.5rem; color: var(--text-primary);">KOREVO</span>
+                </a>
+            </div>
+            <ul class="nav-menu">
+                <li class="nav-item">
+                    <a href="index.html" class="nav-link">홈</a>
+                </li>
+                <li class="nav-item">
+                    <a href="#company" class="nav-link">회사소개</a>
+                    <div class="dropdown">
+                        <div class="dropdown-item" onclick="navigateToPage('greeting')">인사말</div>
+                        <div class="dropdown-item" onclick="navigateToPage('vision')">비전&미션</div>
+                        <div class="dropdown-item" onclick="navigateToPage('history')">연혁</div>
+                        <div class="dropdown-item" onclick="navigateToPage('team')">팀 소개</div>
+                    </div>
+                </li>
+                <li class="nav-item">
+                    <a href="#business" class="nav-link">사업소개</a>
+                    <div class="mega-dropdown">
+                        <div class="dropdown-section">
+                            <h4>브랜드 스토리</h4>
+                            <div class="dropdown-item" onclick="window.location.href='heonn-brand.html'">헤온(HeOnn) 브랜드</div>
+                            <div class="dropdown-item" onclick="navigateToPage('brand-philosophy')">브랜드 철학</div>
+                            <div class="dropdown-item" onclick="navigateToPage('traditional-craft')">전통 기법 계승</div>
+                        </div>
+                        <div class="dropdown-section">
+                            <h4>융합 비즈니스</h4>
+                            <div class="dropdown-item" onclick="navigateToPage('business-model')">사업 모델</div>
+                            <div class="dropdown-item" onclick="navigateToPage('innovation-strategy')">혁신 전략</div>
+                            <div class="dropdown-item active" onclick="window.location.href='sustainability.html'">지속가능경영</div>
+                        </div>
+                    </div>
+                </li>
+                <li class="nav-item">
+                    <a href="#products" class="nav-link">제품/서비스</a>
+                    <div class="mega-dropdown">
+                        <div class="dropdown-section">
+                            <h4>🏺 유기 제품군</h4>
+                            <div class="dropdown-item" onclick="window.location.href='dining-set.html'">식기 컬렉션</div>
+                            <div class="dropdown-item" onclick="navigateToPage('health-products')">건강 케어 제품</div>
+                            <div class="dropdown-item" onclick="navigateToPage('gift-sets')">프리미엄 선물세트</div>
+                            <div class="dropdown-item" onclick="navigateToPage('custom-craft')">맞춤 제작 서비스</div>
+                        </div>
+                        <div class="dropdown-section">
+                            <h4>💻 소프트웨어</h4>
+                            <div class="dropdown-item" onclick="navigateToPage('erp-solution')">제조업 ERP 솔루션</div>
+                            <div class="dropdown-item" onclick="navigateToPage('iot-platform')">IoT 품질관리 플랫폼</div>
+                            <div class="dropdown-item" onclick="navigateToPage('ecommerce-system')">전통공예 전자상거래</div>
+                            <div class="dropdown-item" onclick="navigateToPage('consulting')">디지털 전환 컨설팅</div>
+                        </div>
+                        <div class="dropdown-section">
+                            <h4>🔬 R&D 과제</h4>
+                            <div class="dropdown-item" onclick="navigateToPage('current-projects')">진행중인 과제</div>
+                            <div class="dropdown-item" onclick="navigateToPage('completed-projects')">완료 과제</div>
+                            <div class="dropdown-item" onclick="navigateToPage('research-outcomes')">연구 성과</div>
+                            <div class="dropdown-item" onclick="navigateToPage('collaboration')">산학연 협력</div>
+                        </div>
+                    </div>
+                </li>
+                <li class="nav-item">
+                    <a href="contact.html" class="nav-link">CONTACT</a>
+                </li>
+            </ul>
+            <div class="nav-hamburger">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Breadcrumb -->
+    <nav class="breadcrumb">
+        <div class="container">
+            <span class="breadcrumb-item"><a href="index.html">홈</a></span>
+            <span class="breadcrumb-separator">></span>
+            <span class="breadcrumb-item"><a href="#business">사업소개</a></span>
+            <span class="breadcrumb-separator">></span>
+            <span class="breadcrumb-item"><a href="#convergence">융합 비즈니스</a></span>
+            <span class="breadcrumb-separator">></span>
+            <span class="breadcrumb-item active">지속가능경영</span>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="sustainability-hero">
+        <div class="container">
+            <div class="hero-content">
+                <div style="text-align: center; position: relative; z-index: 3;">
+                    <div style="font-size: 4rem; margin-bottom: 2rem; animation: float 3s ease-in-out infinite;">🌍</div>
+                    <h1 style="font-size: clamp(3rem, 6vw, 5rem); font-weight: 700; margin-bottom: 1.5rem; color: white; letter-spacing: -0.02em;">지속가능경영</h1>
+                    <p style="font-size: 1.5rem; opacity: 0.9; max-width: 800px; margin: 0 auto 3rem; font-weight: 300; line-height: 1.6;">
+                        환경·사회·지배구조의 통합적 관리를 통한 지속가능한 가치 창출<br>
+                        미래 세대를 위한 책임감 있는 경영
+                    </p>
+                    <div style="display: flex; gap: 1.5rem; justify-content: center; flex-wrap: wrap;">
+                        <a href="#esg-strategy" style="padding: 1rem 2.5rem; background: var(--apple-green); color: white; text-decoration: none; border-radius: 50px; font-weight: 600; transition: all 0.3s ease;">ESG 전략</a>
+                        <a href="#sustainability-goals" style="padding: 1rem 2.5rem; border: 2px solid white; color: white; text-decoration: none; border-radius: 50px; font-weight: 600; transition: all 0.3s ease;">지속가능 목표</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Main Content -->
+    <main class="main-content">
+        <!-- ESG Overview -->
+        <section id="esg-strategy" class="esg-overview">
+            <div class="container">
+                <div style="text-align: center; margin-bottom: 4rem;">
+                    <div style="font-size: 3rem; margin-bottom: 1rem;">🎯</div>
+                    <h2 style="font-size: clamp(2.5rem, 4vw, 3.5rem); font-weight: 700; margin-bottom: 1rem; color: var(--text-primary);">ESG 경영 전략</h2>
+                    <p style="font-size: 1.25rem; color: var(--text-secondary); max-width: 600px; margin: 0 auto;">
+                        환경(Environmental), 사회(Social), 지배구조(Governance) 중심의 통합적 경영 체계
+                    </p>
+                </div>
+
+                <div class="esg-pillars">
+                    <div class="esg-pillar environmental">
+                        <div class="pillar-header">
+                            <div class="pillar-icon">🌿</div>
+                            <h3 class="pillar-title">Environmental<br><span class="pillar-subtitle">환경</span></h3>
+                        </div>
+                        <div class="pillar-content">
+                            <div class="pillar-description">
+                                친환경 소재 사용과 탄소중립 실현을 통한 환경 보호
+                            </div>
+                            <ul class="pillar-initiatives">
+                                <li>100% 천연 소재 사용</li>
+                                <li>재활용 가능한 포장재</li>
+                                <li>탄소중립 제조 공정</li>
+                                <li>폐기물 제로 달성</li>
+                                <li>그린 에너지 활용</li>
+                            </ul>
+                            <div class="pillar-metric">
+                                <span class="metric-value">-50%</span>
+                                <span class="metric-label">탄소 배출 감축 목표</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="esg-pillar social">
+                        <div class="pillar-header">
+                            <div class="pillar-icon">🤝</div>
+                            <h3 class="pillar-title">Social<br><span class="pillar-subtitle">사회</span></h3>
+                        </div>
+                        <div class="pillar-content">
+                            <div class="pillar-description">
+                                전통 문화 보존과 지역사회 발전에 기여하는 사회적 가치 창출
+                            </div>
+                            <ul class="pillar-initiatives">
+                                <li>전통 장인 일자리 창출</li>
+                                <li>지역사회 상생 협력</li>
+                                <li>문화유산 보존 활동</li>
+                                <li>교육 프로그램 운영</li>
+                                <li>공정 거래 실천</li>
+                            </ul>
+                            <div class="pillar-metric">
+                                <span class="metric-value">100+</span>
+                                <span class="metric-label">전통 장인 파트너</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="esg-pillar governance">
+                        <div class="pillar-header">
+                            <div class="pillar-icon">⚖️</div>
+                            <h3 class="pillar-title">Governance<br><span class="pillar-subtitle">지배구조</span></h3>
+                        </div>
+                        <div class="pillar-content">
+                            <div class="pillar-description">
+                                투명하고 윤리적인 경영을 통한 신뢰할 수 있는 기업 문화 구축
+                            </div>
+                            <ul class="pillar-initiatives">
+                                <li>투명한 의사결정 구조</li>
+                                <li>윤리경영 실천</li>
+                                <li>이해관계자 소통</li>
+                                <li>리스크 관리 체계</li>
+                                <li>정보공개 투명성</li>
+                            </ul>
+                            <div class="pillar-metric">
+                                <span class="metric-value">100%</span>
+                                <span class="metric-label">윤리교육 이수율</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Sustainability Goals -->
+        <section id="sustainability-goals" class="sustainability-goals">
+            <div class="container">
+                <div style="text-align: center; margin-bottom: 4rem;">
+                    <div style="font-size: 3rem; margin-bottom: 1rem;">🎯</div>
+                    <h2 style="font-size: clamp(2.5rem, 4vw, 3.5rem); font-weight: 700; margin-bottom: 1rem; color: var(--text-primary);">UN SDGs 연계 목표</h2>
+                    <p style="font-size: 1.25rem; color: var(--text-secondary); max-width: 600px; margin: 0 auto;">
+                        유엔 지속가능발전목표(SDGs)와 연계한 KOREVO의 지속가능경영 로드맵
+                    </p>
+                </div>
+
+                <div class="sdg-goals">
+                    <div class="sdg-goal">
+                        <div class="sdg-icon">🌱</div>
+                        <div class="sdg-number">SDG 8</div>
+                        <h3 class="sdg-title">양질의 일자리와 경제성장</h3>
+                        <div class="sdg-description">
+                            전통 장인들에게 안정적인 일자리를 제공하고, 
+                            지역경제 활성화에 기여합니다.
+                        </div>
+                        <div class="sdg-actions">
+                            <span class="action-tag">장인 고용 확대</span>
+                            <span class="action-tag">공정한 임금</span>
+                            <span class="action-tag">기술 교육</span>
+                        </div>
+                    </div>
+
+                    <div class="sdg-goal">
+                        <div class="sdg-icon">🏭</div>
+                        <div class="sdg-number">SDG 9</div>
+                        <h3 class="sdg-title">산업, 혁신과 인프라</h3>
+                        <div class="sdg-description">
+                            AI와 IoT 기술을 활용한 스마트 제조 시스템으로 
+                            지속가능한 산업 발전을 이끕니다.
+                        </div>
+                        <div class="sdg-actions">
+                            <span class="action-tag">스마트 팩토리</span>
+                            <span class="action-tag">R&D 투자</span>
+                            <span class="action-tag">기술 혁신</span>
+                        </div>
+                    </div>
+
+                    <div class="sdg-goal">
+                        <div class="sdg-icon">🌍</div>
+                        <div class="sdg-number">SDG 12</div>
+                        <h3 class="sdg-title">지속가능한 소비와 생산</h3>
+                        <div class="sdg-description">
+                            순환경제 원리를 적용하여 지속가능한 생산과 
+                            소비 패턴을 구축합니다.
+                        </div>
+                        <div class="sdg-actions">
+                            <span class="action-tag">순환경제</span>
+                            <span class="action-tag">친환경 포장</span>
+                            <span class="action-tag">제품 수명 연장</span>
+                        </div>
+                    </div>
+
+                    <div class="sdg-goal">
+                        <div class="sdg-icon">🌊</div>
+                        <div class="sdg-number">SDG 13</div>
+                        <h3 class="sdg-title">기후변화 대응</h3>
+                        <div class="sdg-description">
+                            탄소중립 달성과 기후변화 적응을 위한 
+                            적극적인 대응 전략을 실행합니다.
+                        </div>
+                        <div class="sdg-actions">
+                            <span class="action-tag">탄소중립</span>
+                            <span class="action-tag">재생에너지</span>
+                            <span class="action-tag">배출량 감축</span>
+                        </div>
+                    </div>
+
+                    <div class="sdg-goal">
+                        <div class="sdg-icon">🤝</div>
+                        <div class="sdg-number">SDG 17</div>
+                        <h3 class="sdg-title">목표달성을 위한 파트너십</h3>
+                        <div class="sdg-description">
+                            다양한 이해관계자들과의 협력을 통해 
+                            지속가능발전목표 달성에 기여합니다.
+                        </div>
+                        <div class="sdg-actions">
+                            <span class="action-tag">산학협력</span>
+                            <span class="action-tag">정부 협력</span>
+                            <span class="action-tag">글로벌 파트너십</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Environmental Initiatives -->
+        <section class="environmental-initiatives">
+            <div class="container">
+                <div style="text-align: center; margin-bottom: 4rem;">
+                    <div style="font-size: 3rem; margin-bottom: 1rem;">🌿</div>
+                    <h2 style="font-size: clamp(2.5rem, 4vw, 3.5rem); font-weight: 700; margin-bottom: 1rem; color: var(--text-primary);">환경 보호 실천</h2>
+                    <p style="font-size: 1.25rem; color: var(--text-secondary); max-width: 600px; margin: 0 auto;">
+                        지구 환경 보호를 위한 KOREVO의 구체적인 실천 방안
+                    </p>
+                </div>
+
+                <div class="initiatives-grid">
+                    <div class="initiative-card">
+                        <div class="initiative-icon">♻️</div>
+                        <h3 class="initiative-title">순환경제 구축</h3>
+                        <div class="initiative-description">
+                            제품 설계부터 폐기까지 전 과정에서 순환경제 원리를 적용하여 
+                            자원 효율성을 극대화하고 폐기물을 최소화합니다.
+                        </div>
+                        <div class="initiative-details">
+                            <div class="detail-item">
+                                <span class="detail-label">재활용률</span>
+                                <span class="detail-value">95%</span>
+                            </div>
+                            <div class="detail-item">
+                                <span class="detail-label">폐기물 감축</span>
+                                <span class="detail-value">-80%</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="initiative-card">
+                        <div class="initiative-icon">🌱</div>
+                        <h3 class="initiative-title">친환경 소재</h3>
+                        <div class="initiative-description">
+                            100% 천연 놋쇠와 친환경 포장재를 사용하여 
+                            환경에 미치는 영향을 최소화합니다.
+                        </div>
+                        <div class="initiative-details">
+                            <div class="detail-item">
+                                <span class="detail-label">천연 소재</span>
+                                <span class="detail-value">100%</span>
+                            </div>
+                            <div class="detail-item">
+                                <span class="detail-label">플라스틱 제거</span>
+                                <span class="detail-value">100%</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="initiative-card">
+                        <div class="initiative-icon">⚡</div>
+                        <h3 class="initiative-title">그린 에너지</h3>
+                        <div class="initiative-description">
+                            재생에너지 사용 확대와 에너지 효율성 향상을 통해 
+                            탄소 발자국을 지속적으로 줄여나갑니다.
+                        </div>
+                        <div class="initiative-details">
+                            <div class="detail-item">
+                                <span class="detail-label">재생에너지</span>
+                                <span class="detail-value">75%</span>
+                            </div>
+                            <div class="detail-item">
+                                <span class="detail-label">에너지 절약</span>
+                                <span class="detail-value">-30%</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="initiative-card">
+                        <div class="initiative-icon">🌊</div>
+                        <h3 class="initiative-title">탄소중립 달성</h3>
+                        <div class="initiative-description">
+                            2030년까지 탄소중립을 달성하기 위한 체계적인 
+                            감축 계획과 상쇄 프로그램을 운영합니다.
+                        </div>
+                        <div class="initiative-details">
+                            <div class="detail-item">
+                                <span class="detail-label">감축 목표</span>
+                                <span class="detail-value">-50%</span>
+                            </div>
+                            <div class="detail-item">
+                                <span class="detail-label">목표 연도</span>
+                                <span class="detail-value">2030</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Social Impact -->
+        <section class="social-impact">
+            <div class="container">
+                <div style="text-align: center; margin-bottom: 4rem;">
+                    <div style="font-size: 3rem; margin-bottom: 1rem;">🤝</div>
+                    <h2 style="font-size: clamp(2.5rem, 4vw, 3.5rem); font-weight: 700; margin-bottom: 1rem; color: var(--text-primary);">사회적 가치 창출</h2>
+                    <p style="font-size: 1.25rem; color: var(--text-secondary); max-width: 600px; margin: 0 auto;">
+                        전통 문화 보존과 지역사회 발전을 위한 KOREVO의 사회적 책임 실천
+                    </p>
+                </div>
+
+                <div class="impact-areas">
+                    <div class="impact-area">
+                        <div class="impact-visual">
+                            <div class="impact-number">100+</div>
+                            <div class="impact-unit">전통 장인</div>
+                        </div>
+                        <div class="impact-content">
+                            <h3 class="impact-title">전통 기술 계승</h3>
+                            <div class="impact-description">
+                                무형문화재 장인들과의 협력을 통해 전통 기술을 보존하고, 
+                                다음 세대에게 전수하는 교육 프로그램을 운영합니다.
+                            </div>
+                            <ul class="impact-actions">
+                                <li>장인 워크숍 개최</li>
+                                <li>전통기법 아카이브 구축</li>
+                                <li>후계자 양성 프로그램</li>
+                                <li>문화재청 협력 사업</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <div class="impact-area">
+                        <div class="impact-visual">
+                            <div class="impact-number">50+</div>
+                            <div class="impact-unit">지역 업체</div>
+                        </div>
+                        <div class="impact-content">
+                            <h3 class="impact-title">지역경제 활성화</h3>
+                            <div class="impact-description">
+                                지역 소상공인과의 상생 협력을 통해 지역경제 발전에 기여하고, 
+                                공정한 거래 관계를 구축합니다.
+                            </div>
+                            <ul class="impact-actions">
+                                <li>지역 원료 우선 구매</li>
+                                <li>중소기업 파트너십</li>
+                                <li>공정거래 협약</li>
+                                <li>지역 고용 창출</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <div class="impact-area">
+                        <div class="impact-visual">
+                            <div class="impact-number">1,000+</div>
+                            <div class="impact-unit">교육 수혜자</div>
+                        </div>
+                        <div class="impact-content">
+                            <h3 class="impact-title">교육 기회 제공</h3>
+                            <div class="impact-description">
+                                전통 공예와 현대 기술 융합 교육을 통해 미래 인재를 양성하고, 
+                                누구나 접근할 수 있는 교육 기회를 제공합니다.
+                            </div>
+                            <ul class="impact-actions">
+                                <li>온라인 교육 플랫폼</li>
+                                <li>대학 연계 프로그램</li>
+                                <li>취약계층 교육 지원</li>
+                                <li>해외 교육 교류</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Governance Excellence -->
+        <section class="governance-excellence">
+            <div class="container">
+                <div style="text-align: center; margin-bottom: 4rem;">
+                    <div style="font-size: 3rem; margin-bottom: 1rem;">⚖️</div>
+                    <h2 style="font-size: clamp(2.5rem, 4vw, 3.5rem); font-weight: 700; margin-bottom: 1rem; color: var(--text-primary);">투명한 지배구조</h2>
+                    <p style="font-size: 1.25rem; color: var(--text-secondary); max-width: 600px; margin: 0 auto;">
+                        윤리적이고 투명한 경영을 통한 신뢰할 수 있는 기업 문화 구축
+                    </p>
+                </div>
+
+                <div class="governance-framework">
+                    <div class="governance-pillar">
+                        <div class="pillar-icon">📋</div>
+                        <h3 class="pillar-title">윤리경영</h3>
+                        <div class="pillar-content">
+                            <div class="content-description">
+                                모든 경영 활동에서 최고 수준의 윤리 기준을 적용하여 
+                                사회적 신뢰를 확보합니다.
+                            </div>
+                            <div class="content-metrics">
+                                <div class="metric-item">
+                                    <span class="metric-label">윤리교육</span>
+                                    <span class="metric-value">100%</span>
+                                </div>
+                                <div class="metric-item">
+                                    <span class="metric-label">준법경영</span>
+                                    <span class="metric-value">100%</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="governance-pillar">
+                        <div class="pillar-icon">👥</div>
+                        <h3 class="pillar-title">이해관계자 소통</h3>
+                        <div class="pillar-content">
+                            <div class="content-description">
+                                다양한 이해관계자들과의 적극적인 소통을 통해 
+                                투명한 정보 공개와 신뢰 관계를 구축합니다.
+                            </div>
+                            <div class="content-metrics">
+                                <div class="metric-item">
+                                    <span class="metric-label">정기 소통</span>
+                                    <span class="metric-value">월 1회</span>
+                                </div>
+                                <div class="metric-item">
+                                    <span class="metric-label">만족도</span>
+                                    <span class="metric-value">95%</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="governance-pillar">
+                        <div class="pillar-icon">🔍</div>
+                        <h3 class="pillar-title">리스크 관리</h3>
+                        <div class="pillar-content">
+                            <div class="content-description">
+                                체계적인 리스크 관리 시스템을 구축하여 
+                                잠재적 위험을 사전에 식별하고 대응합니다.
+                            </div>
+                            <div class="content-metrics">
+                                <div class="metric-item">
+                                    <span class="metric-label">리스크 모니터링</span>
+                                    <span class="metric-value">24/7</span>
+                                </div>
+                                <div class="metric-item">
+                                    <span class="metric-label">대응 시간</span>
+                                    <span class="metric-value">1시간</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="governance-pillar">
+                        <div class="pillar-icon">📊</div>
+                        <h3 class="pillar-title">성과 관리</h3>
+                        <div class="pillar-content">
+                            <div class="content-description">
+                                ESG 성과를 정량적으로 측정하고 지속적으로 
+                                개선하는 성과 관리 체계를 운영합니다.
+                            </div>
+                            <div class="content-metrics">
+                                <div class="metric-item">
+                                    <span class="metric-label">성과 평가</span>
+                                    <span class="metric-value">분기별</span>
+                                </div>
+                                <div class="metric-item">
+                                    <span class="metric-label">목표 달성률</span>
+                                    <span class="metric-value">90%</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Sustainability Roadmap -->
+        <section class="sustainability-roadmap">
+            <div class="container">
+                <div style="text-align: center; margin-bottom: 4rem;">
+                    <div style="font-size: 3rem; margin-bottom: 1rem;">🗺️</div>
+                    <h2 style="font-size: clamp(2.5rem, 4vw, 3.5rem); font-weight: 700; margin-bottom: 1rem; color: var(--text-primary);">지속가능경영 로드맵</h2>
+                    <p style="font-size: 1.25rem; color: var(--text-secondary); max-width: 600px; margin: 0 auto;">
+                        단계적이고 체계적인 지속가능경영 목표 달성 계획
+                    </p>
+                </div>
+
+                <div class="roadmap-timeline">
+                    <div class="roadmap-phase">
+                        <div class="phase-year">2025</div>
+                        <div class="phase-title">기반 구축</div>
+                        <div class="phase-goals">
+                            <div class="goal-category">
+                                <h4>환경 (E)</h4>
+                                <ul>
+                                    <li>친환경 소재 100% 전환</li>
+                                    <li>재생에너지 50% 달성</li>
+                                    <li>폐기물 50% 감축</li>
+                                </ul>
+                            </div>
+                            <div class="goal-category">
+                                <h4>사회 (S)</h4>
+                                <ul>
+                                    <li>전통 장인 50명 고용</li>
+                                    <li>지역 파트너 30개 확보</li>
+                                    <li>교육 프로그램 런칭</li>
+                                </ul>
+                            </div>
+                            <div class="goal-category">
+                                <h4>지배구조 (G)</h4>
+                                <ul>
+                                    <li>ESG 위원회 설립</li>
+                                    <li>윤리경영 시스템 구축</li>
+                                    <li>투명성 보고서 발간</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="roadmap-phase">
+                        <div class="phase-year">2027</div>
+                        <div class="phase-title">성장 가속화</div>
+                        <div class="phase-goals">
+                            <div class="goal-category">
+                                <h4>환경 (E)</h4>
+                                <ul>
+                                    <li>재생에너지 75% 달성</li>
+                                    <li>탄소 배출 30% 감축</li>
+                                    <li>순환경제 시스템 완성</li>
+                                </ul>
+                            </div>
+                            <div class="goal-category">
+                                <h4>사회 (S)</h4>
+                                <ul>
+                                    <li>전통 장인 100명 고용</li>
+                                    <li>지역 파트너 50개 확장</li>
+                                    <li>해외 교육 교류 시작</li>
+                                </ul>
+                            </div>
+                            <div class="goal-category">
+                                <h4>지배구조 (G)</h4>
+                                <ul>
+                                    <li>ESG 평가 A등급 달성</li>
+                                    <li>글로벌 표준 인증</li>
+                                    <li>디지털 거버넌스 구축</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="roadmap-phase">
+                        <div class="phase-year">2030</div>
+                        <div class="phase-title">목표 달성</div>
+                        <div class="phase-goals">
+                            <div class="goal-category">
+                                <h4>환경 (E)</h4>
+                                <ul>
+                                    <li>탄소중립 100% 달성</li>
+                                    <li>재생에너지 100% 전환</li>
+                                    <li>폐기물 제로 달성</li>
+                                </ul>
+                            </div>
+                            <div class="goal-category">
+                                <h4>사회 (S)</h4>
+                                <ul>
+                                    <li>전통 장인 200명 고용</li>
+                                    <li>글로벌 파트너십 확장</li>
+                                    <li>문화유산 보존 기여</li>
+                                </ul>
+                            </div>
+                            <div class="goal-category">
+                                <h4>지배구조 (G)</h4>
+                                <ul>
+                                    <li>ESG 선도 기업 인정</li>
+                                    <li>지속가능경영 표준 제시</li>
+                                    <li>산업 전반 변화 주도</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Sustainability Reports -->
+        <section class="sustainability-reports">
+            <div class="container">
+                <div style="text-align: center; margin-bottom: 4rem;">
+                    <div style="font-size: 3rem; margin-bottom: 1rem;">📋</div>
+                    <h2 style="font-size: clamp(2.5rem, 4vw, 3.5rem); font-weight: 700; margin-bottom: 1rem; color: var(--text-primary);">지속가능경영 보고서</h2>
+                    <p style="font-size: 1.25rem; color: var(--text-secondary); max-width: 600px; margin: 0 auto;">
+                        투명한 정보 공개를 통한 이해관계자와의 신뢰 관계 구축
+                    </p>
+                </div>
+
+                <div class="reports-grid">
+                    <div class="report-card">
+                        <div class="report-icon">📊</div>
+                        <h3 class="report-title">ESG 성과 보고서 2024</h3>
+                        <div class="report-description">
+                            2024년 ESG 경영 성과와 주요 성과 지표, 
+                            향후 개선 계획을 상세히 담은 종합 보고서
+                        </div>
+                        <div class="report-highlights">
+                            <div class="highlight-item">
+                                <span class="highlight-label">탄소 감축</span>
+                                <span class="highlight-value">-25%</span>
+                            </div>
+                            <div class="highlight-item">
+                                <span class="highlight-label">일자리 창출</span>
+                                <span class="highlight-value">+50명</span>
+                            </div>
+                        </div>
+                        <a href="#" class="report-download">보고서 다운로드</a>
+                    </div>
+
+                    <div class="report-card">
+                        <div class="report-icon">🌍</div>
+                        <h3 class="report-title">환경영향 평가서</h3>
+                        <div class="report-description">
+                            제품 생산부터 폐기까지 전 과정의 환경 영향을 
+                            과학적으로 분석한 생애주기 평가 보고서
+                        </div>
+                        <div class="report-highlights">
+                            <div class="highlight-item">
+                                <span class="highlight-label">물 사용량</span>
+                                <span class="highlight-value">-40%</span>
+                            </div>
+                            <div class="highlight-item">
+                                <span class="highlight-label">재활용률</span>
+                                <span class="highlight-value">95%</span>
+                            </div>
+                        </div>
+                        <a href="#" class="report-download">보고서 다운로드</a>
+                    </div>
+
+                    <div class="report-card">
+                        <div class="report-icon">🤝</div>
+                        <h3 class="report-title">사회공헌 활동 보고서</h3>
+                        <div class="report-description">
+                            전통 문화 보존과 지역사회 발전을 위한 
+                            다양한 사회공헌 활동과 성과를 정리한 보고서
+                        </div>
+                        <div class="report-highlights">
+                            <div class="highlight-item">
+                                <span class="highlight-label">교육 수혜자</span>
+                                <span class="highlight-value">1,000명</span>
+                            </div>
+                            <div class="highlight-item">
+                                <span class="highlight-label">문화보존</span>
+                                <span class="highlight-value">10건</span>
+                            </div>
+                        </div>
+                        <a href="#" class="report-download">보고서 다운로드</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- CTA Section -->
+        <section class="cta-section">
+            <div class="container">
+                <div class="cta-content">
+                    <h2 class="cta-title">지속가능한 미래를 함께 만들어요</h2>
+                    <p class="cta-subtitle">
+                        KOREVO의 지속가능경영에 동참하고, 환경과 사회를 생각하는 
+                        책임감 있는 소비로 더 나은 세상을 만들어보세요.
+                    </p>
+                    <div class="cta-buttons">
+                        <a href="contact.html" class="cta-btn">지속가능경영 문의</a>
+                        <a href="heonn-brand.html" class="cta-btn secondary">헤온 브랜드 알아보기</a>
+                        <a href="dining-set.html" class="cta-btn secondary">친환경 제품 보기</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="footer-content">
+            <div class="footer-section">
+                <h3>KOREVO</h3>
+                <p>한국의 전통과 혁신을 담은<br>프리미엄 유기 브랜드</p>
+                <p>전통의 아름다움을 현대에 되살리며<br>지속가능한 미래를 만들어갑니다.</p>
+            </div>
+            <div class="footer-section">
+                <h3>지속가능경영</h3>
+                <p><a href="#esg-strategy">ESG 전략</a></p>
+                <p><a href="#sustainability-goals">지속가능 목표</a></p>
+                <p><a href="#sustainability-roadmap">로드맵</a></p>
+                <p><a href="contact.html">ESG 문의</a></p>
+            </div>
+            <div class="footer-section">
+                <h3>고객지원</h3>
+                <p>고객센터: 1588-0000</p>
+                <p>이메일: info@korevo.co.kr</p>
+                <p>운영시간: 평일 09:00-18:00</p>
+                <p>주소: 서울특별시 강남구 테헤란로 123</p>
+            </div>
+            <div class="footer-section">
+                <h3>투명경영</h3>
+                <p><a href="#sustainability-reports">ESG 보고서</a></p>
+                <p><a href="contact.html">윤리신고</a></p>
+                <p><a href="contact.html">제보센터</a></p>
+                <p><a href="contact.html">컴플라이언스</a></p>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2025 KOREVO. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+
+    <style>
+        /* Sustainability Specific Styles */
+        .sustainability-hero {
+            background: linear-gradient(135deg, #1a1a1a 0%, #2d2d2d 50%, #1a1a1a 100%);
+            padding: 8rem 0 6rem;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .sustainability-hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: 
+                radial-gradient(circle at 20% 50%, rgba(52, 199, 89, 0.1) 0%, transparent 50%),
+                radial-gradient(circle at 80% 20%, rgba(0, 122, 255, 0.1) 0%, transparent 50%),
+                radial-gradient(circle at 40% 80%, rgba(255, 149, 0, 0.1) 0%, transparent 50%);
+            animation: float 6s ease-in-out infinite;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-20px); }
+        }
+
+        /* ESG Pillars */
+        .esg-overview {
+            padding: 6rem 0;
+        }
+
+        .esg-pillars {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .esg-pillar {
+            background: var(--bg-primary);
+            border-radius: 20px;
+            padding: 2rem;
+            transition: all 0.3s ease;
+            border: 1px solid var(--border-color);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .esg-pillar.environmental {
+            border-left: 4px solid var(--apple-green);
+        }
+
+        .esg-pillar.social {
+            border-left: 4px solid var(--apple-blue);
+        }
+
+        .esg-pillar.governance {
+            border-left: 4px solid var(--apple-purple);
+        }
+
+        .esg-pillar:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+        }
+
+        .pillar-header {
+            display: flex;
+            align-items: center;
+            margin-bottom: 1.5rem;
+        }
+
+        .pillar-icon {
+            font-size: 2.5rem;
+            margin-right: 1rem;
+        }
+
+        .pillar-title {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--text-primary);
+            line-height: 1.2;
+        }
+
+        .pillar-subtitle {
+            font-size: 1rem;
+            color: var(--text-secondary);
+            font-weight: 400;
+        }
+
+        .pillar-description {
+            color: var(--text-secondary);
+            line-height: 1.6;
+            margin-bottom: 1.5rem;
+        }
+
+        .pillar-initiatives {
+            list-style: none;
+            padding: 0;
+            margin-bottom: 2rem;
+        }
+
+        .pillar-initiatives li {
+            padding: 0.5rem 0;
+            color: var(--text-secondary);
+            position: relative;
+            padding-left: 1.5rem;
+        }
+
+        .pillar-initiatives li::before {
+            content: '✓';
+            position: absolute;
+            left: 0;
+            color: var(--apple-green);
+            font-weight: bold;
+        }
+
+        .pillar-metric {
+            background: var(--bg-secondary);
+            padding: 1rem;
+            border-radius: 10px;
+            text-align: center;
+        }
+
+        .metric-value {
+            display: block;
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--apple-green);
+            margin-bottom: 0.25rem;
+        }
+
+        .metric-label {
+            font-size: 0.9rem;
+            color: var(--text-secondary);
+        }
+
+        /* SDG Goals */
+        .sustainability-goals {
+            background: var(--bg-secondary);
+            padding: 6rem 0;
+        }
+
+        .sdg-goals {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .sdg-goal {
+            background: var(--bg-primary);
+            border-radius: 20px;
+            padding: 2rem;
+            transition: all 0.3s ease;
+            border: 1px solid var(--border-color);
+        }
+
+        .sdg-goal:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
+        }
+
+        .sdg-icon {
+            font-size: 2rem;
+            margin-bottom: 1rem;
+        }
+
+        .sdg-number {
+            background: linear-gradient(135deg, var(--apple-blue) 0%, var(--apple-purple) 100%);
+            color: white;
+            padding: 0.25rem 0.75rem;
+            border-radius: 50px;
+            font-size: 0.8rem;
+            font-weight: 600;
+            display: inline-block;
+            margin-bottom: 1rem;
+        }
+
+        .sdg-title {
+            font-size: 1.125rem;
+            font-weight: 600;
+            color: var(--text-primary);
+            margin-bottom: 1rem;
+        }
+
+        .sdg-description {
+            color: var(--text-secondary);
+            line-height: 1.6;
+            margin-bottom: 1.5rem;
+        }
+
+        .sdg-actions {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+        }
+
+        .action-tag {
+            background: var(--bg-secondary);
+            color: var(--text-secondary);
+            padding: 0.25rem 0.75rem;
+            border-radius: 50px;
+            font-size: 0.8rem;
+            font-weight: 500;
+        }
+
+        /* Environmental Initiatives */
+        .environmental-initiatives {
+            padding: 6rem 0;
+        }
+
+        .initiatives-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .initiative-card {
+            background: var(--bg-primary);
+            border-radius: 20px;
+            padding: 2rem;
+            transition: all 0.3s ease;
+            border: 1px solid var(--border-color);
+        }
+
+        .initiative-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
+        }
+
+        .initiative-icon {
+            font-size: 2.5rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .initiative-title {
+            font-size: 1.25rem;
+            font-weight: 600;
+            color: var(--text-primary);
+            margin-bottom: 1rem;
+        }
+
+        .initiative-description {
+            color: var(--text-secondary);
+            line-height: 1.6;
+            margin-bottom: 1.5rem;
+        }
+
+        .initiative-details {
+            display: flex;
+            justify-content: space-between;
+            gap: 1rem;
+        }
+
+        .detail-item {
+            text-align: center;
+            flex: 1;
+        }
+
+        .detail-label {
+            display: block;
+            font-size: 0.8rem;
+            color: var(--text-secondary);
+            margin-bottom: 0.25rem;
+        }
+
+        .detail-value {
+            display: block;
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--apple-green);
+        }
+
+        /* Social Impact */
+        .social-impact {
+            background: var(--bg-secondary);
+            padding: 6rem 0;
+        }
+
+        .impact-areas {
+            margin-top: 3rem;
+            display: flex;
+            flex-direction: column;
+            gap: 3rem;
+        }
+
+        .impact-area {
+            background: var(--bg-primary);
+            border-radius: 20px;
+            padding: 2rem;
+            display: grid;
+            grid-template-columns: 200px 1fr;
+            gap: 2rem;
+            align-items: center;
+            border: 1px solid var(--border-color);
+            transition: all 0.3s ease;
+        }
+
+        .impact-area:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
+        }
+
+        .impact-visual {
+            text-align: center;
+        }
+
+        .impact-number {
+            font-size: 3rem;
+            font-weight: 700;
+            color: var(--apple-blue);
+            line-height: 1;
+            margin-bottom: 0.5rem;
+        }
+
+        .impact-unit {
+            font-size: 1rem;
+            color: var(--text-secondary);
+            font-weight: 500;
+        }
+
+        .impact-title {
+            font-size: 1.5rem;
+            font-weight: 600;
+            color: var(--text-primary);
+            margin-bottom: 1rem;
+        }
+
+        .impact-description {
+            color: var(--text-secondary);
+            line-height: 1.6;
+            margin-bottom: 1.5rem;
+        }
+
+        .impact-actions {
+            list-style: none;
+            padding: 0;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            gap: 0.5rem;
+        }
+
+        .impact-actions li {
+            background: var(--bg-secondary);
+            padding: 0.5rem 1rem;
+            border-radius: 50px;
+            font-size: 0.9rem;
+            color: var(--text-secondary);
+            text-align: center;
+        }
+
+        /* Governance Excellence */
+        .governance-excellence {
+            padding: 6rem 0;
+        }
+
+        .governance-framework {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .governance-pillar {
+            background: var(--bg-primary);
+            border-radius: 20px;
+            padding: 2rem;
+            transition: all 0.3s ease;
+            border: 1px solid var(--border-color);
+        }
+
+        .governance-pillar:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
+        }
+
+        .content-description {
+            color: var(--text-secondary);
+            line-height: 1.6;
+            margin-bottom: 1.5rem;
+        }
+
+        .content-metrics {
+            display: flex;
+            justify-content: space-between;
+            gap: 1rem;
+        }
+
+        /* Sustainability Roadmap */
+        .sustainability-roadmap {
+            background: var(--bg-secondary);
+            padding: 6rem 0;
+        }
+
+        .roadmap-timeline {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .roadmap-phase {
+            background: var(--bg-primary);
+            border-radius: 20px;
+            padding: 2rem;
+            transition: all 0.3s ease;
+            border: 1px solid var(--border-color);
+        }
+
+        .roadmap-phase:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
+        }
+
+        .phase-year {
+            background: linear-gradient(135deg, var(--apple-green) 0%, var(--apple-blue) 100%);
+            color: white;
+            padding: 0.5rem 1rem;
+            border-radius: 50px;
+            font-weight: 600;
+            display: inline-block;
+            margin-bottom: 1rem;
+        }
+
+        .phase-title {
+            font-size: 1.25rem;
+            font-weight: 600;
+            color: var(--text-primary);
+            margin-bottom: 1.5rem;
+        }
+
+        .phase-goals {
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+        }
+
+        .goal-category h4 {
+            color: var(--text-primary);
+            margin-bottom: 0.5rem;
+            font-size: 1rem;
+        }
+
+        .goal-category ul {
+            list-style: none;
+            padding: 0;
+            margin-bottom: 1rem;
+        }
+
+        .goal-category li {
+            padding: 0.25rem 0;
+            color: var(--text-secondary);
+            font-size: 0.9rem;
+            position: relative;
+            padding-left: 1rem;
+        }
+
+        .goal-category li::before {
+            content: '•';
+            position: absolute;
+            left: 0;
+            color: var(--apple-green);
+        }
+
+        /* Sustainability Reports */
+        .sustainability-reports {
+            padding: 6rem 0;
+        }
+
+        .reports-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .report-card {
+            background: var(--bg-primary);
+            border-radius: 20px;
+            padding: 2rem;
+            transition: all 0.3s ease;
+            border: 1px solid var(--border-color);
+        }
+
+        .report-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
+        }
+
+        .report-icon {
+            font-size: 2.5rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .report-title {
+            font-size: 1.25rem;
+            font-weight: 600;
+            color: var(--text-primary);
+            margin-bottom: 1rem;
+        }
+
+        .report-description {
+            color: var(--text-secondary);
+            line-height: 1.6;
+            margin-bottom: 1.5rem;
+        }
+
+        .report-highlights {
+            display: flex;
+            justify-content: space-between;
+            gap: 1rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .highlight-item {
+            text-align: center;
+            flex: 1;
+        }
+
+        .highlight-label {
+            display: block;
+            font-size: 0.8rem;
+            color: var(--text-secondary);
+            margin-bottom: 0.25rem;
+        }
+
+        .highlight-value {
+            display: block;
+            font-size: 1.25rem;
+            font-weight: 700;
+            color: var(--apple-green);
+        }
+
+        .report-download {
+            display: inline-block;
+            background: linear-gradient(135deg, var(--apple-blue) 0%, var(--apple-purple) 100%);
+            color: white;
+            padding: 0.75rem 1.5rem;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 500;
+            transition: all 0.3s ease;
+        }
+
+        .report-download:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 20px rgba(0, 122, 255, 0.3);
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .sustainability-hero {
+                padding: 6rem 0 4rem;
+            }
+
+            .esg-pillars,
+            .sdg-goals,
+            .initiatives-grid,
+            .governance-framework,
+            .roadmap-timeline,
+            .reports-grid {
+                grid-template-columns: 1fr;
+                gap: 1.5rem;
+            }
+
+            .impact-area {
+                grid-template-columns: 1fr;
+                text-align: center;
+            }
+
+            .impact-visual {
+                margin-bottom: 1rem;
+            }
+
+            .pillar-header {
+                flex-direction: column;
+                text-align: center;
+            }
+
+            .pillar-icon {
+                margin-right: 0;
+                margin-bottom: 1rem;
+            }
+
+            .content-metrics,
+            .initiative-details,
+            .report-highlights {
+                flex-direction: column;
+                gap: 1rem;
+            }
+
+            .impact-actions {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .phase-goals {
+                gap: 1.5rem;
+            }
+
+            .goal-category {
+                background: var(--bg-secondary);
+                padding: 1rem;
+                border-radius: 10px;
+            }
+        }
+    </style>
+</body>
+</html>
