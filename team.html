@@ -1,0 +1,1142 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>팀 소개 - KOREVO</title>
+    <meta name="description" content="KOREVO를 이끌어가는 전문가들과 각 팀의 역할을 소개합니다.">
+    
+    <!-- 통합 CSS 파일 -->
+    <link rel="stylesheet" href="styles.css">
+    
+    <!-- Team Page Specific Styles -->
+    <style>
+        /* ===== TEAM SECTION STYLES ===== */
+        .team-section {
+            padding: 6rem 0;
+            background: var(--bg-primary);
+        }
+
+        .team-header {
+            text-align: center;
+            margin-bottom: 4rem;
+        }
+
+        .team-title {
+            font-size: var(--font-size-display-medium);
+            font-weight: var(--font-weight-bold);
+            color: var(--text-primary);
+            margin-bottom: var(--spacing-lg);
+            line-height: 1.08333;
+            letter-spacing: -0.003em;
+        }
+
+        .team-subtitle {
+            font-size: var(--font-size-title2);
+            color: var(--text-secondary);
+            max-width: 600px;
+            margin: 0 auto;
+            line-height: 1.4;
+        }
+
+        /* CEO Section */
+        .ceo-section {
+            background: var(--bg-secondary);
+            border-radius: var(--radius-2xl);
+            padding: var(--spacing-3xl);
+            margin-bottom: var(--spacing-3xl);
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .ceo-section::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: linear-gradient(90deg, var(--apple-blue), #007AFF, var(--apple-blue));
+        }
+
+        .ceo-profile {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: var(--spacing-xl);
+        }
+
+        .ceo-avatar {
+            width: 160px;
+            height: 160px;
+            border-radius: var(--radius-full);
+            background: linear-gradient(135deg, var(--apple-blue), #0051D5);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 4rem;
+            color: var(--bg-primary);
+            position: relative;
+            box-shadow: 0 20px 40px rgba(0, 122, 255, 0.3);
+            transition: all 0.3s ease;
+        }
+
+        .ceo-avatar:hover {
+            transform: scale(1.05);
+            box-shadow: 0 25px 50px rgba(0, 122, 255, 0.4);
+        }
+
+        .ceo-info h2 {
+            font-size: var(--font-size-title1);
+            font-weight: var(--font-weight-bold);
+            color: var(--text-primary);
+            margin-bottom: var(--spacing-sm);
+        }
+
+        .ceo-title {
+            font-size: var(--font-size-title3);
+            color: var(--apple-blue);
+            font-weight: var(--font-weight-semibold);
+            margin-bottom: var(--spacing-lg);
+        }
+
+        .ceo-description {
+            font-size: var(--font-size-body);
+            color: var(--text-secondary);
+            line-height: 1.47059;
+            max-width: 600px;
+        }
+
+        /* Teams Grid */
+        .teams-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: var(--spacing-xl);
+            margin-top: var(--spacing-2xl);
+        }
+
+        .team-card {
+            background: var(--bg-primary);
+            border: 0.5px solid var(--separator);
+            border-radius: var(--radius-xl);
+            padding: var(--spacing-2xl);
+            transition: all 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+            box-shadow: var(--shadow-sm);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .team-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 3px;
+            background: var(--apple-blue);
+            transform: scaleX(0);
+            transition: transform 0.3s ease;
+        }
+
+        .team-card:hover {
+            transform: translateY(-8px) scale(1.02);
+            box-shadow: var(--shadow-apple-card);
+        }
+
+        .team-card:hover::before {
+            transform: scaleX(1);
+        }
+
+        .team-icon {
+            width: 80px;
+            height: 80px;
+            border-radius: var(--radius-xl);
+            background: linear-gradient(135deg, var(--apple-blue), #0051D5);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2rem;
+            color: var(--bg-primary);
+            margin-bottom: var(--spacing-lg);
+            box-shadow: 0 8px 20px rgba(0, 122, 255, 0.3);
+            transition: all 0.3s ease;
+        }
+
+        .team-card:hover .team-icon {
+            transform: scale(1.1) rotate(5deg);
+        }
+
+        .team-name {
+            font-size: var(--font-size-title2);
+            font-weight: var(--font-weight-semibold);
+            color: var(--text-primary);
+            margin-bottom: var(--spacing-md);
+        }
+
+        .team-description {
+            color: var(--text-secondary);
+            line-height: 1.47059;
+            margin-bottom: var(--spacing-lg);
+            font-size: var(--font-size-callout);
+        }
+
+        .team-responsibilities {
+            margin-bottom: var(--spacing-lg);
+        }
+
+        .team-responsibilities h4 {
+            font-size: var(--font-size-headline);
+            font-weight: var(--font-weight-semibold);
+            color: var(--text-primary);
+            margin-bottom: var(--spacing-md);
+        }
+
+        .responsibility-list {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        .responsibility-list li {
+            display: flex;
+            align-items: center;
+            padding: var(--spacing-sm) 0;
+            color: var(--text-secondary);
+            font-size: var(--font-size-callout);
+        }
+
+        .responsibility-list li::before {
+            content: '✓';
+            color: var(--apple-blue);
+            font-weight: var(--font-weight-bold);
+            margin-right: var(--spacing-md);
+            font-size: var(--font-size-headline);
+        }
+
+        .team-stats {
+            display: flex;
+            justify-content: space-between;
+            padding-top: var(--spacing-lg);
+            border-top: 0.5px solid var(--separator);
+        }
+
+        .stat-item {
+            text-align: center;
+        }
+
+        .stat-number {
+            font-size: var(--font-size-title3);
+            font-weight: var(--font-weight-bold);
+            color: var(--apple-blue);
+            display: block;
+        }
+
+        .stat-label {
+            font-size: var(--font-size-caption1);
+            color: var(--text-tertiary);
+            text-transform: uppercase;
+            letter-spacing: 0.066em;
+        }
+
+        /* Culture Section */
+        .culture-section {
+            padding: 6rem 0;
+            background: var(--bg-secondary);
+        }
+
+        .culture-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: var(--spacing-xl);
+            margin-top: var(--spacing-2xl);
+        }
+
+        .culture-card {
+            background: var(--bg-primary);
+            border: 0.5px solid var(--separator);
+            border-radius: var(--radius-xl);
+            padding: var(--spacing-xl);
+            text-align: center;
+            transition: all 0.3s ease;
+            box-shadow: var(--shadow-sm);
+        }
+
+        .culture-card:hover {
+            transform: translateY(-4px);
+            box-shadow: var(--shadow-apple-card);
+        }
+
+        .culture-icon {
+            font-size: 3rem;
+            margin-bottom: var(--spacing-lg);
+            display: block;
+        }
+
+        .culture-title {
+            font-size: var(--font-size-title3);
+            font-weight: var(--font-weight-semibold);
+            color: var(--text-primary);
+            margin-bottom: var(--spacing-md);
+        }
+
+        .culture-description {
+            color: var(--text-secondary);
+            line-height: 1.47059;
+        }
+
+        /* Join Section */
+        .join-section {
+            padding: 6rem 0;
+            background: var(--apple-dark);
+            color: var(--bg-primary);
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .join-section::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(45deg, rgba(0, 122, 255, 0.1) 0%, rgba(0, 122, 255, 0.05) 100%);
+            opacity: 0.6;
+        }
+
+        .join-content {
+            position: relative;
+            z-index: 2;
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 0 var(--spacing-lg);
+        }
+
+        .join-title {
+            font-size: var(--font-size-display-small);
+            font-weight: var(--font-weight-bold);
+            margin-bottom: var(--spacing-lg);
+            color: var(--bg-primary);
+        }
+
+        .join-description {
+            font-size: var(--font-size-title3);
+            line-height: 1.4;
+            margin-bottom: var(--spacing-2xl);
+            color: var(--bg-primary);
+            opacity: 0.9;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .ceo-section {
+                padding: var(--spacing-2xl);
+            }
+
+            .ceo-avatar {
+                width: 120px;
+                height: 120px;
+                font-size: 3rem;
+            }
+
+            .teams-grid {
+                grid-template-columns: 1fr;
+                gap: var(--spacing-lg);
+            }
+
+            .team-card {
+                padding: var(--spacing-lg);
+            }
+
+            .team-icon {
+                width: 60px;
+                height: 60px;
+                font-size: 1.5rem;
+            }
+
+            .team-stats {
+                flex-direction: column;
+                gap: var(--spacing-md);
+            }
+
+            .culture-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .join-title {
+                font-size: var(--font-size-title1);
+            }
+        }
+
+        /* Animation Classes */
+        .fade-in {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+        }
+
+        .fade-in.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* Team Card Colors */
+        .team-card:nth-child(1) .team-icon { background: linear-gradient(135deg, #FF6B6B, #FF5252); }
+        .team-card:nth-child(2) .team-icon { background: linear-gradient(135deg, #4ECDC4, #26A69A); }
+        .team-card:nth-child(3) .team-icon { background: linear-gradient(135deg, #45B7D1, #2196F3); }
+        .team-card:nth-child(4) .team-icon { background: linear-gradient(135deg, #96CEB4, #4CAF50); }
+        .team-card:nth-child(5) .team-icon { background: linear-gradient(135deg, #FFEAA7, #FFC107); }
+        .team-card:nth-child(6) .team-icon { background: linear-gradient(135deg, #DDA0DD, #9C27B0); }
+        .team-card:nth-child(7) .team-icon { background: linear-gradient(135deg, #98D8C8, #00BCD4); }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header class="header">
+        <nav class="nav-container">
+            <a href="index.html" class="logo">KOREVO</a>
+            
+            <ul class="nav-menu" id="navMenu">
+                <li class="nav-item">
+                    <a href="index.html" class="nav-link">홈</a>
+                </li>
+                <li class="nav-item">
+                    <a href="#" class="nav-link active">회사소개</a>
+                    <div class="dropdown">
+                        <div class="dropdown-item" onclick="window.location.href='greeting.html'">인사말</div>
+                        <div class="dropdown-item" onclick="navigateToPage('vision')">비전 & 미션</div>
+                        <div class="dropdown-item" onclick="window.location.href='history.html'">연혁</div>
+                        <div class="dropdown-item active" onclick="window.location.href='team.html'">팀 소개</div>
+                    </div>
+                </li>
+                <li class="nav-item">
+                    <a href="#business" class="nav-link">사업소개</a>
+                    <div class="mega-dropdown">
+                        <div class="dropdown-section">
+                            <h4>브랜드 스토리</h4>
+                            <div class="dropdown-item" onclick="window.location.href='heonn-brand.html'">헤온(HeOnn) 브랜드</div>
+                            <div class="dropdown-item" onclick="navigateToPage('brand-philosophy')">브랜드 철학</div>
+                            <div class="dropdown-item" onclick="navigateToPage('traditional-craft')">전통 기법 계승</div>
+                        </div>
+                        <div class="dropdown-section">
+                            <h4>융합 비즈니스</h4>
+                            <div class="dropdown-item" onclick="navigateToPage('business-model')">사업 모델</div>
+                            <div class="dropdown-item" onclick="navigateToPage('innovation-strategy')">혁신 전략</div>
+                            <div class="dropdown-item" onclick="navigateToPage('sustainability')">지속가능경영</div>
+                        </div>
+                    </div>
+                </li>
+                <li class="nav-item">
+                    <a href="#products" class="nav-link">제품/서비스</a>
+                    <div class="mega-dropdown">
+                        <div class="dropdown-section">
+                            <h4>🏺 유기 제품군</h4>
+                            <div class="dropdown-item" onclick="window.location.href='dining-set.html'">식기 컬렉션</div>
+                            <div class="dropdown-item" onclick="navigateToPage('health-products')">건강 케어 제품</div>
+                            <div class="dropdown-item" onclick="navigateToPage('gift-sets')">프리미엄 선물세트</div>
+                            <div class="dropdown-item" onclick="navigateToPage('custom-craft')">맞춤 제작 서비스</div>
+                        </div>
+                        <div class="dropdown-section">
+                            <h4>💻 소프트웨어</h4>
+                            <div class="dropdown-item" onclick="navigateToPage('erp-solution')">제조업 ERP 솔루션</div>
+                            <div class="dropdown-item" onclick="navigateToPage('iot-platform')">IoT 품질관리 플랫폼</div>
+                            <div class="dropdown-item" onclick="navigateToPage('ecommerce-system')">전통공예 전자상거래</div>
+                            <div class="dropdown-item" onclick="navigateToPage('consulting')">디지털 전환 컨설팅</div>
+                        </div>
+                        <div class="dropdown-section">
+                            <h4>🔬 R&D 과제</h4>
+                            <div class="dropdown-item" onclick="navigateToPage('current-projects')">진행중 과제</div>
+                            <div class="dropdown-item" onclick="navigateToPage('completed-projects')">완료 과제</div>
+                            <div class="dropdown-item" onclick="navigateToPage('research-outcomes')">연구 성과</div>
+                            <div class="dropdown-item" onclick="navigateToPage('collaboration')">산학연 협력</div>
+                        </div>
+                    </div>
+                </li>
+                <li class="nav-item">
+                    <a href="contact.html" class="nav-link">CONTACT</a>
+                </li>
+                <li class="nav-item">
+                    <a href="#shop" class="nav-link">쇼핑몰</a>
+                </li>
+            </ul>
+
+            <div class="lang-selector">
+                <a href="#" class="lang-btn active">🇰🇷</a>
+                <a href="#" class="lang-btn">🇺🇸</a>
+                <a href="#" class="lang-btn">🇨🇳</a>
+                <a href="#" class="lang-btn">🇯🇵</a>
+            </div>
+
+            <button class="menu-toggle" onclick="toggleMenu()" aria-label="메뉴 토글" aria-expanded="false">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+        </nav>
+    </header>
+
+    <!-- Breadcrumb -->
+    <nav class="breadcrumb-nav">
+        <div class="breadcrumb">
+            <a href="index.html" class="breadcrumb-item">홈</a>
+            <span class="breadcrumb-separator">></span>
+            <a href="#" class="breadcrumb-item">회사소개</a>
+            <span class="breadcrumb-separator">></span>
+            <span class="breadcrumb-item active">팀 소개</span>
+        </div>
+    </nav>
+
+    <!-- Page Header -->
+    <section class="page-header">
+        <div class="page-header-content">
+            <div class="page-icon">👥</div>
+            <h1 class="page-title">팀 소개</h1>
+            <p class="page-subtitle">KOREVO를 이끌어가는 전문가들과 각 팀의 역할을 소개합니다</p>
+        </div>
+    </section>
+
+    <!-- Main Content -->
+    <main class="main-content">
+        <!-- Team Overview Section -->
+        <section class="team-section">
+            <div class="container">
+                <div class="team-header fade-in">
+                    <h2 class="team-title">One Team, One Dream</h2>
+                    <p class="team-subtitle">
+                        전통과 혁신을 융합하여 새로운 가치를 창조하는 KOREVO의 팀을 소개합니다.
+                        각자의 전문성을 바탕으로 하나의 목표를 향해 나아갑니다.
+                    </p>
+                </div>
+
+                <!-- CEO Section -->
+                <div class="ceo-section fade-in">
+                    <div class="ceo-profile">
+                        <div class="ceo-avatar">👨‍💼</div>
+                        <div class="ceo-info">
+                            <h2>김대표</h2>
+                            <div class="ceo-title">CEO · 대표이사</div>
+                            <p class="ceo-description">
+                                전통과 혁신의 조화를 통해 새로운 가치를 창조하는 것이 KOREVO의 사명입니다. 
+                                우리 팀 모두가 각자의 전문성을 발휘하여 고객에게 최고의 제품과 서비스를 제공하고, 
+                                지속가능한 미래를 만들어가는 것이 우리의 목표입니다. 함께 성장하며 더 나은 세상을 만들어갑시다.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Teams Grid -->
+                <div class="teams-grid">
+                    <!-- 경영지원팀 -->
+                    <div class="team-card fade-in">
+                        <div class="team-icon">💼</div>
+                        <h3 class="team-name">경영지원팀</h3>
+                        <p class="team-description">
+                            조직 운영의 기반이 되는 핵심 업무를 담당하며, 
+                            효율적인 경영 시스템 구축을 통해 회사의 성장을 지원합니다.
+                        </p>
+                        <div class="team-responsibilities">
+                            <h4>주요 역할</h4>
+                            <ul class="responsibility-list">
+                                <li>인사 관리 및 조직 개발</li>
+                                <li>재무 관리 및 회계 업무</li>
+                                <li>법무 및 컴플라이언스</li>
+                                <li>총무 및 시설 관리</li>
+                            </ul>
+                        </div>
+                        <div class="team-stats">
+                            <div class="stat-item">
+                                <span class="stat-number">5</span>
+                                <span class="stat-label">팀원</span>
+                            </div>
+                            <div class="stat-item">
+                                <span class="stat-number">100%</span>
+                                <span class="stat-label">효율성</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- 서비스개발팀 -->
+                    <div class="team-card fade-in">
+                        <div class="team-icon">⚙️</div>
+                        <h3 class="team-name">서비스개발팀</h3>
+                        <p class="team-description">
+                            혁신적인 IT 서비스와 솔루션을 개발하여 
+                            전통 산업의 디지털 전환을 이끌어가는 핵심 엔진입니다.
+                        </p>
+                        <div class="team-responsibilities">
+                            <h4>주요 역할</h4>
+                            <ul class="responsibility-list">
+                                <li>ERP 시스템 개발</li>
+                                <li>IoT 플랫폼 구축</li>
+                                <li>전자상거래 시스템</li>
+                                <li>API 및 백엔드 개발</li>
+                            </ul>
+                        </div>
+                        <div class="team-stats">
+                            <div class="stat-item">
+                                <span class="stat-number">8</span>
+                                <span class="stat-label">개발자</span>
+                            </div>
+                            <div class="stat-item">
+                                <span class="stat-number">12</span>
+                                <span class="stat-label">프로젝트</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- 제품개발팀 -->
+                    <div class="team-card fade-in">
+                        <div class="team-icon">🏺</div>
+                        <h3 class="team-name">제품개발팀</h3>
+                        <p class="team-description">
+                            전통 유기 기법과 현대 기술을 융합하여 
+                            헤온 브랜드의 혁신적인 제품을 개발합니다.
+                        </p>
+                        <div class="team-responsibilities">
+                            <h4>주요 역할</h4>
+                            <ul class="responsibility-list">
+                                <li>전통 기법 연구 및 개발</li>
+                                <li>신제품 기획 및 설계</li>
+                                <li>품질 관리 및 테스트</li>
+                                <li>무형문화재 협력</li>
+                            </ul>
+                        </div>
+                        <div class="team-stats">
+                            <div class="stat-item">
+                                <span class="stat-number">6</span>
+                                <span class="stat-label">전문가</span>
+                            </div>
+                            <div class="stat-item">
+                                <span class="stat-number">25+</span>
+                                <span class="stat-label">제품군</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- 사업전략기획팀 -->
+                    <div class="team-card fade-in">
+                        <div class="team-icon">📊</div>
+                        <h3 class="team-name">사업전략기획팀</h3>
+                        <p class="team-description">
+                            시장 분석과 전략 수립을 통해 KOREVO의 지속가능한 
+                            성장 방향을 제시하고 실행합니다.
+                        </p>
+                        <div class="team-responsibilities">
+                            <h4>주요 역할</h4>
+                            <ul class="responsibility-list">
+                                <li>사업 전략 수립 및 실행</li>
+                                <li>시장 조사 및 분석</li>
+                                <li>신사업 기획</li>
+                                <li>투자 및 파트너십</li>
+                            </ul>
+                        </div>
+                        <div class="team-stats">
+                            <div class="stat-item">
+                                <span class="stat-number">4</span>
+                                <span class="stat-label">전략가</span>
+                            </div>
+                            <div class="stat-item">
+                                <span class="stat-number">15억</span>
+                                <span class="stat-label">투자유치</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- 제품디자인팀 -->
+                    <div class="team-card fade-in">
+                        <div class="team-icon">🎨</div>
+                        <h3 class="team-name">제품디자인팀</h3>
+                        <p class="team-description">
+                            전통의 아름다움과 현대적 감각을 조화시켜 
+                            사용자 중심의 매력적인 디자인을 창조합니다.
+                        </p>
+                        <div class="team-responsibilities">
+                            <h4>주요 역할</h4>
+                            <ul class="responsibility-list">
+                                <li>제품 디자인 및 UX/UI</li>
+                                <li>브랜드 아이덴티티</li>
+                                <li>패키징 디자인</li>
+                                <li>마케팅 크리에이티브</li>
+                            </ul>
+                        </div>
+                        <div class="team-stats">
+                            <div class="stat-item">
+                                <span class="stat-number">5</span>
+                                <span class="stat-label">디자이너</span>
+                            </div>
+                            <div class="stat-item">
+                                <span class="stat-number">50+</span>
+                                <span class="stat-label">디자인</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- 비즈니스영업팀 -->
+                    <div class="team-card fade-in">
+                        <div class="team-icon">🤝</div>
+                        <h3 class="team-name">비즈니스영업팀</h3>
+                        <p class="team-description">
+                            고객과의 신뢰 관계를 구축하고 시장 확대를 통해 
+                            KOREVO의 성장 동력을 만들어갑니다.
+                        </p>
+                        <div class="team-responsibilities">
+                            <h4>주요 역할</h4>
+                            <ul class="responsibility-list">
+                                <li>B2B 영업 및 파트너십</li>
+                                <li>유통 채널 확대</li>
+                                <li>해외 시장 진출</li>
+                                <li>고객 관계 관리</li>
+                            </ul>
+                        </div>
+                        <div class="team-stats">
+                            <div class="stat-item">
+                                <span class="stat-number">6</span>
+                                <span class="stat-label">영업팀</span>
+                            </div>
+                            <div class="stat-item">
+                                <span class="stat-number">30+</span>
+                                <span class="stat-label">파트너</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- 고객지원팀 -->
+                    <div class="team-card fade-in">
+                        <div class="team-icon">🎧</div>
+                        <h3 class="team-name">고객지원팀</h3>
+                        <p class="team-description">
+                            고객의 목소리에 귀 기울이며 최상의 서비스를 제공하여 
+                            고객 만족과 브랜드 신뢰도를 높입니다.
+                        </p>
+                        <div class="team-responsibilities">
+                            <h4>주요 역할</h4>
+                            <ul class="responsibility-list">
+                                <li>고객 상담 및 지원</li>
+                                <li>A/S 및 품질 관리</li>
+                                <li>고객 피드백 수집</li>
+                                <li>교육 및 사용법 안내</li>
+                            </ul>
+                        </div>
+                        <div class="team-stats">
+                            <div class="stat-item">
+                                <span class="stat-number">4</span>
+                                <span class="stat-label">상담원</span>
+                            </div>
+                            <div class="stat-item">
+                                <span class="stat-number">98%</span>
+                                <span class="stat-label">만족도</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Team Culture Section -->
+        <section class="culture-section">
+            <div class="container">
+                <div class="features-header fade-in">
+                    <h2 class="features-title">KOREVO의 팀 문화</h2>
+                    <p class="features-subtitle">
+                        함께 성장하며 혁신을 만들어가는 우리만의 특별한 문화
+                    </p>
+                </div>
+                <div class="culture-grid">
+                    <div class="culture-card fade-in">
+                        <span class="culture-icon">🤝</span>
+                        <h3 class="culture-title">협업과 소통</h3>
+                        <p class="culture-description">
+                            열린 소통과 적극적인 협업을 통해 
+                            시너지를 창출하고 함께 성장합니다.
+                        </p>
+                    </div>
+                    <div class="culture-card fade-in">
+                        <span class="culture-icon">💡</span>
+                        <h3 class="culture-title">창의와 혁신</h3>
+                        <p class="culture-description">
+                            새로운 아이디어를 존중하고 
+                            혁신적인 사고를 장려합니다.
+                        </p>
+                    </div>
+                    <div class="culture-card fade-in">
+                        <span class="culture-icon">🎯</span>
+                        <h3 class="culture-title">목표 지향</h3>
+                        <p class="culture-description">
+                            명확한 목표를 설정하고 
+                            책임감을 가지고 성과를 달성합니다.
+                        </p>
+                    </div>
+                    <div class="culture-card fade-in">
+                        <span class="culture-icon">🌱</span>
+                        <h3 class="culture-title">지속 성장</h3>
+                        <p class="culture-description">
+                            개인과 조직의 지속적인 학습과 
+                            발전을 추구합니다.
+                        </p>
+                    </div>
+                    <div class="culture-card fade-in">
+                        <span class="culture-icon">⚖️</span>
+                        <h3 class="culture-title">일과 삶의 균형</h3>
+                        <p class="culture-description">
+                            건강한 워라밸을 추구하며 
+                            직원의 행복을 중시합니다.
+                        </p>
+                    </div>
+                    <div class="culture-card fade-in">
+                        <span class="culture-icon">🌍</span>
+                        <h3 class="culture-title">사회적 책임</h3>
+                        <p class="culture-description">
+                            지속가능한 경영과 사회 공헌을 
+                            실천하는 기업 시민입니다.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Join Us Section -->
+        <section class="join-section">
+            <div class="container">
+                <div class="join-content fade-in">
+                    <h2 class="join-title">함께 만들어갈 미래</h2>
+                    <p class="join-description">
+                        KOREVO와 함께 전통과 혁신이 만나는 특별한 여정에 동참하세요.
+                        우리와 함께 새로운 가치를 창조하며 성장할 인재를 기다립니다.
+                    </p>
+                    <div class="cta-buttons">
+                        <a href="contact.html" class="cta-btn">채용 문의</a>
+                        <a href="mailto:hr@korevo.co.kr" class="cta-btn secondary">이력서 보내기</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="footer-content">
+            <div class="footer-section">
+                <h3>KOREVO</h3>
+                <p>한국의 전통과 혁신을 담은<br>프리미엄 유기 브랜드</p>
+                <p>전통의 아름다움을 현대에 되살리며<br>지속가능한 미래를 만들어갑니다.</p>
+            </div>
+            <div class="footer-section">
+                <h3>팀 & 채용</h3>
+                <p><a href="team.html">팀 소개</a></p>
+                <p><a href="mailto:hr@korevo.co.kr">채용 문의</a></p>
+                <p><a href="#" onclick="navigateToPage('careers')">채용 공고</a></p>
+                <p><a href="#" onclick="navigateToPage('culture')">기업 문화</a></p>
+            </div>
+            <div class="footer-section">
+                <h3>고객지원</h3>
+                <p>고객센터: 1588-0000</p>
+                <p>이메일: info@korevo.co.kr</p>
+                <p>운영시간: 평일 09:00-18:00</p>
+                <p>인사팀: hr@korevo.co.kr</p>
+            </div>
+            <div class="footer-section">
+                <h3>주소</h3>
+                <p>서울특별시 강남구<br>테헤란로 123, 코레보빌딩 10층</p>
+                <p>사업자등록번호: 123-45-67890</p>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2025 KOREVO. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <!-- 통합 JavaScript 파일 -->
+    <script src="script.js"></script>
+    
+    <!-- Team Page Specific JavaScript -->
+    <script>
+        // ===== TEAM PAGE ANIMATIONS =====
+        function initTeamAnimations() {
+            const fadeElements = document.querySelectorAll('.fade-in');
+            
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach((entry, index) => {
+                    if (entry.isIntersecting) {
+                        setTimeout(() => {
+                            entry.target.classList.add('visible');
+                        }, index * 100);
+                    }
+                });
+            }, {
+                threshold: 0.1,
+                rootMargin: '0px 0px -50px 0px'
+            });
+
+            fadeElements.forEach(element => {
+                observer.observe(element);
+            });
+        }
+
+        // ===== TEAM CARD HOVER EFFECTS =====
+        function initTeamCardEffects() {
+            const teamCards = document.querySelectorAll('.team-card');
+            
+            teamCards.forEach(card => {
+                card.addEventListener('mouseenter', function() {
+                    this.style.transform = 'translateY(-12px) scale(1.02)';
+                    
+                    const icon = this.querySelector('.team-icon');
+                    if (icon) {
+                        icon.style.transform = 'scale(1.15) rotate(5deg)';
+                    }
+                });
+                
+                card.addEventListener('mouseleave', function() {
+                    this.style.transform = 'translateY(0) scale(1)';
+                    
+                    const icon = this.querySelector('.team-icon');
+                    if (icon) {
+                        icon.style.transform = 'scale(1) rotate(0deg)';
+                    }
+                });
+
+                // Add click effect for mobile
+                card.addEventListener('click', function() {
+                    this.style.transform = 'scale(0.98)';
+                    setTimeout(() => {
+                        this.style.transform = 'translateY(-12px) scale(1.02)';
+                    }, 100);
+                });
+            });
+        }
+
+        // ===== CULTURE CARD ANIMATIONS =====
+        function initCultureCardEffects() {
+            const cultureCards = document.querySelectorAll('.culture-card');
+            
+            cultureCards.forEach(card => {
+                card.addEventListener('mouseenter', function() {
+                    this.style.transform = 'translateY(-8px) scale(1.05)';
+                    
+                    const icon = this.querySelector('.culture-icon');
+                    if (icon) {
+                        icon.style.transform = 'scale(1.2) rotate(10deg)';
+                    }
+                });
+                
+                card.addEventListener('mouseleave', function() {
+                    this.style.transform = 'translateY(0) scale(1)';
+                    
+                    const icon = this.querySelector('.culture-icon');
+                    if (icon) {
+                        icon.style.transform = 'scale(1) rotate(0deg)';
+                    }
+                });
+            });
+        }
+
+        // ===== CEO AVATAR ANIMATION =====
+        function initCEOAnimation() {
+            const ceoAvatar = document.querySelector('.ceo-avatar');
+            
+            if (ceoAvatar) {
+                let rotationAngle = 0;
+                
+                ceoAvatar.addEventListener('click', function() {
+                    rotationAngle += 360;
+                    this.style.transform = `scale(1.1) rotate(${rotationAngle}deg)`;
+                    
+                    // Create sparkle effect
+                    createSparkleEffect(this);
+                    
+                    setTimeout(() => {
+                        this.style.transform = 'scale(1) rotate(0deg)';
+                        rotationAngle = 0;
+                    }, 600);
+                });
+            }
+        }
+
+        // ===== SPARKLE EFFECT =====
+        function createSparkleEffect(element) {
+            const sparkles = ['✨', '⭐', '🌟', '💫'];
+            const rect = element.getBoundingClientRect();
+            
+            for (let i = 0; i < 6; i++) {
+                const sparkle = document.createElement('div');
+                sparkle.textContent = sparkles[Math.floor(Math.random() * sparkles.length)];
+                sparkle.style.cssText = `
+                    position: fixed;
+                    left: ${rect.left + rect.width / 2}px;
+                    top: ${rect.top + rect.height / 2}px;
+                    font-size: 1.5rem;
+                    pointer-events: none;
+                    z-index: 9999;
+                    animation: sparkleFloat${i} 1s ease-out forwards;
+                `;
+                
+                document.body.appendChild(sparkle);
+                
+                setTimeout(() => {
+                    if (sparkle.parentNode) {
+                        sparkle.remove();
+                    }
+                }, 1000);
+            }
+            
+            // Add sparkle animation styles if not exists
+            if (!document.querySelector('#sparkle-styles')) {
+                const style = document.createElement('style');
+                style.id = 'sparkle-styles';
+                style.innerHTML = `
+                    @keyframes sparkleFloat0 { to { transform: translate(-30px, -40px); opacity: 0; } }
+                    @keyframes sparkleFloat1 { to { transform: translate(30px, -40px); opacity: 0; } }
+                    @keyframes sparkleFloat2 { to { transform: translate(-40px, 0px); opacity: 0; } }
+                    @keyframes sparkleFloat3 { to { transform: translate(40px, 0px); opacity: 0; } }
+                    @keyframes sparkleFloat4 { to { transform: translate(-20px, 30px); opacity: 0; } }
+                    @keyframes sparkleFloat5 { to { transform: translate(20px, 30px); opacity: 0; } }
+                `;
+                document.head.appendChild(style);
+            }
+        }
+
+        // ===== STATISTICS COUNTER ANIMATION =====
+        function initStatCounters() {
+            const statNumbers = document.querySelectorAll('.stat-number');
+            
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting && !entry.target.classList.contains('animated')) {
+                        entry.target.classList.add('animated');
+                        animateStatNumber(entry.target);
+                    }
+                });
+            }, { threshold: 0.5 });
+
+            statNumbers.forEach(stat => {
+                observer.observe(stat);
+            });
+        }
+
+        function animateStatNumber(element) {
+            const finalText = element.textContent;
+            const hasPlus = finalText.includes('+');
+            const hasPercent = finalText.includes('%');
+            const hasBillion = finalText.includes('억');
+            
+            const numericValue = parseFloat(finalText.replace(/[^0-9.]/g, ''));
+            
+            if (isNaN(numericValue)) return;
+            
+            let currentValue = 0;
+            const increment = numericValue / 60;
+            const duration = 2000;
+            
+            const timer = setInterval(() => {
+                currentValue += increment;
+                if (currentValue >= numericValue) {
+                    currentValue = numericValue;
+                    clearInterval(timer);
+                }
+                
+                let displayValue = Math.floor(currentValue);
+                if (hasBillion) {
+                    element.textContent = displayValue + '억';
+                } else if (hasPercent) {
+                    element.textContent = displayValue + '%';
+                } else if (hasPlus) {
+                    element.textContent = displayValue + '+';
+                } else {
+                    element.textContent = displayValue;
+                }
+            }, duration / 60);
+        }
+
+        // ===== TEAM FILTER FUNCTIONALITY =====
+        function filterTeams(category) {
+            const teamCards = document.querySelectorAll('.team-card');
+            
+            teamCards.forEach(card => {
+                const teamName = card.querySelector('.team-name').textContent.toLowerCase();
+                
+                if (category === 'all' || teamName.includes(category)) {
+                    card.style.display = 'block';
+                    card.style.opacity = '0';
+                    card.style.transform = 'translateY(20px)';
+                    
+                    setTimeout(() => {
+                        card.style.opacity = '1';
+                        card.style.transform = 'translateY(0)';
+                    }, 100);
+                } else {
+                    card.style.opacity = '0';
+                    card.style.transform = 'translateY(-20px)';
+                    setTimeout(() => {
+                        card.style.display = 'none';
+                    }, 300);
+                }
+            });
+        }
+
+        // ===== RESPONSIVE ADJUSTMENTS =====
+        function adjustForMobile() {
+            if (window.innerWidth <= 768) {
+                const teamCards = document.querySelectorAll('.team-card');
+                teamCards.forEach(card => {
+                    card.style.marginBottom = 'var(--spacing-lg)';
+                });
+            }
+        }
+
+        // ===== INITIALIZATION =====
+        document.addEventListener('DOMContentLoaded', function() {
+            console.log('👥 KOREVO Team page loaded');
+            
+            // Initialize all animations and effects
+            initTeamAnimations();
+            initTeamCardEffects();
+            initCultureCardEffects();
+            initCEOAnimation();
+            initStatCounters();
+            adjustForMobile();
+        });
+
+        // ===== RESIZE HANDLER =====
+        window.addEventListener('resize', debounce(adjustForMobile, 250));
+        
+        function debounce(func, wait) {
+            let timeout;
+            return function executedFunction(...args) {
+                const later = () => {
+                    clearTimeout(timeout);
+                    func(...args);
+                };
+                clearTimeout(timeout);
+                timeout = setTimeout(later, wait);
+            };
+        }
+
+        // ===== CONTACT TEAM MEMBER =====
+        function contactTeam(teamName) {
+            showAppleNotification(`${teamName}에 대한 문의가 전달되었습니다.`, 'success');
+        }
+
+        // ===== SMOOTH SCROLL TO TEAM SECTION =====
+        function scrollToTeam(teamName) {
+            const teamCards = document.querySelectorAll('.team-card');
+            teamCards.forEach(card => {
+                const cardTeamName = card.querySelector('.team-name').textContent;
+                if (cardTeamName.includes(teamName)) {
+                    card.scrollIntoView({ 
+                        behavior: 'smooth', 
+                        block: 'center' 
+                    });
+                    
+                    // Highlight effect
+                    card.style.border = '2px solid var(--apple-blue)';
+                    setTimeout(() => {
+                        card.style.border = '0.5px solid var(--separator)';
+                    }, 2000);
+                }
+            });
+        }
+    </script>
+</body>
+</html>
