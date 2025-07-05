@@ -1,0 +1,1267 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>브랜드 철학 - KOREVO</title>
+    <meta name="description" content="헤온 브랜드의 철학과 디자인 원칙, 커뮤니케이션 가이드를 소개합니다.">
+    
+    <!-- 통합 CSS 파일 -->
+    <link rel="stylesheet" href="styles.css">
+    
+    <!-- Philosophy Page Specific Styles -->
+    <style>
+        /* ===== PHILOSOPHY SECTION STYLES ===== */
+        .philosophy-section {
+            padding: 6rem 0;
+            background: var(--bg-primary);
+        }
+
+        .philosophy-header {
+            text-align: center;
+            margin-bottom: 4rem;
+        }
+
+        .philosophy-title {
+            font-size: var(--font-size-display-medium);
+            font-weight: var(--font-weight-bold);
+            color: var(--text-primary);
+            margin-bottom: var(--spacing-lg);
+            line-height: 1.08333;
+            letter-spacing: -0.003em;
+        }
+
+        .philosophy-subtitle {
+            font-size: var(--font-size-title2);
+            color: var(--text-secondary);
+            max-width: 600px;
+            margin: 0 auto;
+            line-height: 1.4;
+        }
+
+        /* Philosophy Hero */
+        .philosophy-hero {
+            background: linear-gradient(135deg, var(--apple-dark) 0%, #2C2C2E 100%);
+            color: var(--bg-primary);
+            padding: 6rem 0;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .philosophy-hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(45deg, rgba(0, 122, 255, 0.1) 0%, rgba(0, 122, 255, 0.05) 100%);
+            opacity: 0.6;
+        }
+
+        .philosophy-hero-content {
+            position: relative;
+            z-index: 2;
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 0 var(--spacing-lg);
+        }
+
+        .hero-quote {
+            font-size: var(--font-size-display-small);
+            font-weight: var(--font-weight-bold);
+            line-height: 1.2;
+            margin-bottom: var(--spacing-xl);
+            color: var(--bg-primary);
+            position: relative;
+        }
+
+        .hero-quote::before,
+        .hero-quote::after {
+            content: '"';
+            font-size: 1.5em;
+            color: var(--apple-blue);
+            position: absolute;
+            opacity: 0.8;
+        }
+
+        .hero-quote::before {
+            top: -0.2em;
+            left: -0.5em;
+        }
+
+        .hero-quote::after {
+            bottom: -0.5em;
+            right: -0.5em;
+        }
+
+        .hero-description {
+            font-size: var(--font-size-title3);
+            color: var(--bg-primary);
+            opacity: 0.9;
+            line-height: 1.4;
+        }
+
+        /* Core Values Section */
+        .core-values-section {
+            padding: 6rem 0;
+            background: var(--bg-secondary);
+        }
+
+        .values-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: var(--spacing-2xl);
+            margin-top: var(--spacing-2xl);
+        }
+
+        .value-card {
+            background: var(--bg-primary);
+            border: 0.5px solid var(--separator);
+            border-radius: var(--radius-2xl);
+            padding: var(--spacing-2xl);
+            text-align: center;
+            transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+            box-shadow: var(--shadow-sm);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .value-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: linear-gradient(90deg, var(--apple-blue), #007AFF);
+            transform: scaleX(0);
+            transition: transform 0.4s ease;
+        }
+
+        .value-card:hover {
+            transform: translateY(-12px) scale(1.02);
+            box-shadow: var(--shadow-apple-card);
+        }
+
+        .value-card:hover::before {
+            transform: scaleX(1);
+        }
+
+        .value-icon {
+            width: 100px;
+            height: 100px;
+            margin: 0 auto var(--spacing-xl);
+            border-radius: var(--radius-full);
+            background: linear-gradient(135deg, var(--apple-blue), #0051D5);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2.5rem;
+            color: var(--bg-primary);
+            box-shadow: 0 15px 30px rgba(0, 122, 255, 0.3);
+            transition: all 0.4s ease;
+        }
+
+        .value-card:hover .value-icon {
+            transform: scale(1.1) rotate(10deg);
+            box-shadow: 0 20px 40px rgba(0, 122, 255, 0.4);
+        }
+
+        .value-title {
+            font-size: var(--font-size-title2);
+            font-weight: var(--font-weight-bold);
+            color: var(--text-primary);
+            margin-bottom: var(--spacing-md);
+        }
+
+        .value-subtitle {
+            font-size: var(--font-size-callout);
+            color: var(--apple-blue);
+            font-weight: var(--font-weight-semibold);
+            margin-bottom: var(--spacing-lg);
+        }
+
+        .value-description {
+            color: var(--text-secondary);
+            line-height: 1.47059;
+            font-size: var(--font-size-callout);
+        }
+
+        /* Design Principles Section */
+        .design-section {
+            padding: 6rem 0;
+            background: var(--bg-primary);
+        }
+
+        .design-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: var(--spacing-2xl);
+            margin-top: var(--spacing-2xl);
+        }
+
+        .design-card {
+            background: var(--bg-primary);
+            border: 0.5px solid var(--separator);
+            border-radius: var(--radius-xl);
+            padding: var(--spacing-2xl);
+            transition: all 0.3s ease;
+            box-shadow: var(--shadow-sm);
+            position: relative;
+        }
+
+        .design-card:hover {
+            transform: translateY(-8px);
+            box-shadow: var(--shadow-apple-card);
+        }
+
+        .design-header {
+            display: flex;
+            align-items: center;
+            gap: var(--spacing-lg);
+            margin-bottom: var(--spacing-lg);
+        }
+
+        .design-icon {
+            width: 60px;
+            height: 60px;
+            border-radius: var(--radius-xl);
+            background: linear-gradient(135deg, var(--apple-blue), #0051D5);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            color: var(--bg-primary);
+            flex-shrink: 0;
+        }
+
+        .design-title {
+            font-size: var(--font-size-title3);
+            font-weight: var(--font-weight-semibold);
+            color: var(--text-primary);
+        }
+
+        .design-description {
+            color: var(--text-secondary);
+            line-height: 1.47059;
+            margin-bottom: var(--spacing-lg);
+        }
+
+        .design-details {
+            border-top: 0.5px solid var(--separator);
+            padding-top: var(--spacing-lg);
+        }
+
+        .design-detail-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: var(--spacing-sm) 0;
+            border-bottom: 0.5px solid rgba(0, 0, 0, 0.05);
+        }
+
+        .design-detail-item:last-child {
+            border-bottom: none;
+        }
+
+        .detail-label {
+            font-weight: var(--font-weight-medium);
+            color: var(--text-secondary);
+        }
+
+        .detail-value {
+            font-weight: var(--font-weight-semibold);
+            color: var(--text-primary);
+        }
+
+        /* Communication Section */
+        .communication-section {
+            padding: 6rem 0;
+            background: var(--bg-secondary);
+        }
+
+        .tone-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: var(--spacing-xl);
+            margin-top: var(--spacing-2xl);
+        }
+
+        .tone-card {
+            background: var(--bg-primary);
+            border: 0.5px solid var(--separator);
+            border-radius: var(--radius-xl);
+            padding: var(--spacing-xl);
+            text-align: center;
+            transition: all 0.3s ease;
+            box-shadow: var(--shadow-sm);
+        }
+
+        .tone-card:hover {
+            transform: translateY(-6px);
+            box-shadow: var(--shadow-apple-card);
+        }
+
+        .tone-emoji {
+            font-size: 3rem;
+            margin-bottom: var(--spacing-lg);
+            display: block;
+        }
+
+        .tone-title {
+            font-size: var(--font-size-title3);
+            font-weight: var(--font-weight-semibold);
+            color: var(--text-primary);
+            margin-bottom: var(--spacing-sm);
+        }
+
+        .tone-subtitle {
+            font-size: var(--font-size-footnote);
+            color: var(--apple-blue);
+            text-transform: uppercase;
+            letter-spacing: 0.066em;
+            margin-bottom: var(--spacing-md);
+        }
+
+        .tone-description {
+            color: var(--text-secondary);
+            line-height: 1.47059;
+        }
+
+        /* Brand Promise Section */
+        .promise-section {
+            padding: 6rem 0;
+            background: linear-gradient(135deg, var(--apple-blue) 0%, #0051D5 100%);
+            color: var(--bg-primary);
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .promise-section::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><circle cx="20" cy="20" r="2" fill="rgba(255,255,255,0.1)"/><circle cx="80" cy="80" r="1.5" fill="rgba(255,255,255,0.08)"/><circle cx="50" cy="15" r="1" fill="rgba(255,255,255,0.06)"/></svg>');
+            background-size: 100px 100px;
+            opacity: 0.3;
+        }
+
+        .promise-content {
+            position: relative;
+            z-index: 2;
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 0 var(--spacing-lg);
+        }
+
+        .promise-title {
+            font-size: var(--font-size-display-small);
+            font-weight: var(--font-weight-bold);
+            margin-bottom: var(--spacing-lg);
+            color: var(--bg-primary);
+        }
+
+        .promise-description {
+            font-size: var(--font-size-title3);
+            line-height: 1.4;
+            margin-bottom: var(--spacing-2xl);
+            color: var(--bg-primary);
+            opacity: 0.95;
+        }
+
+        .promise-items {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: var(--spacing-xl);
+            margin-top: var(--spacing-2xl);
+        }
+
+        .promise-item {
+            padding: var(--spacing-lg);
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: var(--radius-xl);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+
+        .promise-item h4 {
+            font-size: var(--font-size-headline);
+            font-weight: var(--font-weight-semibold);
+            margin-bottom: var(--spacing-sm);
+            color: var(--bg-primary);
+        }
+
+        .promise-item p {
+            color: var(--bg-primary);
+            opacity: 0.9;
+            line-height: 1.47059;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .philosophy-hero {
+                padding: 4rem 0;
+            }
+
+            .hero-quote {
+                font-size: var(--font-size-title1);
+            }
+
+            .hero-quote::before,
+            .hero-quote::after {
+                display: none;
+            }
+
+            .values-grid,
+            .design-grid,
+            .tone-grid {
+                grid-template-columns: 1fr;
+                gap: var(--spacing-lg);
+            }
+
+            .value-card,
+            .design-card,
+            .tone-card {
+                padding: var(--spacing-lg);
+            }
+
+            .value-icon {
+                width: 80px;
+                height: 80px;
+                font-size: 2rem;
+            }
+
+            .design-header {
+                flex-direction: column;
+                text-align: center;
+                gap: var(--spacing-md);
+            }
+
+            .promise-items {
+                grid-template-columns: 1fr;
+            }
+
+            .promise-title {
+                font-size: var(--font-size-title1);
+            }
+        }
+
+        /* Animation Classes */
+        .fade-in {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+        }
+
+        .fade-in.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* Color Variations for Cards */
+        .value-card:nth-child(1) .value-icon { background: linear-gradient(135deg, #FF6B6B, #FF5252); }
+        .value-card:nth-child(2) .value-icon { background: linear-gradient(135deg, #4ECDC4, #26A69A); }
+        .value-card:nth-child(3) .value-icon { background: linear-gradient(135deg, #45B7D1, #2196F3); }
+        .value-card:nth-child(4) .value-icon { background: linear-gradient(135deg, #96CEB4, #4CAF50); }
+        .value-card:nth-child(5) .value-icon { background: linear-gradient(135deg, #FFEAA7, #FFC107); }
+        .value-card:nth-child(6) .value-icon { background: linear-gradient(135deg, #DDA0DD, #9C27B0); }
+
+        .design-card:nth-child(1) .design-icon { background: linear-gradient(135deg, #FF9500, #FF8C00); }
+        .design-card:nth-child(2) .design-icon { background: linear-gradient(135deg, #34C759, #30B450); }
+        .design-card:nth-child(3) .design-icon { background: linear-gradient(135deg, #5856D6, #5048C7); }
+        .design-card:nth-child(4) .design-icon { background: linear-gradient(135deg, #FF2D92, #FF1875); }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header class="header">
+        <nav class="nav-container">
+            <a href="index.html" class="logo">KOREVO</a>
+            
+            <ul class="nav-menu" id="navMenu">
+                <li class="nav-item">
+                    <a href="index.html" class="nav-link">홈</a>
+                </li>
+                <li class="nav-item">
+                    <a href="#" class="nav-link">회사소개</a>
+                    <div class="dropdown">
+                        <div class="dropdown-item" onclick="window.location.href='greeting.html'">인사말</div>
+                        <div class="dropdown-item" onclick="navigateToPage('vision')">비전 & 미션</div>
+                        <div class="dropdown-item" onclick="window.location.href='history.html'">연혁</div>
+                        <div class="dropdown-item" onclick="window.location.href='team.html'">팀 소개</div>
+                    </div>
+                </li>
+                <li class="nav-item">
+                    <a href="#business" class="nav-link active">사업소개</a>
+                    <div class="mega-dropdown">
+                        <div class="dropdown-section">
+                            <h4>브랜드 스토리</h4>
+                            <div class="dropdown-item" onclick="window.location.href='heonn-brand.html'">헤온(HeOnn) 브랜드</div>
+                            <div class="dropdown-item active" onclick="window.location.href='philosophy.html'">브랜드 철학</div>
+                            <div class="dropdown-item" onclick="navigateToPage('traditional-craft')">전통 기법 계승</div>
+                        </div>
+                        <div class="dropdown-section">
+                            <h4>융합 비즈니스</h4>
+                            <div class="dropdown-item" onclick="navigateToPage('business-model')">사업 모델</div>
+                            <div class="dropdown-item" onclick="navigateToPage('innovation-strategy')">혁신 전략</div>
+                            <div class="dropdown-item" onclick="navigateToPage('sustainability')">지속가능경영</div>
+                        </div>
+                    </div>
+                </li>
+                <li class="nav-item">
+                    <a href="#products" class="nav-link">제품/서비스</a>
+                    <div class="mega-dropdown">
+                        <div class="dropdown-section">
+                            <h4>🏺 유기 제품군</h4>
+                            <div class="dropdown-item" onclick="window.location.href='dining-set.html'">식기 컬렉션</div>
+                            <div class="dropdown-item" onclick="navigateToPage('health-products')">건강 케어 제품</div>
+                            <div class="dropdown-item" onclick="navigateToPage('gift-sets')">프리미엄 선물세트</div>
+                            <div class="dropdown-item" onclick="navigateToPage('custom-craft')">맞춤 제작 서비스</div>
+                        </div>
+                        <div class="dropdown-section">
+                            <h4>💻 소프트웨어</h4>
+                            <div class="dropdown-item" onclick="navigateToPage('erp-solution')">제조업 ERP 솔루션</div>
+                            <div class="dropdown-item" onclick="navigateToPage('iot-platform')">IoT 품질관리 플랫폼</div>
+                            <div class="dropdown-item" onclick="navigateToPage('ecommerce-system')">전통공예 전자상거래</div>
+                            <div class="dropdown-item" onclick="navigateToPage('consulting')">디지털 전환 컨설팅</div>
+                        </div>
+                        <div class="dropdown-section">
+                            <h4>🔬 R&D 과제</h4>
+                            <div class="dropdown-item" onclick="navigateToPage('current-projects')">진행중 과제</div>
+                            <div class="dropdown-item" onclick="navigateToPage('completed-projects')">완료 과제</div>
+                            <div class="dropdown-item" onclick="navigateToPage('research-outcomes')">연구 성과</div>
+                            <div class="dropdown-item" onclick="navigateToPage('collaboration')">산학연 협력</div>
+                        </div>
+                    </div>
+                </li>
+                <li class="nav-item">
+                    <a href="contact.html" class="nav-link">CONTACT</a>
+                </li>
+                <li class="nav-item">
+                    <a href="#shop" class="nav-link">쇼핑몰</a>
+                </li>
+            </ul>
+
+            <div class="lang-selector">
+                <a href="#" class="lang-btn active">🇰🇷</a>
+                <a href="#" class="lang-btn">🇺🇸</a>
+                <a href="#" class="lang-btn">🇨🇳</a>
+                <a href="#" class="lang-btn">🇯🇵</a>
+            </div>
+
+            <button class="menu-toggle" onclick="toggleMenu()" aria-label="메뉴 토글" aria-expanded="false">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+        </nav>
+    </header>
+
+    <!-- Breadcrumb -->
+    <nav class="breadcrumb-nav">
+        <div class="breadcrumb">
+            <a href="index.html" class="breadcrumb-item">홈</a>
+            <span class="breadcrumb-separator">></span>
+            <a href="#" class="breadcrumb-item">사업소개</a>
+            <span class="breadcrumb-separator">></span>
+            <span class="breadcrumb-item active">브랜드 철학</span>
+        </div>
+    </nav>
+
+    <!-- Page Header -->
+    <section class="page-header">
+        <div class="page-header-content">
+            <div class="page-icon">💭</div>
+            <h1 class="page-title">브랜드 철학</h1>
+            <p class="page-subtitle">헤온이 추구하는 가치와 디자인 철학, 소통 방식을 소개합니다</p>
+        </div>
+    </section>
+
+    <!-- Main Content -->
+    <main class="main-content">
+        <!-- Philosophy Hero Section -->
+        <section class="philosophy-hero">
+            <div class="philosophy-hero-content fade-in">
+                <h2 class="hero-quote">
+                    전통의 따뜻함과 현대의 혁신이 만나는 곳에서 
+                    진정한 아름다움이 탄생합니다
+                </h2>
+                <p class="hero-description">
+                    헤온(HeOnn)은 단순한 제품을 넘어 하나의 철학입니다. 
+                    천년의 지혜와 오늘의 기술이 조화를 이루며, 
+                    사용자의 삶에 의미 있는 가치를 더하는 것이 우리의 신념입니다.
+                </p>
+            </div>
+        </section>
+
+        <!-- Core Values Section -->
+        <section class="core-values-section">
+            <div class="container">
+                <div class="philosophy-header fade-in">
+                    <h2 class="philosophy-title">핵심 가치</h2>
+                    <p class="philosophy-subtitle">
+                        헤온 브랜드가 추구하는 6가지 핵심 가치
+                    </p>
+                </div>
+                <div class="values-grid">
+                    <div class="value-card fade-in">
+                        <div class="value-icon">🌿</div>
+                        <h3 class="value-title">자연과의 조화</h3>
+                        <div class="value-subtitle">Harmony with Nature</div>
+                        <p class="value-description">
+                            자연에서 얻은 순수한 소재와 친환경적 제작 과정을 통해 
+                            인간과 자연이 공존하는 지속가능한 미래를 만들어갑니다. 
+                            모든 제품은 자연의 순환 원리를 존중합니다.
+                        </p>
+                    </div>
+                    <div class="value-card fade-in">
+                        <div class="value-icon">🏮</div>
+                        <h3 class="value-title">전통의 계승</h3>
+                        <div class="value-subtitle">Heritage Preservation</div>
+                        <p class="value-description">
+                            무형문화재의 장인정신과 전통 기법을 현대에 되살려 
+                            후세에 전달하는 것이 우리의 사명입니다. 전통의 가치를 
+                            지키면서도 현대적 감각으로 재해석합니다.
+                        </p>
+                    </div>
+                    <div class="value-card fade-in">
+                        <div class="value-icon">💡</div>
+                        <h3 class="value-title">혁신적 사고</h3>
+                        <div class="value-subtitle">Innovative Thinking</div>
+                        <p class="value-description">
+                            전통을 기반으로 하되, 현대 기술과 창의적 아이디어를 
+                            접목하여 새로운 가능성을 탐구합니다. AI 기술과 
+                            개인 맞춤형 서비스로 혁신을 실현합니다.
+                        </p>
+                    </div>
+                    <div class="value-card fade-in">
+                        <div class="value-icon">❤️</div>
+                        <h3 class="value-title">정성과 마음</h3>
+                        <div class="value-subtitle">Sincerity & Care</div>
+                        <p class="value-description">
+                            하나하나 정성을 다해 만든 제품에는 만드는 이의 마음이 
+                            담겨 있습니다. 사용자에게 따뜻한 정성과 진정성을 
+                            전달하는 것이 헤온의 가장 소중한 가치입니다.
+                        </p>
+                    </div>
+                    <div class="value-card fade-in">
+                        <div class="value-icon">✨</div>
+                        <h3 class="value-title">품격과 아름다움</h3>
+                        <div class="value-subtitle">Elegance & Beauty</div>
+                        <p class="value-description">
+                            시간이 지나도 변하지 않는 우아함과 고귀한 아름다움을 
+                            추구합니다. 외형뿐만 아니라 내재된 가치와 의미까지 
+                            고려한 진정한 품격을 지향합니다.
+                        </p>
+                    </div>
+                    <div class="value-card fade-in">
+                        <div class="value-icon">🤝</div>
+                        <h3 class="value-title">상생과 협력</h3>
+                        <div class="value-subtitle">Mutual Growth</div>
+                        <p class="value-description">
+                            고객, 파트너, 지역사회와 함께 성장하는 생태계를 
+                            구축합니다. 전통 장인들과의 협력을 통해 서로의 
+                            발전을 도모하며 사회적 가치를 창출합니다.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Design Principles Section -->
+        <section class="design-section">
+            <div class="container">
+                <div class="philosophy-header fade-in">
+                    <h2 class="philosophy-title">디자인 원칙</h2>
+                    <p class="philosophy-subtitle">
+                        헤온의 모든 제품과 서비스를 관통하는 디자인 철학
+                    </p>
+                </div>
+                <div class="design-grid">
+                    <div class="design-card fade-in">
+                        <div class="design-header">
+                            <div class="design-icon">🎯</div>
+                            <h3 class="design-title">기능과 미학의 조화</h3>
+                        </div>
+                        <p class="design-description">
+                            아름다움과 실용성이 완벽하게 균형을 이루는 디자인을 추구합니다. 
+                            형태는 기능을 따르되, 기능 또한 아름다움을 위해 존재합니다.
+                        </p>
+                        <div class="design-details">
+                            <div class="design-detail-item">
+                                <span class="detail-label">핵심 원칙</span>
+                                <span class="detail-value">Form follows Function</span>
+                            </div>
+                            <div class="design-detail-item">
+                                <span class="detail-label">디자인 접근</span>
+                                <span class="detail-value">미니멀리즘</span>
+                            </div>
+                            <div class="design-detail-item">
+                                <span class="detail-label">사용성</span>
+                                <span class="detail-value">직관적 인터페이스</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="design-card fade-in">
+                        <div class="design-header">
+                            <div class="design-icon">🌊</div>
+                            <h3 class="design-title">자연스러운 곡선</h3>
+                        </div>
+                        <p class="design-description">
+                            자연에서 영감을 받은 부드럽고 유기적인 형태를 통해 
+                            사용자에게 편안함과 안정감을 제공합니다.
+                        </p>
+                        <div class="design-details">
+                            <div class="design-detail-item">
+                                <span class="detail-label">형태 언어</span>
+                                <span class="detail-value">유기적 곡선</span>
+                            </div>
+                            <div class="design-detail-item">
+                                <span class="detail-label">영감 소스</span>
+                                <span class="detail-value">자연의 형태</span>
+                            </div>
+                            <div class="design-detail-item">
+                                <span class="detail-label">사용자 경험</span>
+                                <span class="detail-value">편안함과 안정감</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="design-card fade-in">
+                        <div class="design-header">
+                            <div class="design-icon">🎨</div>
+                            <h3 class="design-title">절제된 색채</h3>
+                        </div>
+                        <p class="design-description">
+                            과하지 않으면서도 깊이 있는 색감으로 시간이 지나도 
+                            질리지 않는 아름다움을 구현합니다.
+                        </p>
+                        <div class="design-details">
+                            <div class="design-detail-item">
+                                <span class="detail-label">주요 색상</span>
+                                <span class="detail-value">골드, 브론즈, 화이트</span>
+                            </div>
+                            <div class="design-detail-item">
+                                <span class="detail-label">색채 철학</span>
+                                <span class="detail-value">절제와 품격</span>
+                            </div>
+                            <div class="design-detail-item">
+                                <span class="detail-label">시간성</span>
+                                <span class="detail-value">영원한 아름다움</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="design-card fade-in">
+                        <div class="design-header">
+                            <div class="design-icon">📐</div>
+                            <h3 class="design-title">황금비율 적용</h3>
+                        </div>
+                        <p class="design-description">
+                            자연계에서 발견되는 황금비율을 적용하여 
+                            시각적으로 안정되고 조화로운 비례를 구현합니다.
+                        </p>
+                        <div class="design-details">
+                            <div class="design-detail-item">
+                                <span class="detail-label">비율 기준</span>
+                                <span class="detail-value">1:1.618 (황금비)</span>
+                            </div>
+                            <div class="design-detail-item">
+                                <span class="detail-label">적용 영역</span>
+                                <span class="detail-value">제품 치수, 레이아웃</span>
+                            </div>
+                            <div class="design-detail-item">
+                                <span class="detail-label">효과</span>
+                                <span class="detail-value">시각적 안정감</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Communication Section -->
+        <section class="communication-section">
+            <div class="container">
+                <div class="philosophy-header fade-in">
+                    <h2 class="philosophy-title">커뮤니케이션 톤앤매너</h2>
+                    <p class="philosophy-subtitle">
+                        헤온이 고객과 소통하는 방식과 브랜드 보이스
+                    </p>
+                </div>
+                <div class="tone-grid">
+                    <div class="tone-card fade-in">
+                        <span class="tone-emoji">🤗</span>
+                        <h3 class="tone-title">따뜻하고 친근하게</h3>
+                        <div class="tone-subtitle">Warm & Approachable</div>
+                        <p class="tone-description">
+                            고객에게 따뜻한 마음을 전달하며, 거리감 없이 
+                            친근하게 다가갑니다. 격식보다는 진정성 있는 
+                            소통을 중시합니다.
+                        </p>
+                    </div>
+                    <div class="tone-card fade-in">
+                        <span class="tone-emoji">🎓</span>
+                        <h3 class="tone-title">전문적이고 신뢰감 있게</h3>
+                        <div class="tone-subtitle">Professional & Trustworthy</div>
+                        <p class="tone-description">
+                            전통 기법과 현대 기술에 대한 깊은 이해를 바탕으로 
+                            전문적이면서도 신뢰할 수 있는 정보를 제공합니다.
+                        </p>
+                    </div>
+                    <div class="tone-card fade-in">
+                        <span class="tone-emoji">🌱</span>
+                        <h3 class="tone-title">겸손하고 진솔하게</h3>
+                        <div class="tone-subtitle">Humble & Authentic</div>
+                        <p class="tone-description">
+                            과장하지 않고 진실한 모습을 보여드립니다. 
+                            겸손한 자세로 고객의 의견에 귀 기울이며 
+                            함께 성장해나갑니다.
+                        </p>
+                    </div>
+                    <div class="tone-card fade-in">
+                        <span class="tone-emoji">✨</span>
+                        <h3 class="tone-title">품격 있고 우아하게</h3>
+                        <div class="tone-subtitle">Elegant & Refined</div>
+                        <p class="tone-description">
+                            헤온 브랜드의 품격을 말과 글에도 담아냅니다. 
+                            세련되고 우아한 표현으로 브랜드의 가치를 
+                            일관되게 전달합니다.
+                        </p>
+                    </div>
+                    <div class="tone-card fade-in">
+                        <span class="tone-emoji">💡</span>
+                        <h3 class="tone-title">교육적이고 도움이 되게</h3>
+                        <div class="tone-subtitle">Educational & Helpful</div>
+                        <p class="tone-description">
+                            전통 유기에 대한 지식과 올바른 사용법을 
+                            알기 쉽게 설명하여 고객의 이해를 돕고 
+                            가치 있는 정보를 제공합니다.
+                        </p>
+                    </div>
+                    <div class="tone-card fade-in">
+                        <span class="tone-emoji">🎯</span>
+                        <h3 class="tone-title">명확하고 간결하게</h3>
+                        <div class="tone-subtitle">Clear & Concise</div>
+                        <p class="tone-description">
+                            복잡한 내용도 이해하기 쉽게 정리하여 전달합니다. 
+                            불필요한 수식어보다는 핵심을 정확하게 
+                            표현하는 것을 중시합니다.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Brand Promise Section -->
+        <section class="promise-section">
+            <div class="container">
+                <div class="promise-content fade-in">
+                    <h2 class="promise-title">브랜드 약속</h2>
+                    <p class="promise-description">
+                        헤온은 고객과의 약속을 소중히 여기며, 이를 지키기 위해 끊임없이 노력합니다. 
+                        우리의 약속은 단순한 말이 아닌, 행동으로 실천하는 신념입니다.
+                    </p>
+                    <div class="promise-items">
+                        <div class="promise-item">
+                            <h4>품질에 대한 약속</h4>
+                            <p>최고의 품질만을 고객에게 제공하며, 지속적인 품질 향상을 위해 노력합니다.</p>
+                        </div>
+                        <div class="promise-item">
+                            <h4>정성에 대한 약속</h4>
+                            <p>하나하나 정성을 다해 만든 제품으로 고객의 마음을 감동시키겠습니다.</p>
+                        </div>
+                        <div class="promise-item">
+                            <h4>혁신에 대한 약속</h4>
+                            <p>전통을 기반으로 한 끊임없는 혁신으로 새로운 가치를 창조하겠습니다.</p>
+                        </div>
+                        <div class="promise-item">
+                            <h4>지속가능성에 대한 약속</h4>
+                            <p>환경을 생각하는 지속가능한 경영으로 미래 세대를 위한 책임을 다하겠습니다.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="footer-content">
+            <div class="footer-section">
+                <h3>KOREVO</h3>
+                <p>한국의 전통과 혁신을 담은<br>프리미엄 유기 브랜드</p>
+                <p>전통의 아름다움을 현대에 되살리며<br>지속가능한 미래를 만들어갑니다.</p>
+            </div>
+            <div class="footer-section">
+                <h3>브랜드 철학</h3>
+                <p><a href="philosophy.html">브랜드 철학</a></p>
+                <p><a href="heonn-brand.html">헤온 브랜드</a></p>
+                <p><a href="#" onclick="navigateToPage('traditional-craft')">전통 기법</a></p>
+                <p><a href="dining-set.html">제품 컬렉션</a></p>
+            </div>
+            <div class="footer-section">
+                <h3>고객지원</h3>
+                <p>고객센터: 1588-0000</p>
+                <p>이메일: info@korevo.co.kr</p>
+                <p>운영시간: 평일 09:00-18:00</p>
+                <p>브랜드 문의: brand@korevo.co.kr</p>
+            </div>
+            <div class="footer-section">
+                <h3>주소</h3>
+                <p>서울특별시 강남구<br>테헤란로 123, 코레보빌딩 10층</p>
+                <p>사업자등록번호: 123-45-67890</p>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2025 KOREVO. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <!-- 통합 JavaScript 파일 -->
+    <script src="script.js"></script>
+    
+    <!-- Philosophy Page Specific JavaScript -->
+    <script>
+        // ===== PHILOSOPHY PAGE ANIMATIONS =====
+        function initPhilosophyAnimations() {
+            const fadeElements = document.querySelectorAll('.fade-in');
+            
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach((entry, index) => {
+                    if (entry.isIntersecting) {
+                        setTimeout(() => {
+                            entry.target.classList.add('visible');
+                        }, index * 100);
+                    }
+                });
+            }, {
+                threshold: 0.1,
+                rootMargin: '0px 0px -50px 0px'
+            });
+
+            fadeElements.forEach(element => {
+                observer.observe(element);
+            });
+        }
+
+        // ===== VALUE CARD HOVER EFFECTS =====
+        function initValueCardEffects() {
+            const valueCards = document.querySelectorAll('.value-card');
+            
+            valueCards.forEach(card => {
+                card.addEventListener('mouseenter', function() {
+                    this.style.transform = 'translateY(-15px) scale(1.02)';
+                    
+                    const icon = this.querySelector('.value-icon');
+                    if (icon) {
+                        icon.style.transform = 'scale(1.15) rotate(10deg)';
+                        icon.style.boxShadow = '0 20px 40px rgba(0, 122, 255, 0.4)';
+                    }
+                });
+                
+                card.addEventListener('mouseleave', function() {
+                    this.style.transform = 'translateY(0) scale(1)';
+                    
+                    const icon = this.querySelector('.value-icon');
+                    if (icon) {
+                        icon.style.transform = 'scale(1) rotate(0deg)';
+                        icon.style.boxShadow = '0 15px 30px rgba(0, 122, 255, 0.3)';
+                    }
+                });
+
+                // Add click effect for mobile
+                card.addEventListener('click', function() {
+                    this.style.transform = 'scale(0.98)';
+                    setTimeout(() => {
+                        this.style.transform = 'translateY(-15px) scale(1.02)';
+                    }, 100);
+                });
+            });
+        }
+
+        // ===== DESIGN CARD ANIMATIONS =====
+        function initDesignCardEffects() {
+            const designCards = document.querySelectorAll('.design-card');
+            
+            designCards.forEach(card => {
+                card.addEventListener('mouseenter', function() {
+                    this.style.transform = 'translateY(-10px) scale(1.01)';
+                    
+                    const icon = this.querySelector('.design-icon');
+                    if (icon) {
+                        icon.style.transform = 'scale(1.1) rotate(5deg)';
+                    }
+                });
+                
+                card.addEventListener('mouseleave', function() {
+                    this.style.transform = 'translateY(0) scale(1)';
+                    
+                    const icon = this.querySelector('.design-icon');
+                    if (icon) {
+                        icon.style.transform = 'scale(1) rotate(0deg)';
+                    }
+                });
+            });
+        }
+
+        // ===== TONE CARD ANIMATIONS =====
+        function initToneCardEffects() {
+            const toneCards = document.querySelectorAll('.tone-card');
+            
+            toneCards.forEach(card => {
+                card.addEventListener('mouseenter', function() {
+                    this.style.transform = 'translateY(-8px) scale(1.05)';
+                    
+                    const emoji = this.querySelector('.tone-emoji');
+                    if (emoji) {
+                        emoji.style.transform = 'scale(1.2) rotate(10deg)';
+                        emoji.style.filter = 'brightness(1.1)';
+                    }
+                });
+                
+                card.addEventListener('mouseleave', function() {
+                    this.style.transform = 'translateY(0) scale(1)';
+                    
+                    const emoji = this.querySelector('.tone-emoji');
+                    if (emoji) {
+                        emoji.style.transform = 'scale(1) rotate(0deg)';
+                        emoji.style.filter = 'brightness(1)';
+                    }
+                });
+            });
+        }
+
+        // ===== HERO QUOTE ANIMATION =====
+        function initHeroQuoteEffect() {
+            const heroQuote = document.querySelector('.hero-quote');
+            
+            if (heroQuote) {
+                // Add typewriter effect on load
+                const text = heroQuote.textContent;
+                heroQuote.textContent = '';
+                
+                let i = 0;
+                const typewriter = setInterval(() => {
+                    heroQuote.textContent += text.charAt(i);
+                    i++;
+                    if (i > text.length) {
+                        clearInterval(typewriter);
+                    }
+                }, 50);
+            }
+        }
+
+        // ===== PARALLAX SCROLL EFFECT =====
+        function initParallaxEffect() {
+            let ticking = false;
+            
+            function updateParallax() {
+                const scrollTop = window.pageYOffset;
+                
+                // Hero section parallax
+                const heroSection = document.querySelector('.philosophy-hero');
+                if (heroSection) {
+                    const heroOffset = scrollTop * 0.3;
+                    heroSection.style.transform = `translateY(${heroOffset}px)`;
+                }
+                
+                // Promise section parallax
+                const promiseSection = document.querySelector('.promise-section');
+                if (promiseSection) {
+                    const rect = promiseSection.getBoundingClientRect();
+                    if (rect.bottom >= 0 && rect.top <= window.innerHeight) {
+                        const offset = (window.innerHeight - rect.top) * 0.1;
+                        promiseSection.style.transform = `translateY(${offset}px)`;
+                    }
+                }
+                
+                ticking = false;
+            }
+            
+            function requestTick() {
+                if (!ticking) {
+                    requestAnimationFrame(updateParallax);
+                    ticking = true;
+                }
+            }
+            
+            window.addEventListener('scroll', requestTick, { passive: true });
+        }
+
+        // ===== CARD REVEAL ANIMATION =====
+        function initCardRevealAnimation() {
+            const cards = document.querySelectorAll('.value-card, .design-card, .tone-card');
+            
+            cards.forEach((card, index) => {
+                card.style.animationDelay = `${index * 0.1}s`;
+                
+                const observer = new IntersectionObserver((entries) => {
+                    entries.forEach(entry => {
+                        if (entry.isIntersecting) {
+                            entry.target.style.animation = 'cardReveal 0.6s ease forwards';
+                        }
+                    });
+                }, { threshold: 0.1 });
+                
+                observer.observe(card);
+            });
+            
+            // Add keyframe animation
+            if (!document.querySelector('#card-reveal-styles')) {
+                const style = document.createElement('style');
+                style.id = 'card-reveal-styles';
+                style.innerHTML = `
+                    @keyframes cardReveal {
+                        from {
+                            opacity: 0;
+                            transform: translateY(30px) scale(0.95);
+                        }
+                        to {
+                            opacity: 1;
+                            transform: translateY(0) scale(1);
+                        }
+                    }
+                `;
+                document.head.appendChild(style);
+            }
+        }
+
+        // ===== BRAND PROMISE COUNTER =====
+        function initPromiseCounter() {
+            const promiseItems = document.querySelectorAll('.promise-item');
+            
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach((entry, index) => {
+                    if (entry.isIntersecting) {
+                        setTimeout(() => {
+                            entry.target.style.opacity = '1';
+                            entry.target.style.transform = 'translateY(0)';
+                        }, index * 200);
+                    }
+                });
+            }, { threshold: 0.1 });
+
+            promiseItems.forEach(item => {
+                item.style.opacity = '0';
+                item.style.transform = 'translateY(20px)';
+                item.style.transition = 'all 0.6s ease';
+                observer.observe(item);
+            });
+        }
+
+        // ===== RESPONSIVE ADJUSTMENTS =====
+        function adjustForMobile() {
+            if (window.innerWidth <= 768) {
+                const valueCards = document.querySelectorAll('.value-card');
+                valueCards.forEach(card => {
+                    card.style.marginBottom = 'var(--spacing-lg)';
+                });
+                
+                // Disable parallax on mobile for performance
+                const heroSection = document.querySelector('.philosophy-hero');
+                if (heroSection) {
+                    heroSection.style.transform = 'none';
+                }
+            }
+        }
+
+        // ===== SMOOTH SECTION NAVIGATION =====
+        function initSectionNavigation() {
+            // Add navigation dots (optional)
+            const sections = ['philosophy-hero', 'core-values-section', 'design-section', 'communication-section', 'promise-section'];
+            const nav = document.createElement('div');
+            nav.className = 'section-nav';
+            nav.style.cssText = `
+                position: fixed;
+                right: 2rem;
+                top: 50%;
+                transform: translateY(-50%);
+                z-index: 1000;
+                display: flex;
+                flex-direction: column;
+                gap: 1rem;
+            `;
+            
+            sections.forEach((sectionId, index) => {
+                const dot = document.createElement('button');
+                dot.style.cssText = `
+                    width: 12px;
+                    height: 12px;
+                    border-radius: 50%;
+                    border: 2px solid var(--apple-blue);
+                    background: transparent;
+                    cursor: pointer;
+                    transition: all 0.3s ease;
+                `;
+                
+                dot.addEventListener('click', () => {
+                    const section = document.querySelector('.' + sectionId);
+                    if (section) {
+                        section.scrollIntoView({ behavior: 'smooth' });
+                    }
+                });
+                
+                nav.appendChild(dot);
+            });
+            
+            if (window.innerWidth > 768) {
+                document.body.appendChild(nav);
+            }
+        }
+
+        // ===== INITIALIZATION =====
+        document.addEventListener('DOMContentLoaded', function() {
+            console.log('💭 KOREVO Philosophy page loaded');
+            
+            // Initialize all animations and effects
+            initPhilosophyAnimations();
+            initValueCardEffects();
+            initDesignCardEffects();
+            initToneCardEffects();
+            initHeroQuoteEffect();
+            initParallaxEffect();
+            initCardRevealAnimation();
+            initPromiseCounter();
+            initSectionNavigation();
+            adjustForMobile();
+        });
+
+        // ===== RESIZE HANDLER =====
+        window.addEventListener('resize', debounce(adjustForMobile, 250));
+        
+        function debounce(func, wait) {
+            let timeout;
+            return function executedFunction(...args) {
+                const later = () => {
+                    clearTimeout(timeout);
+                    func(...args);
+                };
+                clearTimeout(timeout);
+                timeout = setTimeout(later, wait);
+            };
+        }
+
+        // ===== PHILOSOPHY SHARING =====
+        function sharePhilosophy(platform) {
+            const url = window.location.href;
+            const title = '헤온 브랜드 철학 - KOREVO';
+            const text = '전통과 현대가 만나는 헤온의 브랜드 철학을 확인해보세요.';
+            
+            const shareUrls = {
+                twitter: `https://twitter.com/intent/tweet?url=${encodeURIComponent(url)}&text=${encodeURIComponent(text)}`,
+                facebook: `https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(url)}`,
+                linkedin: `https://www.linkedin.com/sharing/share-offsite/?url=${encodeURIComponent(url)}`
+            };
+            
+            if (shareUrls[platform]) {
+                window.open(shareUrls[platform], '_blank', 'width=600,height=400');
+            }
+        }
+    </script>
+</body>
+</html>
