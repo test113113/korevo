@@ -1,0 +1,1271 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>맞춤 제작 서비스 - 헤온(HeOnn) | KOREVO</title>
+    <meta name="description" content="헤온(HeOnn) 맞춤 제작 서비스 - 당신만의 특별한 전통 유기 제품을 만들어보세요">
+    
+    <!-- Apple Design CSS -->
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            line-height: 1.6;
+            color: #1d1d1f;
+            background-color: #ffffff;
+        }
+
+        /* Header */
+        .header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 1000;
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(20px);
+            border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+        }
+
+        .nav-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            height: 60px;
+        }
+
+        .logo {
+            font-size: 24px;
+            font-weight: 700;
+            color: #1d1d1f;
+            text-decoration: none;
+        }
+
+        .nav-menu {
+            display: flex;
+            list-style: none;
+            gap: 30px;
+        }
+
+        .nav-link {
+            text-decoration: none;
+            color: #1d1d1f;
+            font-weight: 500;
+            transition: color 0.3s ease;
+        }
+
+        .nav-link:hover {
+            color: #007aff;
+        }
+
+        /* Hero Section */
+        .hero-section {
+            position: relative;
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+            background: linear-gradient(135deg, #1d1d1f 0%, #424245 100%);
+        }
+
+        .hero-video {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            z-index: -1;
+        }
+
+        .hero-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, rgba(29, 29, 31, 0.8) 0%, rgba(66, 66, 69, 0.6) 100%);
+            z-index: 1;
+        }
+
+        .hero-content {
+            text-align: center;
+            color: white;
+            z-index: 2;
+            position: relative;
+            max-width: 900px;
+            padding: 0 20px;
+        }
+
+        .hero-title {
+            font-size: 4.5rem;
+            font-weight: 700;
+            margin-bottom: 25px;
+            text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.3);
+            background: linear-gradient(45deg, #fff, #f0f0f0);
+            background-clip: text;
+            -webkit-background-clip: text;
+            color: transparent;
+        }
+
+        .hero-subtitle {
+            font-size: 1.8rem;
+            margin-bottom: 30px;
+            opacity: 0.95;
+            font-weight: 300;
+        }
+
+        .hero-description {
+            font-size: 1.2rem;
+            margin-bottom: 40px;
+            opacity: 0.9;
+            line-height: 1.8;
+            max-width: 750px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .cta-buttons {
+            display: flex;
+            gap: 20px;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        .cta-btn {
+            display: inline-block;
+            padding: 18px 35px;
+            background: rgba(255, 255, 255, 0.2);
+            color: white;
+            text-decoration: none;
+            border-radius: 50px;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            border: 2px solid rgba(255, 255, 255, 0.3);
+            backdrop-filter: blur(10px);
+        }
+
+        .cta-btn:hover {
+            background: rgba(255, 255, 255, 0.3);
+            transform: translateY(-3px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.2);
+        }
+
+        .cta-btn.primary {
+            background: #007aff;
+            border: 2px solid #007aff;
+        }
+
+        .cta-btn.primary:hover {
+            background: #0056b3;
+            border-color: #0056b3;
+        }
+
+        /* Main Content */
+        .main-content {
+            padding-top: 60px;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* Services Section */
+        .services-section {
+            padding: 100px 0;
+            background: #f5f5f7;
+        }
+
+        .section-title {
+            text-align: center;
+            font-size: 3rem;
+            font-weight: 700;
+            margin-bottom: 25px;
+            color: #1d1d1f;
+        }
+
+        .section-subtitle {
+            text-align: center;
+            font-size: 1.3rem;
+            color: #6e6e73;
+            margin-bottom: 80px;
+            max-width: 700px;
+            margin-left: auto;
+            margin-right: auto;
+            line-height: 1.8;
+        }
+
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 40px;
+            margin-top: 80px;
+        }
+
+        .service-card {
+            background: white;
+            border-radius: 25px;
+            overflow: hidden;
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.1);
+            transition: all 0.4s ease;
+            position: relative;
+        }
+
+        .service-card:hover {
+            transform: translateY(-15px);
+            box-shadow: 0 25px 60px rgba(0, 0, 0, 0.15);
+        }
+
+        .service-image {
+            width: 100%;
+            height: 250px;
+            background: linear-gradient(135deg, #f5f5f7 0%, #e5e5e7 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 4rem;
+            color: #1d1d1f;
+            position: relative;
+        }
+
+        .service-image.personal {
+            background: linear-gradient(135deg, #f5f5f7 0%, #e5e5e7 100%);
+        }
+
+        .service-image.corporate {
+            background: linear-gradient(135deg, #f5f5f7 0%, #e5e5e7 100%);
+        }
+
+        .service-image.wedding {
+            background: linear-gradient(135deg, #f5f5f7 0%, #e5e5e7 100%);
+        }
+
+        .service-image.restaurant {
+            background: linear-gradient(135deg, #f5f5f7 0%, #e5e5e7 100%);
+        }
+
+        .service-info {
+            padding: 40px;
+        }
+
+        .service-category {
+            color: #007aff;
+            font-size: 0.9rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 15px;
+        }
+
+        .service-title {
+            font-size: 1.8rem;
+            font-weight: 700;
+            margin-bottom: 20px;
+            color: #1d1d1f;
+        }
+
+        .service-description {
+            color: #6e6e73;
+            line-height: 1.8;
+            margin-bottom: 25px;
+            font-size: 1.05rem;
+        }
+
+        .service-features {
+            list-style: none;
+            margin-bottom: 30px;
+        }
+
+        .service-features li {
+            padding: 8px 0;
+            color: #6e6e73;
+            position: relative;
+            padding-left: 25px;
+            font-size: 1rem;
+        }
+
+        .service-features li:before {
+            content: "🎨";
+            position: absolute;
+            left: 0;
+            font-weight: bold;
+        }
+
+        .service-price {
+            font-size: 1.4rem;
+            font-weight: 700;
+            color: #007aff;
+            margin-bottom: 25px;
+        }
+
+        .service-btn {
+            display: inline-block;
+            width: 100%;
+            padding: 15px 30px;
+            background: #007aff;
+            color: white;
+            text-decoration: none;
+            border-radius: 25px;
+            font-weight: 600;
+            text-align: center;
+            transition: all 0.3s ease;
+            margin-bottom: 15px;
+        }
+
+        .service-btn:hover {
+            background: #0056b3;
+            transform: translateY(-2px);
+            box-shadow: 0 10px 20px rgba(0, 122, 255, 0.3);
+        }
+
+        .service-btn.secondary {
+            background: transparent;
+            color: #007aff;
+            border: 2px solid #007aff;
+        }
+
+        .service-btn.secondary:hover {
+            background: #007aff;
+            color: white;
+        }
+
+        /* Process Section */
+        .process-section {
+            padding: 100px 0;
+            background: white;
+        }
+
+        .process-steps {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 50px;
+            margin-top: 80px;
+        }
+
+        .process-step {
+            text-align: center;
+            position: relative;
+        }
+
+        .step-number {
+            width: 80px;
+            height: 80px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, #007aff, #0056b3);
+            color: white;
+            font-size: 2rem;
+            font-weight: 700;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 25px;
+        }
+
+        .step-title {
+            font-size: 1.4rem;
+            font-weight: 600;
+            margin-bottom: 15px;
+            color: #1d1d1f;
+        }
+
+        .step-description {
+            color: #6e6e73;
+            line-height: 1.8;
+            font-size: 1rem;
+        }
+
+        /* Portfolio Section */
+        .portfolio-section {
+            padding: 100px 0;
+            background: #f5f5f7;
+        }
+
+        .portfolio-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            margin-top: 80px;
+        }
+
+        .portfolio-item {
+            background: white;
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s ease;
+        }
+
+        .portfolio-item:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
+        }
+
+        .portfolio-image {
+            width: 100%;
+            height: 200px;
+            background: linear-gradient(135deg, #f5f5f7 0%, #e5e5e7 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 3rem;
+            color: #1d1d1f;
+        }
+
+        .portfolio-info {
+            padding: 25px;
+        }
+
+        .portfolio-title {
+            font-size: 1.2rem;
+            font-weight: 600;
+            margin-bottom: 10px;
+            color: #1d1d1f;
+        }
+
+        .portfolio-description {
+            color: #6e6e73;
+            font-size: 0.95rem;
+            line-height: 1.6;
+        }
+
+        /* Quote Section */
+        .quote-section {
+            padding: 100px 0;
+            background: linear-gradient(135deg, #1d1d1f 0%, #424245 100%);
+            color: white;
+            text-align: center;
+        }
+
+        .quote-form {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(20px);
+            border-radius: 25px;
+            padding: 60px;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .form-group {
+            margin-bottom: 25px;
+            text-align: left;
+        }
+
+        .form-label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 600;
+            color: white;
+        }
+
+        .form-input,
+        .form-select,
+        .form-textarea {
+            width: 100%;
+            padding: 15px;
+            border: 2px solid rgba(255, 255, 255, 0.3);
+            border-radius: 15px;
+            background: rgba(255, 255, 255, 0.1);
+            color: white;
+            font-size: 1rem;
+            transition: all 0.3s ease;
+        }
+
+        .form-input::placeholder,
+        .form-textarea::placeholder {
+            color: rgba(255, 255, 255, 0.7);
+        }
+
+        .form-input:focus,
+        .form-select:focus,
+        .form-textarea:focus {
+            outline: none;
+            border-color: #FF6B6B;
+            background: rgba(255, 255, 255, 0.2);
+        }
+
+        .form-textarea {
+            height: 120px;
+            resize: vertical;
+        }
+
+        .submit-btn {
+            width: 100%;
+            padding: 18px;
+            background: #007aff;
+            color: white;
+            border: none;
+            border-radius: 25px;
+            font-size: 1.1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .submit-btn:hover {
+            background: #0056b3;
+            transform: translateY(-2px);
+            box-shadow: 0 10px 20px rgba(0, 122, 255, 0.3);
+        }
+
+        /* Footer */
+        .footer {
+            background: #1d1d1f;
+            color: #f5f5f7;
+            padding: 80px 0 40px;
+        }
+
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 50px;
+            margin-bottom: 50px;
+        }
+
+        .footer-section h3 {
+            font-size: 1.3rem;
+            margin-bottom: 25px;
+            color: white;
+        }
+
+        .footer-section p {
+            margin-bottom: 12px;
+            color: #a1a1a6;
+            line-height: 1.6;
+        }
+
+        .footer-section a {
+            color: #a1a1a6;
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        .footer-section a:hover {
+            color: #007aff;
+        }
+
+        .footer-bottom {
+            text-align: center;
+            padding-top: 40px;
+            border-top: 1px solid #424245;
+            color: #a1a1a6;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .nav-menu {
+                display: none;
+            }
+
+            .hero-title {
+                font-size: 3rem;
+            }
+
+            .hero-subtitle {
+                font-size: 1.4rem;
+            }
+
+            .services-grid {
+                grid-template-columns: 1fr;
+                gap: 30px;
+            }
+
+            .process-steps {
+                grid-template-columns: 1fr;
+                gap: 40px;
+            }
+
+            .section-title {
+                font-size: 2.2rem;
+            }
+
+            .quote-form {
+                padding: 40px 30px;
+            }
+        }
+
+        /* Animations */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(40px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .animate-on-scroll {
+            animation: fadeInUp 0.8s ease-out;
+        }
+
+        @keyframes float {
+            0%, 100% {
+                transform: translateY(0px);
+            }
+            50% {
+                transform: translateY(-10px);
+            }
+        }
+
+        .float-animation {
+            animation: float 3s ease-in-out infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% {
+                transform: scale(1);
+            }
+            50% {
+                transform: scale(1.05);
+            }
+        }
+
+        .pulse-animation {
+            animation: pulse 2s ease-in-out infinite;
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header class="header">
+        <nav class="nav-container">
+            <a href="index.html" class="logo">KOREVO</a>
+            
+            <ul class="nav-menu">
+                <li><a href="index.html" class="nav-link">홈</a></li>
+                <li><a href="greeting.html" class="nav-link">회사소개</a></li>
+                <li><a href="heonn-brand.html" class="nav-link">사업소개</a></li>
+                <li><a href="#" class="nav-link">제품/서비스</a></li>
+                <li><a href="contact.html" class="nav-link">CONTACT</a></li>
+                <li><a href="#" class="nav-link">쇼핑몰</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero-section">
+        <video class="hero-video" autoplay muted loop>
+            <source src="./video/korevo_hero.mp4" type="video/mp4">
+        </video>
+        <div class="hero-overlay"></div>
+        <div class="hero-content">
+            <h1 class="hero-title float-animation">맞춤 제작 서비스</h1>
+            <p class="hero-subtitle">당신만의 특별한 헤온을 만들어보세요</p>
+            <p class="hero-description">
+                전통 유기 장인의 정성과 현대적 디자인이 만나<br>
+                세상에 하나뿐인 당신만의 특별한 작품을 탄생시킵니다.<br>
+                개인 취향부터 기업 브랜딩까지, 모든 요구사항을 완벽하게 반영한 맞춤 제작 서비스를 경험해보세요.
+            </p>
+            <div class="cta-buttons">
+                <a href="#services" class="cta-btn primary">서비스 보기</a>
+                <a href="#quote" class="cta-btn">견적 문의</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Main Content -->
+    <main class="main-content">
+        <!-- Services Section -->
+        <section id="services" class="services-section">
+            <div class="container">
+                <h2 class="section-title">맞춤 제작 서비스</h2>
+                <p class="section-subtitle">
+                    개인의 취향부터 기업의 브랜딩까지, 다양한 니즈에 맞춘<br>
+                    헤온만의 차별화된 맞춤 제작 서비스를 제공합니다.
+                </p>
+
+                <div class="services-grid">
+                    <div class="service-card animate-on-scroll">
+                        <div class="service-image personal">👤</div>
+                        <div class="service-info">
+                            <div class="service-category">개인 맞춤</div>
+                            <h3 class="service-title">개인 맞춤 제작</h3>
+                            <p class="service-description">
+                                개인의 취향과 라이프스타일에 맞춘 유일무이한 헤온 제품을 제작합니다. 
+                                크기, 색상, 디자인, 각인까지 모든 것을 자유롭게 선택하실 수 있습니다.
+                            </p>
+                            <ul class="service-features">
+                                <li>개인 취향 반영 디자인</li>
+                                <li>이니셜/이름 각인 서비스</li>
+                                <li>원하는 크기 조절 가능</li>
+                                <li>색상 및 마감 선택</li>
+                                <li>전용 보관함 제공</li>
+                            </ul>
+                            <div class="service-price">300,000원부터</div>
+                            <a href="#quote" class="service-btn">견적 문의</a>
+                            <a href="#" class="service-btn secondary">포트폴리오 보기</a>
+                        </div>
+                    </div>
+
+                    <div class="service-card animate-on-scroll">
+                        <div class="service-image corporate">🏢</div>
+                        <div class="service-info">
+                            <div class="service-category">기업 맞춤</div>
+                            <h3 class="service-title">기업 브랜딩 제작</h3>
+                            <p class="service-description">
+                                기업의 브랜드 아이덴티티를 반영한 고급 기업 선물 및 브랜딩 제품을 제작합니다. 
+                                임직원 선물, 고객 답례품, 기념품 등 다양한 용도로 활용 가능합니다.
+                            </p>
+                            <ul class="service-features">
+                                <li>기업 로고 각인</li>
+                                <li>브랜드 컬러 적용</li>
+                                <li>대량 주문 할인</li>
+                                <li>전용 포장 디자인</li>
+                                <li>배송 일정 조율</li>
+                            </ul>
+                            <div class="service-price">500,000원부터</div>
+                            <a href="#quote" class="service-btn">견적 문의</a>
+                            <a href="#" class="service-btn secondary">기업 사례 보기</a>
+                        </div>
+                    </div>
+
+                    <div class="service-card animate-on-scroll">
+                        <div class="service-image wedding">💒</div>
+                        <div class="service-info">
+                            <div class="service-category">웨딩 특별</div>
+                            <h3 class="service-title">웨딩 맞춤 제작</h3>
+                            <p class="service-description">
+                                평생 간직할 특별한 결혼 기념품을 제작합니다. 
+                                신랑신부의 이름, 결혼일, 특별한 메시지를 새겨 
+                                의미 있는 웨딩 선물로 활용하실 수 있습니다.
+                            </p>
+                            <ul class="service-features">
+                                <li>신랑신부 이름 각인</li>
+                                <li>결혼일 기념 각인</li>
+                                <li>특별 메시지 추가</li>
+                                <li>웨딩 전용 포장</li>
+                                <li>하객 선물용 제작</li>
+                            </ul>
+                            <div class="service-price">800,000원부터</div>
+                            <a href="#quote" class="service-btn">견적 문의</a>
+                            <a href="#" class="service-btn secondary">웨딩 갤러리</a>
+                        </div>
+                    </div>
+
+                    <div class="service-card animate-on-scroll">
+                        <div class="service-image restaurant">🍽️</div>
+                        <div class="service-info">
+                            <div class="service-category">식당/호텔</div>
+                            <h3 class="service-title">레스토랑 맞춤 제작</h3>
+                            <p class="service-description">
+                                고급 레스토랑, 호텔, 카페 등 업장용 맞춤 식기를 제작합니다. 
+                                브랜드 정체성을 반영한 전용 식기로 고객에게 특별한 경험을 제공하세요.
+                            </p>
+                            <ul class="service-features">
+                                <li>업장 전용 디자인</li>
+                                <li>브랜드 로고 적용</li>
+                                <li>내구성 강화 처리</li>
+                                <li>대량 주문 가능</li>
+                                <li>정기 보수 서비스</li>
+                            </ul>
+                            <div class="service-price">1,000,000원부터</div>
+                            <a href="#quote" class="service-btn">견적 문의</a>
+                            <a href="#" class="service-btn secondary">업장 사례 보기</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Process Section -->
+        <section id="process" class="process-section">
+            <div class="container">
+                <h2 class="section-title">제작 과정</h2>
+                <p class="section-subtitle">
+                    전문가와의 상담부터 완성품 전달까지,<br>
+                    체계적이고 투명한 제작 과정을 경험해보세요.
+                </p>
+
+                <div class="process-steps">
+                    <div class="process-step animate-on-scroll">
+                        <div class="step-number pulse-animation">1</div>
+                        <h3 class="step-title">상담 & 기획</h3>
+                        <p class="step-description">
+                            전문 디자이너와의 1:1 상담을 통해 
+                            고객의 니즈와 요구사항을 정확히 파악하고 
+                            최적의 디자인을 기획합니다.
+                        </p>
+                    </div>
+
+                    <div class="process-step animate-on-scroll">
+                        <div class="step-number pulse-animation">2</div>
+                        <h3 class="step-title">디자인 & 설계</h3>
+                        <p class="step-description">
+                            3D 모델링과 세부 설계도를 제작하여 
+                            완성품의 모습을 미리 확인하고 
+                            최종 승인을 받습니다.
+                        </p>
+                    </div>
+
+                    <div class="process-step animate-on-scroll">
+                        <div class="step-number pulse-animation">3</div>
+                        <h3 class="step-title">샘플 제작</h3>
+                        <p class="step-description">
+                            실제 제작에 앞서 샘플을 먼저 제작하여 
+                            품질과 디자인을 최종 점검하고 
+                            필요시 수정 작업을 진행합니다.
+                        </p>
+                    </div>
+
+                    <div class="process-step animate-on-scroll">
+                        <div class="step-number pulse-animation">4</div>
+                        <h3 class="step-title">본 제작</h3>
+                        <p class="step-description">
+                            숙련된 장인이 전통 기법으로 
+                            하나하나 정성스럽게 제작하며 
+                            실시간으로 제작 과정을 공유합니다.
+                        </p>
+                    </div>
+
+                    <div class="process-step animate-on-scroll">
+                        <div class="step-number pulse-animation">5</div>
+                        <h3 class="step-title">품질 검수</h3>
+                        <p class="step-description">
+                            완성된 제품의 품질을 철저히 검수하고 
+                            고객의 요구사항이 완벽히 반영되었는지 
+                            최종 확인합니다.
+                        </p>
+                    </div>
+
+                    <div class="process-step animate-on-scroll">
+                        <div class="step-number pulse-animation">6</div>
+                        <h3 class="step-title">배송 & 전달</h3>
+                        <p class="step-description">
+                            고급 포장재로 안전하게 포장하여 
+                            지정된 장소로 배송하며 
+                            A/S 카드와 함께 전달합니다.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Portfolio Section -->
+        <section id="portfolio" class="portfolio-section">
+            <div class="container">
+                <h2 class="section-title">제작 사례</h2>
+                <p class="section-subtitle">
+                    헤온이 지금까지 제작한 다양한 맞춤 제품들을 만나보세요.<br>
+                    고객의 만족도 100%를 달성한 자랑스러운 작품들입니다.
+                </p>
+
+                <div class="portfolio-grid">
+                    <div class="portfolio-item animate-on-scroll">
+                        <div class="portfolio-image">👨‍💼</div>
+                        <div class="portfolio-info">
+                            <h3 class="portfolio-title">대기업 임원진 선물 세트</h3>
+                            <p class="portfolio-description">
+                                국내 대기업의 임원진 승진 축하 선물로 제작된 프리미엄 식기 세트. 
+                                기업 로고와 개인 이니셜을 모두 각인한 특별 제작품입니다.
+                            </p>
+                        </div>
+                    </div>
+
+                    <div class="portfolio-item animate-on-scroll">
+                        <div class="portfolio-image">💐</div>
+                        <div class="portfolio-info">
+                            <h3 class="portfolio-title">결혼 20주년 기념 세트</h3>
+                            <p class="portfolio-description">
+                                결혼 20주년을 맞은 부부를 위한 특별 기념품. 
+                                첫 만남의 장소와 결혼일을 각인하여 더욱 의미 있는 선물로 완성되었습니다.
+                            </p>
+                        </div>
+                    </div>
+
+                    <div class="portfolio-item animate-on-scroll">
+                        <div class="portfolio-image">🍽️</div>
+                        <div class="portfolio-info">
+                            <h3 class="portfolio-title">미슐랭 레스토랑 전용 식기</h3>
+                            <p class="portfolio-description">
+                                국내 유명 미슐랭 레스토랑의 시그니처 메뉴를 위한 전용 식기. 
+                                요리의 품격을 한층 더 높여주는 맞춤 디자인으로 제작되었습니다.
+                            </p>
+                        </div>
+                    </div>
+
+                    <div class="portfolio-item animate-on-scroll">
+                        <div class="portfolio-image">🎓</div>
+                        <div class="portfolio-info">
+                            <h3 class="portfolio-title">대학교 총장 취임 기념품</h3>
+                            <p class="portfolio-description">
+                                명문 대학교 총장 취임을 기념하여 제작된 특별 기념품. 
+                                대학의 상징과 전통을 담아 품격 있게 완성되었습니다.
+                            </p>
+                        </div>
+                    </div>
+
+                    <div class="portfolio-item animate-on-scroll">
+                        <div class="portfolio-image">☕</div>
+                        <div class="portfolio-info">
+                            <h3 class="portfolio-title">프리미엄 카페 브랜딩</h3>
+                            <p class="portfolio-description">
+                                고급 카페 체인의 브랜드 아이덴티티를 반영한 전용 컵 세트. 
+                                브랜드의 철학과 가치를 담아 특별한 경험을 제공합니다.
+                            </p>
+                        </div>
+                    </div>
+
+                    <div class="portfolio-item animate-on-scroll">
+                        <div class="portfolio-image">🏠</div>
+                        <div class="portfolio-info">
+                            <h3 class="portfolio-title">신혼부부 맞춤 식기</h3>
+                            <p class="portfolio-description">
+                                신혼부부의 새 출발을 축하하는 맞춤 식기 세트. 
+                                두 사람의 이름과 결혼일을 새겨 평생 간직할 수 있는 특별한 선물입니다.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Quote Section */
+        <section id="quote" class="quote-section">
+            <div class="container">
+                <h2 style="font-size: 2.8rem; font-weight: 700; margin-bottom: 25px;">맞춤 제작 견적 문의</h2>
+                <p style="font-size: 1.3rem; margin-bottom: 50px; opacity: 0.9; max-width: 600px; margin-left: auto; margin-right: auto; line-height: 1.8;">
+                    당신만의 특별한 헤온 제품 제작을 위한 견적을 요청하세요.<br>
+                    전문 상담사가 24시간 내에 연락드리겠습니다.
+                </p>
+
+                <form class="quote-form">
+                    <div class="form-group">
+                        <label class="form-label" for="name">이름 *</label>
+                        <input type="text" id="name" class="form-input" placeholder="성함을 입력해주세요" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="form-label" for="email">이메일 *</label>
+                        <input type="email" id="email" class="form-input" placeholder="이메일 주소를 입력해주세요" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="form-label" for="phone">연락처 *</label>
+                        <input type="tel" id="phone" class="form-input" placeholder="연락 가능한 번호를 입력해주세요" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="form-label" for="service-type">서비스 유형 *</label>
+                        <select id="service-type" class="form-select" required>
+                            <option value="">서비스 유형을 선택해주세요</option>
+                            <option value="personal">개인 맞춤 제작</option>
+                            <option value="corporate">기업 브랜딩 제작</option>
+                            <option value="wedding">웨딩 맞춤 제작</option>
+                            <option value="restaurant">레스토랑 맞춤 제작</option>
+                            <option value="other">기타</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="form-label" for="quantity">수량</label>
+                        <select id="quantity" class="form-select">
+                            <option value="">수량을 선택해주세요</option>
+                            <option value="1-5">1-5개</option>
+                            <option value="6-10">6-10개</option>
+                            <option value="11-20">11-20개</option>
+                            <option value="21-50">21-50개</option>
+                            <option value="50+">50개 이상</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="form-label" for="budget">예산 범위</label>
+                        <select id="budget" class="form-select">
+                            <option value="">예산 범위를 선택해주세요</option>
+                            <option value="under-500">50만원 미만</option>
+                            <option value="500-1000">50만원 - 100만원</option>
+                            <option value="1000-2000">100만원 - 200만원</option>
+                            <option value="2000-5000">200만원 - 500만원</option>
+                            <option value="over-5000">500만원 이상</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="form-label" for="deadline">희망 납기일</label>
+                        <input type="date" id="deadline" class="form-input">
+                    </div>
+
+                    <div class="form-group">
+                        <label class="form-label" for="message">상세 요구사항 *</label>
+                        <textarea id="message" class="form-textarea" placeholder="원하시는 디자인, 각인 내용, 특별 요구사항 등을 자세히 적어주세요." required></textarea>
+                    </div>
+
+                    <button type="submit" class="submit-btn">견적 요청하기</button>
+                </form>
+            </div>
+        </section>
+
+        <!-- Benefits Section -->
+        <section class="benefits-section" style="padding: 100px 0; background: white;">
+            <div class="container">
+                <h2 class="section-title">헤온 맞춤 제작만의 특별함</h2>
+                <p class="section-subtitle">
+                    왜 헤온의 맞춤 제작 서비스를 선택해야 할까요?
+                </p>
+
+                <div class="process-steps" style="margin-top: 60px;">
+                    <div class="process-step animate-on-scroll">
+                        <div class="step-number" style="background: linear-gradient(135deg, #007aff, #0056b3);">🏺</div>
+                        <h3 class="step-title">전통 장인 기법</h3>
+                        <p class="step-description">
+                            무형문화재 장인의 정통 기법으로 
+                            제작되는 진정한 명품을 경험하세요.
+                        </p>
+                    </div>
+
+                    <div class="process-step animate-on-scroll">
+                        <div class="step-number" style="background: linear-gradient(135deg, #6e6e73, #424245);">🎨</div>
+                        <h3 class="step-title">무제한 디자인</h3>
+                        <p class="step-description">
+                            고객의 상상을 현실로 만드는 
+                            무제한 디자인 가능성을 제공합니다.
+                        </p>
+                    </div>
+
+                    <div class="process-step animate-on-scroll">
+                        <div class="step-number" style="background: linear-gradient(135deg, #007aff, #0056b3);">💎</div>
+                        <h3 class="step-title">프리미엄 품질</h3>
+                        <p class="step-description">
+                            최고급 소재와 정성스러운 수작업으로 
+                            완성되는 최상의 품질을 보장합니다.
+                        </p>
+                    </div>
+
+                    <div class="process-step animate-on-scroll">
+                        <div class="step-number" style="background: linear-gradient(135deg, #6e6e73, #424245);">🛡️</div>
+                        <h3 class="step-title">평생 A/S</h3>
+                        <p class="step-description">
+                            제품 완성 후에도 지속되는 
+                            평생 A/S 서비스를 제공합니다.
+                        </p>
+                    </div>
+
+                    <div class="process-step animate-on-scroll">
+                        <div class="step-number" style="background: linear-gradient(135deg, #007aff, #0056b3);">📱</div>
+                        <h3 class="step-title">실시간 소통</h3>
+                        <p class="step-description">
+                            제작 과정을 실시간으로 공유하며 
+                            투명하고 신뢰할 수 있는 서비스를 제공합니다.
+                        </p>
+                    </div>
+
+                    <div class="process-step animate-on-scroll">
+                        <div class="step-number" style="background: linear-gradient(135deg, #6e6e73, #424245);">🎁</div>
+                        <h3 class="step-title">특별 포장</h3>
+                        <p class="step-description">
+                            고급 선물용 포장부터 브랜딩 포장까지 
+                            용도에 맞는 특별 포장 서비스를 제공합니다.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- CTA Section -->
+        <section class="cta-section" style="padding: 100px 0; background: linear-gradient(135deg, #f5f5f7 0%, #e5e5e7 100%); color: #1d1d1f; text-align: center;">
+            <div class="container">
+                <h2 style="font-size: 2.8rem; font-weight: 700; margin-bottom: 25px;">당신만의 특별한 헤온을 만나보세요</h2>
+                <p style="font-size: 1.3rem; margin-bottom: 50px; opacity: 0.8; max-width: 700px; margin-left: auto; margin-right: auto; line-height: 1.8;">
+                    전통과 현대가 만나 탄생하는 유일무이한 작품,<br>
+                    헤온의 맞춤 제작 서비스로 특별한 경험을 시작해보세요.
+                </p>
+                <div class="cta-buttons">
+                    <a href="#quote" class="cta-btn primary">지금 견적 요청</a>
+                    <a href="contact.html" class="cta-btn" style="background: transparent; color: #007aff; border: 2px solid #007aff;">전화 상담</a>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>KOREVO</h3>
+                    <p>한국의 전통과 혁신을 담은<br>프리미엄 유기 브랜드</p>
+                    <p>전통의 아름다움을 현대에 되살리며<br>지속가능한 미래를 만들어갑니다.</p>
+                </div>
+                <div class="footer-section">
+                    <h3>맞춤 제작 서비스</h3>
+                    <p><a href="#services">서비스 종류</a></p>
+                    <p><a href="#process">제작 과정</a></p>
+                    <p><a href="#portfolio">제작 사례</a></p>
+                    <p><a href="#quote">견적 문의</a></p>
+                </div>
+                <div class="footer-section">
+                    <h3>고객지원</h3>
+                    <p>고객센터: 1588-0000</p>
+                    <p>이메일: info@korevo.co.kr</p>
+                    <p>운영시간: 평일 09:00-18:00</p>
+                    <p>맞춤 제작 상담: custom@korevo.co.kr</p>
+                </div>
+                <div class="footer-section">
+                    <h3>제작 정보</h3>
+                    <p>제작 기간: 2-4주</p>
+                    <p>최소 주문: 1개부터</p>
+                    <p>배송: 전국 무료배송</p>
+                    <p>A/S: 평생 보장</p>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2025 KOREVO. All rights reserved. | 사업자등록번호: 123-45-67890</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Smooth scrolling for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+
+        // Animate on scroll
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('animate-on-scroll');
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.service-card, .process-step, .portfolio-item').forEach(el => {
+            observer.observe(el);
+        });
+
+        // Header scroll effect
+        window.addEventListener('scroll', () => {
+            const header = document.querySelector('.header');
+            if (window.scrollY > 50) {
+                header.style.background = 'rgba(255, 255, 255, 0.98)';
+                header.style.boxShadow = '0 2px 20px rgba(0, 0, 0, 0.1)';
+            } else {
+                header.style.background = 'rgba(255, 255, 255, 0.95)';
+                header.style.boxShadow = 'none';
+            }
+        });
+
+        // Form submission
+        document.querySelector('.quote-form').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            // Get form data
+            const formData = new FormData(this);
+            const data = Object.fromEntries(formData);
+            
+            // Visual feedback
+            const submitBtn = this.querySelector('.submit-btn');
+            const originalText = submitBtn.textContent;
+            
+            submitBtn.textContent = '견적 요청 중...';
+            submitBtn.style.background = '#34c759';
+            submitBtn.disabled = true;
+            
+            // Simulate API call
+            setTimeout(() => {
+                submitBtn.textContent = '견적 요청 완료!';
+                
+                setTimeout(() => {
+                    submitBtn.textContent = originalText;
+                    submitBtn.style.background = '#007aff';
+                    submitBtn.disabled = false;FF6B6B';
+                    submitBtn.disabled = false;
+                    
+                    // Reset form
+                    this.reset();
+                    
+                    // Show success message
+                    alert('견적 요청이 완료되었습니다. 24시간 내에 연락드리겠습니다.');
+                }, 2000);
+            }, 2000);
+        });
+
+        // Service card hover effects
+        document.querySelectorAll('.service-card').forEach(card => {
+            card.addEventListener('mouseenter', function() {
+                this.style.transform = 'translateY(-15px) scale(1.02)';
+            });
+            
+            card.addEventListener('mouseleave', function() {
+                this.style.transform = 'translateY(0) scale(1)';
+            });
+        });
+
+        // Portfolio item hover effects
+        document.querySelectorAll('.portfolio-item').forEach(item => {
+            item.addEventListener('mouseenter', function() {
+                this.style.transform = 'translateY(-10px) scale(1.03)';
+            });
+            
+            item.addEventListener('mouseleave', function() {
+                this.style.transform = 'translateY(0) scale(1)';
+            });
+        });
+
+        // Parallax effect for hero section
+        window.addEventListener('scroll', () => {
+            const scrolled = window.pageYOffset;
+            const parallax = document.querySelector('.hero-content');
+            const speed = scrolled * 0.5;
+            
+            if (parallax) {
+                parallax.style.transform = `translateY(${speed}px)`;
+            }
+        });
+
+        // Number animation for step numbers
+        function animateNumbers() {
+            const stepNumbers = document.querySelectorAll('.step-number');
+            stepNumbers.forEach((number, index) => {
+                setTimeout(() => {
+                    number.style.transform = 'scale(1.1)';
+                    setTimeout(() => {
+                        number.style.transform = 'scale(1)';
+                    }, 300);
+                }, index * 200);
+            });
+        }
+
+        // Trigger number animation when process section comes into view
+        const processSection = document.querySelector('.process-section');
+        if (processSection) {
+            const processObserver = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        animateNumbers();
+                    }
+                });
+            }, { threshold: 0.3 });
+            
+            processObserver.observe(processSection);
+        }
+    </script>
+</body>
+</html>
