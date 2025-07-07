@@ -1,0 +1,1060 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>프리미엄 선물세트 - 헤온(HeOnn) | KOREVO</title>
+    <meta name="description" content="헤온(HeOnn) 프리미엄 선물세트 - 특별한 순간을 위한 전통 유기 선물">
+    
+    <!-- Apple Design CSS -->
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            line-height: 1.6;
+            color: #1d1d1f;
+            background-color: #ffffff;
+        }
+
+        /* Header */
+        .header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 1000;
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(20px);
+            border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+        }
+
+        .nav-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            height: 60px;
+        }
+
+        .logo {
+            font-size: 24px;
+            font-weight: 700;
+            color: #1d1d1f;
+            text-decoration: none;
+        }
+
+        .nav-menu {
+            display: flex;
+            list-style: none;
+            gap: 30px;
+        }
+
+        .nav-link {
+            text-decoration: none;
+            color: #1d1d1f;
+            font-weight: 500;
+            transition: color 0.3s ease;
+        }
+
+        .nav-link:hover {
+            color: #007aff;
+        }
+
+        /* Hero Section */
+        .hero-section {
+            position: relative;
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+            background: url('./images/330.jpg') center center;
+            background-size: cover;
+            background-attachment: fixed;
+        }
+
+        .hero-video {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            z-index: -1;
+            opacity: 0;
+        }
+
+        .hero-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, rgba(0, 0, 0, 0.4) 0%, rgba(212, 175, 55, 0.3) 50%, rgba(0, 0, 0, 0.5) 100%);
+            z-index: 1;
+        }
+
+        .hero-content {
+            text-align: center;
+            color: white;
+            z-index: 2;
+            position: relative;
+            max-width: 900px;
+            padding: 0 20px;
+        }
+
+        .hero-title {
+            font-size: 4.5rem;
+            font-weight: 700;
+            margin-bottom: 20px;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+            background: linear-gradient(45deg, #fff, #f0f0f0);
+            background-clip: text;
+            -webkit-background-clip: text;
+            color: transparent;
+        }
+
+        .hero-subtitle {
+            font-size: 1.8rem;
+            margin-bottom: 30px;
+            opacity: 0.95;
+            font-weight: 300;
+        }
+
+        .hero-description {
+            font-size: 1.2rem;
+            margin-bottom: 40px;
+            opacity: 0.9;
+            line-height: 1.8;
+            max-width: 700px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .cta-buttons {
+            display: flex;
+            gap: 20px;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        .cta-btn {
+            display: inline-block;
+            padding: 18px 35px;
+            background: rgba(255, 255, 255, 0.2);
+            color: white;
+            text-decoration: none;
+            border-radius: 50px;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            border: 2px solid rgba(255, 255, 255, 0.3);
+            backdrop-filter: blur(10px);
+        }
+
+        .cta-btn:hover {
+            background: rgba(255, 255, 255, 0.3);
+            transform: translateY(-3px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.2);
+        }
+
+        .cta-btn.primary {
+            background: #007aff;
+            border: 2px solid #007aff;
+        }
+
+        .cta-btn.primary:hover {
+            background: #0056b3;
+            border-color: #0056b3;
+        }
+
+        /* Main Content */
+        .main-content {
+            padding-top: 60px;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* Gift Sets Section */
+        .gift-sets-section {
+            padding: 100px 0;
+            background: #f5f5f7;
+        }
+
+        .section-title {
+            text-align: center;
+            font-size: 3rem;
+            font-weight: 700;
+            margin-bottom: 25px;
+            color: #1d1d1f;
+        }
+
+        .section-subtitle {
+            text-align: center;
+            font-size: 1.3rem;
+            color: #6e6e73;
+            margin-bottom: 80px;
+            max-width: 700px;
+            margin-left: auto;
+            margin-right: auto;
+            line-height: 1.8;
+        }
+
+        .gift-sets-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+            gap: 50px;
+            margin-top: 80px;
+        }
+
+        .gift-set-card {
+            background: white;
+            border-radius: 25px;
+            overflow: hidden;
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.1);
+            transition: all 0.4s ease;
+            position: relative;
+        }
+
+        .gift-set-card:hover {
+            transform: translateY(-15px);
+            box-shadow: 0 25px 60px rgba(0, 0, 0, 0.15);
+        }
+
+        .gift-set-card.premium {
+            border: 3px solid #d4af37;
+        }
+
+        .premium-badge {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            background: linear-gradient(45deg, #d4af37, #ffd700);
+            color: white;
+            padding: 8px 16px;
+            border-radius: 20px;
+            font-size: 0.9rem;
+            font-weight: 600;
+            z-index: 10;
+        }
+
+        .gift-set-image {
+            width: 100%;
+            height: 300px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 5rem;
+            color: white;
+            position: relative;
+        }
+
+        .gift-set-image.wedding {
+            background: linear-gradient(135deg, #ff9a9e 0%, #fecfef 100%);
+        }
+
+        .gift-set-image.business {
+            background: linear-gradient(135deg, #a8edea 0%, #fed6e3 100%);
+        }
+
+        .gift-set-image.premium {
+            background: linear-gradient(135deg, #d4af37 0%, #ffd700 100%);
+        }
+
+        .gift-set-image.family {
+            background: linear-gradient(135deg, #84fab0 0%, #8fd3f4 100%);
+        }
+
+        .gift-set-info {
+            padding: 40px;
+        }
+
+        .gift-set-category {
+            color: #007aff;
+            font-size: 0.9rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 15px;
+        }
+
+        .gift-set-title {
+            font-size: 1.8rem;
+            font-weight: 700;
+            margin-bottom: 20px;
+            color: #1d1d1f;
+        }
+
+        .gift-set-description {
+            color: #6e6e73;
+            line-height: 1.8;
+            margin-bottom: 25px;
+            font-size: 1.05rem;
+        }
+
+        .gift-set-features {
+            list-style: none;
+            margin-bottom: 30px;
+        }
+
+        .gift-set-features li {
+            padding: 8px 0;
+            color: #6e6e73;
+            position: relative;
+            padding-left: 25px;
+            font-size: 1rem;
+        }
+
+        .gift-set-features li:before {
+            content: "✨";
+            position: absolute;
+            left: 0;
+            color: #d4af37;
+            font-weight: bold;
+        }
+
+        .gift-set-price {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            margin-bottom: 25px;
+        }
+
+        .current-price {
+            font-size: 1.6rem;
+            font-weight: 700;
+            color: #007aff;
+        }
+
+        .original-price {
+            font-size: 1.2rem;
+            color: #6e6e73;
+            text-decoration: line-through;
+        }
+
+        .discount-badge {
+            background: #ff3b30;
+            color: white;
+            padding: 4px 12px;
+            border-radius: 15px;
+            font-size: 0.85rem;
+            font-weight: 600;
+        }
+
+        .gift-set-btn {
+            display: inline-block;
+            width: 100%;
+            padding: 15px 30px;
+            background: #007aff;
+            color: white;
+            text-decoration: none;
+            border-radius: 25px;
+            font-weight: 600;
+            text-align: center;
+            transition: all 0.3s ease;
+            margin-bottom: 15px;
+        }
+
+        .gift-set-btn:hover {
+            background: #0056b3;
+            transform: translateY(-2px);
+            box-shadow: 0 10px 20px rgba(0, 122, 255, 0.3);
+        }
+
+        .gift-set-btn.secondary {
+            background: transparent;
+            color: #007aff;
+            border: 2px solid #007aff;
+        }
+
+        .gift-set-btn.secondary:hover {
+            background: #007aff;
+            color: white;
+        }
+
+        /* Occasions Section */
+        .occasions-section {
+            padding: 100px 0;
+            background: white;
+        }
+
+        .occasions-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 40px;
+            margin-top: 80px;
+        }
+
+        .occasion-item {
+            text-align: center;
+            padding: 40px 20px;
+            border-radius: 20px;
+            background: #f5f5f7;
+            transition: all 0.3s ease;
+        }
+
+        .occasion-item:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+        }
+
+        .occasion-icon {
+            font-size: 4rem;
+            margin-bottom: 25px;
+            color: #d4af37;
+        }
+
+        .occasion-title {
+            font-size: 1.4rem;
+            font-weight: 600;
+            margin-bottom: 15px;
+            color: #1d1d1f;
+        }
+
+        .occasion-description {
+            color: #6e6e73;
+            line-height: 1.8;
+            font-size: 1rem;
+        }
+
+        /* Customization Section */
+        .customization-section {
+            padding: 100px 0;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+        }
+
+        .customization-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 80px;
+            align-items: center;
+        }
+
+        .customization-text h2 {
+            font-size: 2.8rem;
+            font-weight: 700;
+            margin-bottom: 30px;
+        }
+
+        .customization-text p {
+            font-size: 1.2rem;
+            line-height: 1.8;
+            margin-bottom: 25px;
+            opacity: 0.9;
+        }
+
+        .customization-features {
+            list-style: none;
+            margin-bottom: 40px;
+        }
+
+        .customization-features li {
+            padding: 10px 0;
+            font-size: 1.1rem;
+            position: relative;
+            padding-left: 30px;
+        }
+
+        .customization-features li:before {
+            content: "💎";
+            position: absolute;
+            left: 0;
+        }
+
+        .customization-visual {
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 20px;
+            padding: 60px;
+            text-align: center;
+            backdrop-filter: blur(10px);
+        }
+
+        .customization-visual .icon {
+            font-size: 6rem;
+            margin-bottom: 20px;
+        }
+
+        /* Footer */
+        .footer {
+            background: #1d1d1f;
+            color: #f5f5f7;
+            padding: 80px 0 40px;
+        }
+
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 50px;
+            margin-bottom: 50px;
+        }
+
+        .footer-section h3 {
+            font-size: 1.3rem;
+            margin-bottom: 25px;
+            color: white;
+        }
+
+        .footer-section p {
+            margin-bottom: 12px;
+            color: #a1a1a6;
+            line-height: 1.6;
+        }
+
+        .footer-section a {
+            color: #a1a1a6;
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        .footer-section a:hover {
+            color: #007aff;
+        }
+
+        .footer-bottom {
+            text-align: center;
+            padding-top: 40px;
+            border-top: 1px solid #424245;
+            color: #a1a1a6;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .nav-menu {
+                display: none;
+            }
+
+            .hero-title {
+                font-size: 3rem;
+            }
+
+            .hero-subtitle {
+                font-size: 1.4rem;
+            }
+
+            .gift-sets-grid {
+                grid-template-columns: 1fr;
+                gap: 30px;
+            }
+
+            .customization-content {
+                grid-template-columns: 1fr;
+                gap: 50px;
+            }
+
+            .section-title {
+                font-size: 2.2rem;
+            }
+
+            .occasions-grid {
+                grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            }
+        }
+
+        /* Animations */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(40px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .animate-on-scroll {
+            animation: fadeInUp 0.8s ease-out;
+        }
+
+        @keyframes float {
+            0%, 100% {
+                transform: translateY(0px);
+            }
+            50% {
+                transform: translateY(-10px);
+            }
+        }
+
+        .float-animation {
+            animation: float 3s ease-in-out infinite;
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header class="header">
+        <nav class="nav-container">
+            <a href="index.html" class="logo">KOREVO</a>
+            
+            <ul class="nav-menu">
+                <li><a href="index.html" class="nav-link">홈</a></li>
+                <li><a href="greeting.html" class="nav-link">회사소개</a></li>
+                <li><a href="heonn-brand.html" class="nav-link">사업소개</a></li>
+                <li><a href="#" class="nav-link">제품/서비스</a></li>
+                <li><a href="contact.html" class="nav-link">CONTACT</a></li>
+                <li><a href="#" class="nav-link">쇼핑몰</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero-section">
+        <video class="hero-video" autoplay muted loop>
+            <source src="./video/korevo_hero.mp4" type="video/mp4">
+        </video>
+        <div class="hero-overlay"></div>
+        <div class="hero-content">
+            <h1 class="hero-title float-animation">프리미엄 선물세트</h1>
+            <p class="hero-subtitle">특별한 순간을 더욱 특별하게</p>
+            <p class="hero-description">
+                천년의 전통 기법으로 만든 헤온 프리미엄 선물세트는<br>
+                소중한 사람에게 전하는 마음과 함께 건강하고 아름다운 가치를 선사합니다.<br>
+                결혼, 집들이, 승진, 생일 등 인생의 특별한 순간을 기념하는 완벽한 선물입니다.
+            </p>
+            <div class="cta-buttons">
+                <a href="#gift-sets" class="cta-btn primary">선물세트 보기</a>
+                <a href="#customization" class="cta-btn">맞춤 제작</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Main Content -->
+    <main class="main-content">
+        <!-- Gift Sets Section -->
+        <section id="gift-sets" class="gift-sets-section">
+            <div class="container">
+                <h2 class="section-title">헤온 프리미엄 선물세트</h2>
+                <p class="section-subtitle">
+                    특별한 순간을 위한 완벽한 선물, 헤온만의 프리미엄 선물세트를 만나보세요.<br>
+                    전통 유기 기법의 정성과 현대적 감각이 어우러진 최고급 컬렉션입니다.
+                </p>
+
+                <div class="gift-sets-grid">
+                    <div class="gift-set-card premium animate-on-scroll">
+                        <div class="premium-badge">PREMIUM</div>
+                        <div class="gift-set-image premium">🏆</div>
+                        <div class="gift-set-info">
+                            <div class="gift-set-category">럭셔리 컬렉션</div>
+                            <h3 class="gift-set-title">헤온 마스터피스 세트</h3>
+                            <p class="gift-set-description">
+                                최고급 장인의 손길로 완성된 헤온의 대표작 세트입니다. 
+                                무형문화재와 협업하여 제작된 프리미엄 컬렉션으로, 
+                                평생 간직할 수 있는 최고의 선물입니다.
+                            </p>
+                            <ul class="gift-set-features">
+                                <li>무형문화재 장인 제작</li>
+                                <li>개별 인증서 포함</li>
+                                <li>맞춤 각인 서비스</li>
+                                <li>프리미엄 원목 케이스</li>
+                                <li>평생 A/S 보장</li>
+                            </ul>
+                            <div class="gift-set-price">
+                                <span class="current-price">899,000원</span>
+                                <span class="original-price">1,200,000원</span>
+                                <span class="discount-badge">25% 할인</span>
+                            </div>
+                            <a href="#" class="gift-set-btn">구매하기</a>
+                            <a href="#" class="gift-set-btn secondary">상세보기</a>
+                        </div>
+                    </div>
+
+                    <div class="gift-set-card animate-on-scroll">
+                        <div class="gift-set-image wedding">💒</div>
+                        <div class="gift-set-info">
+                            <div class="gift-set-category">웨딩 컬렉션</div>
+                            <h3 class="gift-set-title">헤온 웨딩 세트</h3>
+                            <p class="gift-set-description">
+                                새로운 출발을 축하하는 웨딩 전용 선물세트입니다. 
+                                행복한 가정을 위한 건강한 식기와 함께 
+                                평생의 행복을 기원하는 의미를 담았습니다.
+                            </p>
+                            <ul class="gift-set-features">
+                                <li>신혼부부 전용 식기 세트</li>
+                                <li>축하 메시지 각인</li>
+                                <li>고급 선물 포장</li>
+                                <li>웨딩 카드 포함</li>
+                            </ul>
+                            <div class="gift-set-price">
+                                <span class="current-price">459,000원</span>
+                                <span class="original-price">520,000원</span>
+                                <span class="discount-badge">12% 할인</span>
+                            </div>
+                            <a href="#" class="gift-set-btn">구매하기</a>
+                            <a href="#" class="gift-set-btn secondary">상세보기</a>
+                        </div>
+                    </div>
+
+                    <div class="gift-set-card animate-on-scroll">
+                        <div class="gift-set-image business">💼</div>
+                        <div class="gift-set-info">
+                            <div class="gift-set-category">비즈니스 컬렉션</div>
+                            <h3 class="gift-set-title">헤온 비즈니스 세트</h3>
+                            <p class="gift-set-description">
+                                승진, 개업, 사업 성공을 축하하는 비즈니스 선물세트입니다. 
+                                품격 있는 디자인으로 비즈니스 관계에서 
+                                깊은 인상을 남길 수 있는 완벽한 선물입니다.
+                            </p>
+                            <ul class="gift-set-features">
+                                <li>비즈니스 전용 디자인</li>
+                                <li>회사명 각인 가능</li>
+                                <li>고급 브리핑 케이스</li>
+                                <li>축하 인사말 카드</li>
+                            </ul>
+                            <div class="gift-set-price">
+                                <span class="current-price">329,000원</span>
+                            </div>
+                            <a href="#" class="gift-set-btn">구매하기</a>
+                            <a href="#" class="gift-set-btn secondary">상세보기</a>
+                        </div>
+                    </div>
+
+                    <div class="gift-set-card animate-on-scroll">
+                        <div class="gift-set-image family">👨‍👩‍👧‍👦</div>
+                        <div class="gift-set-info">
+                            <div class="gift-set-category">패밀리 컬렉션</div>
+                            <h3 class="gift-set-title">헤온 패밀리 세트</h3>
+                            <p class="gift-set-description">
+                                온 가족이 함께 사용할 수 있는 패밀리 선물세트입니다. 
+                                집들이, 생일, 명절 등 가족과 함께하는 
+                                특별한 순간을 더욱 풍성하게 만들어줍니다.
+                            </p>
+                            <ul class="gift-set-features">
+                                <li>가족 구성원별 식기</li>
+                                <li>아이 전용 안전 식기</li>
+                                <li>패밀리 네임 각인</li>
+                                <li>건강 가이드북 포함</li>
+                            </ul>
+                            <div class="gift-set-price">
+                                <span class="current-price">269,000원</span>
+                                <span class="original-price">300,000원</span>
+                                <span class="discount-badge">10% 할인</span>
+                            </div>
+                            <a href="#" class="gift-set-btn">구매하기</a>
+                            <a href="#" class="gift-set-btn secondary">상세보기</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Occasions Section -->
+        <section class="occasions-section">
+            <div class="container">
+                <h2 class="section-title">특별한 순간들</h2>
+                <p class="section-subtitle">
+                    인생의 소중한 순간마다 헤온 선물세트로 더욱 특별한 기억을 만들어보세요.
+                </p>
+
+                <div class="occasions-grid">
+                    <div class="occasion-item animate-on-scroll">
+                        <div class="occasion-icon">💒</div>
+                        <h3 class="occasion-title">결혼</h3>
+                        <p class="occasion-description">
+                            새로운 시작을 축하하는 웨딩 선물로 
+                            평생의 행복을 기원하세요.
+                        </p>
+                    </div>
+
+                    <div class="occasion-item animate-on-scroll">
+                        <div class="occasion-icon">🏠</div>
+                        <h3 class="occasion-title">집들이</h3>
+                        <p class="occasion-description">
+                            새 보금자리의 시작을 축하하는 
+                            실용적이고 의미 있는 선물입니다.
+                        </p>
+                    </div>
+
+                    <div class="occasion-item animate-on-scroll">
+                        <div class="occasion-icon">🎓</div>
+                        <h3 class="occasion-title">승진/졸업</h3>
+                        <p class="occasion-description">
+                            인생의 성취를 축하하고 
+                            미래의 성공을 응원하는 선물입니다.
+                        </p>
+                    </div>
+
+                    <div class="occasion-item animate-on-scroll">
+                        <div class="occasion-icon">🎂</div>
+                        <h3 class="occasion-title">생일</h3>
+                        <p class="occasion-description">
+                            특별한 생일을 더욱 기억에 남게 
+                            만드는 프리미엄 선물입니다.
+                        </p>
+                    </div>
+
+                    <div class="occasion-item animate-on-scroll">
+                        <div class="occasion-icon">🏢</div>
+                        <h3 class="occasion-title">개업</h3>
+                        <p class="occasion-description">
+                            새로운 사업의 성공을 기원하는 
+                            품격 있는 개업 축하 선물입니다.
+                        </p>
+                    </div>
+
+                    <div class="occasion-item animate-on-scroll">
+                        <div class="occasion-icon">🌕</div>
+                        <h3 class="occasion-title">명절</h3>
+                        <p class="occasion-description">
+                            가족과 함께하는 명절을 더욱 풍성하게 
+                            만드는 전통적이면서도 현대적인 선물입니다.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Customization Section -->
+        <section id="customization" class="customization-section">
+            <div class="container">
+                <div class="customization-content">
+                    <div class="customization-text">
+                        <h2>맞춤 제작 서비스</h2>
+                        <p>
+                            더욱 특별한 선물을 원하신다면 헤온의 맞춤 제작 서비스를 이용해보세요. 
+                            고객만의 개성과 취향을 반영한 유일무이한 선물세트를 제작해드립니다.
+                        </p>
+                        <p>
+                            전문 디자이너와의 1:1 상담을 통해 색상, 디자인, 구성품을 자유롭게 
+                            선택하실 수 있으며, 특별한 메시지나 로고 각인도 가능합니다.
+                        </p>
+                        <ul class="customization-features">
+                            <li>개인 맞춤 디자인 상담</li>
+                            <li>원하는 구성품 선택</li>
+                            <li>특별 메시지 각인</li>
+                            <li>기업 로고 각인 가능</li>
+                            <li>고급 맞춤 포장</li>
+                            <li>전국 배송 서비스</li>
+                        </ul>
+                        <div class="cta-buttons">
+                            <a href="contact.html" class="cta-btn primary">맞춤 제작 문의</a>
+                            <a href="#" class="cta-btn">포트폴리오 보기</a>
+                        </div>
+                    </div>
+                    <div class="customization-visual">
+                        <div class="icon float-animation">🎨</div>
+                        <h3>당신만의 특별한 선물</h3>
+                        <p>세상에 하나뿐인 맞춤 제작 선물세트</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Benefits Section -->
+        <section class="benefits-section" style="padding: 100px 0; background: white;">
+            <div class="container">
+                <h2 class="section-title">헤온 선물세트만의 특별함</h2>
+                <p class="section-subtitle">
+                    왜 헤온 프리미엄 선물세트를 선택해야 할까요?
+                </p>
+
+                <div class="occasions-grid" style="margin-top: 60px;">
+                    <div class="occasion-item animate-on-scroll">
+                        <div class="occasion-icon">🏺</div>
+                        <h3 class="occasion-title">전통 기법</h3>
+                        <p class="occasion-description">
+                            천년의 역사를 자랑하는 전통 유기 기법으로 
+                            제작된 정통 프리미엄 제품입니다.
+                        </p>
+                    </div>
+
+                    <div class="occasion-item animate-on-scroll">
+                        <div class="occasion-icon">💎</div>
+                        <h3 class="occasion-title">최고 품질</h3>
+                        <p class="occasion-description">
+                            엄선된 재료와 숙련된 장인의 정성으로 
+                            완성된 최고 품질의 제품을 보장합니다.
+                        </p>
+                    </div>
+
+                    <div class="occasion-item animate-on-scroll">
+                        <div class="occasion-icon">🌿</div>
+                        <h3 class="occasion-title">건강 기능</h3>
+                        <p class="occasion-description">
+                            천연 항균성과 원적외선 방출로 
+                            건강한 식생활을 지원합니다.
+                        </p>
+                    </div>
+
+                    <div class="occasion-item animate-on-scroll">
+                        <div class="occasion-icon">🎁</div>
+                        <h3 class="occasion-title">프리미엄 포장</h3>
+                        <p class="occasion-description">
+                            받는 사람이 감동할 수 있도록 
+                            세심하게 디자인된 고급 포장입니다.
+                        </p>
+                    </div>
+
+                    <div class="occasion-item animate-on-scroll">
+                        <div class="occasion-icon">🛡️</div>
+                        <h3 class="occasion-title">품질 보증</h3>
+                        <p class="occasion-description">
+                            철저한 품질 관리와 A/S 서비스로 
+                            안심하고 선물하실 수 있습니다.
+                        </p>
+                    </div>
+
+                    <div class="occasion-item animate-on-scroll">
+                        <div class="occasion-icon">💝</div>
+                        <h3 class="occasion-title">의미와 가치</h3>
+                        <p class="occasion-description">
+                            단순한 선물을 넘어 전통문화의 가치와 
+                            건강한 라이프스타일을 전달합니다.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- CTA Section -->
+        <section class="cta-section" style="padding: 100px 0; background: linear-gradient(135deg, #d4af37 0%, #ffd700 100%); color: white; text-align: center;">
+            <div class="container">
+                <h2 style="font-size: 2.8rem; font-weight: 700; margin-bottom: 25px;">특별한 순간, 특별한 선물</h2>
+                <p style="font-size: 1.3rem; margin-bottom: 50px; opacity: 0.9; max-width: 700px; margin-left: auto; margin-right: auto; line-height: 1.8;">
+                    헤온 프리미엄 선물세트로 소중한 사람에게 마음을 전하세요.<br>
+                    전통과 현대가 조화된 특별한 선물로 평생 기억에 남을 순간을 만들어드립니다.
+                </p>
+                <div class="cta-buttons">
+                    <a href="#gift-sets" class="cta-btn primary">지금 선물하기</a>
+                    <a href="contact.html" class="cta-btn">상담 문의</a>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>KOREVO</h3>
+                    <p>한국의 전통과 혁신을 담은<br>프리미엄 유기 브랜드</p>
+                    <p>전통의 아름다움을 현대에 되살리며<br>지속가능한 미래를 만들어갑니다.</p>
+                </div>
+                <div class="footer-section">
+                    <h3>프리미엄 선물세트</h3>
+                    <p><a href="#gift-sets">선물세트 컬렉션</a></p>
+                    <p><a href="#customization">맞춤 제작 서비스</a></p>
+                    <p><a href="contact.html">선물 상담</a></p>
+                    <p><a href="#shop">온라인 쇼핑몰</a></p>
+                </div>
+                <div class="footer-section">
+                    <h3>고객지원</h3>
+                    <p>고객센터: 1588-0000</p>
+                    <p>이메일: info@korevo.co.kr</p>
+                    <p>운영시간: 평일 09:00-18:00</p>
+                    <p>선물 전문 상담: gift@korevo.co.kr</p>
+                </div>
+                <div class="footer-section">
+                    <h3>배송 및 서비스</h3>
+                    <p>전국 무료배송 (5만원 이상)</p>
+                    <p>당일배송 서비스 (서울/경기)</p>
+                    <p>프리미엄 포장 서비스</p>
+                    <p>평생 A/S 보장</p>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2025 KOREVO. All rights reserved. | 사업자등록번호: 123-45-67890</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Smooth scrolling for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+
+        // Animate on scroll
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('animate-on-scroll');
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.gift-set-card, .occasion-item').forEach(el => {
+            observer.observe(el);
+        });
+
+        // Header scroll effect
+        window.addEventListener('scroll', () => {
+            const header = document.querySelector('.header');
+            if (window.scrollY > 50) {
+                header.style.background = 'rgba(255, 255, 255, 0.98)';
+                header.style.boxShadow = '0 2px 20px rgba(0, 0, 0, 0.1)';
+            } else {
+                header.style.background = 'rgba(255, 255, 255, 0.95)';
+                header.style.boxShadow = 'none';
+            }
+        });
+
+        // Gift set card hover effects
+        document.querySelectorAll('.gift-set-card').forEach(card => {
+            card.addEventListener('mouseenter', function() {
+                this.style.transform = 'translateY(-15px) scale(1.02)';
+            });
+            
+            card.addEventListener('mouseleave', function() {
+                this.style.transform = 'translateY(0) scale(1)';
+            });
+        });
+
+        // Add to cart functionality (placeholder)
+        document.querySelectorAll('.gift-set-btn').forEach(btn => {
+            if (btn.textContent === '구매하기') {
+                btn.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    
+                    // Visual feedback
+                    const originalText = this.textContent;
+                    this.textContent = '장바구니에 추가됨!';
+                    this.style.background = '#34c759';
+                    
+                    setTimeout(() => {
+                        this.textContent = originalText;
+                        this.style.background = '#007aff';
+                    }, 2000);
+                });
+            }
+        });
+
+        // Parallax effect for hero section
+        window.addEventListener('scroll', () => {
+            const scrolled = window.pageYOffset;
+            const parallax = document.querySelector('.hero-content');
+            const speed = scrolled * 0.5;
+            
+            if (parallax) {
+                parallax.style.transform = `translateY(${speed}px)`;
+            }
+        });
+    </script>
+</body>
+</html>
