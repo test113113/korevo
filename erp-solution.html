@@ -1,0 +1,911 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>제조업 ERP 솔루션 - KOREVO</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            line-height: 1.6;
+            color: #1d1d1f;
+            background-color: #f5f5f7;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* Header */
+        .header {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(20px);
+            border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 1000;
+            transition: all 0.3s ease;
+        }
+
+        .nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1rem 2rem;
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: #1D1D1F;
+        }
+
+        .nav-links {
+            display: flex;
+            list-style: none;
+            gap: 2rem;
+        }
+
+        .nav-link {
+            color: #1d1d1f;
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.3s ease;
+        }
+
+        .nav-link:hover {
+            color: #007AFF;
+        }
+
+        /* Breadcrumb */
+        .breadcrumb-nav {
+            background: white;
+            padding: 1rem 0;
+            margin-top: 80px;
+            border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+        }
+
+        .breadcrumb {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            font-size: 0.9rem;
+        }
+
+        .breadcrumb-item {
+            color: #666;
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        .breadcrumb-item:hover {
+            color: #007AFF;
+        }
+
+        .breadcrumb-item.active {
+            color: #1D1D1F;
+            font-weight: 600;
+        }
+
+        .breadcrumb-separator {
+            color: #ccc;
+        }
+
+        /* Hero Section */
+        .hero-section {
+            background: linear-gradient(135deg, #1D1D1F 0%, #515154 100%);
+            color: white;
+            padding: 100px 0;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero-section::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><defs><pattern id="grid" width="10" height="10" patternUnits="userSpaceOnUse"><path d="M 10 0 L 0 0 0 10" fill="none" stroke="rgba(255,255,255,0.1)" stroke-width="1"/></pattern></defs><rect width="100" height="100" fill="url(%23grid)"/></svg>');
+            opacity: 0.3;
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 2;
+        }
+
+        .hero-title {
+            font-size: 3.5rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+            background: linear-gradient(45deg, #fff, #FFD60A);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .hero-subtitle {
+            font-size: 1.3rem;
+            margin-bottom: 2rem;
+            opacity: 0.9;
+        }
+
+        .hero-features {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .hero-feature {
+            background: rgba(255, 255, 255, 0.1);
+            padding: 1rem 2rem;
+            border-radius: 25px;
+            backdrop-filter: blur(10px);
+            font-weight: 600;
+        }
+
+        /* Overview Section */
+        .overview-section {
+            padding: 80px 0;
+            background: white;
+        }
+
+        .section-title {
+            font-size: 2.5rem;
+            font-weight: 700;
+            text-align: center;
+            margin-bottom: 3rem;
+            color: #1D1D1F;
+        }
+
+        .overview-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .overview-card {
+            background: #f8f9fa;
+            padding: 2rem;
+            border-radius: 16px;
+            border: 1px solid rgba(0, 0, 0, 0.1);
+            transition: all 0.3s ease;
+        }
+
+        .overview-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+        }
+
+        .card-icon {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+            display: block;
+        }
+
+        .card-title {
+            font-size: 1.5rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+            color: #1D1D1F;
+        }
+
+        .card-description {
+            color: #666;
+            line-height: 1.6;
+        }
+
+        /* Features Section */
+        .features-section {
+            padding: 80px 0;
+            background: #f8f9fa;
+        }
+
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 3rem;
+            margin-top: 3rem;
+        }
+
+        .feature-card {
+            background: white;
+            padding: 2.5rem;
+            border-radius: 20px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            border: 1px solid rgba(0, 0, 0, 0.05);
+            transition: all 0.3s ease;
+        }
+
+        .feature-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 25px 50px rgba(0, 0, 0, 0.15);
+        }
+
+        .feature-icon {
+            font-size: 2.5rem;
+            margin-bottom: 1.5rem;
+            display: block;
+        }
+
+        .feature-title {
+            font-size: 1.3rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+            color: #1D1D1F;
+        }
+
+        .feature-list {
+            list-style: none;
+            margin-top: 1rem;
+        }
+
+        .feature-list li {
+            padding: 0.5rem 0;
+            color: #666;
+            position: relative;
+            padding-left: 1.5rem;
+        }
+
+        .feature-list li::before {
+            content: '✓';
+            position: absolute;
+            left: 0;
+            color: #007AFF;
+            font-weight: bold;
+        }
+
+        /* Benefits Section */
+        .benefits-section {
+            padding: 80px 0;
+            background: white;
+        }
+
+        .benefits-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+            align-items: center;
+            margin-top: 3rem;
+        }
+
+        .benefits-text {
+            font-size: 1.1rem;
+            line-height: 1.8;
+            color: #666;
+        }
+
+        .benefits-stats {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 2rem;
+        }
+
+        .stat-card {
+            background: #f8f9fa;
+            padding: 2rem;
+            border-radius: 16px;
+            text-align: center;
+            border: 1px solid rgba(0, 0, 0, 0.1);
+        }
+
+        .stat-number {
+            font-size: 3rem;
+            font-weight: 700;
+            color: #007AFF;
+            display: block;
+        }
+
+        .stat-label {
+            font-size: 1rem;
+            color: #666;
+            margin-top: 0.5rem;
+        }
+
+        /* CTA Section */
+        .cta-section {
+            padding: 80px 0;
+            background: linear-gradient(135deg, #1D1D1F 0%, #515154 100%);
+            color: white;
+            text-align: center;
+        }
+
+        .cta-title {
+            font-size: 2.5rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+        }
+
+        .cta-subtitle {
+            font-size: 1.2rem;
+            margin-bottom: 2rem;
+            opacity: 0.9;
+        }
+
+        .cta-buttons {
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+            margin-top: 2rem;
+        }
+
+        .cta-btn {
+            display: inline-block;
+            padding: 1rem 2rem;
+            background: #FFD60A;
+            color: #1D1D1F;
+            text-decoration: none;
+            border-radius: 30px;
+            font-weight: 700;
+            transition: all 0.3s ease;
+        }
+
+        .cta-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 30px rgba(255, 214, 10, 0.3);
+        }
+
+        .cta-btn.secondary {
+            background: transparent;
+            color: white;
+            border: 2px solid white;
+        }
+
+        .cta-btn.secondary:hover {
+            background: white;
+            color: #1D1D1F;
+        }
+
+        /* Footer */
+        .footer {
+            background: #1d1d1f;
+            color: white;
+            padding: 60px 0 20px;
+        }
+
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin-bottom: 2rem;
+        }
+
+        .footer-section h3 {
+            font-size: 1.2rem;
+            margin-bottom: 1rem;
+            color: #FFD60A;
+        }
+
+        .footer-section p {
+            color: #ccc;
+            line-height: 1.6;
+            margin-bottom: 0.5rem;
+        }
+
+        .footer-section a {
+            color: #ccc;
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        .footer-section a:hover {
+            color: #FFD60A;
+        }
+
+        .footer-bottom {
+            text-align: center;
+            padding-top: 2rem;
+            border-top: 1px solid #333;
+            color: #999;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+            }
+
+            .hero-title {
+                font-size: 2.5rem;
+            }
+
+            .hero-features {
+                flex-direction: column;
+                align-items: center;
+            }
+
+            .features-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .benefits-content {
+                grid-template-columns: 1fr;
+            }
+
+            .cta-buttons {
+                flex-direction: column;
+                align-items: center;
+            }
+        }
+
+        /* Animations */
+        .fade-in {
+            opacity: 0;
+            transform: translateY(30px);
+            animation: fadeInUp 0.6s ease forwards;
+        }
+
+        @keyframes fadeInUp {
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .animate-on-scroll {
+            opacity: 0;
+            transform: translateY(50px);
+            transition: all 0.6s ease;
+        }
+
+        .animate-on-scroll.animated {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header class="header">
+        <nav class="nav">
+            <div class="logo">KOREVO</div>
+            <ul class="nav-links">
+                <li><a href="index.html" class="nav-link">홈</a></li>
+                <li><a href="greeting.html" class="nav-link">회사소개</a></li>
+                <li><a href="heonn-brand.html" class="nav-link">사업소개</a></li>
+                <li><a href="#" class="nav-link">제품/서비스</a></li>
+                <li><a href="contact.html" class="nav-link">CONTACT</a></li>
+                <li><a href="#" class="nav-link">쇼핑몰</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <!-- Breadcrumb -->
+    <nav class="breadcrumb-nav">
+        <div class="container">
+            <div class="breadcrumb">
+                <a href="index.html" class="breadcrumb-item">홈</a>
+                <span class="breadcrumb-separator">></span>
+                <a href="#" class="breadcrumb-item">제품/서비스</a>
+                <span class="breadcrumb-separator">></span>
+                <a href="#" class="breadcrumb-item">소프트웨어</a>
+                <span class="breadcrumb-separator">></span>
+                <span class="breadcrumb-item active">제조업 ERP 솔루션</span>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero-section">
+        <div class="container">
+            <div class="hero-content fade-in">
+                <h1 class="hero-title">제조업 ERP 솔루션</h1>
+                <p class="hero-subtitle">전통 제조업의 디지털 혁신을 위한 통합 관리 시스템</p>
+                <div class="hero-features">
+                    <div class="hero-feature">🏭 생산 관리</div>
+                    <div class="hero-feature">📊 품질 관리</div>
+                    <div class="hero-feature">💼 재고 관리</div>
+                    <div class="hero-feature">🔄 공급망 관리</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Overview Section -->
+    <section class="overview-section">
+        <div class="container">
+            <h2 class="section-title">KOREVO ERP 솔루션 개요</h2>
+            <p style="text-align: center; font-size: 1.1rem; color: #666; max-width: 800px; margin: 0 auto;">
+                전통 제조업체를 위한 맞춤형 ERP 솔루션으로, 생산부터 판매까지 모든 비즈니스 프로세스를 통합 관리하여 
+                효율성을 극대화하고 디지털 전환을 지원합니다.
+            </p>
+            <div class="overview-grid">
+                <div class="overview-card animate-on-scroll">
+                    <span class="card-icon">🎯</span>
+                    <h3 class="card-title">맞춤형 솔루션</h3>
+                    <p class="card-description">
+                        각 제조업체의 고유한 업무 프로세스에 맞춰 설계된 맞춤형 ERP 시스템으로, 
+                        기존 업무 방식을 최대한 유지하면서 효율성을 향상시킵니다.
+                    </p>
+                </div>
+                <div class="overview-card animate-on-scroll">
+                    <span class="card-icon">☁️</span>
+                    <h3 class="card-title">클라우드 기반</h3>
+                    <p class="card-description">
+                        클라우드 기반 아키텍처로 언제 어디서나 접근 가능하며, 
+                        자동 백업과 보안 기능으로 안정적인 데이터 관리를 제공합니다.
+                    </p>
+                </div>
+                <div class="overview-card animate-on-scroll">
+                    <span class="card-icon">🔄</span>
+                    <h3 class="card-title">통합 관리</h3>
+                    <p class="card-description">
+                        생산, 품질, 재고, 판매, 회계 등 모든 업무 영역을 하나의 시스템에서 
+                        통합 관리하여 데이터의 일관성과 업무 효율성을 보장합니다.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Features Section -->
+    <section class="features-section">
+        <div class="container">
+            <h2 class="section-title">핵심 기능</h2>
+            <div class="features-grid">
+                <div class="feature-card animate-on-scroll">
+                    <span class="feature-icon">🏭</span>
+                    <h3 class="feature-title">생산 관리</h3>
+                    <p class="card-description">
+                        전통 제조 공정에 특화된 생산 계획 및 실행 관리 시스템
+                    </p>
+                    <ul class="feature-list">
+                        <li>생산 계획 수립 및 스케줄링</li>
+                        <li>작업 지시서 생성 및 관리</li>
+                        <li>실시간 생산 현황 모니터링</li>
+                        <li>공정별 작업 시간 추적</li>
+                        <li>설비 가동률 분석</li>
+                    </ul>
+                </div>
+                
+                <div class="feature-card animate-on-scroll">
+                    <span class="feature-icon">📊</span>
+                    <h3 class="feature-title">품질 관리</h3>
+                    <p class="card-description">
+                        전통 공예품의 품질 기준에 맞춘 체계적인 품질 관리 시스템
+                    </p>
+                    <ul class="feature-list">
+                        <li>품질 검사 기준 설정</li>
+                        <li>검사 결과 기록 및 분석</li>
+                        <li>불량품 관리 및 추적</li>
+                        <li>품질 보고서 자동 생성</li>
+                        <li>개선 사항 관리</li>
+                    </ul>
+                </div>
+
+                <div class="feature-card animate-on-scroll">
+                    <span class="feature-icon">📦</span>
+                    <h3 class="feature-title">재고 관리</h3>
+                    <p class="card-description">
+                        원자재부터 완제품까지 전체 재고를 실시간으로 관리
+                    </p>
+                    <ul class="feature-list">
+                        <li>입출고 관리 및 추적</li>
+                        <li>재고 수준 실시간 모니터링</li>
+                        <li>안전 재고 알림 시스템</li>
+                        <li>유통기한 관리</li>
+                        <li>재고 회전율 분석</li>
+                    </ul>
+                </div>
+
+                <div class="feature-card animate-on-scroll">
+                    <span class="feature-icon">🚚</span>
+                    <h3 class="feature-title">공급망 관리</h3>
+                    <p class="card-description">
+                        구매부터 판매까지 전체 공급망을 통합 관리
+                    </p>
+                    <ul class="feature-list">
+                        <li>공급업체 관리 및 평가</li>
+                        <li>구매 요청 및 발주 관리</li>
+                        <li>납기 관리 및 추적</li>
+                        <li>판매 주문 처리</li>
+                        <li>배송 관리</li>
+                    </ul>
+                </div>
+
+                <div class="feature-card animate-on-scroll">
+                    <span class="feature-icon">💰</span>
+                    <h3 class="feature-title">재무 관리</h3>
+                    <p class="card-description">
+                        매출, 비용, 수익성 분석을 통한 재무 현황 관리
+                    </p>
+                    <ul class="feature-list">
+                        <li>매출 및 수익성 분석</li>
+                        <li>원가 계산 및 관리</li>
+                        <li>예산 수립 및 실적 비교</li>
+                        <li>현금 흐름 관리</li>
+                        <li>재무 보고서 자동 생성</li>
+                    </ul>
+                </div>
+
+                <div class="feature-card animate-on-scroll">
+                    <span class="feature-icon">📱</span>
+                    <h3 class="feature-title">모바일 지원</h3>
+                    <p class="card-description">
+                        현장에서 직접 사용할 수 있는 모바일 앱 제공
+                    </p>
+                    <ul class="feature-list">
+                        <li>모바일 앱을 통한 현장 데이터 입력</li>
+                        <li>실시간 현황 조회</li>
+                        <li>푸시 알림 기능</li>
+                        <li>오프라인 모드 지원</li>
+                        <li>사진 첨부 기능</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Benefits Section -->
+    <section class="benefits-section">
+        <div class="container">
+            <h2 class="section-title">도입 효과</h2>
+            <div class="benefits-content">
+                <div class="benefits-text animate-on-scroll">
+                    <h3 style="font-size: 1.5rem; margin-bottom: 1rem; color: #2c5530;">
+                        디지털 전환을 통한 혁신적 변화
+                    </h3>
+                    <p>
+                        KOREVO ERP 솔루션 도입을 통해 전통 제조업체들은 평균적으로 생산성 35% 향상, 
+                        재고 관리 비용 25% 절감, 품질 개선 40% 달성의 놀라운 성과를 얻고 있습니다.
+                    </p>
+                    <p>
+                        특히 수작업으로 진행되던 업무들이 자동화되면서 인력은 더욱 가치 있는 업무에 
+                        집중할 수 있게 되었고, 데이터 기반의 의사결정을 통해 경영 효율성이 크게 향상되었습니다.
+                    </p>
+                    <p>
+                        또한 실시간 현황 파악과 예측 분석 기능을 통해 시장 변화에 신속하게 대응할 수 있는 
+                        민첩한 조직으로 변화하고 있습니다.
+                    </p>
+                </div>
+                <div class="benefits-stats">
+                    <div class="stat-card animate-on-scroll">
+                        <span class="stat-number">35%</span>
+                        <span class="stat-label">생산성 향상</span>
+                    </div>
+                    <div class="stat-card animate-on-scroll">
+                        <span class="stat-number">25%</span>
+                        <span class="stat-label">비용 절감</span>
+                    </div>
+                    <div class="stat-card animate-on-scroll">
+                        <span class="stat-number">40%</span>
+                        <span class="stat-label">품질 개선</span>
+                    </div>
+                    <div class="stat-card animate-on-scroll">
+                        <span class="stat-number">90%</span>
+                        <span class="stat-label">고객 만족도</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="cta-section">
+        <div class="container">
+            <h2 class="cta-title">지금 바로 시작하세요</h2>
+            <p class="cta-subtitle">
+                전통 제조업의 디지털 혁신, KOREVO ERP 솔루션과 함께 하세요.<br>
+                무료 컨설팅과 맞춤형 제안서를 받아보실 수 있습니다.
+            </p>
+            <div class="cta-buttons">
+                <a href="contact.html" class="cta-btn">무료 상담 신청</a>
+                <a href="#" class="cta-btn secondary">데모 체험하기</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>KOREVO</h3>
+                    <p>한국의 전통과 혁신을 담은<br>프리미엄 유기 브랜드</p>
+                    <p>전통의 아름다움을 현대에 되살리며<br>지속가능한 미래를 만들어갑니다.</p>
+                </div>
+                <div class="footer-section">
+                    <h3>빠른 링크</h3>
+                    <p><a href="greeting.html">회사소개</a></p>
+                    <p><a href="heonn-brand.html">사업소개</a></p>
+                    <p><a href="#" onclick="navigateToPage('dining-set')">제품소개</a></p>
+                    <p><a href="contact.html">문의하기</a></p>
+                </div>
+                <div class="footer-section">
+                    <h3>제품 & 서비스</h3>
+                    <p><a href="#" onclick="navigateToPage('dining-set')">헤온 식기 컬렉션</a></p>
+                    <p><a href="#" onclick="navigateToPage('erp-solution')">ERP 솔루션</a></p>
+                    <p><a href="#" onclick="navigateToPage('custom-craft')">맞춤 제작</a></p>
+                    <p><a href="#" onclick="navigateToPage('consulting')">컨설팅</a></p>
+                </div>
+                <div class="footer-section">
+                    <h3>고객지원</h3>
+                    <p>고객센터: 1588-0000</p>
+                    <p>이메일: info@korevo.co.kr</p>
+                    <p>운영시간: 평일 09:00-18:00</p>
+                    <p>주소: 서울특별시 강남구 테헤란로 123</p>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2025 KOREVO. All rights reserved. | 사업자등록번호: 123-45-67890</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Navigation function
+        function navigateToPage(pageName) {
+            console.log(`페이지로 이동: ${pageName}`);
+            // 실제 구현시 페이지 이동 로직 추가
+        }
+
+        // Smooth scrolling for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+
+        // Scroll animations
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('animated');
+                }
+            });
+        }, observerOptions);
+
+        // Observe elements for animation
+        document.querySelectorAll('.animate-on-scroll').forEach(el => {
+            observer.observe(el);
+        });
+
+        // Header scroll effect
+        window.addEventListener('scroll', () => {
+            const header = document.querySelector('.header');
+            if (window.scrollY > 100) {
+                header.style.background = 'rgba(255, 255, 255, 0.98)';
+                header.style.boxShadow = '0 2px 20px rgba(0, 0, 0, 0.1)';
+            } else {
+                header.style.background = 'rgba(255, 255, 255, 0.95)';
+                header.style.boxShadow = 'none';
+            }
+        });
+
+        // Counter animation for stats
+        function animateCounter(element, start, end, duration) {
+            let startTimestamp = null;
+            const step = (timestamp) => {
+                if (!startTimestamp) startTimestamp = timestamp;
+                const progress = Math.min((timestamp - startTimestamp) / duration, 1);
+                const current = Math.floor(progress * (end - start) + start);
+                element.textContent = current + (element.textContent.includes('%') ? '%' : '');
+                if (progress < 1) {
+                    window.requestAnimationFrame(step);
+                }
+            };
+            window.requestAnimationFrame(step);
+        }
+
+        // Animate stats when they come into view
+        const statsObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    const statNumber = entry.target.querySelector('.stat-number');
+                    if (statNumber && !statNumber.classList.contains('animated')) {
+                        statNumber.classList.add('animated');
+                        const finalValue = parseInt(statNumber.textContent);
+                        statNumber.textContent = '0';
+                        animateCounter(statNumber, 0, finalValue, 2000);
+                    }
+                }
+            });
+        }, { threshold: 0.5 });
+
+        document.querySelectorAll('.stat-card').forEach(card => {
+            statsObserver.observe(card);
+        });
+
+        // Add hover effects to cards
+        document.querySelectorAll('.feature-card, .overview-card').forEach(card => {
+            card.addEventListener('mouseenter', function() {
+                this.style.transform = 'translateY(-8px) scale(1.02)';
+            });
+            
+            card.addEventListener('mouseleave', function() {
+                this.style.transform = 'translateY(0) scale(1)';
+            });
+        });
+
+        // Parallax effect for hero section
+        window.addEventListener('scroll', () => {
+            const scrolled = window.pageYOffset;
+            const parallax = document.querySelector('.hero-section');
+            const speed = scrolled * 0.5;
+            if (parallax) {
+                parallax.style.transform = `translateY(${speed}px)`;
+            }
+        });
+
+        // Loading animation
+        window.addEventListener('load', () => {
+            document.body.style.opacity = '0';
+            document.body.style.transition = 'opacity 0.5s ease';
+            setTimeout(() => {
+                document.body.style.opacity = '1';
+            }, 100);
+        });
+
+        // Add click events for CTA buttons
+        document.querySelectorAll('.cta-btn').forEach(btn => {
+            btn.addEventListener('click', function(e) {
+                // 데모 체험하기 버튼 클릭시
+                if (this.textContent.includes('데모')) {
+                    e.preventDefault();
+                    alert('데모 체험 페이지로 이동합니다. (구현 예정)');
+                }
+            });
+        });
+
+        // Add feature card interaction
+        document.querySelectorAll('.feature-card').forEach(card => {
+            card.addEventListener('click', function() {
+                const title = this.querySelector('.feature-title').textContent;
+                console.log(`${title} 상세 정보 페이지로 이동`);
+                // 실제 구현시 상세 페이지로 이동하는 로직 추가
+            });
+        });
+
+        // Mobile menu toggle (if needed)
+        function toggleMobileMenu() {
+            const navLinks = document.querySelector('.nav-links');
+            navLinks.classList.toggle('active');
+        }
+
+        // Add responsive navigation for mobile
+        if (window.innerWidth <= 768) {
+            const nav = document.querySelector('.nav');
+            const mobileToggle = document.createElement('button');
+            mobileToggle.innerHTML = '☰';
+            mobileToggle.className = 'mobile-toggle';
+            mobileToggle.style.cssText = `
+                display: block;
+                background: none;
+                border: none;
+                font-size: 1.5rem;
+                color: #007AFF;
+                cursor: pointer;
+            `;
+            mobileToggle.addEventListener('click', toggleMobileMenu);
+            nav.appendChild(mobileToggle);
+        }
+    </script>
+</body>
+</html>
