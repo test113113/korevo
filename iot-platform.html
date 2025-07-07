@@ -1,0 +1,1266 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>IoT 품질관리 플랫폼 - KOREVO</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            line-height: 1.6;
+            color: #1d1d1f;
+            background-color: #f5f5f7;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* Header */
+        .header {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(20px);
+            border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 1000;
+            transition: all 0.3s ease;
+        }
+
+        .nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1rem 2rem;
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: #1D1D1F;
+        }
+
+        .nav-links {
+            display: flex;
+            list-style: none;
+            gap: 2rem;
+        }
+
+        .nav-link {
+            color: #1d1d1f;
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.3s ease;
+        }
+
+        .nav-link:hover {
+            color: #007AFF;
+        }
+
+        /* Breadcrumb */
+        .breadcrumb-nav {
+            background: white;
+            padding: 1rem 0;
+            margin-top: 80px;
+            border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+        }
+
+        .breadcrumb {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            font-size: 0.9rem;
+        }
+
+        .breadcrumb-item {
+            color: #666;
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        .breadcrumb-item:hover {
+            color: #007AFF;
+        }
+
+        .breadcrumb-item.active {
+            color: #1D1D1F;
+            font-weight: 600;
+        }
+
+        .breadcrumb-separator {
+            color: #ccc;
+        }
+
+        /* Hero Section */
+        .hero-section {
+            background: linear-gradient(135deg, #1D1D1F 0%, #515154 100%);
+            color: white;
+            padding: 100px 0;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero-section::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><defs><pattern id="grid" width="10" height="10" patternUnits="userSpaceOnUse"><path d="M 10 0 L 0 0 0 10" fill="none" stroke="rgba(255,255,255,0.1)" stroke-width="1"/></pattern></defs><rect width="100" height="100" fill="url(%23grid)"/></svg>');
+            opacity: 0.3;
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 2;
+        }
+
+        .hero-title {
+            font-size: 3.5rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+            background: linear-gradient(45deg, #fff, #FFD60A);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .hero-subtitle {
+            font-size: 1.3rem;
+            margin-bottom: 2rem;
+            opacity: 0.9;
+        }
+
+        .hero-features {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            margin-top: 3rem;
+            flex-wrap: wrap;
+        }
+
+        .hero-feature {
+            background: rgba(255, 255, 255, 0.1);
+            padding: 1rem 2rem;
+            border-radius: 25px;
+            backdrop-filter: blur(10px);
+            font-weight: 600;
+        }
+
+        /* Overview Section */
+        .overview-section {
+            padding: 80px 0;
+            background: white;
+        }
+
+        .section-title {
+            font-size: 2.5rem;
+            font-weight: 700;
+            text-align: center;
+            margin-bottom: 3rem;
+            color: #1D1D1F;
+        }
+
+        .overview-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .overview-card {
+            background: #f8f9fa;
+            padding: 2rem;
+            border-radius: 16px;
+            border: 1px solid rgba(0, 0, 0, 0.1);
+            transition: all 0.3s ease;
+        }
+
+        .overview-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+        }
+
+        .card-icon {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+            display: block;
+        }
+
+        .card-title {
+            font-size: 1.5rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+            color: #1D1D1F;
+        }
+
+        .card-description {
+            color: #666;
+            line-height: 1.6;
+        }
+
+        /* IoT Components Section */
+        .iot-components {
+            padding: 80px 0;
+            background: #f8f9fa;
+        }
+
+        .components-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .component-card {
+            background: white;
+            padding: 2rem;
+            border-radius: 20px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            border: 1px solid rgba(0, 0, 0, 0.05);
+            transition: all 0.3s ease;
+            text-align: center;
+        }
+
+        .component-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 25px 50px rgba(0, 0, 0, 0.15);
+        }
+
+        .component-icon {
+            font-size: 4rem;
+            margin-bottom: 1.5rem;
+            display: block;
+        }
+
+        .component-title {
+            font-size: 1.4rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+            color: #1D1D1F;
+        }
+
+        .component-description {
+            color: #666;
+            line-height: 1.6;
+            margin-bottom: 1.5rem;
+        }
+
+        .component-features {
+            list-style: none;
+            text-align: left;
+        }
+
+        .component-features li {
+            padding: 0.3rem 0;
+            color: #666;
+            font-size: 0.9rem;
+            position: relative;
+            padding-left: 1.5rem;
+        }
+
+        .component-features li::before {
+            content: '●';
+            position: absolute;
+            left: 0;
+            color: #007AFF;
+            font-weight: bold;
+        }
+
+        /* Architecture Section */
+        .architecture-section {
+            padding: 80px 0;
+            background: white;
+        }
+
+        .architecture-diagram {
+            background: #f8f9fa;
+            border-radius: 20px;
+            padding: 3rem;
+            margin: 3rem 0;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .architecture-layers {
+            display: flex;
+            flex-direction: column;
+            gap: 2rem;
+        }
+
+        .architecture-layer {
+            background: white;
+            padding: 2rem;
+            border-radius: 12px;
+            border-left: 4px solid #007AFF;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s ease;
+        }
+
+        .architecture-layer:hover {
+            transform: translateX(10px);
+            box-shadow: 0 8px 30px rgba(0, 0, 0, 0.15);
+        }
+
+        .layer-title {
+            font-size: 1.3rem;
+            font-weight: 700;
+            color: #1D1D1F;
+            margin-bottom: 0.5rem;
+        }
+
+        .layer-description {
+            color: #666;
+            font-size: 1rem;
+        }
+
+        /* Benefits Section */
+        .benefits-section {
+            padding: 80px 0;
+            background: #f8f9fa;
+        }
+
+        .benefits-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 3rem;
+            margin-top: 3rem;
+        }
+
+        .benefit-card {
+            background: white;
+            padding: 2.5rem;
+            border-radius: 20px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            border: 1px solid rgba(0, 0, 0, 0.05);
+            transition: all 0.3s ease;
+        }
+
+        .benefit-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 25px 50px rgba(0, 0, 0, 0.15);
+        }
+
+        .benefit-icon {
+            font-size: 2.5rem;
+            margin-bottom: 1.5rem;
+            display: block;
+        }
+
+        .benefit-title {
+            font-size: 1.3rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+            color: #1D1D1F;
+        }
+
+        .benefit-description {
+            color: #666;
+            line-height: 1.6;
+            margin-bottom: 1.5rem;
+        }
+
+        .benefit-stats {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1rem;
+            margin-top: 1.5rem;
+        }
+
+        .stat-item {
+            text-align: center;
+            padding: 1rem;
+            background: #f8f9fa;
+            border-radius: 12px;
+        }
+
+        .stat-number {
+            font-size: 2rem;
+            font-weight: 700;
+            color: #007AFF;
+            display: block;
+        }
+
+        .stat-label {
+            font-size: 0.9rem;
+            color: #666;
+            margin-top: 0.3rem;
+        }
+
+        /* Use Cases Section */
+        .use-cases-section {
+            padding: 80px 0;
+            background: white;
+        }
+
+        .use-cases-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .use-case-card {
+            background: linear-gradient(135deg, #007AFF 0%, #0056D3 100%);
+            color: white;
+            padding: 2rem;
+            border-radius: 20px;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .use-case-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            right: 0;
+            width: 100px;
+            height: 100px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 50%;
+            transform: translate(30px, -30px);
+        }
+
+        .use-case-card:hover {
+            transform: translateY(-5px) scale(1.02);
+            box-shadow: 0 20px 40px rgba(0, 122, 255, 0.3);
+        }
+
+        .use-case-title {
+            font-size: 1.3rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+            position: relative;
+            z-index: 2;
+        }
+
+        .use-case-description {
+            opacity: 0.9;
+            line-height: 1.6;
+            position: relative;
+            z-index: 2;
+        }
+
+        /* CTA Section */
+        .cta-section {
+            padding: 80px 0;
+            background: linear-gradient(135deg, #1D1D1F 0%, #515154 100%);
+            color: white;
+            text-align: center;
+        }
+
+        .cta-title {
+            font-size: 2.5rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+        }
+
+        .cta-subtitle {
+            font-size: 1.2rem;
+            margin-bottom: 2rem;
+            opacity: 0.9;
+        }
+
+        .cta-buttons {
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+            margin-top: 2rem;
+            flex-wrap: wrap;
+        }
+
+        .cta-btn {
+            display: inline-block;
+            padding: 1rem 2rem;
+            background: #FFD60A;
+            color: #1D1D1F;
+            text-decoration: none;
+            border-radius: 30px;
+            font-weight: 700;
+            transition: all 0.3s ease;
+        }
+
+        .cta-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 30px rgba(255, 214, 10, 0.3);
+        }
+
+        .cta-btn.secondary {
+            background: transparent;
+            color: white;
+            border: 2px solid white;
+        }
+
+        .cta-btn.secondary:hover {
+            background: white;
+            color: #1D1D1F;
+        }
+
+        /* Footer */
+        .footer {
+            background: #1d1d1f;
+            color: white;
+            padding: 60px 0 20px;
+        }
+
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin-bottom: 2rem;
+        }
+
+        .footer-section h3 {
+            font-size: 1.2rem;
+            margin-bottom: 1rem;
+            color: #FFD60A;
+        }
+
+        .footer-section p {
+            color: #ccc;
+            line-height: 1.6;
+            margin-bottom: 0.5rem;
+        }
+
+        .footer-section a {
+            color: #ccc;
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        .footer-section a:hover {
+            color: #FFD60A;
+        }
+
+        .footer-bottom {
+            text-align: center;
+            padding-top: 2rem;
+            border-top: 1px solid #333;
+            color: #999;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+            }
+
+            .hero-title {
+                font-size: 2.5rem;
+            }
+
+            .hero-features {
+                flex-direction: column;
+                align-items: center;
+            }
+
+            .components-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .benefits-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .cta-buttons {
+                flex-direction: column;
+                align-items: center;
+            }
+
+            .architecture-layer:hover {
+                transform: translateY(-5px);
+            }
+        }
+
+        /* Animations */
+        .fade-in {
+            opacity: 0;
+            transform: translateY(30px);
+            animation: fadeInUp 0.6s ease forwards;
+        }
+
+        @keyframes fadeInUp {
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .animate-on-scroll {
+            opacity: 0;
+            transform: translateY(50px);
+            transition: all 0.6s ease;
+        }
+
+        .animate-on-scroll.animated {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* Pulse animation for IoT icons */
+        @keyframes pulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+            100% { transform: scale(1); }
+        }
+
+        .component-icon:hover {
+            animation: pulse 1s ease-in-out infinite;
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header class="header">
+        <nav class="nav">
+            <div class="logo">KOREVO</div>
+            <ul class="nav-links">
+                <li><a href="index.html" class="nav-link">홈</a></li>
+                <li><a href="greeting.html" class="nav-link">회사소개</a></li>
+                <li><a href="heonn-brand.html" class="nav-link">사업소개</a></li>
+                <li><a href="#" class="nav-link">제품/서비스</a></li>
+                <li><a href="contact.html" class="nav-link">CONTACT</a></li>
+                <li><a href="#" class="nav-link">쇼핑몰</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <!-- Breadcrumb -->
+    <nav class="breadcrumb-nav">
+        <div class="container">
+            <div class="breadcrumb">
+                <a href="index.html" class="breadcrumb-item">홈</a>
+                <span class="breadcrumb-separator">></span>
+                <a href="#" class="breadcrumb-item">제품/서비스</a>
+                <span class="breadcrumb-separator">></span>
+                <a href="#" class="breadcrumb-item">소프트웨어</a>
+                <span class="breadcrumb-separator">></span>
+                <span class="breadcrumb-item active">IoT 품질관리 플랫폼</span>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero-section">
+        <div class="container">
+            <div class="hero-content fade-in">
+                <h1 class="hero-title">IoT 품질관리 플랫폼</h1>
+                <p class="hero-subtitle">스마트 센서와 AI가 만나는 지능형 품질 관리 시스템</p>
+                <div class="hero-features">
+                    <div class="hero-feature">🌐 실시간 모니터링</div>
+                    <div class="hero-feature">🤖 AI 예측 분석</div>
+                    <div class="hero-feature">📊 자동 리포팅</div>
+                    <div class="hero-feature">⚡ 즉시 알림</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Overview Section -->
+    <section class="overview-section">
+        <div class="container">
+            <h2 class="section-title">IoT 플랫폼 개요</h2>
+            <p style="text-align: center; font-size: 1.1rem; color: #666; max-width: 800px; margin: 0 auto;">
+                전통 제조업의 품질 관리를 혁신하는 IoT 기반 통합 솔루션으로, 
+                실시간 데이터 수집부터 AI 분석까지 모든 과정을 자동화합니다.
+            </p>
+            <div class="overview-grid">
+                <div class="overview-card animate-on-scroll">
+                    <span class="card-icon">🌐</span>
+                    <h3 class="card-title">실시간 연결</h3>
+                    <p class="card-description">
+                        제조 현장의 모든 설비와 공정을 IoT 센서로 연결하여 
+                        실시간으로 데이터를 수집하고 모니터링합니다.
+                    </p>
+                </div>
+                <div class="overview-card animate-on-scroll">
+                    <span class="card-icon">🤖</span>
+                    <h3 class="card-title">지능형 분석</h3>
+                    <p class="card-description">
+                        AI와 머신러닝을 활용하여 품질 패턴을 분석하고 
+                        불량 발생을 사전에 예측하고 방지합니다.
+                    </p>
+                </div>
+                <div class="overview-card animate-on-scroll">
+                    <span class="card-icon">📱</span>
+                    <h3 class="card-title">모바일 접근</h3>
+                    <p class="card-description">
+                        언제 어디서나 모바일로 품질 상태를 확인하고 
+                        즉시 대응할 수 있는 모바일 앱을 제공합니다.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- IoT Components Section -->
+    <section class="iot-components">
+        <div class="container">
+            <h2 class="section-title">IoT 구성 요소</h2>
+            <div class="components-grid">
+                <div class="component-card animate-on-scroll">
+                    <span class="component-icon">🌡️</span>
+                    <h3 class="component-title">온습도 센서</h3>
+                    <p class="component-description">
+                        제작 환경의 온도와 습도를 실시간으로 모니터링하여 
+                        최적의 작업 조건을 유지합니다.
+                    </p>
+                    <ul class="component-features">
+                        <li>정밀 온도 측정 (±0.1℃)</li>
+                        <li>습도 범위 모니터링</li>
+                        <li>환경 변화 알림</li>
+                        <li>자동 기록 및 분석</li>
+                    </ul>
+                </div>
+
+                <div class="component-card animate-on-scroll">
+                    <span class="component-icon">⚖️</span>
+                    <h3 class="component-title">중량 센서</h3>
+                    <p class="component-description">
+                        원자재와 완제품의 중량을 정밀하게 측정하여 
+                        품질 기준 준수를 자동으로 검증합니다.
+                    </p>
+                    <ul class="component-features">
+                        <li>고정밀 중량 측정</li>
+                        <li>자동 중량 기록</li>
+                        <li>기준치 이탈 알림</li>
+                        <li>품질 트렌드 분석</li>
+                    </ul>
+                </div>
+
+                <div class="component-card animate-on-scroll">
+                    <span class="component-icon">📷</span>
+                    <h3 class="component-title">비전 센서</h3>
+                    <p class="component-description">
+                        AI 기반 이미지 분석으로 표면 품질과 
+                        외관 결함을 자동으로 감지합니다.
+                    </p>
+                    <ul class="component-features">
+                        <li>고해상도 이미지 촬영</li>
+                        <li>AI 결함 인식</li>
+                        <li>품질 등급 자동 분류</li>
+                        <li>이미지 데이터베이스</li>
+                    </ul>
+                </div>
+
+                <div class="component-card animate-on-scroll">
+                    <span class="component-icon">⚡</span>
+                    <h3 class="component-title">진동 센서</h3>
+                    <p class="component-description">
+                        설비의 진동 패턴을 분석하여 장비 상태를 
+                        진단하고 예방 정비를 지원합니다.
+                    </p>
+                    <ul class="component-features">
+                        <li>실시간 진동 모니터링</li>
+                        <li>이상 진동 감지</li>
+                        <li>예방 정비 알림</li>
+                        <li>장비 수명 예측</li>
+                    </ul>
+                </div>
+
+                <div class="component-card animate-on-scroll">
+                    <span class="component-icon">🔊</span>
+                    <h3 class="component-title">음향 센서</h3>
+                    <p class="component-description">
+                        작업 중 발생하는 소음을 분석하여 
+                        공정 상태와 품질을 평가합니다.
+                    </p>
+                    <ul class="component-features">
+                        <li>소음 레벨 측정</li>
+                        <li>음성 패턴 분석</li>
+                        <li>작업 품질 평가</li>
+                        <li>환경 소음 관리</li>
+                    </ul>
+                </div>
+
+                <div class="component-card animate-on-scroll">
+                    <span class="component-icon">📡</span>
+                    <h3 class="component-title">통합 게이트웨이</h3>
+                    <p class="component-description">
+                        모든 센서 데이터를 수집하고 클라우드로 
+                        안전하게 전송하는 중앙 허브입니다.
+                    </p>
+                    <ul class="component-features">
+                        <li>다중 프로토콜 지원</li>
+                        <li>실시간 데이터 전송</li>
+                        <li>로컬 데이터 저장</li>
+                        <li>보안 암호화 통신</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Architecture Section -->
+    <section class="architecture-section">
+        <div class="container">
+            <h2 class="section-title">시스템 아키텍처</h2>
+            <div class="architecture-diagram">
+                <div class="architecture-layers">
+                    <div class="architecture-layer animate-on-scroll">
+                        <h3 class="layer-title">🏭 현장 계층 (Field Layer)</h3>
+                        <p class="layer-description">
+                            IoT 센서, 스마트 디바이스, 현장 게이트웨이로 구성된 데이터 수집 계층
+                        </p>
+                    </div>
+                    <div class="architecture-layer animate-on-scroll">
+                        <h3 class="layer-title">🌐 네트워크 계층 (Network Layer)</h3>
+                        <p class="layer-description">
+                            WiFi, 4G/5G, LoRa 등 다양한 통신 프로토콜을 통한 안전한 데이터 전송
+                        </p>
+                    </div>
+                    <div class="architecture-layer animate-on-scroll">
+                        <h3 class="layer-title">☁️ 플랫폼 계층 (Platform Layer)</h3>
+                        <p class="layer-description">
+                            클라우드 기반 데이터 저장, 처리, 분석을 담당하는 핵심 플랫폼
+                        </p>
+                    </div>
+                    <div class="architecture-layer animate-on-scroll">
+                        <h3 class="layer-title">🤖 분석 계층 (Analytics Layer)</h3>
+                        <p class="layer-description">
+                            AI/ML 기반 데이터 분석, 예측 모델링, 인사이트 생성
+                        </p>
+                    </div>
+                    <div class="architecture-layer animate-on-scroll">
+                        <h3 class="layer-title">📱 응용 계층 (Application Layer)</h3>
+                        <p class="layer-description">
+                            웹 대시보드, 모바일 앱, API 등 사용자 인터페이스 제공
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Benefits Section -->
+    <section class="benefits-section">
+        <div class="container">
+            <h2 class="section-title">핵심 혜택</h2>
+            <div class="benefits-grid">
+                <div class="benefit-card animate-on-scroll">
+                    <span class="benefit-icon">📈</span>
+                    <h3 class="benefit-title">품질 향상</h3>
+                    <p class="benefit-description">
+                        AI 기반 실시간 품질 모니터링으로 불량률을 대폭 감소시키고 
+                        일관된 고품질 제품 생산을 보장합니다.
+                    </p>
+                    <div class="benefit-stats">
+                        <div class="stat-item">
+                            <span class="stat-number">60%</span>
+                            <span class="stat-label">불량률 감소</span>
+                        </div>
+                        <div class="stat-item">
+                            <span class="stat-number">95%</span>
+                            <span class="stat-label">품질 일관성</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="benefit-card animate-on-scroll">
+                    <span class="benefit-icon">⚡</span>
+                    <h3 class="benefit-title">생산성 증대</h3>
+                    <p class="benefit-description">
+                        자동화된 품질 검사와 실시간 알림으로 작업 효율성을 극대화하고 
+                        생산 중단 시간을 최소화합니다.
+                    </p>
+                    <div class="benefit-stats">
+                        <div class="stat-item">
+                            <span class="stat-number">40%</span>
+                            <span class="stat-label">생산성 향상</span>
+                        </div>
+                        <div class="stat-item">
+                            <span class="stat-number">80%</span>
+                            <span class="stat-label">검사 시간 단축</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="benefit-card animate-on-scroll">
+                    <span class="benefit-icon">💰</span>
+                    <h3 class="benefit-title">비용 절감</h3>
+                    <p class="benefit-description">
+                        예방적 품질 관리로 폐기물과 재작업을 줄이고 
+                        인력 투입 최적화로 운영 비용을 절감합니다.
+                    </p>
+                    <div class="benefit-stats">
+                        <div class="stat-item">
+                            <span class="stat-number">30%</span>
+                            <span class="stat-label">운영비 절감</span>
+                        </div>
+                        <div class="stat-item">
+                            <span class="stat-number">50%</span>
+                            <span class="stat-label">폐기물 감소</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="benefit-card animate-on-scroll">
+                    <span class="benefit-icon">🔍</span>
+                    <h3 class="benefit-title">투명성 확보</h3>
+                    <p class="benefit-description">
+                        모든 품질 데이터의 실시간 추적과 기록으로 
+                        완전한 품질 이력 관리와 추적성을 제공합니다.
+                    </p>
+                    <div class="benefit-stats">
+                        <div class="stat-item">
+                            <span class="stat-number">100%</span>
+                            <span class="stat-label">품질 추적</span>
+                        </div>
+                        <div class="stat-item">
+                            <span class="stat-number">24/7</span>
+                            <span class="stat-label">실시간 모니터링</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Use Cases Section -->
+    <section class="use-cases-section">
+        <div class="container">
+            <h2 class="section-title">적용 사례</h2>
+            <div class="use-cases-grid">
+                <div class="use-case-card animate-on-scroll">
+                    <h3 class="use-case-title">🏺 전통 유기 제조</h3>
+                    <p class="use-case-description">
+                        헤온 브랜드 유기 제품 제작 과정에서 온도, 습도, 건조 시간 등을 
+                        정밀하게 모니터링하여 최고 품질의 전통 유기 제품을 생산합니다.
+                    </p>
+                </div>
+
+                <div class="use-case-card animate-on-scroll">
+                    <h3 class="use-case-title">🍯 식품 가공업</h3>
+                    <p class="use-case-description">
+                        식품 안전성이 중요한 가공업체에서 온도, pH, 미생물 수치 등을 
+                        실시간으로 모니터링하여 HACCP 기준을 자동으로 관리합니다.
+                    </p>
+                </div>
+
+                <div class="use-case-card animate-on-scroll">
+                    <h3 class="use-case-title">🧵 섬유 제조업</h3>
+                    <p class="use-case-description">
+                        섬유 염색과 가공 과정에서 색상 일관성, 강도, 신축성 등을 
+                        센서로 측정하여 품질 균일성을 보장합니다.
+                    </p>
+                </div>
+
+                <div class="use-case-card animate-on-scroll">
+                    <h3 class="use-case-title">🔧 정밀 기계부품</h3>
+                    <p class="use-case-description">
+                        정밀 가공 장비의 진동, 온도, 가공 속도를 모니터링하여 
+                        미크론 단위의 정확한 부품 가공을 지원합니다.
+                    </p>
+                </div>
+
+                <div class="use-case-card animate-on-scroll">
+                    <h3 class="use-case-title">🌿 화장품 제조</h3>
+                    <p class="use-case-description">
+                        천연 화장품 제조 과정에서 원료의 농도, 점도, 색상 등을 
+                        실시간으로 측정하여 제품 품질을 일관되게 유지합니다.
+                    </p>
+                </div>
+
+                <div class="use-case-card animate-on-scroll">
+                    <h3 class="use-case-title">🏠 가구 제조업</h3>
+                    <p class="use-case-description">
+                        목재 가공 과정에서 수분함량, 접착제 경화도, 표면 마감도를 
+                        모니터링하여 고품질 가구 생산을 보장합니다.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Technology Stack Section -->
+    <section class="overview-section" style="background: #f8f9fa;">
+        <div class="container">
+            <h2 class="section-title">기술 스택</h2>
+            <div class="overview-grid">
+                <div class="overview-card animate-on-scroll">
+                    <span class="card-icon">🔌</span>
+                    <h3 class="card-title">IoT 프로토콜</h3>
+                    <p class="card-description">
+                        MQTT, CoAP, LoRaWAN, WiFi, 4G/5G 등 다양한 
+                        IoT 통신 프로토콜을 지원합니다.
+                    </p>
+                </div>
+                <div class="overview-card animate-on-scroll">
+                    <span class="card-icon">🧠</span>
+                    <h3 class="card-title">AI/ML 엔진</h3>
+                    <p class="card-description">
+                        TensorFlow, PyTorch 기반 머신러닝 모델로 
+                        패턴 인식과 예측 분석을 수행합니다.
+                    </p>
+                </div>
+                <div class="overview-card animate-on-scroll">
+                    <span class="card-icon">☁️</span>
+                    <h3 class="card-title">클라우드 인프라</h3>
+                    <p class="card-description">
+                        AWS/Azure 기반 확장 가능한 클라우드 아키텍처로 
+                        안정적인 서비스를 제공합니다.
+                    </p>
+                </div>
+                <div class="overview-card animate-on-scroll">
+                    <span class="card-icon">🔒</span>
+                    <h3 class="card-title">보안 체계</h3>
+                    <p class="card-description">
+                        end-to-end 암호화, 블록체인 기반 데이터 무결성 보장으로 
+                        최고 수준의 보안을 제공합니다.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="cta-section">
+        <div class="container">
+            <h2 class="cta-title">스마트 품질관리 시작하기</h2>
+            <p class="cta-subtitle">
+                IoT와 AI로 품질관리를 혁신하세요.<br>
+                무료 파일럿 프로그램과 맞춤형 컨설팅을 받아보실 수 있습니다.
+            </p>
+            <div class="cta-buttons">
+                <a href="contact.html" class="cta-btn">무료 파일럿 신청</a>
+                <a href="#" class="cta-btn secondary">기술 문서 다운로드</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>KOREVO</h3>
+                    <p>한국의 전통과 혁신을 담은<br>프리미엄 유기 브랜드</p>
+                    <p>전통의 아름다움을 현대에 되살리며<br>지속가능한 미래를 만들어갑니다.</p>
+                </div>
+                <div class="footer-section">
+                    <h3>빠른 링크</h3>
+                    <p><a href="greeting.html">회사소개</a></p>
+                    <p><a href="heonn-brand.html">사업소개</a></p>
+                    <p><a href="#" onclick="navigateToPage('erp-solution')">ERP 솔루션</a></p>
+                    <p><a href="contact.html">문의하기</a></p>
+                </div>
+                <div class="footer-section">
+                    <h3>IoT 솔루션</h3>
+                    <p><a href="#" onclick="navigateToPage('iot-platform')">IoT 플랫폼</a></p>
+                    <p><a href="#" onclick="navigateToPage('consulting')">기술 컨설팅</a></p>
+                    <p><a href="#" onclick="navigateToPage('current-projects')">R&D 과제</a></p>
+                    <p><a href="#" onclick="navigateToPage('collaboration')">산학연 협력</a></p>
+                </div>
+                <div class="footer-section">
+                    <h3>기술 지원</h3>
+                    <p>기술지원: 1588-1000</p>
+                    <p>이메일: tech@korevo.co.kr</p>
+                    <p>운영시간: 평일 09:00-18:00</p>
+                    <p>긴급상황: 24시간 지원</p>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2025 KOREVO. All rights reserved. | 사업자등록번호: 123-45-67890</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Navigation function
+        function navigateToPage(pageName) {
+            console.log(`페이지로 이동: ${pageName}`);
+            // 실제 구현시 페이지 이동 로직 추가
+        }
+
+        // Smooth scrolling for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+
+        // Scroll animations
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('animated');
+                }
+            });
+        }, observerOptions);
+
+        // Observe elements for animation
+        document.querySelectorAll('.animate-on-scroll').forEach(el => {
+            observer.observe(el);
+        });
+
+        // Header scroll effect
+        window.addEventListener('scroll', () => {
+            const header = document.querySelector('.header');
+            if (window.scrollY > 100) {
+                header.style.background = 'rgba(255, 255, 255, 0.98)';
+                header.style.boxShadow = '0 2px 20px rgba(0, 0, 0, 0.1)';
+            } else {
+                header.style.background = 'rgba(255, 255, 255, 0.95)';
+                header.style.boxShadow = 'none';
+            }
+        });
+
+        // Counter animation for stats
+        function animateCounter(element, start, end, duration) {
+            let startTimestamp = null;
+            const step = (timestamp) => {
+                if (!startTimestamp) startTimestamp = timestamp;
+                const progress = Math.min((timestamp - startTimestamp) / duration, 1);
+                const current = Math.floor(progress * (end - start) + start);
+                element.textContent = current + (element.textContent.includes('%') ? '%' : '');
+                if (progress < 1) {
+                    window.requestAnimationFrame(step);
+                }
+            };
+            window.requestAnimationFrame(step);
+        }
+
+        // Animate stats when they come into view
+        const statsObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    const statNumbers = entry.target.querySelectorAll('.stat-number');
+                    statNumbers.forEach(statNumber => {
+                        if (!statNumber.classList.contains('animated')) {
+                            statNumber.classList.add('animated');
+                            const text = statNumber.textContent;
+                            const isPercentage = text.includes('%');
+                            const isSlash = text.includes('/');
+                            
+                            if (isSlash) {
+                                // Handle "24/7" format
+                                return;
+                            } else if (isPercentage) {
+                                const finalValue = parseInt(text);
+                                statNumber.textContent = '0%';
+                                animateCounter(statNumber, 0, finalValue, 2000);
+                            } else {
+                                const finalValue = parseInt(text);
+                                if (!isNaN(finalValue)) {
+                                    statNumber.textContent = '0';
+                                    animateCounter(statNumber, 0, finalValue, 2000);
+                                }
+                            }
+                        }
+                    });
+                }
+            });
+        }, { threshold: 0.5 });
+
+        document.querySelectorAll('.benefit-card').forEach(card => {
+            statsObserver.observe(card);
+        });
+
+        // Add hover effects to cards
+        document.querySelectorAll('.component-card, .overview-card, .benefit-card').forEach(card => {
+            card.addEventListener('mouseenter', function() {
+                this.style.transform = 'translateY(-8px) scale(1.02)';
+            });
+            
+            card.addEventListener('mouseleave', function() {
+                this.style.transform = 'translateY(0) scale(1)';
+            });
+        });
+
+        // Parallax effect for hero section
+        window.addEventListener('scroll', () => {
+            const scrolled = window.pageYOffset;
+            const parallax = document.querySelector('.hero-section');
+            const speed = scrolled * 0.5;
+            if (parallax) {
+                parallax.style.transform = `translateY(${speed}px)`;
+            }
+        });
+
+        // Loading animation
+        window.addEventListener('load', () => {
+            document.body.style.opacity = '0';
+            document.body.style.transition = 'opacity 0.5s ease';
+            setTimeout(() => {
+                document.body.style.opacity = '1';
+            }, 100);
+        });
+
+        // Add click events for CTA buttons
+        document.querySelectorAll('.cta-btn').forEach(btn => {
+            btn.addEventListener('click', function(e) {
+                // 기술 문서 다운로드 버튼 클릭시
+                if (this.textContent.includes('기술 문서')) {
+                    e.preventDefault();
+                    alert('기술 문서 다운로드 페이지로 이동합니다. (구현 예정)');
+                }
+            });
+        });
+
+        // IoT sensor simulation (visual effect)
+        function simulateIoTData() {
+            const icons = document.querySelectorAll('.component-icon');
+            icons.forEach((icon, index) => {
+                setTimeout(() => {
+                    icon.style.animation = 'pulse 1s ease-in-out';
+                    setTimeout(() => {
+                        icon.style.animation = '';
+                    }, 1000);
+                }, index * 200);
+            });
+        }
+
+        // Simulate IoT data every 5 seconds
+        setInterval(simulateIoTData, 5000);
+
+        // Mobile menu toggle (if needed)
+        function toggleMobileMenu() {
+            const navLinks = document.querySelector('.nav-links');
+            navLinks.classList.toggle('active');
+        }
+
+        // Add responsive navigation for mobile
+        if (window.innerWidth <= 768) {
+            const nav = document.querySelector('.nav');
+            const mobileToggle = document.createElement('button');
+            mobileToggle.innerHTML = '☰';
+            mobileToggle.className = 'mobile-toggle';
+            mobileToggle.style.cssText = `
+                display: block;
+                background: none;
+                border: none;
+                font-size: 1.5rem;
+                color: #007AFF;
+                cursor: pointer;
+            `;
+            mobileToggle.addEventListener('click', toggleMobileMenu);
+            nav.appendChild(mobileToggle);
+        }
+    </script>
+</body>
+</html>
