@@ -1,0 +1,548 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>작업 준비중 - KOREVO</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Helvetica Neue', Arial, sans-serif;
+            line-height: 1.6;
+            color: #1d1d1f;
+            background: linear-gradient(135deg, #f5f5f7 0%, #e8e8ea 100%);
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* Header */
+        .header {
+            background: rgba(251, 251, 253, 0.8);
+            backdrop-filter: blur(20px);
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 1000;
+            padding: 12px 0;
+            border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+        }
+
+        .nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        .logo {
+            font-size: 24px;
+            font-weight: 700;
+            color: #1d1d1f;
+            text-decoration: none;
+        }
+
+        .nav-links {
+            display: flex;
+            list-style: none;
+            gap: 30px;
+        }
+
+        .nav-links a {
+            color: #1d1d1f;
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.3s ease;
+        }
+
+        .nav-links a:hover {
+            color: #007aff;
+        }
+
+        /* Main Content */
+        .main-content {
+            flex: 1;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 120px 0 80px;
+        }
+
+        .content-wrapper {
+            text-align: center;
+            max-width: 600px;
+            opacity: 0;
+            animation: fadeInUp 1s ease-out 0.3s forwards;
+        }
+
+        /* Icon Animation */
+        .work-icon {
+            font-size: 120px;
+            margin-bottom: 30px;
+            display: block;
+            animation: bounce 2s infinite;
+        }
+
+        .page-title {
+            font-size: 48px;
+            font-weight: 700;
+            margin-bottom: 20px;
+            color: #1d1d1f;
+            opacity: 0;
+            animation: fadeInUp 1s ease-out 0.6s forwards;
+        }
+
+        .page-subtitle {
+            font-size: 20px;
+            color: #86868b;
+            margin-bottom: 40px;
+            opacity: 0;
+            animation: fadeInUp 1s ease-out 0.9s forwards;
+        }
+
+        .progress-info {
+            background: white;
+            padding: 40px;
+            border-radius: 20px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            margin-bottom: 40px;
+            opacity: 0;
+            animation: fadeInUp 1s ease-out 1.2s forwards;
+        }
+
+        .progress-title {
+            font-size: 24px;
+            font-weight: 600;
+            color: #1d1d1f;
+            margin-bottom: 15px;
+        }
+
+        .progress-description {
+            color: #86868b;
+            line-height: 1.6;
+            margin-bottom: 25px;
+        }
+
+        .progress-features {
+            list-style: none;
+            text-align: left;
+            margin: 20px 0;
+        }
+
+        .progress-features li {
+            padding: 8px 0;
+            color: #1d1d1f;
+            display: flex;
+            align-items: center;
+        }
+
+        .progress-features li::before {
+            content: '🚀';
+            margin-right: 12px;
+            font-size: 16px;
+        }
+
+        /* Progress Bar */
+        .progress-bar-container {
+            margin: 30px 0;
+        }
+
+        .progress-label {
+            font-size: 14px;
+            color: #86868b;
+            margin-bottom: 10px;
+        }
+
+        .progress-bar {
+            width: 100%;
+            height: 8px;
+            background: #e8e8ea;
+            border-radius: 10px;
+            overflow: hidden;
+        }
+
+        .progress-fill {
+            height: 100%;
+            background: linear-gradient(90deg, #007aff, #5856d6);
+            border-radius: 10px;
+            width: 0%;
+            animation: progressAnimation 3s ease-out 1.5s forwards;
+        }
+
+        /* Notification Card */
+        .notification-card {
+            background: linear-gradient(135deg, #007aff 0%, #5856d6 100%);
+            color: white;
+            padding: 30px;
+            border-radius: 20px;
+            margin-bottom: 30px;
+            opacity: 0;
+            animation: fadeInUp 1s ease-out 1.5s forwards;
+        }
+
+        .notification-title {
+            font-size: 18px;
+            font-weight: 600;
+            margin-bottom: 10px;
+        }
+
+        .notification-text {
+            opacity: 0.9;
+            line-height: 1.6;
+        }
+
+        /* Action Buttons */
+        .action-buttons {
+            display: flex;
+            gap: 20px;
+            justify-content: center;
+            opacity: 0;
+            animation: fadeInUp 1s ease-out 1.8s forwards;
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 15px 30px;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            border: none;
+            cursor: pointer;
+            font-size: 16px;
+        }
+
+        .btn-primary {
+            background: #007aff;
+            color: white;
+        }
+
+        .btn-primary:hover {
+            background: #0056b3;
+            transform: translateY(-2px);
+        }
+
+        .btn-secondary {
+            background: rgba(0, 122, 255, 0.1);
+            color: #007aff;
+            border: 2px solid rgba(0, 122, 255, 0.2);
+        }
+
+        .btn-secondary:hover {
+            background: rgba(0, 122, 255, 0.2);
+            transform: translateY(-2px);
+        }
+
+        /* Footer */
+        .footer {
+            background: #1d1d1f;
+            color: white;
+            padding: 40px 0 20px;
+            margin-top: auto;
+        }
+
+        .footer-content {
+            text-align: center;
+        }
+
+        .footer-text {
+            color: #86868b;
+            margin-bottom: 15px;
+        }
+
+        .footer-links {
+            display: flex;
+            justify-content: center;
+            gap: 30px;
+            margin-bottom: 20px;
+        }
+
+        .footer-links a {
+            color: #86868b;
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        .footer-links a:hover {
+            color: #007aff;
+        }
+
+        .footer-bottom {
+            color: #86868b;
+            font-size: 14px;
+        }
+
+        /* Animations */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes bounce {
+            0%, 20%, 50%, 80%, 100% {
+                transform: translateY(0);
+            }
+            40% {
+                transform: translateY(-10px);
+            }
+            60% {
+                transform: translateY(-5px);
+            }
+        }
+
+        @keyframes progressAnimation {
+            from {
+                width: 0%;
+            }
+            to {
+                width: 75%;
+            }
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+            }
+
+            .page-title {
+                font-size: 36px;
+            }
+
+            .page-subtitle {
+                font-size: 18px;
+            }
+
+            .work-icon {
+                font-size: 80px;
+            }
+
+            .action-buttons {
+                flex-direction: column;
+                align-items: center;
+            }
+
+            .footer-links {
+                flex-direction: column;
+                gap: 15px;
+            }
+
+            .progress-info {
+                padding: 30px 20px;
+            }
+        }
+
+        /* Floating particles effect */
+        .particles {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: -1;
+        }
+
+        .particle {
+            position: absolute;
+            width: 6px;
+            height: 6px;
+            background: rgba(0, 122, 255, 0.3);
+            border-radius: 50%;
+            animation: float 6s ease-in-out infinite;
+        }
+
+        @keyframes float {
+            0%, 100% {
+                transform: translateY(0px) rotate(0deg);
+                opacity: 0;
+            }
+            50% {
+                opacity: 1;
+                transform: translateY(-100px) rotate(180deg);
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Floating Particles -->
+    <div class="particles"></div>
+
+    <!-- Header -->
+    <header class="header">
+        <nav class="nav">
+            <a href="index.html" class="logo">KOREVO</a>
+            <ul class="nav-links">
+                <li><a href="index.html">홈</a></li>
+                <li><a href="greeting.html">회사소개</a></li>
+                <li><a href="heonn-brand.html">사업소개</a></li>
+                <li><a href="dining-set.html">제품/서비스</a></li>
+                <li><a href="contact.html">CONTACT</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <!-- Main Content -->
+    <main class="main-content">
+        <div class="container">
+            <div class="content-wrapper">
+                <span class="work-icon">🛠️</span>
+                <h1 class="page-title">작업 준비중입니다</h1>
+                <p class="page-subtitle">더 나은 서비스를 위해 열심히 준비하고 있습니다</p>
+                
+                <div class="progress-info">
+                    <h2 class="progress-title">현재 진행 상황</h2>
+                    <p class="progress-description">
+                        KOREVO의 R&D 과제 관련 페이지를 더욱 풍부하고 유용한 콘텐츠로 제공하기 위해 
+                        전문 팀이 새로운 기능과 정보를 준비하고 있습니다.
+                    </p>
+                    
+                    <ul class="progress-features">
+                        <li>진행중인 R&D 과제 상세 정보 업데이트</li>
+                        <li>완료된 과제 성과 및 결과물 정리</li>
+                        <li>연구 성과 데이터베이스 구축</li>
+                        <li>사용자 친화적인 인터페이스 설계</li>
+                        <li>모바일 최적화 및 성능 개선</li>
+                    </ul>
+
+                    <div class="progress-bar-container">
+                        <div class="progress-label">개발 진행률</div>
+                        <div class="progress-bar">
+                            <div class="progress-fill"></div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="notification-card">
+                    <h3 class="notification-title">🔔 업데이트 알림</h3>
+                    <p class="notification-text">
+                        새로운 페이지가 완성되면 즉시 알려드리겠습니다. 
+                        더 나은 서비스로 찾아뵙겠습니다!
+                    </p>
+                </div>
+
+                <div class="action-buttons">
+                    <a href="index.html" class="btn btn-primary">홈으로 돌아가기</a>
+                    <a href="contact.html" class="btn btn-secondary">문의하기</a>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <p class="footer-text">불편을 드려 죄송합니다. 더 나은 서비스로 보답하겠습니다.</p>
+                <div class="footer-links">
+                    <a href="index.html">홈</a>
+                    <a href="heonn-brand.html">브랜드 소개</a>
+                    <a href="dining-set.html">제품 보기</a>
+                    <a href="contact.html">문의하기</a>
+                </div>
+                <p class="footer-bottom">&copy; 2025 KOREVO. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Create floating particles
+        function createParticles() {
+            const particlesContainer = document.querySelector('.particles');
+            const particleCount = 15;
+
+            for (let i = 0; i < particleCount; i++) {
+                const particle = document.createElement('div');
+                particle.className = 'particle';
+                
+                // Random position
+                particle.style.left = Math.random() * 100 + '%';
+                particle.style.top = Math.random() * 100 + '%';
+                
+                // Random animation delay
+                particle.style.animationDelay = Math.random() * 6 + 's';
+                
+                particlesContainer.appendChild(particle);
+            }
+        }
+
+        // Header scroll effect
+        window.addEventListener('scroll', () => {
+            const header = document.querySelector('.header');
+            if (window.scrollY > 100) {
+                header.style.background = 'rgba(251, 251, 253, 0.95)';
+            } else {
+                header.style.background = 'rgba(251, 251, 253, 0.8)';
+            }
+        });
+
+        // Mobile menu toggle
+        if (window.innerWidth <= 768) {
+            const logo = document.querySelector('.logo');
+            const navLinks = document.querySelector('.nav-links');
+            
+            logo.addEventListener('click', (e) => {
+                e.preventDefault();
+                navLinks.style.display = navLinks.style.display === 'flex' ? 'none' : 'flex';
+            });
+        }
+
+        // Initialize particles when page loads
+        document.addEventListener('DOMContentLoaded', () => {
+            createParticles();
+        });
+
+        // Add subtle hover effects to buttons
+        document.querySelectorAll('.btn').forEach(btn => {
+            btn.addEventListener('mouseenter', () => {
+                btn.style.transform = 'translateY(-2px) scale(1.02)';
+            });
+            
+            btn.addEventListener('mouseleave', () => {
+                btn.style.transform = 'translateY(0) scale(1)';
+            });
+        });
+
+        // Add click effect to notification card
+        const notificationCard = document.querySelector('.notification-card');
+        notificationCard.addEventListener('click', () => {
+            notificationCard.style.transform = 'scale(0.98)';
+            setTimeout(() => {
+                notificationCard.style.transform = 'scale(1)';
+            }, 150);
+        });
+
+        // Progress bar animation trigger
+        const progressFill = document.querySelector('.progress-fill');
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    progressFill.style.animation = 'progressAnimation 3s ease-out forwards';
+                }
+            });
+        });
+
+        observer.observe(progressFill);
+    </script>
+</body>
+</html>
