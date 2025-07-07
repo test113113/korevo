@@ -1,0 +1,705 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>건강케어 제품 - 헤온(HeOnn) | KOREVO</title>
+    <meta name="description" content="헤온(HeOnn) 건강케어 제품 - 전통 유기 기법으로 만든 프리미엄 건강케어 솔루션">
+    
+    <!-- Apple Design CSS -->
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            line-height: 1.6;
+            color: #1d1d1f;
+            background-color: #ffffff;
+        }
+
+        /* Header */
+        .header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 1000;
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(20px);
+            border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+        }
+
+        .nav-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            height: 60px;
+        }
+
+        .logo {
+            font-size: 24px;
+            font-weight: 700;
+            color: #1d1d1f;
+            text-decoration: none;
+        }
+
+        .nav-menu {
+            display: flex;
+            list-style: none;
+            gap: 30px;
+        }
+
+        .nav-link {
+            text-decoration: none;
+            color: #1d1d1f;
+            font-weight: 500;
+            transition: color 0.3s ease;
+        }
+
+        .nav-link:hover {
+            color: #007aff;
+        }
+
+        /* Hero Section */
+        .hero-section {
+            position: relative;
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        }
+
+        .hero-video {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            z-index: -1;
+        }
+
+        .hero-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.3);
+            z-index: 1;
+        }
+
+        .hero-content {
+            text-align: center;
+            color: white;
+            z-index: 2;
+            position: relative;
+            max-width: 800px;
+            padding: 0 20px;
+        }
+
+        .hero-title {
+            font-size: 4rem;
+            font-weight: 700;
+            margin-bottom: 20px;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+        }
+
+        .hero-subtitle {
+            font-size: 1.5rem;
+            margin-bottom: 30px;
+            opacity: 0.9;
+        }
+
+        .hero-description {
+            font-size: 1.1rem;
+            margin-bottom: 40px;
+            opacity: 0.8;
+            line-height: 1.8;
+        }
+
+        .cta-buttons {
+            display: flex;
+            gap: 20px;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        .cta-btn {
+            display: inline-block;
+            padding: 15px 30px;
+            background: #007aff;
+            color: white;
+            text-decoration: none;
+            border-radius: 50px;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            border: 2px solid #007aff;
+        }
+
+        .cta-btn:hover {
+            background: #0056b3;
+            transform: translateY(-2px);
+            box-shadow: 0 10px 20px rgba(0, 122, 255, 0.3);
+        }
+
+        .cta-btn.secondary {
+            background: transparent;
+            color: white;
+            border: 2px solid white;
+        }
+
+        .cta-btn.secondary:hover {
+            background: white;
+            color: #007aff;
+        }
+
+        /* Main Content */
+        .main-content {
+            padding-top: 60px;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* Products Section */
+        .products-section {
+            padding: 80px 0;
+            background: #f5f5f7;
+        }
+
+        .section-title {
+            text-align: center;
+            font-size: 2.5rem;
+            font-weight: 700;
+            margin-bottom: 20px;
+            color: #1d1d1f;
+        }
+
+        .section-subtitle {
+            text-align: center;
+            font-size: 1.2rem;
+            color: #6e6e73;
+            margin-bottom: 60px;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .products-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 40px;
+            margin-top: 60px;
+        }
+
+        .product-card {
+            background: white;
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s ease;
+        }
+
+        .product-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
+        }
+
+        .product-image {
+            width: 100%;
+            height: 250px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 4rem;
+            color: white;
+        }
+
+        .product-info {
+            padding: 30px;
+        }
+
+        .product-title {
+            font-size: 1.5rem;
+            font-weight: 600;
+            margin-bottom: 15px;
+            color: #1d1d1f;
+        }
+
+        .product-description {
+            color: #6e6e73;
+            line-height: 1.8;
+            margin-bottom: 20px;
+        }
+
+        .product-features {
+            list-style: none;
+            margin-bottom: 25px;
+        }
+
+        .product-features li {
+            padding: 5px 0;
+            color: #6e6e73;
+            position: relative;
+            padding-left: 20px;
+        }
+
+        .product-features li:before {
+            content: "✓";
+            position: absolute;
+            left: 0;
+            color: #007aff;
+            font-weight: bold;
+        }
+
+        .product-price {
+            font-size: 1.3rem;
+            font-weight: 700;
+            color: #007aff;
+            margin-bottom: 20px;
+        }
+
+        .product-btn {
+            display: inline-block;
+            padding: 12px 25px;
+            background: #007aff;
+            color: white;
+            text-decoration: none;
+            border-radius: 25px;
+            font-weight: 600;
+            transition: all 0.3s ease;
+        }
+
+        .product-btn:hover {
+            background: #0056b3;
+            transform: translateY(-2px);
+        }
+
+        /* Benefits Section */
+        .benefits-section {
+            padding: 80px 0;
+            background: white;
+        }
+
+        .benefits-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 40px;
+            margin-top: 60px;
+        }
+
+        .benefit-item {
+            text-align: center;
+            padding: 30px;
+        }
+
+        .benefit-icon {
+            font-size: 3rem;
+            margin-bottom: 20px;
+            color: #007aff;
+        }
+
+        .benefit-title {
+            font-size: 1.3rem;
+            font-weight: 600;
+            margin-bottom: 15px;
+            color: #1d1d1f;
+        }
+
+        .benefit-description {
+            color: #6e6e73;
+            line-height: 1.8;
+        }
+
+        /* CTA Section */
+        .cta-section {
+            padding: 80px 0;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            text-align: center;
+        }
+
+        .cta-title {
+            font-size: 2.5rem;
+            font-weight: 700;
+            margin-bottom: 20px;
+        }
+
+        .cta-description {
+            font-size: 1.2rem;
+            margin-bottom: 40px;
+            opacity: 0.9;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        /* Footer */
+        .footer {
+            background: #1d1d1f;
+            color: #f5f5f7;
+            padding: 60px 0 30px;
+        }
+
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 40px;
+            margin-bottom: 40px;
+        }
+
+        .footer-section h3 {
+            font-size: 1.2rem;
+            margin-bottom: 20px;
+            color: white;
+        }
+
+        .footer-section p {
+            margin-bottom: 10px;
+            color: #a1a1a6;
+        }
+
+        .footer-section a {
+            color: #a1a1a6;
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        .footer-section a:hover {
+            color: #007aff;
+        }
+
+        .footer-bottom {
+            text-align: center;
+            padding-top: 30px;
+            border-top: 1px solid #424245;
+            color: #a1a1a6;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .nav-menu {
+                display: none;
+            }
+
+            .hero-title {
+                font-size: 2.5rem;
+            }
+
+            .hero-subtitle {
+                font-size: 1.2rem;
+            }
+
+            .products-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .cta-buttons {
+                flex-direction: column;
+                align-items: center;
+            }
+
+            .section-title {
+                font-size: 2rem;
+            }
+        }
+
+        /* Animations */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .animate-on-scroll {
+            animation: fadeInUp 0.8s ease-out;
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header class="header">
+        <nav class="nav-container">
+            <a href="index.html" class="logo">KOREVO</a>
+            
+            <ul class="nav-menu">
+                <li><a href="index.html" class="nav-link">홈</a></li>
+                <li><a href="greeting.html" class="nav-link">회사소개</a></li>
+                <li><a href="heonn-brand.html" class="nav-link">사업소개</a></li>
+                <li><a href="#" class="nav-link">제품/서비스</a></li>
+                <li><a href="contact.html" class="nav-link">CONTACT</a></li>
+                <li><a href="#" class="nav-link">쇼핑몰</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero-section">
+        <video class="hero-video" autoplay muted loop>
+            <source src="./video/korevo_hero.mp4" type="video/mp4">
+        </video>
+        <div class="hero-overlay"></div>
+        <div class="hero-content">
+            <h1 class="hero-title">헤온 건강케어</h1>
+            <p class="hero-subtitle">전통 유기 기법으로 만든 프리미엄 건강케어 솔루션</p>
+            <p class="hero-description">
+                천년의 전통 기법과 현대 과학의 만남으로 탄생한 헤온 건강케어 제품은<br>
+                건강하고 아름다운 라이프스타일을 위한 최고의 선택입니다.
+            </p>
+            <div class="cta-buttons">
+                <a href="#products" class="cta-btn">제품 둘러보기</a>
+                <a href="contact.html" class="cta-btn secondary">상담 문의</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Main Content -->
+    <main class="main-content">
+        <!-- Products Section -->
+        <section id="products" class="products-section">
+            <div class="container">
+                <h2 class="section-title">헤온 건강케어 제품군</h2>
+                <p class="section-subtitle">
+                    전통 유기 소재의 자연스러운 항균성과 건강 기능성을 현대적으로 재해석한 
+                    프리미엄 건강케어 솔루션을 만나보세요.
+                </p>
+
+                <div class="products-grid">
+                    <div class="product-card animate-on-scroll">
+                        <div class="product-image">🧴</div>
+                        <div class="product-info">
+                            <h3 class="product-title">유기 항균 손 소독제</h3>
+                            <p class="product-description">
+                                전통 유기 소재에서 추출한 천연 항균 성분으로 만든 프리미엄 손 소독제입니다. 
+                                99.9% 항균 효과와 함께 피부 보호 기능까지 제공합니다.
+                            </p>
+                            <ul class="product-features">
+                                <li>천연 유기 항균 성분</li>
+                                <li>99.9% 항균 효과</li>
+                                <li>피부 보호 및 보습</li>
+                                <li>무독성, 무자극</li>
+                            </ul>
+                            <div class="product-price">29,000원</div>
+                            <a href="#" class="product-btn">구매하기</a>
+                        </div>
+                    </div>
+
+                    <div class="product-card animate-on-scroll">
+                        <div class="product-image">🫖</div>
+                        <div class="product-info">
+                            <h3 class="product-title">유기 건강 차 세트</h3>
+                            <p class="product-description">
+                                전통 유기 제작 방식으로 만든 차 용기와 건강 기능성 차가 포함된 세트입니다. 
+                                매일 마시는 차로 건강을 챙기세요.
+                            </p>
+                            <ul class="product-features">
+                                <li>전통 유기 제작 찻잔</li>
+                                <li>프리미엄 건강 차</li>
+                                <li>항산화 효과</li>
+                                <li>면역력 증진</li>
+                            </ul>
+                            <div class="product-price">89,000원</div>
+                            <a href="#" class="product-btn">구매하기</a>
+                        </div>
+                    </div>
+
+                    <div class="product-card animate-on-scroll">
+                        <div class="product-image">🧘</div>
+                        <div class="product-info">
+                            <h3 class="product-title">유기 아로마 디퓨저</h3>
+                            <p class="product-description">
+                                전통 유기 소재로 제작된 아로마 디퓨저로, 천연 에센셜 오일과 함께 
+                                건강한 실내 환경을 조성합니다.
+                            </p>
+                            <ul class="product-features">
+                                <li>전통 유기 소재 제작</li>
+                                <li>천연 에센셜 오일</li>
+                                <li>공기 정화 기능</li>
+                                <li>스트레스 완화</li>
+                            </ul>
+                            <div class="product-price">159,000원</div>
+                            <a href="#" class="product-btn">구매하기</a>
+                        </div>
+                    </div>
+
+                    <div class="product-card animate-on-scroll">
+                        <div class="product-image">🌿</div>
+                        <div class="product-info">
+                            <h3 class="product-title">유기 스킨케어 세트</h3>
+                            <p class="product-description">
+                                전통 유기 추출물을 활용한 프리미엄 스킨케어 세트로, 
+                                자연스러운 피부 케어와 안티에이징 효과를 제공합니다.
+                            </p>
+                            <ul class="product-features">
+                                <li>천연 유기 추출물</li>
+                                <li>안티에이징 효과</li>
+                                <li>피부 진정 및 보습</li>
+                                <li>민감성 피부 적합</li>
+                            </ul>
+                            <div class="product-price">199,000원</div>
+                            <a href="#" class="product-btn">구매하기</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Benefits Section -->
+        <section class="benefits-section">
+            <div class="container">
+                <h2 class="section-title">왜 헤온 건강케어를 선택해야 할까요?</h2>
+                <p class="section-subtitle">
+                    전통과 현대가 만나 탄생한 헤온 건강케어만의 특별한 장점을 경험해보세요.
+                </p>
+
+                <div class="benefits-grid">
+                    <div class="benefit-item animate-on-scroll">
+                        <div class="benefit-icon">🏺</div>
+                        <h3 class="benefit-title">전통 유기 기법</h3>
+                        <p class="benefit-description">
+                            천년의 역사를 자랑하는 전통 유기 제작 기법을 현대적으로 재해석하여 
+                            자연스러운 항균성과 건강 기능성을 제공합니다.
+                        </p>
+                    </div>
+
+                    <div class="benefit-item animate-on-scroll">
+                        <div class="benefit-icon">🔬</div>
+                        <h3 class="benefit-title">과학적 검증</h3>
+                        <p class="benefit-description">
+                            전통 소재의 건강 기능성을 현대 과학으로 검증하고 개선하여 
+                            안전하고 효과적인 제품을 제공합니다.
+                        </p>
+                    </div>
+
+                    <div class="benefit-item animate-on-scroll">
+                        <div class="benefit-icon">🌱</div>
+                        <h3 class="benefit-title">친환경 소재</h3>
+                        <p class="benefit-description">
+                            100% 천연 소재만을 사용하여 환경에 해를 끼치지 않으면서도 
+                            뛰어난 건강 기능성을 제공하는 지속가능한 제품입니다.
+                        </p>
+                    </div>
+
+                    <div class="benefit-item animate-on-scroll">
+                        <div class="benefit-icon">💎</div>
+                        <h3 class="benefit-title">프리미엄 품질</h3>
+                        <p class="benefit-description">
+                            엄격한 품질 관리와 정성스러운 수작업을 통해 제작된 
+                            최고급 품질의 건강케어 제품을 제공합니다.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- CTA Section -->
+        <section class="cta-section">
+            <div class="container">
+                <h2 class="cta-title">건강한 라이프스타일의 시작</h2>
+                <p class="cta-description">
+                    헤온 건강케어 제품으로 더 건강하고 아름다운 일상을 만들어보세요. 
+                    전통과 현대의 조화로 탄생한 특별한 경험이 기다립니다.
+                </p>
+                <div class="cta-buttons">
+                    <a href="contact.html" class="cta-btn">상담 문의하기</a>
+                    <a href="heonn-brand.html" class="cta-btn secondary">브랜드 스토리</a>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>KOREVO</h3>
+                    <p>한국의 전통과 혁신을 담은<br>프리미엄 유기 브랜드</p>
+                    <p>전통의 아름다움을 현대에 되살리며<br>지속가능한 미래를 만들어갑니다.</p>
+                </div>
+                <div class="footer-section">
+                    <h3>헤온 건강케어</h3>
+                    <p><a href="#products">제품 둘러보기</a></p>
+                    <p><a href="heonn-brand.html">브랜드 스토리</a></p>
+                    <p><a href="contact.html">제품 문의</a></p>
+                    <p><a href="#shop">온라인 쇼핑몰</a></p>
+                </div>
+                <div class="footer-section">
+                    <h3>고객지원</h3>
+                    <p>고객센터: 1588-0000</p>
+                    <p>이메일: info@korevo.co.kr</p>
+                    <p>운영시간: 평일 09:00-18:00</p>
+                    <p>건강케어 문의: healthcare@korevo.co.kr</p>
+                </div>
+                <div class="footer-section">
+                    <h3>주소</h3>
+                    <p>서울특별시 강남구<br>테헤란로 123, 코레보빌딩 10층</p>
+                    <p>사업자등록번호: 123-45-67890</p>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2025 KOREVO. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Smooth scrolling for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                document.querySelector(this.getAttribute('href')).scrollIntoView({
+                    behavior: 'smooth'
+                });
+            });
+        });
+
+        // Animate on scroll
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('animate-on-scroll');
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.product-card, .benefit-item').forEach(el => {
+            observer.observe(el);
+        });
+
+        // Header scroll effect
+        window.addEventListener('scroll', () => {
+            const header = document.querySelector('.header');
+            if (window.scrollY > 50) {
+                header.style.background = 'rgba(255, 255, 255, 0.98)';
+            } else {
+                header.style.background = 'rgba(255, 255, 255, 0.95)';
+            }
+        });
+    </script>
+</body>
+</html>
