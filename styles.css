@@ -1986,3 +1986,217 @@ button:focus,
     background: rgba(0, 122, 255, 0.2);
     color: var(--text-primary);
 }
+/* ===== MOBILE MENU IMPROVEMENTS ===== */
+@media (max-width: 768px) {
+    /* 데스크톱 메뉴 숨기기 */
+    .nav-menu {
+        display: none;
+        position: fixed;
+        top: 0;
+        right: -100%;
+        width: 320px;
+        height: 100vh;
+        background: rgba(255, 255, 255, 0.95);
+        backdrop-filter: blur(20px);
+        z-index: 999;
+        padding: 80px 24px 24px;
+        transition: right 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+        overflow-y: auto;
+        box-shadow: -2px 0 20px rgba(0, 0, 0, 0.1);
+        flex-direction: column;
+        gap: 0;
+    }
+
+    .nav-menu.active {
+        display: flex;
+        right: 0;
+    }
+
+    /* 모바일 메뉴 아이템 스타일 */
+    .nav-item {
+        width: 100%;
+        margin-bottom: 8px;
+    }
+
+    .nav-link {
+        display: block;
+        padding: 16px 20px;
+        color: var(--text-primary);
+        text-decoration: none;
+        font-weight: 500;
+        font-size: 1.1rem;
+        border-radius: 12px;
+        transition: all 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+        width: 100%;
+        text-align: left;
+    }
+
+    .nav-link:hover {
+        background-color: var(--apple-light-gray);
+        transform: translateX(4px);
+    }
+
+    /* 모바일 드롭다운 */
+    .dropdown,
+    .mega-dropdown {
+        position: static;
+        width: 100%;
+        max-height: 0;
+        overflow: hidden;
+        transition: max-height 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+        background-color: var(--apple-gray);
+        border-radius: 12px;
+        margin-top: 8px;
+        box-shadow: none;
+    }
+
+    .dropdown.active,
+    .mega-dropdown.active {
+        max-height: 500px;
+    }
+
+    .dropdown-item {
+        padding: 12px 24px;
+        color: var(--apple-medium-gray);
+        font-size: 0.95rem;
+        cursor: pointer;
+        transition: all 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+        border-bottom: 0.5px solid rgba(0, 0, 0, 0.1);
+    }
+
+    .dropdown-item:last-child {
+        border-bottom: none;
+    }
+
+    .dropdown-item:hover {
+        background-color: var(--apple-white);
+        color: var(--text-primary);
+        transform: translateX(4px);
+    }
+
+    /* 메가 드롭다운 섹션 */
+    .dropdown-section {
+        padding: 16px 0;
+        border-bottom: 0.5px solid rgba(0, 0, 0, 0.1);
+    }
+
+    .dropdown-section:last-child {
+        border-bottom: none;
+    }
+
+    .dropdown-section h4 {
+        padding: 0 24px 8px;
+        margin: 0;
+        color: var(--text-primary);
+        font-size: 0.9rem;
+        font-weight: 600;
+        text-transform: uppercase;
+        letter-spacing: 0.5px;
+    }
+
+    /* 햄버거 버튼 표시 */
+    .menu-toggle {
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        width: 24px;
+        height: 18px;
+        background: none;
+        border: none;
+        cursor: pointer;
+        padding: 0;
+        z-index: 1001;
+        position: relative;
+    }
+
+    .menu-toggle span {
+        width: 100%;
+        height: 2px;
+        background-color: var(--text-primary);
+        border-radius: 1px;
+        transition: all 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+        transform-origin: center;
+    }
+
+    .menu-toggle.active span:nth-child(1) {
+        transform: rotate(45deg) translate(5px, 5px);
+    }
+
+    .menu-toggle.active span:nth-child(2) {
+        opacity: 0;
+    }
+
+    .menu-toggle.active span:nth-child(3) {
+        transform: rotate(-45deg) translate(5px, -5px);
+    }
+
+    /* 오버레이 */
+    .mobile-menu-overlay {
+        position: fixed;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background: rgba(0, 0, 0, 0.3);
+        backdrop-filter: blur(10px);
+        z-index: 998;
+        opacity: 0;
+        visibility: hidden;
+        transition: all 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    }
+
+    .mobile-menu-overlay.active {
+        opacity: 1;
+        visibility: visible;
+    }
+
+    /* 언어 선택기 모바일 */
+    .lang-selector {
+        margin-top: 32px;
+        padding: 20px;
+        background-color: var(--apple-gray);
+        border-radius: 12px;
+        flex-direction: column;
+        gap: 12px;
+        align-items: stretch;
+    }
+
+    .lang-selector::before {
+        content: "Language";
+        font-size: 0.9rem;
+        font-weight: 600;
+        color: var(--text-primary);
+        margin-bottom: 8px;
+    }
+
+    .lang-btn {
+        padding: 12px;
+        border-radius: 8px;
+        background-color: var(--apple-white);
+        width: 100%;
+        justify-content: flex-start;
+        gap: 8px;
+    }
+
+    /* 드롭다운 화살표 */
+    .nav-link::after {
+        content: "▼";
+        float: right;
+        transition: transform 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+        font-size: 0.8rem;
+        opacity: 0.6;
+    }
+
+    .nav-item:not(:has(.dropdown)):not(:has(.mega-dropdown)) .nav-link::after {
+        display: none;
+    }
+
+    .nav-item.expanded .nav-link::after {
+        transform: rotate(180deg);
+    }
+}
+
+/* ===== BODY OVERFLOW CONTROL ===== */
+body.menu-open {
+    overflow: hidden;
+}
