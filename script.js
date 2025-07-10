@@ -1,13 +1,13 @@
 /**
  * KOREVO - Apple Design System JavaScript
- * 통합 스크립트 파일
+ * 통합 스크립트 파일 (모바일 메뉴 오류 수정 버전)
  */
 
 // ===== GLOBAL VARIABLES =====
 let isMenuOpen = false;
 let isScrolling = false;
 
-// ===== MOBILE MENU FUNCTIONALITY =====
+// ===== MOBILE MENU FUNCTIONALITY (완전히 수정된 부분) =====
 
 /**
  * 개선된 모바일 메뉴 토글 함수
@@ -48,7 +48,7 @@ function toggleMenu() {
 }
 
 /**
- * 모바일 메뉴 닫기
+ * 모바일 메뉴 닫기 (완전히 수정된 함수)
  */
 function closeMobileMenu() {
     const navMenu = document.querySelector('.nav-menu');
@@ -81,7 +81,7 @@ function closeMobileMenu() {
 }
 
 /**
- * 모바일 오버레이 생성
+ * 모바일 오버레이 생성 (수정된 함수)
  */
 function createMobileOverlay() {
     // 기존 오버레이 제거
@@ -101,7 +101,7 @@ function createMobileOverlay() {
 }
 
 /**
- * 모바일 드롭다운 토글
+ * 모바일 드롭다운 토글 (수정된 함수)
  */
 function toggleMobileDropdown(event, element) {
     // 모바일에서만 작동
@@ -132,321 +132,43 @@ function toggleMobileDropdown(event, element) {
     // ARIA 속성 업데이트
     element.setAttribute('aria-expanded', (!isExpanded).toString());
     
-    console.log(`드롭다운 ${isExpanded ? '닫힘' : '열림'}:`, element.textContent.trim());
+    console.log(`드롭다운 ${isExpanded ? '닫힘' : '열림'}: ${element.textContent.trim()}`);
 }
 
-// ===== EVENT LISTENERS =====
+// ===== NAVIGATION UTILITIES =====
 
 /**
- * ESC 키 이벤트
+ * 페이지 네비게이션 함수
  */
-document.addEventListener('keydown', function(e) {
-    if (e.key === 'Escape' && isMenuOpen) {
-        closeMobileMenu();
-    }
-});
-
-/**
- * 창 크기 변경 시 메뉴 닫기
- */
-let resizeTimeout;
-window.addEventListener('resize', function() {
-    clearTimeout(resizeTimeout);
-    resizeTimeout = setTimeout(function() {
-        if (window.innerWidth > 768 && isMenuOpen) {
-            closeMobileMenu();
-        }
-    }, 250);
-});
-
-/**
- * DOM 로드 완료 시 초기화
- */
-document.addEventListener('DOMContentLoaded', function() {
-    initializeApp();
-});
-
-/**
- * 앱 초기화
- */
-function initializeApp() {
-    console.log('KOREVO 웹사이트 초기화 시작');
+function navigateToPage(page) {
+    // 준비 중인 페이지들
+    const underConstructionPages = [
+        'vision', 'history', 'team', 'brand-philosophy', 'traditional-craft',
+        'business-model', 'innovation-strategy', 'sustainability',
+        'health-products', 'gift-sets', 'custom-craft',
+        'erp-solution', 'iot-platform', 'ecommerce-system', 'consulting',
+        'ongoing-projects', 'completed-projects', 'research-results', 'partnerships'
+    ];
     
-    // 모바일 드롭다운 이벤트 리스너 추가
-    initMobileDropdowns();
-    
-    // 비디오 초기화
-    initializeVideo();
-    
-    // 접근성 기능 초기화
-    initAccessibility();
-    
-    // 스크롤 효과 초기화
-    initScrollEffects();
-    
-    // 언어 선택기 초기화
-    initLanguageSelector();
-    
-    // 알림 시스템 초기화
-    initNotificationSystem();
-    
-    console.log('KOREVO 웹사이트 초기화 완료');
-}
-
-/**
- * 모바일 드롭다운 초기화
- */
-function initMobileDropdowns() {
-    document.querySelectorAll('.nav-item').forEach(item => {
-        const link = item.querySelector('.nav-link');
-        const hasDropdown = item.querySelector('.dropdown, .mega-dropdown');
-        
-        if (hasDropdown && link) {
-            // 모바일에서 클릭 이벤트 추가
-            link.addEventListener('click', function(e) {
-                if (window.innerWidth <= 768) {
-                    toggleMobileDropdown(e, this);
-                }
-            });
-            
-            // 키보드 지원
-            link.addEventListener('keydown', function(e) {
-                if (window.innerWidth <= 768 && (e.key === 'Enter' || e.key === ' ')) {
-                    e.preventDefault();
-                    toggleMobileDropdown(e, this);
-                }
-            });
-        }
-    });
-}
-
-/**
- * 접근성 기능 초기화
- */
-function initAccessibility() {
-    const menuToggle = document.querySelector('.menu-toggle');
-    const mobileMenu = document.querySelector('.nav-menu');
-    
-    if (menuToggle) {
-        menuToggle.setAttribute('aria-expanded', 'false');
-        menuToggle.setAttribute('aria-controls', 'navMenu');
-        menuToggle.setAttribute('aria-label', '메뉴 토글');
+    if (underConstructionPages.includes(page)) {
+        showUnderConstruction();
+        return;
     }
     
-    if (mobileMenu) {
-        mobileMenu.setAttribute('role', 'navigation');
-        mobileMenu.setAttribute('aria-label', '주 메뉴');
-        mobileMenu.id = 'navMenu';
-    }
-    
-    // 키보드 네비게이션 지원
-    document.addEventListener('keydown', function(e) {
-        if (isMenuOpen && e.key === 'Tab') {
-            const focusableElements = mobileMenu.querySelectorAll(
-                'a, button, [tabindex]:not([tabindex="-1"])'
-            );
-            const firstElement = focusableElements[0];
-            const lastElement = focusableElements[focusableElements.length - 1];
-
-            if (e.shiftKey) {
-                // Shift + Tab
-                if (document.activeElement === firstElement) {
-                    e.preventDefault();
-                    lastElement.focus();
-                }
-            } else {
-                // Tab
-                if (document.activeElement === lastElement) {
-                    e.preventDefault();
-                    firstElement.focus();
-                }
-            }
-        }
-    });
-}
-
-// ===== VIDEO HANDLING =====
-
-/**
- * 비디오 에러 처리
- */
-function handleVideoError(video) {
-    console.warn('Video failed to load:', video.currentSrc || video.src);
-    video.style.display = 'none';
-    video.classList.add('error');
-    
-    const fallback = document.querySelector('.hero-fallback-image');
-    if (fallback) {
-        fallback.style.opacity = '0.8';
-    }
-    
-    if (video.error) {
-        console.error('Video error details:', {
-            code: video.error.code,
-            message: video.error.message
-        });
-    }
-}
-
-/**
- * 비디오 로드 성공
- */
-function handleVideoLoad(video) {
-    console.log('Video can start playing:', video.currentSrc || video.src);
-    video.classList.add('loaded');
-}
-
-/**
- * 비디오 데이터 로드 완료
- */
-function handleVideoLoadedData(video) {
-    console.log('Video loaded successfully:', video.currentSrc || video.src);
-    
-    const playPromise = video.play();
-    
-    if (playPromise !== undefined) {
-        playPromise
-            .then(() => {
-                console.log('Video playing successfully');
-                video.classList.add('loaded');
-            })
-            .catch(error => {
-                console.warn('Video autoplay failed:', error);
-                handleVideoError(video);
-            });
-    }
-}
-
-/**
- * 비디오 초기화
- */
-function initializeVideo() {
-    const video = document.querySelector('.hero-video');
-    
-    if (!video) return;
-
-    // 모바일 지원 향상
-    video.setAttribute('webkit-playsinline', '');
-    video.setAttribute('playsinline', '');
-    video.muted = true;
-    
-    // 이벤트 리스너 추가
-    video.addEventListener('loadstart', () => console.log('Video loading started'));
-    video.addEventListener('canplay', () => handleVideoLoad(video));
-    video.addEventListener('loadeddata', () => handleVideoLoadedData(video));
-    video.addEventListener('error', () => handleVideoError(video));
-    
-    // 교차점 관찰자로 뷰포트에 들어올 때 재생
-    const observer = new IntersectionObserver((entries) => {
-        entries.forEach(entry => {
-            if (entry.isIntersecting) {
-                video.play().catch(error => {
-                    console.warn('Video play failed:', error);
-                });
-            } else {
-                video.pause();
-            }
-        });
-    }, { threshold: 0.1 });
-    
-    observer.observe(video);
-}
-
-// ===== NAVIGATION FUNCTIONS =====
-
-/**
- * 페이지 네비게이션
- */
-function navigateToPage(pageName) {
-    console.log('페이지 이동:', pageName);
-    
-    // 모바일 메뉴가 열려있으면 닫기
-    if (isMenuOpen) {
-        closeMobileMenu();
-    }
-    
-    // 로딩 상태 표시
-    showLoadingState();
-    
-    // 실제 페이지 매핑
-    const pageMapping = {
-        'vision': 'vision.html',
-        'history': 'history.html',
-        'team': 'team.html',
-        'brand-philosophy': 'brand-philosophy.html',
-        'traditional-craft': 'traditional-craft.html',
-        'business-model': 'business-model.html',
-        'innovation-strategy': 'innovation-strategy.html',
-        'sustainability': 'sustainability.html',
+    // 실제 페이지로 이동
+    const pageMap = {
+        'heonn-brand': 'heonn-brand.html',
         'dining-set': 'dining-set.html',
-        'health-products': 'health-care.html',
-        'gift-sets': 'gift-sets.html',
-        'custom-craft': 'custom-service.html',
-        'erp-solution': 'erp-solution.html',
-        'iot-platform': 'iot-platform.html',
-        'ecommerce-system': 'ecommerce.html',
-        'consulting': 'consulting.html',
-        'current-projects': 'current-projects.html',
-        'completed-projects': 'completed-projects.html',
-        'research-outcomes': 'research-outcomes.html',
-        'collaboration': 'collaboration.html'
+        'contact': 'contact.html',
+        'greeting': 'greeting.html'
     };
     
-    const targetPage = pageMapping[pageName];
-    
+    const targetPage = pageMap[page];
     if (targetPage) {
-        // 실제 페이지로 이동
-        setTimeout(() => {
-            window.location.href = targetPage;
-        }, 500);
+        window.location.href = targetPage;
     } else {
-        // 준비 중 페이지 알림
-        setTimeout(() => {
-            hideLoadingState();
-            showUnderConstruction();
-        }, 1000);
-    }
-}
-
-/**
- * 로딩 상태 표시
- */
-function showLoadingState() {
-    const existingLoading = document.getElementById('loadingState');
-    if (existingLoading) return;
-    
-    const loadingDiv = document.createElement('div');
-    loadingDiv.id = 'loadingState';
-    loadingDiv.innerHTML = `
-        <div style="
-            position: fixed;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background: rgba(255, 255, 255, 0.95);
-            backdrop-filter: blur(20px);
-            z-index: 10000;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            flex-direction: column;
-        ">
-            <div class="loading-spinner"></div>
-            <p style="margin-top: 16px; color: var(--apple-medium-gray); font-size: 16px;">로딩 중...</p>
-        </div>
-    `;
-    document.body.appendChild(loadingDiv);
-}
-
-/**
- * 로딩 상태 숨기기
- */
-function hideLoadingState() {
-    const loadingDiv = document.getElementById('loadingState');
-    if (loadingDiv) {
-        loadingDiv.style.opacity = '0';
-        setTimeout(() => loadingDiv.remove(), 300);
+        console.warn(`페이지를 찾을 수 없습니다: ${page}`);
+        showAppleNotification('페이지를 찾을 수 없습니다.', 'warning');
     }
 }
 
@@ -565,7 +287,7 @@ function initScrollAnimations() {
     const animationObserver = new IntersectionObserver((entries) => {
         entries.forEach(entry => {
             if (entry.isIntersecting) {
-                entry.target.classList.add('animate-fade-in');
+                entry.target.classList.add('fade-in');
             }
         });
     }, {
@@ -574,10 +296,7 @@ function initScrollAnimations() {
     });
 
     // 애니메이션 대상 요소들 관찰
-    document.querySelectorAll('.feature-card, .cta-section, .page-header').forEach(el => {
-        el.style.opacity = '0';
-        el.style.transform = 'translateY(30px)';
-        el.style.transition = 'all 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94)';
+    document.querySelectorAll('.animate-on-scroll').forEach(el => {
         animationObserver.observe(el);
     });
 }
@@ -607,171 +326,163 @@ function showAppleNotification(message, type = 'info', duration = 4000) {
     }
 
     const notification = document.createElement('div');
-    notification.className = `apple-notification apple-notification-${type}`;
+    notification.className = `apple-notification ${type}`;
     
     const iconMap = {
-        'success': '✓',
-        'error': '✕',
-        'warning': '⚠',
-        'info': 'ℹ'
+        'info': 'ℹ️',
+        'success': '✅',
+        'warning': '⚠️',
+        'error': '❌'
     };
     
-    const icon = iconMap[type] || 'ℹ';
-    
     notification.innerHTML = `
-        <div style="display: flex; align-items: center; gap: 12px;">
-            <span style="font-size: 1.2rem; font-weight: 600;">${icon}</span>
-            <span style="flex: 1;">${message}</span>
-            <button onclick="this.parentElement.parentElement.remove()" 
-                    style="background: none; border: none; cursor: pointer; opacity: 0.6; font-size: 1.1rem;">×</button>
+        <div class="notification-content">
+            <span class="notification-icon">${iconMap[type] || iconMap.info}</span>
+            <span class="notification-message">${message}</span>
+            <button class="notification-close" onclick="this.parentElement.parentElement.remove()">×</button>
         </div>
     `;
-
+    
+    // 스타일 적용
+    notification.style.cssText = `
+        position: fixed;
+        top: 90px;
+        right: 20px;
+        background: rgba(255, 255, 255, 0.95);
+        backdrop-filter: blur(20px);
+        border: 1px solid rgba(0, 0, 0, 0.1);
+        border-radius: 12px;
+        padding: 16px;
+        box-shadow: 0 10px 15px rgba(0, 0, 0, 0.1);
+        z-index: 10000;
+        max-width: 350px;
+        opacity: 0;
+        transform: translateX(100%);
+        transition: all 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    `;
+    
     document.body.appendChild(notification);
-
-    // 애니메이션 표시
-    setTimeout(() => notification.classList.add('show'), 10);
-
+    
+    // 애니메이션 트리거
+    requestAnimationFrame(() => {
+        notification.style.opacity = '1';
+        notification.style.transform = 'translateX(0)';
+    });
+    
     // 자동 제거
     if (duration > 0) {
         setTimeout(() => {
-            if (notification.parentElement) {
-                notification.classList.remove('show');
+            if (notification.parentNode) {
+                notification.style.opacity = '0';
+                notification.style.transform = 'translateX(100%)';
                 setTimeout(() => notification.remove(), 300);
             }
         }, duration);
     }
 }
 
-// ===== UTILITY FUNCTIONS =====
+// ===== VIDEO HANDLING =====
 
 /**
- * 페이지 이름을 표시명으로 변환
+ * 비디오 에러 처리
  */
-function getDisplayName(pageName) {
-    const displayNames = {
-        'vision': '비전 & 미션',
-        'history': '연혁',
-        'team': '팀 소개',
-        'brand-philosophy': '브랜드 철학',
-        'traditional-craft': '전통 기법 계승',
-        'business-model': '사업 모델',
-        'innovation-strategy': '혁신 전략',
-        'sustainability': '지속가능경영',
-        'dining-set': '식기 컬렉션',
-        'health-products': '건강 케어 제품',
-        'gift-sets': '프리미엄 선물세트',
-        'custom-craft': '맞춤 제작 서비스',
-        'erp-solution': '제조업 ERP 솔루션',
-        'iot-platform': 'IoT 품질관리 플랫폼',
-        'ecommerce-system': '전통공예 전자상거래',
-        'consulting': '디지털 전환 컨설팅',
-        'current-projects': '진행중 과제',
-        'completed-projects': '완료 과제',
-        'research-outcomes': '연구 성과',
-        'collaboration': '산학연 협력'
-    };
-    return displayNames[pageName] || pageName;
-}
-
-/**
- * 디바운스 함수
- */
-function debounce(func, wait) {
-    let timeout;
-    return function executedFunction(...args) {
-        const later = () => {
-            clearTimeout(timeout);
-            func(...args);
-        };
-        clearTimeout(timeout);
-        timeout = setTimeout(later, wait);
-    };
-}
-
-/**
- * 스로틀 함수
- */
-function throttle(func, limit) {
-    let inThrottle;
-    return function() {
-        const args = arguments;
-        const context = this;
-        if (!inThrottle) {
-            func.apply(context, args);
-            inThrottle = true;
-            setTimeout(() => inThrottle = false, limit);
-        }
-    };
-}
-
-// ===== FORM HANDLING =====
-
-/**
- * 폼 유효성 검사
- */
-function validateForm(form) {
-    const requiredFields = form.querySelectorAll('[required]');
-    let isValid = true;
+function handleVideoError(video) {
+    console.warn('Video failed to load:', video.currentSrc || video.src);
+    video.style.display = 'none';
+    video.classList.add('error');
     
-    requiredFields.forEach(field => {
-        if (!field.value.trim()) {
-            field.style.borderColor = 'var(--apple-red)';
-            isValid = false;
-        } else {
-            field.style.borderColor = 'var(--separator)';
+    const fallback = document.querySelector('.hero-fallback-image');
+    if (fallback) {
+        fallback.style.opacity = '0.8';
+    }
+    
+    if (video.error) {
+        console.error('Video error details:', {
+            code: video.error.code,
+            message: video.error.message
+        });
+    }
+}
+
+/**
+ * 비디오 로드 성공
+ */
+function handleVideoLoad(video) {
+    console.log('Video can start playing:', video.currentSrc || video.src);
+    video.classList.add('loaded');
+}
+
+/**
+ * 비디오 데이터 로드 완료
+ */
+function handleVideoLoadedData(video) {
+    console.log('Video loaded successfully:', video.currentSrc || video.src);
+    
+    const playPromise = video.play();
+    
+    if (playPromise !== undefined) {
+        playPromise
+            .then(() => {
+                console.log('Video playing successfully');
+                video.classList.add('loaded');
+            })
+            .catch(error => {
+                console.warn('Video autoplay failed:', error);
+                handleVideoError(video);
+            });
+    }
+}
+
+// ===== ACCESSIBILITY ENHANCEMENTS =====
+
+/**
+ * 접근성 향상을 위한 초기화
+ */
+function initAccessibility() {
+    const menuToggle = document.querySelector('.menu-toggle');
+    const mobileMenu = document.querySelector('.nav-menu');
+    
+    if (menuToggle) {
+        menuToggle.setAttribute('aria-expanded', 'false');
+        menuToggle.setAttribute('aria-controls', 'navMenu');
+        menuToggle.setAttribute('aria-label', '메뉴 토글');
+    }
+    
+    if (mobileMenu) {
+        mobileMenu.setAttribute('role', 'navigation');
+        mobileMenu.setAttribute('aria-label', '주 메뉴');
+        mobileMenu.id = 'navMenu';
+    }
+    
+    // 키보드 네비게이션 지원
+    document.addEventListener('keydown', function(e) {
+        if (isMenuOpen && e.key === 'Tab') {
+            const focusableElements = mobileMenu.querySelectorAll(
+                'a, button, [tabindex]:not([tabindex="-1"])'
+            );
+            const firstElement = focusableElements[0];
+            const lastElement = focusableElements[focusableElements.length - 1];
+
+            if (e.shiftKey) {
+                // Shift + Tab
+                if (document.activeElement === firstElement) {
+                    e.preventDefault();
+                    lastElement.focus();
+                }
+            } else {
+                // Tab
+                if (document.activeElement === lastElement) {
+                    e.preventDefault();
+                    firstElement.focus();
+                }
+            }
+        }
+        
+        // ESC 키로 메뉴 닫기
+        if (e.key === 'Escape' && isMenuOpen) {
+            closeMobileMenu();
         }
     });
-    
-    return isValid;
-}
-
-/**
- * 이메일 유효성 검사
- */
-function validateEmail(email) {
-    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-    return emailRegex.test(email);
-}
-
-/**
- * 전화번호 유효성 검사
- */
-function validatePhone(phone) {
-    const phoneRegex = /^[0-9-+\s()]+$/;
-    return phoneRegex.test(phone);
-}
-
-// ===== SMOOTH SCROLLING =====
-
-/**
- * 부드러운 스크롤
- */
-function smoothScrollTo(target, duration = 1000) {
-    const targetElement = typeof target === 'string' ? document.querySelector(target) : target;
-    if (!targetElement) return;
-    
-    const targetPosition = targetElement.offsetTop - 60; // 헤더 높이 고려
-    const startPosition = window.pageYOffset;
-    const distance = targetPosition - startPosition;
-    let startTime = null;
-
-    function animation(currentTime) {
-        if (startTime === null) startTime = currentTime;
-        const timeElapsed = currentTime - startTime;
-        const run = ease(timeElapsed, startPosition, distance, duration);
-        window.scrollTo(0, run);
-        if (timeElapsed < duration) requestAnimationFrame(animation);
-    }
-
-    function ease(t, b, c, d) {
-        t /= d / 2;
-        if (t < 1) return c / 2 * t * t + b;
-        t--;
-        return -c / 2 * (t * (t - 2) - 1) + b;
-    }
-
-    requestAnimationFrame(animation);
 }
 
 // ===== TOUCH GESTURES =====
@@ -824,18 +535,27 @@ function initTouchGestures() {
 function initLazyLoading() {
     const images = document.querySelectorAll('img[data-src]');
     
-    const imageObserver = new IntersectionObserver((entries) => {
-        entries.forEach(entry => {
-            if (entry.isIntersecting) {
-                const img = entry.target;
-                img.src = img.dataset.src;
-                img.removeAttribute('data-src');
-                imageObserver.unobserve(img);
-            }
+    if ('IntersectionObserver' in window) {
+        const imageObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    const img = entry.target;
+                    img.src = img.dataset.src;
+                    img.removeAttribute('data-src');
+                    img.classList.add('loaded');
+                    imageObserver.unobserve(img);
+                }
+            });
         });
-    });
 
-    images.forEach(img => imageObserver.observe(img));
+        images.forEach(img => imageObserver.observe(img));
+    } else {
+        // Fallback for browsers without IntersectionObserver
+        images.forEach(img => {
+            img.src = img.dataset.src;
+            img.removeAttribute('data-src');
+        });
+    }
 }
 
 /**
@@ -854,6 +574,69 @@ function preloadResources() {
         link.href = resource;
         document.head.appendChild(link);
     });
+}
+
+// ===== UTILITY FUNCTIONS =====
+
+/**
+ * 디바운스 함수
+ */
+function debounce(func, wait) {
+    let timeout;
+    return function executedFunction(...args) {
+        const later = () => {
+            clearTimeout(timeout);
+            func(...args);
+        };
+        clearTimeout(timeout);
+        timeout = setTimeout(later, wait);
+    };
+}
+
+/**
+ * 스로틀 함수
+ */
+function throttle(func, limit) {
+    let inThrottle;
+    return function() {
+        const args = arguments;
+        const context = this;
+        if (!inThrottle) {
+            func.apply(context, args);
+            inThrottle = true;
+            setTimeout(() => inThrottle = false, limit);
+        }
+    };
+}
+
+/**
+ * 부드러운 스크롤
+ */
+function smoothScrollTo(target, duration = 1000) {
+    const targetElement = typeof target === 'string' ? document.querySelector(target) : target;
+    if (!targetElement) return;
+    
+    const targetPosition = targetElement.offsetTop - 80; // 헤더 높이 고려
+    const startPosition = window.pageYOffset;
+    const distance = targetPosition - startPosition;
+    let startTime = null;
+
+    function animation(currentTime) {
+        if (startTime === null) startTime = currentTime;
+        const timeElapsed = currentTime - startTime;
+        const run = ease(timeElapsed, startPosition, distance, duration);
+        window.scrollTo(0, run);
+        if (timeElapsed < duration) requestAnimationFrame(animation);
+    }
+
+    function ease(t, b, c, d) {
+        t /= d / 2;
+        if (t < 1) return c / 2 * t * t + b;
+        t--;
+        return -c / 2 * (t * (t - 2) - 1) + b;
+    }
+
+    requestAnimationFrame(animation);
 }
 
 // ===== ERROR HANDLING =====
@@ -877,28 +660,72 @@ window.addEventListener('unhandledrejection', function(e) {
 // ===== INITIALIZATION =====
 
 /**
- * 앱 시작 시 한 번만 실행되는 초기화
+ * DOM 로드 완료 시 초기화
  */
-(function() {
-    // 터치 제스처 초기화
-    initTouchGestures();
+document.addEventListener('DOMContentLoaded', function() {
+    console.log('🚀 KOREVO 웹사이트 초기화 중...');
     
-    // 지연 로딩 초기화
+    // 핵심 기능 초기화
+    initAccessibility();
+    initLanguageSelector();
+    initScrollEffects();
+    initNotificationSystem();
+    initTouchGestures();
     initLazyLoading();
     
+    // 애니메이션 초기화
+    setTimeout(() => {
+        document.querySelectorAll('.animate-slide-up').forEach((el, index) => {
+            setTimeout(() => {
+                el.style.opacity = '1';
+                el.style.transform = 'translateY(0)';
+            }, index * 200);
+        });
+    }, 500);
+    
+    console.log('✅ KOREVO 웹사이트 초기화 완료');
+});
+
+/**
+ * 윈도우 로드 완료 시 추가 초기화
+ */
+window.addEventListener('load', function() {
     // 리소스 사전 로딩
     preloadResources();
     
-    // 페이지 로드 완료 시 성능 측정
-    window.addEventListener('load', function() {
-        setTimeout(() => {
-            if (window.performance && window.performance.timing) {
-                const loadTime = window.performance.timing.loadEventEnd - window.performance.timing.navigationStart;
-                console.log('페이지 로드 시간:', loadTime + 'ms');
-            }
-        }, 0);
-    });
-})();
+    // 성능 측정
+    if (window.performance && window.performance.timing) {
+        const loadTime = window.performance.timing.loadEventEnd - window.performance.timing.navigationStart;
+        console.log('페이지 로드 시간:', loadTime + 'ms');
+    }
+    
+    // 서비스 워커 등록 (선택사항)
+    if ('serviceWorker' in navigator) {
+        navigator.serviceWorker.register('/sw.js')
+            .then(registration => {
+                console.log('Service Worker 등록 성공:', registration.scope);
+            })
+            .catch(error => {
+                console.log('Service Worker 등록 실패:', error);
+            });
+    }
+});
+
+/**
+ * 윈도우 리사이즈 핸들러
+ */
+window.addEventListener('resize', debounce(function() {
+    // 데스크톱으로 전환 시 모바일 메뉴 닫기
+    if (window.innerWidth > 768 && isMenuOpen) {
+        closeMobileMenu();
+    }
+    
+    // 비디오 크기 조정
+    const heroVideo = document.querySelector('.hero-video');
+    if (heroVideo) {
+        heroVideo.style.height = window.innerHeight + 'px';
+    }
+}, 250));
 
 // ===== BACKWARDS COMPATIBILITY =====
 
@@ -927,6 +754,143 @@ if (typeof window.handleVideoError === 'undefined') {
 if (typeof window.showAppleNotification === 'undefined') {
     window.showAppleNotification = showAppleNotification;
 }
+
+// ===== MODAL STYLES (CSS-in-JS) =====
+
+/**
+ * 모달 스타일을 동적으로 추가
+ */
+(function addModalStyles() {
+    const style = document.createElement('style');
+    style.textContent = `
+        .modal {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(0, 0, 0, 0.5);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 10000;
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+        }
+        
+        .modal.active {
+            opacity: 1;
+            visibility: visible;
+        }
+        
+        .modal-content {
+            background: white;
+            border-radius: 20px;
+            padding: 2rem;
+            max-width: 500px;
+            width: 90%;
+            max-height: 80vh;
+            overflow-y: auto;
+            transform: scale(0.9) translateY(-20px);
+            transition: transform 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+        }
+        
+        .modal.active .modal-content {
+            transform: scale(1) translateY(0);
+        }
+        
+        .modal-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 1.5rem;
+            padding-bottom: 1rem;
+            border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+        }
+        
+        .modal-header h3 {
+            margin: 0;
+            font-size: 1.5rem;
+            font-weight: 600;
+        }
+        
+        .close-btn {
+            background: none;
+            border: none;
+            font-size: 1.5rem;
+            cursor: pointer;
+            padding: 0.5rem;
+            border-radius: 50%;
+            transition: background-color 0.2s ease;
+        }
+        
+        .close-btn:hover {
+            background: rgba(0, 0, 0, 0.1);
+        }
+        
+        .modal-body {
+            text-align: center;
+        }
+        
+        .modal-body p {
+            margin-bottom: 1rem;
+            line-height: 1.6;
+        }
+        
+        .btn {
+            display: inline-block;
+            padding: 12px 24px;
+            border-radius: 25px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            cursor: pointer;
+            border: none;
+            font-size: 16px;
+        }
+        
+        .btn-primary {
+            background: #007AFF;
+            color: white;
+        }
+        
+        .btn-primary:hover {
+            background: #0056CC;
+            transform: translateY(-2px);
+        }
+        
+        .notification-content {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+        
+        .notification-icon {
+            font-size: 1.2rem;
+        }
+        
+        .notification-message {
+            flex: 1;
+            font-weight: 500;
+        }
+        
+        .notification-close {
+            background: none;
+            border: none;
+            font-size: 1.5rem;
+            cursor: pointer;
+            padding: 4px;
+            border-radius: 50%;
+            transition: background-color 0.2s ease;
+        }
+        
+        .notification-close:hover {
+            background: rgba(0, 0, 0, 0.1);
+        }
+    `;
+    document.head.appendChild(style);
+})();
 
 // ===== FINAL INITIALIZATION CHECK =====
 
@@ -962,8 +926,12 @@ document.addEventListener('DOMContentLoaded', function() {
 if (typeof module !== 'undefined' && module.exports) {
     module.exports = {
         toggleMenu,
+        closeMobileMenu,
+        toggleMobileDropdown,
         navigateToPage,
         showAppleNotification,
-        closeMobileMenu
+        handleVideoError,
+        handleVideoLoad,
+        handleVideoLoadedData
     };
 }
