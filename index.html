@@ -6,256 +6,514 @@
     <title>KOREVO - 한국의 전통과 혁신을 담다</title>
     <meta name="description" content="전통 유기 기술과 현대 IT 기술의 융합, KOREVO에서 새로운 가치를 창조합니다.">
     
-    <!-- 통합 CSS 파일 -->
+    <!-- Open Graph Meta Tags -->
+    <meta property="og:title" content="KOREVO - 한국의 전통과 혁신을 담다">
+    <meta property="og:description" content="전통 유기 기술과 현대 IT 기술의 융합, KOREVO에서 새로운 가치를 창조합니다.">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://test113113.github.io/korevo/">
+    
+    <!-- Favicon -->
+    <link rel="icon" type="image/svg+xml" href="./favicon.svg">
+    <link rel="icon" type="image/png" href="./favicon.png">
+    
+    <!-- Preload Critical Resources -->
+    <link rel="preload" href="./video/korevo_hero.mp4" as="video" type="video/mp4">
+    <link rel="preload" href="styles.css" as="style">
+    <link rel="preload" href="script.js" as="script">
+    
+    <!-- CSS -->
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-    <!-- Header - 개선된 모바일 메뉴 -->
-<header class="header">
-    <nav class="nav-container">
-        <a href="index.html" class="logo">KOREVO</a>
-        
-        <ul class="nav-menu" id="navMenu">
-            <li class="nav-item" style="--index: 0">
-                <a href="index.html" class="nav-link active">홈</a>
-            </li>
-            <li class="nav-item" style="--index: 1">
-                <a href="#" class="nav-link" onclick="toggleMobileDropdown(event, this)" aria-expanded="false">회사소개</a>
-                <div class="dropdown">
-                    <div class="dropdown-item" onclick="window.location.href='greeting.html'">인사말</div>
-                    <div class="dropdown-item" onclick="navigateToPage('vision')">비전 & 미션</div>
-                    <div class="dropdown-item" onclick="navigateToPage('history')">연혁</div>
-                    <div class="dropdown-item" onclick="navigateToPage('team')">팀 소개</div>
-                </div>
-            </li>
-            <li class="nav-item" style="--index: 2">
-                <a href="#business" class="nav-link" onclick="toggleMobileDropdown(event, this)" aria-expanded="false">사업소개</a>
-                <div class="mega-dropdown">
-                    <div class="dropdown-section">
-                        <h4>브랜드 스토리</h4>
-                        <div class="dropdown-item" onclick="window.location.href='heonn-brand.html'">헤온(HeOnn) 브랜드</div>
-                        <div class="dropdown-item" onclick="navigateToPage('brand-philosophy')">브랜드 철학</div>
-                        <div class="dropdown-item" onclick="navigateToPage('traditional-craft')">전통 기법 계승</div>
+    <!-- Header -->
+    <header class="header">
+        <nav class="nav-container">
+            <a href="index.html" class="logo" aria-label="KOREVO 홈페이지">KOREVO</a>
+            
+            <ul class="nav-menu" id="navMenu" role="menubar">
+                <li class="nav-item" role="none">
+                    <a href="index.html" class="nav-link active" role="menuitem">홈</a>
+                </li>
+                <li class="nav-item" role="none">
+                    <a href="#" class="nav-link" onclick="toggleMobileDropdown(event, this)" role="menuitem" aria-expanded="false" aria-haspopup="true">회사소개</a>
+                    <div class="dropdown" role="menu" aria-label="회사소개 서브메뉴">
+                        <div class="dropdown-item" onclick="window.location.href='greeting.html'" role="menuitem" tabindex="0">인사말</div>
+                        <div class="dropdown-item" onclick="navigateToPage('vision')" role="menuitem" tabindex="0">비전 & 미션</div>
+                        <div class="dropdown-item" onclick="navigateToPage('history')" role="menuitem" tabindex="0">연혁</div>
+                        <div class="dropdown-item" onclick="navigateToPage('team')" role="menuitem" tabindex="0">팀 소개</div>
                     </div>
-                    <div class="dropdown-section">
-                        <h4>융합 비즈니스</h4>
-                        <div class="dropdown-item" onclick="navigateToPage('business-model')">사업 모델</div>
-                        <div class="dropdown-item" onclick="navigateToPage('innovation-strategy')">혁신 전략</div>
-                        <div class="dropdown-item" onclick="navigateToPage('sustainability')">지속가능경영</div>
+                </li>
+                <li class="nav-item" role="none">
+                    <a href="#business" class="nav-link" onclick="toggleMobileDropdown(event, this)" role="menuitem" aria-expanded="false" aria-haspopup="true">사업소개</a>
+                    <div class="mega-dropdown" role="menu" aria-label="사업소개 서브메뉴">
+                        <div class="dropdown-section">
+                            <h4>브랜드 스토리</h4>
+                            <div class="dropdown-item" onclick="window.location.href='heonn-brand.html'" role="menuitem" tabindex="0">헤온(HeOnn) 브랜드</div>
+                            <div class="dropdown-item" onclick="navigateToPage('brand-philosophy')" role="menuitem" tabindex="0">브랜드 철학</div>
+                            <div class="dropdown-item" onclick="navigateToPage('traditional-craft')" role="menuitem" tabindex="0">전통 기법 계승</div>
+                        </div>
+                        <div class="dropdown-section">
+                            <h4>융합 비즈니스</h4>
+                            <div class="dropdown-item" onclick="navigateToPage('business-model')" role="menuitem" tabindex="0">사업 모델</div>
+                            <div class="dropdown-item" onclick="navigateToPage('innovation-strategy')" role="menuitem" tabindex="0">혁신 전략</div>
+                            <div class="dropdown-item" onclick="navigateToPage('sustainability')" role="menuitem" tabindex="0">지속가능경영</div>
+                        </div>
                     </div>
-                </div>
-            </li>
-            <li class="nav-item" style="--index: 3">
-                <a href="#products" class="nav-link" onclick="toggleMobileDropdown(event, this)" aria-expanded="false">제품/서비스</a>
-                <div class="mega-dropdown">
-                    <div class="dropdown-section">
-                        <h4>🏺 유기 제품군</h4>
-                        <div class="dropdown-item" onclick="window.location.href='dining-set.html'">식기 컬렉션</div>
-                        <div class="dropdown-item" onclick="navigateToPage('health-products')">건강 케어 제품</div>
-                        <div class="dropdown-item" onclick="navigateToPage('gift-sets')">프리미엄 선물세트</div>
-                        <div class="dropdown-item" onclick="navigateToPage('custom-craft')">맞춤 제작 서비스</div>
+                </li>
+                <li class="nav-item" role="none">
+                    <a href="#products" class="nav-link" onclick="toggleMobileDropdown(event, this)" role="menuitem" aria-expanded="false" aria-haspopup="true">제품/서비스</a>
+                    <div class="mega-dropdown" role="menu" aria-label="제품/서비스 서브메뉴">
+                        <div class="dropdown-section">
+                            <h4>🏺 유기 제품군</h4>
+                            <div class="dropdown-item" onclick="window.location.href='dining-set.html'" role="menuitem" tabindex="0">식기 컬렉션</div>
+                            <div class="dropdown-item" onclick="navigateToPage('health-products')" role="menuitem" tabindex="0">건강 케어 제품</div>
+                            <div class="dropdown-item" onclick="navigateToPage('gift-sets')" role="menuitem" tabindex="0">프리미엄 선물세트</div>
+                            <div class="dropdown-item" onclick="navigateToPage('custom-craft')" role="menuitem" tabindex="0">맞춤 제작 서비스</div>
+                        </div>
+                        <div class="dropdown-section">
+                            <h4>💻 소프트웨어</h4>
+                            <div class="dropdown-item" onclick="navigateToPage('erp-solution')" role="menuitem" tabindex="0">제조업 ERP 솔루션</div>
+                            <div class="dropdown-item" onclick="navigateToPage('iot-platform')" role="menuitem" tabindex="0">IoT 품질관리 플랫폼</div>
+                            <div class="dropdown-item" onclick="navigateToPage('ecommerce-system')" role="menuitem" tabindex="0">전통공예 전자상거래</div>
+                            <div class="dropdown-item" onclick="navigateToPage('consulting')" role="menuitem" tabindex="0">디지털 전환 컨설팅</div>
+                        </div>
+                        <div class="dropdown-section">
+                            <h4>🔬 R&D 과제</h4>
+                            <div class="dropdown-item" onclick="navigateToPage('ongoing-projects')" role="menuitem" tabindex="0">진행중인 과제</div>
+                            <div class="dropdown-item" onclick="navigateToPage('completed-projects')" role="menuitem" tabindex="0">완료 과제</div>
+                            <div class="dropdown-item" onclick="navigateToPage('research-results')" role="menuitem" tabindex="0">연구 성과</div>
+                            <div class="dropdown-item" onclick="navigateToPage('partnerships')" role="menuitem" tabindex="0">산학연 협력</div>
+                        </div>
                     </div>
-                    <div class="dropdown-section">
-                        <h4>💻 소프트웨어</h4>
-                        <div class="dropdown-item" onclick="navigateToPage('erp-solution')">제조업 ERP 솔루션</div>
-                        <div class="dropdown-item" onclick="navigateToPage('iot-platform')">IoT 품질관리 플랫폼</div>
-                        <div class="dropdown-item" onclick="navigateToPage('ecommerce-system')">전통공예 전자상거래</div>
-                        <div class="dropdown-item" onclick="navigateToPage('consulting')">디지털 전환 컨설팅</div>
-                    </div>
-                    <div class="dropdown-section">
-                        <h4>🔬 R&D 과제</h4>
-                        <div class="dropdown-item" onclick="navigateToPage('ongoing-projects')">진행중인 과제</div>
-                        <div class="dropdown-item" onclick="navigateToPage('completed-projects')">완료 과제</div>
-                        <div class="dropdown-item" onclick="navigateToPage('research-results')">연구 성과</div>
-                        <div class="dropdown-item" onclick="navigateToPage('partnerships')">산학연 협력</div>
-                    </div>
-                </div>
-            </li>
-            <li class="nav-item" style="--index: 4">
-                <a href="contact.html" class="nav-link">CONTACT</a>
-            </li>
-            <li class="nav-item" style="--index: 5">
-                <a href="#" class="nav-link" onclick="navigateToPage('shopping-mall')">쇼핑몰</a>
-            </li>
-        </ul>
-        
-        <!-- 개선된 햄버거 메뉴 버튼 -->
-        <button class="menu-toggle" onclick="toggleMenu()" aria-label="메뉴 열기/닫기" aria-expanded="false">
-            <span></span>
-            <span></span>
-            <span></span>
-        </button>
-    </nav>
-</header>
+                </li>
+                <li class="nav-item" role="none">
+                    <a href="contact.html" class="nav-link" role="menuitem">CONTACT</a>
+                </li>
+                <li class="nav-item" role="none">
+                    <a href="#" class="nav-link" onclick="navigateToPage('shopping-mall')" role="menuitem">쇼핑몰</a>
+                </li>
+            </ul>
+
+            <div class="lang-selector">
+                <button class="lang-btn active" aria-label="한국어">KR</button>
+                <button class="lang-btn" aria-label="English">US</button>
+                <button class="lang-btn" aria-label="中文">CN</button>
+                <button class="lang-btn" aria-label="日本語">JP</button>
+            </div>
+
+            <button class="menu-toggle" onclick="toggleMenu()" aria-label="메뉴 열기/닫기" aria-expanded="false" aria-controls="navMenu">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+        </nav>
+    </header>
 
     <!-- Hero Section -->
-    <section class="hero">
-        <video class="hero-video" autoplay muted loop playsinline onloadeddata="handleVideoLoadedData(this)" onerror="handleVideoError(this)">
-            <source src="./video/korevo_hero.mp4" type="video/mp4">
-        </video>
-        <div class="hero-fallback-image"></div>
+    <section class="hero" id="hero">
+        <div class="hero-bg">
+            <video 
+                class="hero-video" 
+                autoplay 
+                muted 
+                loop 
+                playsinline
+                onloadeddata="handleVideoLoadedData()"
+                onload="handleVideoLoad()"
+                onerror="handleVideoError()"
+                aria-label="KOREVO 소개 영상"
+            >
+                <source src="./video/korevo_hero.mp4" type="video/mp4">
+                <img src="./images/hero-fallback.jpg" alt="KOREVO - 전통과 혁신이 만나는 곳" style="width: 100%; height: 100%; object-fit: cover;">
+            </video>
+            <div class="hero-overlay"></div>
+        </div>
+        
         <div class="hero-content">
-            <h1 class="hero-title animate-slide-up">KOREVO</h1>
-            <p class="hero-subtitle animate-slide-up delay-1">한국의 전통과 혁신을 담다</p>
-            <p class="hero-description animate-slide-up delay-2">천년의 전통 유기 기술과 최첨단 AI 기술의 만남</p>
-            <div class="hero-buttons animate-slide-up delay-3">
-                <a href="heonn-brand.html" class="btn-primary">헤온(HeOnn) 브랜드</a>
-                <a href="contact.html" class="btn-secondary">문의하기</a>
+            <h1 class="hero-title">
+                전통과 혁신이 만나는<br>
+                <span class="highlight">KOREVO</span>
+            </h1>
+            <p class="hero-subtitle">
+                천년의 유기 기술과 현대 IT의 융합으로<br>
+                새로운 가치를 창조합니다
+            </p>
+            <div class="hero-cta">
+                <a href="#products" class="cta-primary" onclick="smoothScroll('#products')" aria-label="제품 살펴보기로 이동">
+                    <span>제품 살펴보기</span>
+                    <svg width="20" height="20" viewBox="0 0 20 20" fill="none" aria-hidden="true">
+                        <path d="M4.16669 10H15.8334M15.8334 10L10 4.16669M15.8334 10L10 15.8334" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>
+                </a>
+                <a href="#about" class="cta-secondary" onclick="smoothScroll('#about')" aria-label="회사 소개로 이동">
+                    자세히 알아보기
+                </a>
             </div>
         </div>
-        <div class="scroll-indicator">
-            <div class="scroll-arrow"></div>
+        
+        <!-- 스크롤 인디케이터 -->
+        <div class="scroll-indicator" onclick="smoothScroll('#about')" role="button" tabindex="0" aria-label="아래로 스크롤">
+            <div class="scroll-mouse">
+                <div class="scroll-wheel"></div>
+            </div>
+            <span>스크롤하여 더 보기</span>
         </div>
     </section>
 
-    <!-- Main Content -->
-    <main class="main-content">
-        <!-- Feature Cards Section -->
-        <section class="features-section">
-            <div class="container">
-                <div class="features-header">
-                    <h2 class="features-title">KOREVO의 핵심 가치</h2>
-                    <p class="features-subtitle">전통과 혁신이 만나는 지점에서 새로운 가치를 창조합니다</p>
+    <!-- About Section -->
+    <section class="section" id="about">
+        <div class="container">
+            <h2 class="section-title animate-on-scroll">헤온(HeOnn) 제품군</h2>
+            <p class="section-subtitle animate-on-scroll">전통과 현대가 조화를 이루는 프리미엄 라이프스타일 제품</p>
+            
+            <div class="products-grid">
+                <div class="card animate-on-scroll">
+                    <div class="card-icon">🍽️</div>
+                    <h3 class="card-title">식기 컬렉션</h3>
+                    <p class="card-description">전통 유기 기법으로 제작된 프리미엄 식기</p>
+                    <a href="dining-set.html" class="card-link">자세히 보기</a>
                 </div>
-                <div class="features-grid">
-                    <div class="feature-card animate-on-scroll">
-                        <span class="feature-icon">🏺</span>
-                        <h3 class="feature-title">전통 유기 기술</h3>
-                        <p class="feature-description">
-                            천년의 역사를 가진 한국의 전통 유기 제작 기법을 현대적으로 계승하여 건강하고 아름다운 제품을 만듭니다.
-                        </p>
-                        <a href="heonn-brand.html" class="feature-link">자세히 보기 →</a>
-                    </div>
-                    <div class="feature-card animate-on-scroll">
-                        <span class="feature-icon">🤖</span>
-                        <h3 class="feature-title">AI 기술 융합</h3>
-                        <p class="feature-description">
-                            인공지능과 IoT 기술을 활용한 스마트 제조 시스템으로 품질 혁신과 생산성 향상을 실현합니다.
-                        </p>
-                        <a href="erp-solution.html" class="feature-link">자세히 보기 →</a>
-                    </div>
-                    <div class="feature-card animate-on-scroll">
-                        <span class="feature-icon">🌱</span>
-                        <h3 class="feature-title">지속가능성</h3>
-                        <p class="feature-description">
-                            환경친화적인 소재와 공정을 통해 지속 가능한 미래를 위한 책임감 있는 경영을 실천합니다.
-                        </p>
-                        <a href="contact.html" class="feature-link">자세히 보기 →</a>
-                    </div>
+                
+                <div class="card animate-on-scroll">
+                    <div class="card-icon">🌿</div>
+                    <h3 class="card-title">건강 케어</h3>
+                    <p class="card-description">건강한 라이프스타일을 위한 제품</p>
+                    <button class="card-link" onclick="navigateToPage('health-products')">자세히 보기</button>
+                </div>
+                
+                <div class="card animate-on-scroll">
+                    <div class="card-icon">🎁</div>
+                    <h3 class="card-title">선물세트</h3>
+                    <p class="card-description">특별한 순간을 위한 프리미엄 선물</p>
+                    <button class="card-link" onclick="navigateToPage('gift-sets')">자세히 보기</button>
                 </div>
             </div>
-        </section>
+        </div>
+    </section>
 
-        <!-- Products Section -->
-        <section class="products-section">
-            <div class="container">
-                <div class="products-header">
-                    <h2 class="products-title">헤온(HeOnn) 제품군</h2>
-                    <p class="products-subtitle">전통과 현대가 조화를 이루는 프리미엄 라이프스타일 제품</p>
+    <!-- Business Section -->
+    <section class="section" id="business" style="background: var(--surface);">
+        <div class="container">
+            <h2 class="section-title animate-on-scroll">융합 비즈니스</h2>
+            <p class="section-subtitle animate-on-scroll">전통 기술과 현대 IT의 완벽한 조화</p>
+            
+            <div class="business-grid">
+                <div class="card animate-on-scroll">
+                    <div class="card-icon">🏺</div>
+                    <h3 class="card-title">전통 공예</h3>
+                    <p class="card-description">천년의 유기 제작 기법을 현대적으로 계승</p>
+                    <button class="card-link" onclick="navigateToPage('traditional-craft')">자세히 보기</button>
                 </div>
-                <div class="products-grid">
-                    <div class="product-card" onclick="window.location.href='dining-set.html'">
-                        <div class="product-image">
-                            <div class="product-placeholder">🍽️</div>
-                        </div>
-                        <div class="product-info">
-                            <h3 class="product-title">식기 컬렉션</h3>
-                            <p class="product-description">전통 유기 기법으로 제작된 프리미엄 식기</p>
-                            <span class="product-price">문의</span>
-                        </div>
-                    </div>
-                    <div class="product-card" onclick="navigateToPage('health-products')">
-                        <div class="product-image">
-                            <div class="product-placeholder">🌿</div>
-                        </div>
-                        <div class="product-info">
-                            <h3 class="product-title">건강 케어</h3>
-                            <p class="product-description">건강한 라이프스타일을 위한 제품</p>
-                            <span class="product-price">문의</span>
-                        </div>
-                    </div>
-                    <div class="product-card" onclick="navigateToPage('gift-sets')">
-                        <div class="product-image">
-                            <div class="product-placeholder">🎁</div>
-                        </div>
-                        <div class="product-info">
-                            <h3 class="product-title">선물세트</h3>
-                            <p class="product-description">특별한 순간을 위한 프리미엄 선물</p>
-                            <span class="product-price">문의</span>
-                        </div>
-                    </div>
+                
+                <div class="card animate-on-scroll">
+                    <div class="card-icon">💻</div>
+                    <h3 class="card-title">IT 솔루션</h3>
+                    <p class="card-description">제조업을 위한 통합 IT 플랫폼</p>
+                    <button class="card-link" onclick="navigateToPage('erp-solution')">자세히 보기</button>
+                </div>
+                
+                <div class="card animate-on-scroll">
+                    <div class="card-icon">🔬</div>
+                    <h3 class="card-title">R&D 혁신</h3>
+                    <p class="card-description">지속적인 연구개발을 통한 혁신</p>
+                    <button class="card-link" onclick="navigateToPage('ongoing-projects')">자세히 보기</button>
                 </div>
             </div>
-        </section>
+        </div>
+    </section>
 
-        <!-- CTA Section -->
-        <section class="cta-section">
-            <div class="container">
-                <div class="cta-content">
-                    <h2 class="cta-title">KOREVO와 함께하세요</h2>
-                    <p class="cta-description">
-                        전통과 혁신이 만나는 새로운 가치를 경험해보세요
-                    </p>
-                    <div class="cta-buttons">
-                        <a href="contact.html" class="btn-primary large">문의하기</a>
-                        <a href="heonn-brand.html" class="btn-secondary large">브랜드 스토리</a>
+    <!-- Products Section -->
+    <section class="section" id="products">
+        <div class="container">
+            <h2 class="section-title animate-on-scroll">제품 & 서비스</h2>
+            <p class="section-subtitle animate-on-scroll">전통의 가치를 현대적으로 재해석한 프리미엄 라인업</p>
+            
+            <div class="products-showcase">
+                <div class="product-category animate-on-scroll">
+                    <h3>🏺 유기 제품군</h3>
+                    <div class="product-list">
+                        <div class="product-item" onclick="window.location.href='dining-set.html'">
+                            <h4>식기 컬렉션</h4>
+                            <p>전통 유기의 아름다움을 담은 식기</p>
+                        </div>
+                        <div class="product-item" onclick="navigateToPage('health-products')">
+                            <h4>건강 케어 제품</h4>
+                            <p>자연의 힘을 담은 웰니스 제품</p>
+                        </div>
+                        <div class="product-item" onclick="navigateToPage('gift-sets')">
+                            <h4>프리미엄 선물세트</h4>
+                            <p>특별한 순간을 위한 선물</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="product-category animate-on-scroll">
+                    <h3>💻 소프트웨어</h3>
+                    <div class="product-list">
+                        <div class="product-item" onclick="navigateToPage('erp-solution')">
+                            <h4>제조업 ERP 솔루션</h4>
+                            <p>통합 생산관리 시스템</p>
+                        </div>
+                        <div class="product-item" onclick="navigateToPage('iot-platform')">
+                            <h4>IoT 품질관리 플랫폼</h4>
+                            <p>스마트 품질관리 솔루션</p>
+                        </div>
+                        <div class="product-item" onclick="navigateToPage('ecommerce-system')">
+                            <h4>전통공예 전자상거래</h4>
+                            <p>공예품 전용 온라인 플랫폼</p>
+                        </div>
                     </div>
                 </div>
             </div>
-        </section>
-    </main>
+        </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="section cta-section" style="background: linear-gradient(135deg, var(--accent) 0%, #0056CC 100%); color: var(--apple-white);">
+        <div class="container">
+            <div class="cta-content animate-on-scroll">
+                <h2 style="color: var(--apple-white); margin-bottom: 1rem;">KOREVO와 함께하세요</h2>
+                <p style="font-size: 1.25rem; margin-bottom: 2rem; opacity: 0.9;">전통과 혁신이 만나는 새로운 가치를 경험해보세요</p>
+                <div class="cta-buttons">
+                    <a href="contact.html" class="cta-primary" style="background: var(--apple-white); color: var(--accent);">문의하기</a>
+                    <a href="#" class="cta-secondary" onclick="navigateToPage('shopping-mall')" style="border-color: var(--apple-white); color: var(--apple-white);">쇼핑몰 방문</a>
+                </div>
+            </div>
+        </div>
+    </section>
 
     <!-- Footer -->
     <footer class="footer">
         <div class="container">
             <div class="footer-content">
                 <div class="footer-section">
-                    <h3 class="footer-title">KOREVO</h3>
-                    <p class="footer-description">
-                        전통과 혁신이 만나는 곳,<br>
-                        새로운 가치를 창조합니다.
-                    </p>
+                    <h3>KOREVO</h3>
+                    <p>전통과 혁신이 만나는 곳,<br>새로운 가치를 창조합니다.</p>
                     <div class="social-links">
-                        <a href="#" class="social-link">Facebook</a>
-                        <a href="#" class="social-link">Instagram</a>
-                        <a href="#" class="social-link">YouTube</a>
+                        <a href="#" aria-label="페이스북">📘</a>
+                        <a href="#" aria-label="인스타그램">📷</a>
+                        <a href="#" aria-label="유튜브">📺</a>
+                        <a href="#" aria-label="링크드인">💼</a>
                     </div>
                 </div>
+                
                 <div class="footer-section">
-                    <h4 class="footer-subtitle">제품</h4>
-                    <ul class="footer-links">
-                        <li><a href="heonn-brand.html">헤온 브랜드</a></li>
+                    <h3>제품</h3>
+                    <ul>
                         <li><a href="dining-set.html">식기 컬렉션</a></li>
-                        <li><a href="#">건강 케어</a></li>
-                        <li><a href="#">선물세트</a></li>
+                        <li><a href="#" onclick="navigateToPage('health-products')">건강 케어</a></li>
+                        <li><a href="#" onclick="navigateToPage('gift-sets')">선물세트</a></li>
+                        <li><a href="#" onclick="navigateToPage('custom-craft')">맞춤 제작</a></li>
                     </ul>
                 </div>
+                
                 <div class="footer-section">
-                    <h4 class="footer-subtitle">회사</h4>
-                    <ul class="footer-links">
-                        <li><a href="#">회사소개</a></li>
-                        <li><a href="#">비전 & 미션</a></li>
-                        <li><a href="#">연혁</a></li>
-                        <li><a href="#">팀 소개</a></li>
+                    <h3>서비스</h3>
+                    <ul>
+                        <li><a href="#" onclick="navigateToPage('erp-solution')">ERP 솔루션</a></li>
+                        <li><a href="#" onclick="navigateToPage('iot-platform')">IoT 플랫폼</a></li>
+                        <li><a href="#" onclick="navigateToPage('consulting')">컨설팅</a></li>
+                        <li><a href="#" onclick="navigateToPage('partnerships')">파트너십</a></li>
                     </ul>
                 </div>
+                
                 <div class="footer-section">
-                    <h4 class="footer-subtitle">지원</h4>
-                    <ul class="footer-links">
+                    <h3>고객지원</h3>
+                    <ul>
                         <li><a href="contact.html">문의하기</a></li>
-                        <li><a href="#">고객센터</a></li>
-                        <li><a href="#">개인정보처리방침</a></li>
-                        <li><a href="#">이용약관</a></li>
+                        <li><a href="#" onclick="navigateToPage('faq')">자주 묻는 질문</a></li>
+                        <li><a href="#" onclick="navigateToPage('notice')">공지사항</a></li>
+                        <li><a href="#" onclick="navigateToPage('download')">다운로드</a></li>
                     </ul>
                 </div>
             </div>
+            
             <div class="footer-bottom">
-                <p>&copy; 2024 KOREVO. All rights reserved.</p>
+                <p>&copy; 2025 KOREVO. All rights reserved.</p>
+                <p>전통과 혁신이 만나는 새로운 가치</p>
             </div>
         </div>
     </footer>
 
-    <!-- 통합 JavaScript 파일 -->
+    <!-- JavaScript -->
     <script src="script.js"></script>
+    
+    <!-- 구조화된 데이터 (SEO) -->
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "Organization",
+        "name": "KOREVO",
+        "description": "전통 유기 기술과 현대 IT 기술의 융합",
+        "url": "https://test113113.github.io/korevo/",
+        "logo": "https://test113113.github.io/korevo/logo.png",
+        "sameAs": [
+            "https://www.facebook.com/korevo",
+            "https://www.instagram.com/korevo",
+            "https://www.youtube.com/korevo"
+        ],
+        "contactPoint": {
+            "@type": "ContactPoint",
+            "contactType": "customer service",
+            "url": "https://test113113.github.io/korevo/contact.html"
+        }
+    }
+    </script>
+
+    <!-- 추가 스타일 (카드 그리드 등) -->
+    <style>
+        .section-subtitle {
+            text-align: center;
+            font-size: 1.25rem;
+            color: var(--text-secondary);
+            margin-bottom: 3rem;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .products-grid,
+        .business-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .card-icon {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+            text-align: center;
+        }
+
+        .card-title {
+            font-size: 1.5rem;
+            font-weight: 600;
+            margin-bottom: 1rem;
+            text-align: center;
+        }
+
+        .card-description {
+            color: var(--text-secondary);
+            text-align: center;
+            margin-bottom: 2rem;
+            line-height: 1.6;
+        }
+
+        .card-link {
+            display: inline-block;
+            padding: 0.75rem 2rem;
+            background: var(--accent);
+            color: var(--apple-white);
+            text-decoration: none;
+            border: none;
+            border-radius: 25px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            width: 100%;
+            text-align: center;
+        }
+
+        .card-link:hover {
+            background: #0056CC;
+            transform: translateY(-2px);
+        }
+
+        .products-showcase {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+            gap: 3rem;
+            margin-top: 3rem;
+        }
+
+        .product-category h3 {
+            font-size: 1.5rem;
+            margin-bottom: 1.5rem;
+            color: var(--accent);
+        }
+
+        .product-list {
+            display: grid;
+            gap: 1rem;
+        }
+
+        .product-item {
+            padding: 1.5rem;
+            background: var(--background);
+            border: 1px solid var(--separator);
+            border-radius: 12px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .product-item:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+        }
+
+        .product-item h4 {
+            font-size: 1.125rem;
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+            color: var(--text-primary);
+        }
+
+        .product-item p {
+            color: var(--text-secondary);
+            font-size: 0.875rem;
+        }
+
+        .cta-content {
+            text-align: center;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .cta-buttons {
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        .social-links {
+            display: flex;
+            gap: 1rem;
+            margin-top: 1rem;
+        }
+
+        .social-links a {
+            display: inline-block;
+            font-size: 1.5rem;
+            transition: transform 0.3s ease;
+        }
+
+        .social-links a:hover {
+            transform: scale(1.2);
+        }
+
+        @media (max-width: 768px) {
+            .products-showcase {
+                grid-template-columns: 1fr;
+            }
+            
+            .products-grid,
+            .business-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .cta-buttons {
+                flex-direction: column;
+                align-items: center;
+            }
+            
+            .cta-primary,
+            .cta-secondary {
+                width: 100%;
+                max-width: 280px;
+            }
+        }
+    </style>
 </body>
 </html>
