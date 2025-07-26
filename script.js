@@ -1,16 +1,16 @@
 /**
  * KOREVO - Apple Design System JavaScript
- * 모바일 메뉴 완전 개선 버전
+ * 완전 개선 버전 (모바일 메뉴 포함)
  */
 
 // ===== GLOBAL VARIABLES =====
 let isMenuOpen = false;
 let isScrolling = false;
 
-// ===== 개선된 모바일 메뉴 기능 =====
+// ===== MOBILE MENU FUNCTIONALITY =====
 
 /**
- * 완전히 재설계된 모바일 메뉴 토글 함수
+ * 완전히 개선된 모바일 메뉴 토글 함수
  */
 function toggleMenu() {
     const navMenu = document.querySelector('.nav-menu');
@@ -48,7 +48,7 @@ function toggleMenu() {
 }
 
 /**
- * 모바일 메뉴 닫기 (완전히 재설계)
+ * 모바일 메뉴 닫기
  */
 function closeMobileMenu() {
     const navMenu = document.querySelector('.nav-menu');
@@ -81,7 +81,7 @@ function closeMobileMenu() {
 }
 
 /**
- * 모바일 오버레이 생성 (개선된 함수)
+ * 모바일 오버레이 생성
  */
 function createMobileOverlay() {
     // 기존 오버레이 제거
@@ -101,7 +101,7 @@ function createMobileOverlay() {
 }
 
 /**
- * 완전히 개선된 모바일 드롭다운 토글
+ * 모바일 드롭다운 토글
  */
 function toggleMobileDropdown(event, element) {
     // 모바일에서만 작동
@@ -129,16 +129,16 @@ function toggleMobileDropdown(event, element) {
     navItem.classList.toggle('expanded');
     dropdown.classList.toggle('active');
     
-    // ARIA 속성 업데이트 (접근성)
+    // ARIA 속성 업데이트
     element.setAttribute('aria-expanded', (!isExpanded).toString());
     
     console.log(`🍎 드롭다운 ${isExpanded ? '닫힘' : '열림'}: ${element.textContent.trim()}`);
 }
 
-// ===== 터치 제스처 지원 =====
+// ===== TOUCH GESTURES =====
 
 /**
- * 스와이프 제스처 초기화
+ * 터치 제스처 초기화
  */
 function initTouchGestures() {
     let touchStartX = 0;
@@ -170,14 +170,14 @@ function initTouchGestures() {
             toggleMenu();
         }
         
-        // 좌측에서 우측으로 스와이프 (메뉴 닫기)  
+        // 좌측에서 우측으로 스와이프 (메뉴 닫기)
         if (swipeDistanceX < -swipeThreshold && isMenuOpen) {
             closeMobileMenu();
         }
     }
 }
 
-// ===== 키보드 접근성 =====
+// ===== KEYBOARD ACCESSIBILITY =====
 
 /**
  * 키보드 접근성 초기화
@@ -215,10 +215,10 @@ function initAccessibility() {
     });
 }
 
-// ===== 스크롤 효과 =====
+// ===== SCROLL EFFECTS =====
 
 /**
- * 헤더 스크롤 효과 초기화
+ * 스크롤 효과 초기화
  */
 function initScrollEffects() {
     let lastScrollTop = 0;
@@ -244,7 +244,122 @@ function initScrollEffects() {
     }, { passive: true });
 }
 
-// ===== 알림 시스템 =====
+// ===== VIDEO HANDLERS =====
+
+/**
+ * 비디오 로드 완료 핸들러
+ */
+function handleVideoLoadedData() {
+    console.log('✅ 히어로 비디오 로드 완료');
+    const video = document.querySelector('.hero-video');
+    if (video) {
+        video.classList.add('loaded');
+    }
+}
+
+/**
+ * 비디오 로드 핸들러
+ */
+function handleVideoLoad() {
+    console.log('🎬 히어로 비디오 준비 완료');
+}
+
+/**
+ * 비디오 에러 핸들러
+ */
+function handleVideoError() {
+    console.warn('⚠️ 히어로 비디오 로드 실패 - 폴백 이미지 표시');
+    const video = document.querySelector('.hero-video');
+    const heroSection = document.querySelector('.hero');
+    
+    if (video && heroSection) {
+        // 비디오 숨기고 배경 이미지로 대체
+        video.style.display = 'none';
+        heroSection.style.backgroundImage = 'url(./images/hero-fallback.jpg)';
+        heroSection.style.backgroundSize = 'cover';
+        heroSection.style.backgroundPosition = 'center';
+    }
+}
+
+// ===== SMOOTH SCROLLING =====
+
+/**
+ * 부드러운 스크롤 함수
+ */
+function smoothScroll(target) {
+    const targetElement = typeof target === 'string' ? document.querySelector(target) : target;
+    if (!targetElement) return;
+    
+    const targetPosition = targetElement.offsetTop - 80; // 헤더 높이 고려
+    const startPosition = window.pageYOffset;
+    const distance = targetPosition - startPosition;
+    const duration = 800;
+    let startTime = null;
+
+    function animation(currentTime) {
+        if (startTime === null) startTime = currentTime;
+        const timeElapsed = currentTime - startTime;
+        const run = ease(timeElapsed, startPosition, distance, duration);
+        window.scrollTo(0, run);
+        if (timeElapsed < duration) requestAnimationFrame(animation);
+    }
+
+    function ease(t, b, c, d) {
+        t /= d / 2;
+        if (t < 1) return c / 2 * t * t + b;
+        t--;
+        return -c / 2 * (t * (t - 2) - 1) + b;
+    }
+
+    requestAnimationFrame(animation);
+}
+
+// ===== NAVIGATION =====
+
+/**
+ * 페이지 네비게이션 함수
+ */
+function navigateToPage(page) {
+    // 준비 중인 페이지들
+    const underConstructionPages = [
+        'vision', 'history', 'team', 'brand-philosophy', 'traditional-craft',
+        'business-model', 'innovation-strategy', 'sustainability',
+        'health-products', 'gift-sets', 'custom-craft',
+        'erp-solution', 'iot-platform', 'ecommerce-system', 'consulting',
+        'ongoing-projects', 'completed-projects', 'research-results', 'partnerships',
+        'shopping-mall'
+    ];
+    
+    if (underConstructionPages.includes(page)) {
+        showUnderConstruction();
+        return;
+    }
+    
+    // 실제 페이지로 이동
+    const pageMap = {
+        'heonn-brand': 'heonn-brand.html',
+        'dining-set': 'dining-set.html',
+        'contact': 'contact.html',
+        'greeting': 'greeting.html'
+    };
+    
+    const targetPage = pageMap[page];
+    if (targetPage) {
+        window.location.href = targetPage;
+    } else {
+        console.warn(`페이지를 찾을 수 없습니다: ${page}`);
+        showAppleNotification('페이지를 찾을 수 없습니다.', 'error');
+    }
+}
+
+/**
+ * 준비중 페이지 알림
+ */
+function showUnderConstruction() {
+    showAppleNotification('해당 페이지는 현재 준비 중입니다. 빠른 시일 내에 서비스를 제공하겠습니다.', 'info');
+}
+
+// ===== NOTIFICATION SYSTEM =====
 
 /**
  * 애플 스타일 알림 표시
@@ -272,14 +387,14 @@ function showAppleNotification(message, type = 'info') {
                 position: fixed;
                 top: 80px;
                 right: 20px;
-                background: var(--background);
-                border: 1px solid var(--separator);
-                border-radius: var(--radius-lg);
-                padding: var(--spacing-md);
+                background: rgba(255, 255, 255, 0.95);
+                border: 1px solid rgba(0, 0, 0, 0.1);
+                border-radius: 12px;
+                padding: 16px;
                 box-shadow: 0 10px 40px rgba(0, 0, 0, 0.15);
                 z-index: 2000;
                 transform: translateX(400px);
-                transition: transform var(--duration-normal) var(--ease-out);
+                transition: transform 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
                 max-width: 350px;
                 backdrop-filter: blur(20px);
                 -webkit-backdrop-filter: blur(20px);
@@ -290,38 +405,44 @@ function showAppleNotification(message, type = 'info') {
             .notification-content {
                 display: flex;
                 align-items: center;
-                gap: var(--spacing-md);
+                gap: 16px;
             }
             .notification-message {
                 flex: 1;
                 font-size: 15px;
-                color: var(--text-primary);
+                color: #1D1D1F;
+                line-height: 1.4;
             }
             .notification-close {
                 background: none;
                 border: none;
                 font-size: 18px;
                 cursor: pointer;
-                color: var(--text-secondary);
+                color: #86868B;
                 padding: 4px;
-                border-radius: var(--radius-sm);
-                transition: all var(--duration-fast) var(--ease-out);
+                border-radius: 4px;
+                transition: all 0.15s ease;
+                width: 24px;
+                height: 24px;
+                display: flex;
+                align-items: center;
+                justify-content: center;
             }
             .notification-close:hover {
-                background: var(--surface);
-                color: var(--text-primary);
+                background: #F5F5F7;
+                color: #1D1D1F;
             }
             .notification-info {
-                border-left: 4px solid var(--accent);
+                border-left: 4px solid #007AFF;
             }
             .notification-success {
-                border-left: 4px solid var(--apple-green);
+                border-left: 4px solid #34C759;
             }
             .notification-error {
-                border-left: 4px solid var(--apple-red);
+                border-left: 4px solid #FF3B30;
             }
             .notification-warning {
-                border-left: 4px solid var(--apple-orange);
+                border-left: 4px solid #FF9500;
             }
             @media (max-width: 768px) {
                 .notification {
@@ -348,7 +469,32 @@ function showAppleNotification(message, type = 'info') {
     }, 5000);
 }
 
-// ===== 성능 최적화 =====
+// ===== LANGUAGE SELECTOR =====
+
+/**
+ * 언어 선택기 초기화
+ */
+function initLanguageSelector() {
+    const langButtons = document.querySelectorAll('.lang-btn');
+    
+    langButtons.forEach(button => {
+        button.addEventListener('click', function() {
+            // 모든 버튼에서 active 클래스 제거
+            langButtons.forEach(btn => btn.classList.remove('active'));
+            
+            // 클릭된 버튼에 active 클래스 추가
+            this.classList.add('active');
+            
+            const selectedLang = this.textContent.trim();
+            console.log(`언어 변경: ${selectedLang}`);
+            
+            // 여기에 실제 언어 변경 로직 추가
+            showAppleNotification(`언어가 ${selectedLang}로 변경되었습니다.`, 'success');
+        });
+    });
+}
+
+// ===== PERFORMANCE OPTIMIZATION =====
 
 /**
  * 디바운스 함수
@@ -374,58 +520,53 @@ function handleResize() {
         closeMobileMenu();
     }
     
-    // 비디오 크기 조정 (히어로 섹션용)
+    // 비디오 크기 조정
     const heroVideo = document.querySelector('.hero-video');
     if (heroVideo) {
         heroVideo.style.height = window.innerHeight + 'px';
     }
 }
 
-// ===== 페이지 네비게이션 =====
-
 /**
- * 페이지 네비게이션 함수 (기존 호환성 유지)
+ * 이미지 지연 로딩 초기화
  */
-function navigateToPage(page) {
-    // 준비 중인 페이지들
-    const underConstructionPages = [
-        'vision', 'history', 'team', 'brand-philosophy', 'traditional-craft',
-        'business-model', 'innovation-strategy', 'sustainability',
-        'health-products', 'gift-sets', 'custom-craft',
-        'erp-solution', 'iot-platform', 'ecommerce-system', 'consulting',
-        'ongoing-projects', 'completed-projects', 'research-results', 'partnerships'
-    ];
+function initLazyLoading() {
+    const images = document.querySelectorAll('img[data-src]');
     
-    if (underConstructionPages.includes(page)) {
-        showUnderConstruction();
-        return;
-    }
+    const imageObserver = new IntersectionObserver((entries, observer) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                const img = entry.target;
+                img.src = img.dataset.src;
+                img.classList.remove('lazy');
+                observer.unobserve(img);
+            }
+        });
+    });
     
-    // 실제 페이지로 이동
-    const pageMap = {
-        'heonn-brand': 'heonn-brand.html',
-        'dining-set': 'dining-set.html',
-        'contact': 'contact.html',
-        'greeting': 'greeting.html'
-    };
-    
-    const targetPage = pageMap[page];
-    if (targetPage) {
-        window.location.href = targetPage;
-    } else {
-        console.warn(`페이지를 찾을 수 없습니다: ${page}`);
-        showAppleNotification('페이지를 찾을 수 없습니다.', 'error');
-    }
+    images.forEach(img => imageObserver.observe(img));
 }
 
 /**
- * 준비중 페이지 모달 표시
+ * 스크롤 애니메이션 초기화
  */
-function showUnderConstruction() {
-    showAppleNotification('해당 페이지는 현재 준비 중입니다. 빠른 시일 내에 서비스를 제공하겠습니다.', 'info');
+function initScrollAnimations() {
+    const animatedElements = document.querySelectorAll('.animate-on-scroll');
+    
+    const animationObserver = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                entry.target.classList.add('animate-fade-in-up');
+            }
+        });
+    }, {
+        threshold: 0.1
+    });
+    
+    animatedElements.forEach(el => animationObserver.observe(el));
 }
 
-// ===== 초기화 =====
+// ===== INITIALIZATION =====
 
 /**
  * DOM 로드 완료 시 초기화
@@ -437,32 +578,26 @@ document.addEventListener('DOMContentLoaded', function() {
     initAccessibility();
     initScrollEffects();
     initTouchGestures();
+    initLanguageSelector();
+    initLazyLoading();
+    initScrollAnimations();
     
-    // 메뉴 애니메이션 초기화
-    const navItems = document.querySelectorAll('.nav-item');
-    navItems.forEach((item, index) => {
-        item.style.setProperty('--index', index);
+    // 부드러운 스크롤 링크 초기화
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener('click', function(e) {
+            e.preventDefault();
+            const target = this.getAttribute('href');
+            if (target !== '#') {
+                smoothScroll(target);
+            }
+        });
     });
-    
-    // 웰컴 메시지 (개발 환경에서만)
-    if (window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1') {
-        setTimeout(() => {
-            showAppleNotification('모바일 메뉴가 완전히 새롭게 개선되었습니다! 🎉', 'success');
-        }, 1000);
-    }
     
     console.log('✅ KOREVO 웹사이트 초기화 완료');
 });
 
-// ===== 윈도우 이벤트 =====
-
 /**
- * 윈도우 리사이즈 이벤트
- */
-window.addEventListener('resize', debounce(handleResize, 250));
-
-/**
- * 윈도우 로드 완료 이벤트
+ * 윈도우 로드 완료 시 추가 초기화
  */
 window.addEventListener('load', function() {
     // 성능 측정
@@ -470,30 +605,31 @@ window.addEventListener('load', function() {
         const loadTime = window.performance.timing.loadEventEnd - window.performance.timing.navigationStart;
         console.log('🍎 페이지 로드 시간:', loadTime + 'ms');
     }
+    
+    // 로딩 완료 후 애니메이션
+    document.body.classList.add('loaded');
 });
 
-// ===== 기존 코드와의 호환성 =====
+/**
+ * 윈도우 리사이즈 이벤트
+ */
+window.addEventListener('resize', debounce(handleResize, 250));
+
+// ===== GLOBAL FUNCTIONS =====
 
 // 전역 함수로 등록 (기존 HTML에서 호출하는 함수들)
-if (typeof window.navigateToPage === 'undefined') {
-    window.navigateToPage = navigateToPage;
-}
+window.toggleMenu = toggleMenu;
+window.toggleMobileDropdown = toggleMobileDropdown;
+window.navigateToPage = navigateToPage;
+window.smoothScroll = smoothScroll;
+window.handleVideoLoadedData = handleVideoLoadedData;
+window.handleVideoLoad = handleVideoLoad;
+window.handleVideoError = handleVideoError;
+window.showAppleNotification = showAppleNotification;
 
-if (typeof window.toggleMenu === 'undefined') {
-    window.toggleMenu = toggleMenu;
-}
-
-if (typeof window.toggleMobileDropdown === 'undefined') {
-    window.toggleMobileDropdown = toggleMobileDropdown;
-}
-
-if (typeof window.showAppleNotification === 'undefined') {
-    window.showAppleNotification = showAppleNotification;
-}
-
-// ===== 개발자 도구 =====
+// ===== DEVELOPER TOOLS =====
 console.log(`
-🍎 KOREVO 모바일 메뉴 개선 완료
+🍎 KOREVO 웹사이트 완전 개선 완료
 ════════════════════════════════════════
 ✨ 주요 개선 사항:
   • 44px 최소 터치 영역 (Apple HIG 준수)
