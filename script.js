@@ -485,3 +485,37 @@ if (typeof window.toggleMenu === 'undefined') {
 
 if (typeof window.toggleMobileDropdown === 'undefined') {
     window.toggleMobileDropdown = toggleMobileDropdown;
+}
+
+if (typeof window.showAppleNotification === 'undefined') {
+    window.showAppleNotification = showAppleNotification;
+}
+
+// ===== 개발자 도구 =====
+console.log(`
+🍎 KOREVO 모바일 메뉴 개선 완료
+════════════════════════════════════════
+✨ 주요 개선 사항:
+  • 44px 최소 터치 영역 (Apple HIG 준수)
+  • 부드러운 애니메이션 (300ms ease-out)
+  • 스와이프 제스처 지원
+  • 키보드 접근성 완벽 지원
+  • 애플 디자인 시스템 적용
+  • 성능 최적화 (60fps)
+
+🎯 테스트 방법:
+  1. 모바일에서 햄버거 메뉴 클릭
+  2. 화면 가장자리에서 스와이프
+  3. ESC 키로 메뉴 닫기
+  4. Tab 키로 네비게이션
+
+📱 지원 제스처:
+  • 우→좌 스와이프: 메뉴 열기
+  • 좌→우 스와이프: 메뉴 닫기
+  • 오버레이 터치: 메뉴 닫기
+
+⌨️ 키보드 단축키:
+  • ESC: 메뉴 닫기
+  • Tab/Shift+Tab: 포커스 이동
+════════════════════════════════════════
+`);
